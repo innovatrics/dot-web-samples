@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DOT WEB detect face sample</title>
+
+    <style>
+      #videoContainer {
+        position: relative;
+        width: 70%;
+      }
+
+      body {
+        --marker-size: 50px;
+      }
+
+      #marker {
+        z-index: 5;
+        position: absolute;
+        background: red;
+        width: var(--marker-size);
+        height: var(--marker-size);
+        border-radius: 30px;
+        top: 50%;
+        left: 50%;
+      }
+
+      #marker.animate {
+        transition: top 2s ease-in-out, left 2s ease-in-out;
+      }
+
+      #marker.top {
+        top: 0;
+      }
+
+      #marker.bottom {
+        top: calc(100% - var(--marker-size));
+      }
+
+      #marker.left {
+        left: 0;
+      }
+
+      #marker.right {
+        left: calc(100% - var(--marker-size));
+      }
+
+      #videoElement {
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <input id="startButton" type="button" value="start" />
+    <div id="videoContainer" style="position: relative">
+      <div id="marker"></div>
+    </div>
+    <section id="output"></section>
+    <script type="module" src="/client.js"></script>
+  </body>
+</html>

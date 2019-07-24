@@ -1,0 +1,24 @@
+{
+  "name": "dot-web-samples",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "innovatrics ui-team",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "prettier": "prettier --write '**/*.js' '**/*.html'",
+    "prettier:check": "prettier -l --write '**/*.js' '**/*.html'",
+    "lint": "eslint '**/*.js'",
+    "sample-version-check": "node version-check/version-check.js",
+    "sample-detect-face": "nodemon detect-face/server.js",
+    "sample-verify-face": "nodemon verify-face/server.js",
+    "sample-liveness-check": "nodemon liveness-check/server.js",
+    "sample-document-capture": "nodemon document-capture/server.js"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "nodemon": "^1.19.1",
+    "prettier": "^1.18.2"
+  }
+}
