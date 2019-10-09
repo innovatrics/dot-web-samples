@@ -8,6 +8,7 @@ the following commands start a web-server for the specific sample, and you can s
 - `node verify-face/server.js`
 - `node liveness-check/server.js`
 - `node document-capture/server.js`
+- `node document-classify/server.js`
 
 the following command checks the version of the dot-servers, and reports it in the console:
 - `node version-check.version-check.js`
