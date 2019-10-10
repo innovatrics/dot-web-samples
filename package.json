@@ -13,7 +13,8 @@
     "sample-detect-face": "nodemon detect-face/server.js",
     "sample-verify-face": "nodemon verify-face/server.js",
     "sample-liveness-check": "nodemon liveness-check/server.js",
-    "sample-document-capture": "nodemon document-capture/server.js"
+    "sample-document-capture": "nodemon document-capture/server.js",
+    "sample-document-classify": "nodemon document-classify/server.js"
   },
   "devDependencies": {
     "eslint": "^6.0.1",
