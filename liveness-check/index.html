@@ -2,15 +2,20 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DOT WEB detect face sample</title>
 
     <style>
       #videoContainer {
         position: relative;
-        width: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       body {
+        margin: 0;
+        padding: 0;
         --marker-size: 50px;
       }
 
@@ -44,19 +49,15 @@
       #marker.right {
         left: calc(100% - var(--marker-size));
       }
-
-      #videoElement {
-        width: 100%;
-      }
     </style>
   </head>
 
   <body>
     <input id="startButton" type="button" value="start" />
-    <div id="videoContainer" style="position: relative">
+    <div id="videoContainer" hidden>
       <div id="marker"></div>
     </div>
-    <section id="output"></section>
+    <section id="output" hidden></section>
     <script type="module" src="/client.js"></script>
   </body>
 </html>
