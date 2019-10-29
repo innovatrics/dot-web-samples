@@ -36,7 +36,7 @@ async function getVideoFrame(vid) {
   const blob = await new Promise(resolve => {
     canvas.toBlob(blob => {
       resolve(blob);
-    });
+    }, "image/jpeg");
   });
   return blob;
 }
