@@ -36,7 +36,7 @@ async function getVideoFrame(vid) {
   const blob = await new Promise(resolve => {
     canvas.toBlob(blob => {
       resolve(blob);
-    });
+    }, "image/jpeg");
   });
   return blob;
 }
@@ -66,6 +66,7 @@ function displayResult(alertMessage, text) {
   window.alert(alertMessage);
   const info = document.createElement("pre");
   info.innerText = text;
+  outputSection.hidden = false;
   outputSection.appendChild(info);
 }
 
@@ -144,22 +145,75 @@ async function livenessCheck(videoElem) {
 }
 
 startButton.addEventListener("click", async () => {
-  startButton.style.display = "none";
+  // if we are on localhost, we can be on HTTP.
+  // but if it is not localhost, it must be HTTPS.
+  const hostname = window.location.hostname;
+  const protocol = window.location.protocol;
+  if (
+    hostname !== "localhost" &&
+    hostname !== "127.0.0.1" &&
+    protocol !== "https:"
+  ) {
+    window.alert("must be on HTTPS when not on localhost");
+    return;
+  }
 
-  const stream = await navigator.mediaDevices.getUserMedia({
-    video: { width: 1000 },
-    audio: false
-  });
+  // on mobile devices we hve to use innerWidth/innerHeight,
+  // 100vw/100vh is unreliable because the maybe-hidden
+  // browser-elements on mobile
+  videoContainer.style.width = window.innerWidth + "px";
+  videoContainer.style.height = window.innerHeight + "px";
 
-  const vid = document.createElement("video");
-  vid.addEventListener("canplay", () => {
-    livenessCheck(vid);
-  });
+  startButton.hidden = true;
+  videoContainer.hidden = false;
 
-  vid.id = "videoElement";
-  vid.srcObject = stream;
-  vid.style.transform = "scaleX(-1)";
-  vid.play();
+  const mediaDevices = navigator.mediaDevices;
 
-  videoContainer.appendChild(vid);
+  if (mediaDevices == null) {
+    window.alert("navigator.mediaDevices is nullish");
+    return;
+  }
+
+  mediaDevices
+    .getUserMedia({
+      video: { width: 1280, height: 720, facingMode: "user" },
+      audio: false
+    })
+    .then(
+      stream => {
+        const vid = document.createElement("video");
+        vid.setAttribute("playsinline", "true");
+
+        vid.addEventListener("canplay", () => {
+          const vidW = vid.videoWidth;
+          const vidH = vid.videoHeight;
+          const divRect = videoContainer.getBoundingClientRect();
+          const divW = divRect.width;
+          const divH = divRect.height;
+          const scale1 = divW / vidW;
+          const scale2 = divH / vidH;
+          const scale = Math.min(scale1, scale2);
+          const w = scale * vidW;
+          const h = scale * vidH;
+          const { innerWidth, innerHeight } = window;
+          console.log({ innerWidth, innerHeight });
+          console.log({ vidW, vidH, divW, divH, scale1, scale2, w, h });
+          vid.style.width = w + "px";
+          vid.style.height = h + "px";
+          livenessCheck(vid);
+        });
+
+        vid.id = "videoElement";
+        vid.srcObject = stream;
+        vid.style.transform = "scaleX(-1)";
+        vid.play().catch(error => {
+          window.alert("video.play error:" + error.toString());
+        });
+
+        videoContainer.appendChild(vid);
+      },
+      error => {
+        window.alert("getUserMedia error:" + error.toString());
+      }
+    );
 });
