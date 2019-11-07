@@ -2,7 +2,7 @@
 these samples are compatible with dot-server versions: `core=3.5.0` and `ocr=3.11.3`. you can run the version-check sample (described below), to verify the version of the dot-servers.
 
 # production-mode
-you need node10 installed.
+you need node12 installed.
 the following commands start a web-server for the specific sample, and you can see it in a web-browser by going to `http://localhost:8000`
 - `node detect-face/server.js`
 - `node verify-face/server.js`
