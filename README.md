@@ -1,6 +1,10 @@
 # compatibility
 these samples are compatible with dot-server versions: `core=3.5.0` and `ocr=3.11.3`. you can run the version-check sample (described below), to verify the version of the dot-servers.
 
+# testing on mobile
+
+the liveness-check sample requires a https-connection when not using on `localhost`. the simplest way to achieve this is use a solution that publishes the developer's `localhost` to some internet-facing server using a tunnel. for example using [ngrok](https://ngrok.com/), a command like `ngrok http 8000` will create the required tunnel. do make sure that you close the tunnel when you stop using the sample, otherwise the tunnel will keep publishing the developer's `localhost:8000` to a public internet address.
+
 # production-mode
 you need node12 installed.
 the following commands start a web-server for the specific sample, and you can see it in a web-browser by going to `http://localhost:8000`
