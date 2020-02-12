@@ -1,5 +1,5 @@
-const MIN_EYE_DISTANCE = 0.01;
-const MAX_EYE_DISTANCE = 0.9;
+const MIN_FACE_SIZE_RATIO = 0.01;
+const MAX_FACE_SIZE_RATIO = 0.9;
 
 const startButton = document.querySelector("#startButton");
 const videoContainer = document.querySelector("#videoContainer");
@@ -55,9 +55,9 @@ async function buildRequestData(results) {
   return {
     segments,
     minValidSegmentCount: 4,
-    eyeDistance: {
-      min: MIN_EYE_DISTANCE,
-      max: MAX_EYE_DISTANCE
+    faceSizeRatio: {
+      min: MIN_FACE_SIZE_RATIO,
+      max: MAX_FACE_SIZE_RATIO
     }
   };
 }
@@ -77,7 +77,7 @@ function displayError(text) {
 async function sendLivenessCheckRequest(results) {
   const requestData = await buildRequestData(results);
 
-  const response = await fetch("/api/v3/check-liveness", {
+  const response = await fetch("/api/v5/face/check-liveness?type=active", {
     method: "POST",
     body: JSON.stringify(requestData),
     headers: {

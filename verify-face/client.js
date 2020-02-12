@@ -1,5 +1,5 @@
-const MIN_EYE_DISTANCE = 0.01;
-const MAX_EYE_DISTANCE = 0.9;
+const MIN_FACE_SIZE_RATIO = 0.01;
+const MAX_FACE_SIZE_RATIO = 0.9;
 
 const verifyButton = document.querySelector("#verifyButton");
 const image1Input = document.querySelector("#image1");
@@ -32,16 +32,16 @@ async function buildRequestData(blob1, blob2) {
   return {
     probeImage: {
       data: blob1Base64,
-      eyeDistance: {
-        min: MIN_EYE_DISTANCE,
-        max: MAX_EYE_DISTANCE
+      faceSizeRatio: {
+        min: MIN_FACE_SIZE_RATIO,
+        max: MAX_FACE_SIZE_RATIO
       }
     },
     referenceImage: {
       data: blob2Base64,
-      eyeDistance: {
-        min: MIN_EYE_DISTANCE,
-        max: MAX_EYE_DISTANCE
+      faceSizeRatio: {
+        min: MIN_FACE_SIZE_RATIO,
+        max: MAX_FACE_SIZE_RATIO
       }
     }
   };
@@ -66,7 +66,7 @@ function displayError(text) {
 async function verifyFace(blob1, blob2) {
   const requestData = await buildRequestData(blob1, blob2);
 
-  const response = await fetch("/api/v3/verify", {
+  const response = await fetch("/api/v5/face/verify", {
     method: "POST",
     body: JSON.stringify(requestData),
     headers: {
