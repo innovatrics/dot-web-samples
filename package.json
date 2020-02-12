@@ -6,8 +6,8 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "prettier": "prettier --write '**/*.js' '**/*.html'",
-    "prettier:check": "prettier -l --write '**/*.js' '**/*.html'",
+    "prettier": "prettier --write '**/*.js' '**/*.html' '**/*.md'",
+    "prettier:check": "prettier -l '**/*.js' '**/*.html' '**/*.md'",
     "lint": "eslint '**/*.js'",
     "sample-version-check": "node version-check/version-check.js",
     "sample-detect-face": "nodemon detect-face/server.js",
@@ -17,9 +17,9 @@
     "sample-document-classify": "nodemon document-classify/server.js"
   },
   "devDependencies": {
-    "eslint": "^6.0.1",
-    "eslint-config-prettier": "^6.0.0",
-    "nodemon": "^1.19.1",
-    "prettier": "^1.18.2"
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1"
   }
 }
