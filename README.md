@@ -19,7 +19,7 @@ the following commands start a web-server for the specific sample, and you can s
 
 the following command checks the version of the dot-servers, and reports it in the console:
 
-- `node version-check.version-check.js`
+- `node version-check/version-check.js`
 
 # development-mode
 
