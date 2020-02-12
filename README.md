@@ -1,6 +1,6 @@
 # compatibility
 
-these samples are compatible with dot-server versions: `core=3.5.0` and `ocr=3.11.3`. you can run the version-check sample (described below), to verify the version of the dot-servers.
+these samples are compatible with dot-server versions: `core=5.1.0` and `ocr=3.24.0`. you can run the version-check sample (described below), to verify the version of the dot-servers.
 
 # testing on mobile
 
