@@ -24,14 +24,18 @@ the following command checks the version of the dot-servers, and reports it in t
 # development-mode
 
 you need node10 installed.
-do a `yarn install` to install the dependencies. the following commands will start the samples with an auto-reloading nodejs-server:
+do a `yarn install` to install the dependencies.
+
+the following commands will start the samples with an auto-reloading nodejs-server:
 
 - `yarn run sample-detect-face`
 - `yarn run sample-verify-face`
 - `yarn run sample-liveness-check`
 - `yarn run sample-document-capture`
 - `yarn run sample-document-classify`
-  the following command will run the version-check sample:
+
+the following command will run the version-check sample:
+
 - `yarn run sample-version-check`
 
 the following code-quality tools work:
