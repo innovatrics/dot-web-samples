@@ -30,6 +30,7 @@ do a `yarn install` to install the dependencies. the following commands will sta
 - `yarn run sample-verify-face`
 - `yarn run sample-liveness-check`
 - `yarn run sample-document-capture`
+- `yarn run sample-document-classify`
   the following command will run the version-check sample:
 - `yarn run sample-version-check`
 
