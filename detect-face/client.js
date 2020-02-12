@@ -1,5 +1,5 @@
-const MIN_EYE_DISTANCE = 0.01;
-const MAX_EYE_DISTANCE = 0.9;
+const MIN_FACE_SIZE_RATIO = 0.01;
+const MAX_FACE_SIZE_RATIO = 0.9;
 
 const detectFromDiskButton = document.querySelector("#detectFaceFromDisk");
 const fileInput = document.querySelector("#fileInput");
@@ -31,9 +31,9 @@ async function buildRequestData(blob) {
   return {
     image: {
       data: blobBase64,
-      eyeDistance: {
-        min: MIN_EYE_DISTANCE,
-        max: MAX_EYE_DISTANCE
+      faceSizeRatio: {
+        min: MIN_FACE_SIZE_RATIO,
+        max: MAX_FACE_SIZE_RATIO
       }
     },
     template: false,
@@ -54,7 +54,7 @@ function displayError(text) {
 async function detectFace(blob) {
   const requestData = await buildRequestData(blob);
 
-  const response = await fetch("/api/v3/detect-face", {
+  const response = await fetch("/api/v5/face/detect", {
     method: "POST",
     body: JSON.stringify(requestData),
     headers: {
@@ -69,22 +69,25 @@ async function detectFace(blob) {
 
   const responseJSON = await response.json();
 
-  if (responseJSON.score != null) {
-    outputSection.innerHTML = "";
-    const { score, cropImage } = responseJSON;
+  if (responseJSON.errorCode != null) {
+    displayError(responseJSON.errorCode);
+    return;
+  }
+
+  outputSection.innerHTML = "";
+
+  responseJSON.faces.forEach(face => {
+    const { cropImage } = face;
     const image = document.createElement("img");
     image.src = "data:application/octet-stream;base64," + cropImage;
     image.style.maxWidth = "50%";
     outputSection.appendChild(image);
     const pre = document.createElement("pre");
-    const shortenedResponse = Object.assign({}, responseJSON);
+    const shortenedResponse = Object.assign({}, face);
     shortenedResponse.cropImage = "...";
     pre.innerText = JSON.stringify(shortenedResponse, null, 4);
     outputSection.appendChild(pre);
-    window.alert("Score: " + score);
-  } else {
-    displayError(JSON.stringify(responseJSON, null, 4));
-  }
+  });
 }
 
 detectFromDiskButton.addEventListener("click", async () => {
