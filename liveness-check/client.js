@@ -77,7 +77,7 @@ function displayError(text) {
 async function sendLivenessCheckRequest(results) {
   const requestData = await buildRequestData(results);
 
-  const response = await fetch("/api/v5/face/check-liveness?type=active", {
+  const response = await fetch("/api/v5/face/check-liveness-active", {
     method: "POST",
     body: JSON.stringify(requestData),
     headers: {
