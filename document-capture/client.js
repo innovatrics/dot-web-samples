@@ -47,28 +47,28 @@ detectButton.addEventListener("click", async () => {
   if (file1 != null) {
     images.push({
       name: "image1",
-      data: await blobToBase64(file1)
+      data: await blobToBase64(file1),
     });
   }
 
   if (file2 != null) {
     images.push({
       name: "image2",
-      data: await blobToBase64(file2)
+      data: await blobToBase64(file2),
     });
   }
 
   const requestData = {
     images,
-    modelMetadataIds: [documentType]
+    modelMetadataIds: [documentType],
   };
 
   const response = await fetch("/api/v3/process-document", {
     method: "POST",
     body: JSON.stringify(requestData),
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   });
 
   if (response.status !== 200) {
@@ -83,10 +83,10 @@ detectButton.addEventListener("click", async () => {
   // and every page has a `normalizedImage`
   if (
     responseJSON.pages != null &&
-    responseJSON.pages.every(p => p.normalizedImage != null)
+    responseJSON.pages.every((p) => p.normalizedImage != null)
   ) {
     outputSection.innerHTML = "";
-    responseJSON.pages.forEach(page => {
+    responseJSON.pages.forEach((page) => {
       // we copy it because we will modify it
       const pageCopy = Object.assign({}, page);
       if (pageCopy.normalizedImage != null) {
@@ -119,7 +119,7 @@ async function init() {
   const data = await response.json();
 
   const options = data.models.map(
-    m => `<option value="${m.modelMetadataId}">${m.displayName}</option>`
+    (m) => `<option value="${m.modelMetadataId}">${m.displayName}</option>`
   );
 
   documentSelect.innerHTML = options.join("\n");

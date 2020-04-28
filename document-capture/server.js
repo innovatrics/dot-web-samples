@@ -11,10 +11,10 @@ const DOT_SERVER = "https://dot.innovatrics.com/ocr";
 function streamToBuf(stream) {
   const parts = [];
   return new Promise((resolve, reject) => {
-    stream.on("error", e => {
+    stream.on("error", (e) => {
       reject(e);
     });
-    stream.on("data", part => {
+    stream.on("data", (part) => {
       parts.push(part);
     });
     stream.on("end", () => {
@@ -32,18 +32,18 @@ function doRequest(url, body) {
     ? {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       }
     : {};
 
   return new Promise((resolve, reject) => {
     const request = url.startsWith("https://") ? https.request : http.request;
     console.log(`SENDING_REQUEST:${options.method || "GET"}:${url}`);
-    const req = request(url, options, res => {
+    const req = request(url, options, (res) => {
       resolve(streamToBuf(res));
     });
-    req.on("error", e => {
+    req.on("error", (e) => {
       reject(e);
     });
 

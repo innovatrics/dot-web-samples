@@ -7,10 +7,10 @@ const OCR_SERVER_URL = "https://dot.innovatrics.com/ocr/api/v3/actuator/info";
 function streamToBuf(stream) {
   const parts = [];
   return new Promise((resolve, reject) => {
-    stream.on("error", e => {
+    stream.on("error", (e) => {
       reject(e);
     });
-    stream.on("data", part => {
+    stream.on("data", (part) => {
       parts.push(part);
     });
     stream.on("end", () => {
@@ -23,10 +23,10 @@ function getRequest(url) {
   return new Promise((resolve, reject) => {
     const request = url.startsWith("https://") ? https.request : http.request;
     console.log(`SENDING_REQUEST:GET:${url}`);
-    const req = request(url, {}, res => {
+    const req = request(url, {}, (res) => {
       resolve(streamToBuf(res));
     });
-    req.on("error", e => {
+    req.on("error", (e) => {
       reject(e);
     });
 

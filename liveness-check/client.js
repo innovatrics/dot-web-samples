@@ -33,8 +33,8 @@ async function getVideoFrame(vid) {
   const ctx = canvas.getContext("2d");
   ctx.drawImage(vid, 0, 0, videoWidth, videoHeight);
 
-  const blob = await new Promise(resolve => {
-    canvas.toBlob(blob => {
+  const blob = await new Promise((resolve) => {
+    canvas.toBlob((blob) => {
       resolve(blob);
     }, "image/jpeg");
   });
@@ -48,7 +48,7 @@ async function buildRequestData(results) {
     const base64 = await blobToBase64(blob);
     segments.push({
       dotPosition,
-      image: base64
+      image: base64,
     });
   }
 
@@ -57,8 +57,8 @@ async function buildRequestData(results) {
     minValidSegmentCount: 4,
     faceSizeRatio: {
       min: MIN_FACE_SIZE_RATIO,
-      max: MAX_FACE_SIZE_RATIO
-    }
+      max: MAX_FACE_SIZE_RATIO,
+    },
   };
 }
 
@@ -81,8 +81,8 @@ async function sendLivenessCheckRequest(results) {
     method: "POST",
     body: JSON.stringify(requestData),
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   });
 
   if (response.status !== 200) {
@@ -108,18 +108,18 @@ const POSITIONS = [
   "BOTTOM_RIGHT",
   "TOP_RIGHT",
   "BOTTOM_LEFT",
-  "TOP_LEFT"
+  "TOP_LEFT",
 ];
 
 const positionClassName = {
   TOP_LEFT: "top left",
   TOP_RIGHT: "top right",
   BOTTOM_LEFT: "bottom left",
-  BOTTOM_RIGHT: "bottom right"
+  BOTTOM_RIGHT: "bottom right",
 };
 
 function sleep(timeout) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(resolve, timeout);
   });
 }
@@ -138,7 +138,7 @@ async function livenessCheck(videoElem) {
   marker.className = "";
 
   // we stop the camera and remove the video element
-  videoElem.srcObject.getVideoTracks().forEach(track => track.stop());
+  videoElem.srcObject.getVideoTracks().forEach((track) => track.stop());
   videoElem.remove();
 
   sendLivenessCheckRequest(results);
@@ -177,10 +177,10 @@ startButton.addEventListener("click", async () => {
   mediaDevices
     .getUserMedia({
       video: { width: 1280, height: 720, facingMode: "user" },
-      audio: false
+      audio: false,
     })
     .then(
-      stream => {
+      (stream) => {
         const vid = document.createElement("video");
         vid.setAttribute("playsinline", "true");
 
@@ -206,13 +206,13 @@ startButton.addEventListener("click", async () => {
         vid.id = "videoElement";
         vid.srcObject = stream;
         vid.style.transform = "scaleX(-1)";
-        vid.play().catch(error => {
+        vid.play().catch((error) => {
           window.alert("video.play error:" + error.toString());
         });
 
         videoContainer.appendChild(vid);
       },
-      error => {
+      (error) => {
         window.alert("getUserMedia error:" + error.toString());
       }
     );
