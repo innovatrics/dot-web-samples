@@ -33,13 +33,13 @@ async function buildRequestData(blob) {
       data: blobBase64,
       faceSizeRatio: {
         min: MIN_FACE_SIZE_RATIO,
-        max: MAX_FACE_SIZE_RATIO
-      }
+        max: MAX_FACE_SIZE_RATIO,
+      },
     },
     template: false,
     cropImage: true,
     facialFeatures: true,
-    icaoAttributes: true
+    icaoAttributes: true,
   };
 }
 
@@ -58,8 +58,8 @@ async function detectFace(blob) {
     method: "POST",
     body: JSON.stringify(requestData),
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   });
 
   if (response.status !== 200) {
@@ -76,7 +76,7 @@ async function detectFace(blob) {
 
   outputSection.innerHTML = "";
 
-  responseJSON.faces.forEach(face => {
+  responseJSON.faces.forEach((face) => {
     const { cropImage } = face;
     const image = document.createElement("img");
     image.src = "data:application/octet-stream;base64," + cropImage;
@@ -104,7 +104,7 @@ captureButton.addEventListener("click", async () => {
 
   const stream = await navigator.mediaDevices.getUserMedia({
     video: { width: 1000 },
-    audio: false
+    audio: false,
   });
 
   const vid = document.createElement("video");
@@ -131,11 +131,11 @@ detectFromVideoButton.addEventListener("click", async () => {
   ctx.drawImage(vid, 0, 0, videoWidth, videoHeight);
 
   // we stop the camera and remove the video element
-  vid.srcObject.getVideoTracks().forEach(track => track.stop());
+  vid.srcObject.getVideoTracks().forEach((track) => track.stop());
   vid.remove();
 
-  const blob = await new Promise(resolve => {
-    canvas.toBlob(blob => {
+  const blob = await new Promise((resolve) => {
+    canvas.toBlob((blob) => {
       resolve(blob);
     });
   });

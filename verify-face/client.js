@@ -34,16 +34,16 @@ async function buildRequestData(blob1, blob2) {
       data: blob1Base64,
       faceSizeRatio: {
         min: MIN_FACE_SIZE_RATIO,
-        max: MAX_FACE_SIZE_RATIO
-      }
+        max: MAX_FACE_SIZE_RATIO,
+      },
     },
     referenceImage: {
       data: blob2Base64,
       faceSizeRatio: {
         min: MIN_FACE_SIZE_RATIO,
-        max: MAX_FACE_SIZE_RATIO
-      }
-    }
+        max: MAX_FACE_SIZE_RATIO,
+      },
+    },
   };
 }
 
@@ -70,8 +70,8 @@ async function verifyFace(blob1, blob2) {
     method: "POST",
     body: JSON.stringify(requestData),
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   });
 
   if (response.status !== 200) {

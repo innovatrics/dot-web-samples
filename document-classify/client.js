@@ -40,17 +40,17 @@ classifyButton.addEventListener("click", async () => {
     images: [
       {
         name: "image1",
-        data: await blobToBase64(f)
-      }
-    ]
+        data: await blobToBase64(f),
+      },
+    ],
   };
 
   const response = await fetch("/api/v3/classify", {
     method: "POST",
     body: JSON.stringify(requestData),
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   });
 
   if (response.status !== 200) {

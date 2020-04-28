@@ -11,10 +11,10 @@ const DOT_SERVER = "https://dot.innovatrics.com/core";
 function streamToBuf(stream) {
   const parts = [];
   return new Promise((resolve, reject) => {
-    stream.on("error", e => {
+    stream.on("error", (e) => {
       reject(e);
     });
-    stream.on("data", part => {
+    stream.on("data", (part) => {
       parts.push(part);
     });
     stream.on("end", () => {
@@ -28,16 +28,16 @@ function postRequest(url, body) {
   const options = {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
 
   return new Promise((resolve, reject) => {
     const request = url.startsWith("https://") ? https.request : http.request;
-    const req = request(url, options, res => {
+    const req = request(url, options, (res) => {
       resolve(streamToBuf(res));
     });
-    req.on("error", e => {
+    req.on("error", (e) => {
       reject(e);
     });
     req.write(JSON.stringify(body));
