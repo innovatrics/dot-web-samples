@@ -66,7 +66,7 @@ function displayError(text) {
 async function verifyFace(blob1, blob2) {
   const requestData = await buildRequestData(blob1, blob2);
 
-  const response = await fetch("/api/v5/face/verify", {
+  const response = await fetch("/api/v6/face/verify", {
     method: "POST",
     body: JSON.stringify(requestData),
     headers: {

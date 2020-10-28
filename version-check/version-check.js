@@ -1,7 +1,7 @@
 const http = require("http");
 const https = require("https");
 
-const CORE_SERVER_URL = "https://dot.innovatrics.com/core/api/v5/actuator/info";
+const CORE_SERVER_URL = "https://dot.innovatrics.com/core/api/v6/actuator/info";
 const OCR_SERVER_URL = "https://dot.innovatrics.com/ocr/api/v3/actuator/info";
 
 function streamToBuf(stream) {

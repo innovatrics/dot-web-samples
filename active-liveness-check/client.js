@@ -77,7 +77,7 @@ function displayError(text) {
 async function sendLivenessCheckRequest(results) {
   const requestData = await buildRequestData(results);
 
-  const response = await fetch("/api/v5/face/check-liveness-active", {
+  const response = await fetch("/api/v6/face/check-liveness-active", {
     method: "POST",
     body: JSON.stringify(requestData),
     headers: {
@@ -195,9 +195,6 @@ startButton.addEventListener("click", async () => {
           const scale = Math.min(scale1, scale2);
           const w = scale * vidW;
           const h = scale * vidH;
-          const { innerWidth, innerHeight } = window;
-          console.log({ innerWidth, innerHeight });
-          console.log({ vidW, vidH, divW, divH, scale1, scale2, w, h });
           vid.style.width = w + "px";
           vid.style.height = h + "px";
           livenessCheck(vid);

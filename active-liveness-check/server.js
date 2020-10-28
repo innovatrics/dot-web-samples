@@ -34,6 +34,7 @@ function postRequest(url, body) {
 
   return new Promise((resolve, reject) => {
     const request = url.startsWith("https://") ? https.request : http.request;
+    console.log(`SENDING_REQUEST:${options.method || "GET"}:${url}`);
     const req = request(url, options, (res) => {
       resolve(streamToBuf(res));
     });
