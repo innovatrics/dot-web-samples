@@ -1,10 +1,10 @@
 # compatibility
 
-these samples are compatible with dot-server versions: `core=5.1.0` and `ocr=3.24.0`. you can run the version-check sample (described below), to verify the version of the dot-servers.
+these samples are compatible with dot-server versions: `core=6.2.0` and `ocr=3.27.0`. you can run the version-check sample (described below), to verify the version of the dot-servers.
 
 # testing on mobile
 
-the liveness-check sample requires a https-connection when not using on `localhost`. the simplest way to achieve this is use a solution that publishes the developer's `localhost` to some internet-facing server using a tunnel. for example using [ngrok](https://ngrok.com/), a command like `ngrok http 8000` will create the required tunnel. do make sure that you close the tunnel when you stop using the sample, otherwise the tunnel will keep publishing the developer's `localhost:8000` to a public internet address.
+the active-liveness-check sample requires a https-connection when not using on `localhost`. the simplest way to achieve this is use a solution that publishes the developer's `localhost` to some internet-facing server using a tunnel. for example using [ngrok](https://ngrok.com/), a command like `ngrok http 8000` will create the required tunnel. do make sure that you close the tunnel when you stop using the sample, otherwise the tunnel will keep publishing the developer's `localhost:8000` to a public internet address.
 
 # production-mode
 
@@ -13,7 +13,7 @@ the following commands start a web-server for the specific sample, and you can s
 
 - `node detect-face/server.js`
 - `node verify-face/server.js`
-- `node liveness-check/server.js`
+- `node active-liveness-check/server.js`
 - `node document-capture/server.js`
 - `node document-classify/server.js`
 
@@ -30,7 +30,7 @@ the following commands will start the samples with an auto-reloading nodejs-serv
 
 - `yarn run sample-detect-face`
 - `yarn run sample-verify-face`
-- `yarn run sample-liveness-check`
+- `yarn run sample-active-liveness-check`
 - `yarn run sample-document-capture`
 - `yarn run sample-document-classify`
 

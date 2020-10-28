@@ -38,6 +38,7 @@ async function buildRequestData(blob) {
     },
     template: false,
     cropImage: true,
+    faceAttributes: true,
     facialFeatures: true,
     icaoAttributes: true,
   };
@@ -54,7 +55,7 @@ function displayError(text) {
 async function detectFace(blob) {
   const requestData = await buildRequestData(blob);
 
-  const response = await fetch("/api/v5/face/detect", {
+  const response = await fetch("/api/v6/face/detect", {
     method: "POST",
     body: JSON.stringify(requestData),
     headers: {
