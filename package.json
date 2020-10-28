@@ -10,11 +10,11 @@
     "prettier:check": "prettier -l '**/*.js' '**/*.html' '**/*.md'",
     "lint": "eslint '**/*.js'",
     "sample-version-check": "node version-check/version-check.js",
-    "sample-detect-face": "nodemon detect-face/server.js",
-    "sample-verify-face": "nodemon verify-face/server.js",
-    "sample-active-liveness-check": "nodemon active-liveness-check/server.js",
-    "sample-document-capture": "nodemon document-capture/server.js",
-    "sample-document-classify": "nodemon document-classify/server.js"
+    "sample-core-face-detect": "nodemon core-face-detect/server.js",
+    "sample-core-face-verify": "nodemon core-face-verify/server.js",
+    "sample-core-face-check-liveness-active": "nodemon core-face-check-liveness-active/server.js",
+    "sample-ocr-process-document": "nodemon ocr-process-document/server.js",
+    "sample-ocr-classify": "nodemon ocr-classify/server.js"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
