@@ -1,6 +1,6 @@
 # compatibility
 
-these samples are compatible with dot-server versions: `core=6.2.0` and `ocr=3.27.0`. you can run the version-check sample (described below), to verify the version of the dot-servers.
+these samples are compatible with dot-server versions: `core=6.2.0`, `document=5.0.0`, `ocr=3.27.0`. you can run the version-check sample (described below), to verify the version of the dot-servers.
 
 # testing on mobile
 
@@ -14,6 +14,7 @@ the following commands start a web-server for the specific sample, and you can s
 - `node core-face-detect/server.js`
 - `node core-face-verify/server.js`
 - `node core-face-check-liveness-active/server.js`
+- `node document-ocr/server.js`
 - `node ocr-process-document/server.js`
 - `node ocr-classify/server.js`
 
@@ -31,6 +32,7 @@ the following commands will start the samples with an auto-reloading nodejs-serv
 - `yarn run sample-core-face-detect`
 - `yarn run sample-core-face-verify`
 - `yarn run sample-core-face-check-liveness-active`
+- `yarn run sample-document-ocr`
 - `yarn run sample-ocr-process-document`
 - `yarn run sample-ocr-classify`
 

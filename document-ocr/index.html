@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DOT WEB detect face sample</title>
+
+    <style>
+      section {
+        border: 2px solid gray;
+        padding: 50px;
+      }
+
+      section#input {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section id="loading">
+      LOADING
+    </section>
+    <section id="input">
+      <label>select document type<select id="documents"></select></label><br />
+      <label>select front<input id="file" type="file" /></label><br />
+      <input id="detect" type="button" value="detect document" />
+    </section>
+    <section id="output"></section>
+    <script type="module" src="/client.js"></script>
+  </body>
+</html>
