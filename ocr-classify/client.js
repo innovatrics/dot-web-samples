@@ -45,7 +45,7 @@ classifyButton.addEventListener("click", async () => {
     ],
   };
 
-  const response = await fetch("/api/v3/classify", {
+  const response = await fetch("/ocr/api/v3/classify", {
     method: "POST",
     body: JSON.stringify(requestData),
     headers: {
