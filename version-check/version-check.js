@@ -2,6 +2,8 @@ const http = require("http");
 const https = require("https");
 
 const CORE_SERVER_URL = "https://dot.innovatrics.com/core/api/v6/actuator/info";
+const DOCUMENT_SERVER_URL =
+  "https://dot.innovatrics.com/document/api/v5/actuator/info";
 const OCR_SERVER_URL = "https://dot.innovatrics.com/ocr/api/v3/actuator/info";
 
 function streamToBuf(stream) {
@@ -42,8 +44,10 @@ async function getServerVersion(url) {
 
 async function main() {
   const coreVersion = await getServerVersion(CORE_SERVER_URL);
+  const documentVersion = await getServerVersion(DOCUMENT_SERVER_URL);
   const ocrVersion = await getServerVersion(OCR_SERVER_URL);
   console.log(`core server version: ${coreVersion}`);
+  console.log(`document server version: ${documentVersion}`);
   console.log(`ocr server version: ${ocrVersion}`);
 }
 

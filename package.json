@@ -13,6 +13,7 @@
     "sample-core-face-detect": "nodemon core-face-detect/server.js",
     "sample-core-face-verify": "nodemon core-face-verify/server.js",
     "sample-core-face-check-liveness-active": "nodemon core-face-check-liveness-active/server.js",
+    "sample-document-ocr": "nodemon document-ocr/server.js",
     "sample-ocr-process-document": "nodemon ocr-process-document/server.js",
     "sample-ocr-classify": "nodemon ocr-classify/server.js"
   },
