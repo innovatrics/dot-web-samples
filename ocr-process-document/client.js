@@ -63,7 +63,7 @@ detectButton.addEventListener("click", async () => {
     modelMetadataIds: [documentType],
   };
 
-  const response = await fetch("/api/v3/process-document", {
+  const response = await fetch("/ocr/api/v3/process-document", {
     method: "POST",
     body: JSON.stringify(requestData),
     headers: {
@@ -110,7 +110,7 @@ detectButton.addEventListener("click", async () => {
 });
 
 async function init() {
-  const response = await fetch("/api/v3/active-models");
+  const response = await fetch("/ocr/api/v3/active-models");
   if (response.status !== 200) {
     displayError(response.statusText);
     return;

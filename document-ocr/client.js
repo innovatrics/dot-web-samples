@@ -51,7 +51,7 @@ detectButton.addEventListener("click", async () => {
           },
   };
 
-  const response = await fetch("/api/v5/document/ocr", {
+  const response = await fetch("/document/api/v5/document/ocr", {
     method: "POST",
     body: JSON.stringify(requestData),
     headers: {
@@ -92,7 +92,7 @@ detectButton.addEventListener("click", async () => {
 });
 
 async function init() {
-  const response = await fetch("/api/v5/document/metadata");
+  const response = await fetch("/document/api/v5/document/metadata");
   if (response.status !== 200) {
     displayError(response.statusText);
     return;
