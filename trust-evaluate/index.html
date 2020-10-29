@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DOT WEB verify face sample</title>
+    <style>
+      section#input {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section id="loading">
+      LOADING
+    </section>
+    <section id="input">
+      <label>select document type<select id="documents"></select></label><br />
+      <label
+        >Select document image image <input id="document" type="file"
+      /></label>
+      <br />
+      <label>Select selfie image image<input id="image" type="file" /></label>
+      <br />
+      (We will use this face to do a fake "active liveness check" dataset, to
+      keep this sample application simpler. we have a separate sample for
+      active-liveness-check)
+      <br />
+      <br />
+      <input id="start" type="button" value="evaluate trust" />
+      <br />
+    </section>
+    <section id="output"></section>
+    <script type="module" src="/client.js"></script>
+  </body>
+</html>

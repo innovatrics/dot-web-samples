@@ -15,7 +15,8 @@
     "sample-core-face-check-liveness-active": "nodemon core-face-check-liveness-active/server.js",
     "sample-document-ocr": "nodemon document-ocr/server.js",
     "sample-ocr-process-document": "nodemon ocr-process-document/server.js",
-    "sample-ocr-classify": "nodemon ocr-classify/server.js"
+    "sample-ocr-classify": "nodemon ocr-classify/server.js",
+    "sample-trust-evaluate": "nodemon trust-evaluate/server.js"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
