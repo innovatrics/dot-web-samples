@@ -111,6 +111,9 @@ captureButton.addEventListener("click", async () => {
   const vid = document.createElement("video");
   vid.id = "videoElement";
   vid.srcObject = stream;
+  vid.autoplay = true;
+  vid.setAttribute("playsInline", "playsInline");
+  vid.muted = true;
   vid.style.maxWidth = "50%";
   vid.style.transform = "scaleX(-1)";
   vid.play();
