@@ -104,7 +104,7 @@ captureButton.addEventListener("click", async () => {
   captureButton.disabled = true;
 
   const stream = await navigator.mediaDevices.getUserMedia({
-    video: { width: 1000 },
+    video: { width: 800, height: 600, facingMode: "user" },
     audio: false,
   });
 
@@ -134,6 +134,7 @@ detectFromVideoButton.addEventListener("click", async () => {
   const ctx = canvas.getContext("2d");
   ctx.drawImage(vid, 0, 0, videoWidth, videoHeight);
 
+  vid.pause();
   // we stop the camera and remove the video element
   vid.srcObject.getVideoTracks().forEach((track) => track.stop());
   vid.remove();
@@ -141,7 +142,7 @@ detectFromVideoButton.addEventListener("click", async () => {
   const blob = await new Promise((resolve) => {
     canvas.toBlob((blob) => {
       resolve(blob);
-    });
+    }, "image/jpeg");
   });
   return detectFace(blob);
 });
