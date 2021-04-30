@@ -43,6 +43,11 @@ detectButton.addEventListener("click", async () => {
   const requestData = {
     image: await blobToBase64(file),
     normalizedDocumentImage: true,
+    documentProperties: {
+      quality: {
+        enabled: true,
+      },
+    },
     documentTypeAdvice:
       documentType === ""
         ? undefined
