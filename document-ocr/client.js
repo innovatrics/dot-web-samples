@@ -47,6 +47,7 @@ detectButton.addEventListener("click", async () => {
       quality: {
         enabled: true,
       },
+      displayAttackDetection: { enabled: true },
     },
     documentTypeAdvice:
       documentType === ""
