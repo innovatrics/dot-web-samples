@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="lib/main-face.js"></script>
+    <script src="lib/main-document.js"></script>
+    <script src="main.js"></script>
+    <title>JQuery Integration Sample</title>
+  </head>
+
+  <body>
+    
+    <div id="app">
+      <h1>DOT Web Components Integration</h1>
+      <div><a href="#" id="selfie" class="primary">selfie</a>&nbsp;<a href="#" id="document" class="primary">document</a><br /></div>
+      <div id="container">
+        <x-dot-face-auto-capture></x-dot-face-auto-capture> <!-- initial render of the custom components, needs to be supplied props to properly start -->
+        <x-dot-document-auto-capture></x-dot-document-auto-capture>
+      </div>
+    </div>
+  </body>
+
+</html>

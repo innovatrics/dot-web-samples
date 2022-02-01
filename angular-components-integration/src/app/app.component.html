@@ -1,0 +1,20 @@
+<div>
+  <h1>DOT components integration</h1>
+  <app-document-auto-capture
+    *ngIf="currentStep === step.DOCUMENT_CAPTURE"
+    (photoTakenCallBack)="handlePhotoTaken($event)"
+  ></app-document-auto-capture>
+  <app-face-auto-capture
+    *ngIf="currentStep === step.FACE_CAPTURE"
+    (photoTakenCallBack)="handlePhotoTaken($event)"
+  ></app-face-auto-capture>
+  <app-result
+    *ngIf="currentStep ===step.RESULT"
+    [imageUrl]="imageUrl"
+    (backBtnClick)="handleStepChange($event)"
+  ></app-result>
+  <app-component-select
+    *ngIf="currentStep === step.SELECT_COMPONENT"
+    (btnClick)="handleStepChange($event)"
+  ></app-component-select>
+</div>
