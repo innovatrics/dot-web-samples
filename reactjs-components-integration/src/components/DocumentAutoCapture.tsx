@@ -1,11 +1,11 @@
-import "@innovatrics/dot-document-auto-capture";
-import { useEffect } from "react";
+import '@innovatrics/dot-document-auto-capture';
+import { useEffect } from 'react';
 import {
   HTMLDocumentCaptureElement,
   DocumentCallback,
   DocumentCameraProps,
-} from "../types";
-import styles from "../styles/index.module.scss";
+} from '../types';
+import styles from '../styles/index.module.scss';
 
 interface Props {
   handlePhotoTaken: DocumentCallback;
@@ -20,7 +20,7 @@ const DocumentCamera = (props: DocumentCameraProps) => {
   useEffect(() => {
     // 2. Init existed custom web-component
     const documentAutoCaptureHTMLElement = document.getElementById(
-      "x-dot-document-auto-capture"
+      'x-dot-document-auto-capture'
     ) as HTMLDocumentCaptureElement | null;
 
     if (documentAutoCaptureHTMLElement) {
@@ -40,6 +40,7 @@ const DocumentAutoCapture = ({ handlePhotoTaken }: Props) => {
         <DocumentCamera
           imageType="png"
           cameraFacing="environment"
+          detectionLayerVisible
           photoTakenCb={handlePhotoTaken}
         />
       </div>

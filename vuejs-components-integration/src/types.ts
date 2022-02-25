@@ -6,59 +6,59 @@ export enum Step {
 }
 
 export enum DocumentValidationMode {
-  STANDARD = "standard",
-  STRICT = "strict",
+  STANDARD = 'standard',
+  STRICT = 'strict',
 }
 
 export type DocumentPlaceholder =
-  | "id-rectangle-corners-front"
-  | "id-rectangle-dash-front"
-  | "id-rectangle-dot-front"
-  | "id-rectangle-solid-front"
-  | "id-rounded-rectangle-photo-front"
-  | "id-rounded-rectangle-corners-front"
-  | "id-rounded-rectangle-dash-front"
-  | "id-rounded-rectangle-dot-front"
-  | "id-rounded-rectangle-solid-back"
-  | "id-rounded-rectangle-solid-front"
-  | "pass-rounded-rectangle-solid-back"
-  | "pass-rounded-rectangle-solid-back-blank";
+  | 'id-rectangle-corners-front'
+  | 'id-rectangle-dash-front'
+  | 'id-rectangle-dot-front'
+  | 'id-rectangle-solid-front'
+  | 'id-rounded-rectangle-photo-front'
+  | 'id-rounded-rectangle-corners-front'
+  | 'id-rounded-rectangle-dash-front'
+  | 'id-rounded-rectangle-dot-front'
+  | 'id-rounded-rectangle-solid-back'
+  | 'id-rounded-rectangle-solid-front'
+  | 'pass-rounded-rectangle-solid-back'
+  | 'pass-rounded-rectangle-solid-back-blank';
 
 export type FacePlaceholder =
-  | "circle-solid"
-  | "ellipse-solid"
-  | "man-solid"
-  | "woman-solid"
-  | "square-rounded-dash"
-  | "square-rounded-solid"
-  | "square-dash"
-  | "square-solid";
+  | 'circle-solid'
+  | 'ellipse-solid'
+  | 'man-solid'
+  | 'woman-solid'
+  | 'square-rounded-dash'
+  | 'square-rounded-solid'
+  | 'square-dash'
+  | 'square-solid';
 
-export type FacingMode = "environment" | "user";
+export type FacingMode = 'environment' | 'user';
 
-export type ImageType = "jpeg" | "png";
+export type ImageType = 'jpeg' | 'png';
 
 export type FaceInstructionCode =
-  | "candidate_selection"
-  | "face_too_close"
-  | "face_too_far"
-  | "face_centering"
-  | "face_not_present"
-  | "lighting";
+  | 'candidate_selection'
+  | 'face_too_close'
+  | 'face_too_far'
+  | 'face_centering'
+  | 'face_not_present'
+  | 'lighting';
 
 export type DocumentInstructionCode =
-  | "candidate_selection"
-  | "document_centering"
-  | "document_too_close"
-  | "document_not_present"
-  | "document_too_far"
-  | "sharpness_too_low"
-  | "brightness_too_low"
-  | "brightness_too_high"
-  | "hotspots_present"
-  | "hold_still";
+  | 'candidate_selection'
+  | 'document_centering'
+  | 'document_too_close'
+  | 'document_not_present'
+  | 'document_too_far'
+  | 'sharpness_too_low'
+  | 'brightness_too_low'
+  | 'brightness_too_high'
+  | 'hotspots_present'
+  | 'hold_still';
 
-export type MediaType = "image/jpeg" | "image/png";
+export type MediaType = 'image/jpeg' | 'image/png';
 
 export type HTMLDocumentCaptureElement = HTMLElement & {
   cameraOptions: DocumentCameraProps;
@@ -152,6 +152,7 @@ export type BaseCameraProps = {
 export type DocumentCameraProps = BaseCameraProps & {
   photoTakenCb: DocumentCallback;
   thresholds?: DocumentThresholds;
+  detectionLayerVisible?: boolean;
   validationMode?: DocumentValidationMode;
   uiCustomisation?: {
     placeholder?: {

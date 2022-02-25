@@ -8,20 +8,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { DocumentComponentData } from "../types";
-import "@innovatrics/dot-document-auto-capture";
+import { defineComponent } from 'vue';
+import { DocumentComponentData } from '../types';
+import '@innovatrics/dot-document-auto-capture';
 
 export default defineComponent({
-  name: "DocumentAutoCapture",
+  name: 'DocumentAutoCapture',
   computed: {
     documentAutoCapture: function () {
       return {
         cameraOptions: {
-          imageType: "png",
-          cameraFacing: "environment",
+          imageType: 'png',
+          cameraFacing: 'environment',
+          detectionLayerVisible: true,
           photoTakenCb: (image: Blob, data: DocumentComponentData) =>
-            this.$emit("photoTakenCallBack", image, data),
+            this.$emit('photoTakenCallBack', image, data),
         },
       };
     },

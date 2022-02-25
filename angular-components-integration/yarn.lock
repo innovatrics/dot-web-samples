@@ -1225,10 +1225,10 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.2.tgz#30aa825f11d438671d585bd44e7fd564535fc210"
   integrity sha512-82cpyJyKRoQoRi+14ibCeGPu0CwypgtBAdBhq1WfvagpCZNKqwXbKwXllYSMG91DhmG4jt9gN8eP6lGOtozuaw==
 
-"@innovatrics/dot-document-auto-capture@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-3.0.2.tgz#626730274404201f88b1fa5a7c4f1c75db859648"
-  integrity sha512-3QJi+FQj/24XMTxNvMrpL60bY3UlvtZoSuunKghkDZsjVhF162FMn6YrcTkF8iBFeGi5ykK1HWfKaE2GBFyqPQ==
+"@innovatrics/dot-document-auto-capture@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-3.1.0.tgz#bcdfe83696447341856e0534fdece87e143bd0fc"
+  integrity sha512-JW7kKZuU9m51zSEqIHf44g3r5sFiIK9yKpfuwoiKcseR70qiUc0BJ6+RGaOPMqeH2FKyefcatSnEtc9rYKPchw==
   dependencies:
     "@types/emscripten" "^1.39.5"
     polished "^4.1.0"
@@ -1238,10 +1238,10 @@
     styled-components "^5.2.1"
     tar "^6.1.11"
 
-"@innovatrics/dot-face-auto-capture@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-3.0.2.tgz#cffd2ea850fcada167d2e7e8788ab9aef3903342"
-  integrity sha512-IFg/K98NZ6O5p2t+CSzvWFZrgHrOBe/If3pEU6KZWJ2NvKkkr42osHIkuOlOLcFyeePBgdmMtTMps3kxfzQfcw==
+"@innovatrics/dot-face-auto-capture@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-3.1.0.tgz#0f702b09fa5d23f0da7c90de5d986c549b48c939"
+  integrity sha512-GETIEChdBCyan4GtZccXs6m8WbomGpZnrGnAdXScpIy6nk3X/T4mHID0QnteaMUOtl1XG5vVpzz8CWEDpZNAZQ==
   dependencies:
     polished "^4.1.0"
     preact "^10.5.12"
