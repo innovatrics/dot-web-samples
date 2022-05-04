@@ -12,9 +12,9 @@
 .container {
   width: 40rem;
   height: 25rem;
+}
 
-  img {
-    margin-top: 1rem;
-    max-width: 100%;
-  }
+.container img {
+  margin-top: 1rem;
+  max-width: 100%;
 }

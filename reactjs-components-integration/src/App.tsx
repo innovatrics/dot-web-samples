@@ -10,7 +10,7 @@ import {
   FaceComponentData,
   Step,
 } from "./types";
-import styles from "./styles/index.module.scss";
+import styles from "./styles/index.module.css";
 
 function App() {
   const [step, setStep] = useState<Step>(Step.SELECT_COMPONENT);

@@ -5,7 +5,7 @@ import {
   DocumentCallback,
   DocumentCameraProps,
 } from '../types';
-import styles from '../styles/index.module.scss';
+import styles from '../styles/index.module.css';
 
 interface Props {
   handlePhotoTaken: DocumentCallback;

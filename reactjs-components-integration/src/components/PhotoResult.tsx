@@ -1,6 +1,6 @@
 import { Step } from "../types";
-import styles from "../styles/index.module.scss";
-import buttonStyles from "../styles/button.module.scss";
+import styles from "../styles/index.module.css";
+import buttonStyles from "../styles/button.module.css";
 
 interface Props {
   setStep: (step: Step) => void;
