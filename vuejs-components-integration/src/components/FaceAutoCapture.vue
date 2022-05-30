@@ -9,19 +9,25 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { FaceComponentData } from "../types";
 import "@innovatrics/dot-face-auto-capture";
+import { FaceCameraProps, FaceComponentData } from "@innovatrics/auto-capture";
+
+interface FaceCameraOptions {
+  cameraOptions: FaceCameraProps;
+}
 
 export default defineComponent({
   name: "FaceAutoCapture",
   computed: {
-    faceAutoCapture: function () {
+    faceAutoCapture: function (): FaceCameraOptions {
       return {
         cameraOptions: {
           imageType: "png",
           cameraFacing: "environment",
           photoTakenCb: (image: Blob, data: FaceComponentData) =>
             this.$emit("photoTakenCallBack", image, data),
+          onError: (error: Error) =>
+            this.$emit("onError", error),
         },
       };
     },

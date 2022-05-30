@@ -4,10 +4,12 @@
     <document-auto-capture
       v-if="currentStep === step.DOCUMENT_CAPTURE"
       @photoTakenCallBack="handlePhotoTaken"
+      @onError="handleError"
     />
     <face-auto-capture
       v-else-if="currentStep === step.FACE_CAPTURE"
       @photoTakenCallBack="handlePhotoTaken"
+      @onError="handleError"
     />
     <result
       v-else-if="currentStep === step.RESULT"
@@ -20,11 +22,12 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Step, DocumentComponentData, FaceComponentData } from "./types";
 import DocumentAutoCapture from "./components/DocumentAutoCapture.vue";
 import FaceAutoCapture from "./components/FaceAutoCapture.vue";
 import Result from "./components/Result.vue";
 import ComponentSelect from "./components/ComponentSelect.vue";
+import { Step } from "./types";
+import { DocumentComponentData, FaceComponentData } from "@innovatrics/auto-capture";
 
 export default defineComponent({
   name: "App",
@@ -52,6 +55,9 @@ export default defineComponent({
       console.log("Data: ", data);
       this.imageUrl = URL.createObjectURL(image);
       this.currentStep = Step.RESULT;
+    },
+    handleError(error: Error) {
+      alert(error);
     },
   },
 });

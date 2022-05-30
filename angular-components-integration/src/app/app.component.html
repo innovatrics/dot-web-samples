@@ -3,10 +3,12 @@
   <app-document-auto-capture
     *ngIf="currentStep === step.DOCUMENT_CAPTURE"
     (photoTakenCallBack)="handlePhotoTaken($event)"
+    (onError)="handleOnError($event)"
   ></app-document-auto-capture>
   <app-face-auto-capture
     *ngIf="currentStep === step.FACE_CAPTURE"
     (photoTakenCallBack)="handlePhotoTaken($event)"
+    (onError)="handleOnError($event)"
   ></app-face-auto-capture>
   <app-result
     *ngIf="currentStep ===step.RESULT"

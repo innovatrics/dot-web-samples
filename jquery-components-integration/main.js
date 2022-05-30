@@ -19,6 +19,7 @@ $(function () {
 
 async function handleDocumentPhotoTaken(image, data) {
   const img = await blobToImage(image);
+  console.log(data);
   $('#container').empty().append(img);
 }
 
@@ -35,6 +36,7 @@ function loadDocumentProps() {
 
 async function handleFacePhotoTaken(image, data) {
   const img = await blobToImage(image);
+  console.log(data);
   $('#container').empty().append(img);
 }
 
@@ -49,7 +51,7 @@ function loadFaceProps() {
 }
 
 function handleError(e) {
-  console.error(e);
+  alert(e);
 }
 
 function blobToImage(blob) {

@@ -1,14 +1,11 @@
+import { FaceCallback, FaceCameraProps, HTMLFaceCaptureElement } from "@innovatrics/auto-capture";
 import "@innovatrics/dot-face-auto-capture";
 import { useEffect } from "react";
-import {
-  FaceCallback,
-  FaceCameraProps,
-  HTMLFaceCaptureElement,
-} from "../types";
 import styles from "../styles/index.module.css";
 
 interface Props {
-  handlePhotoTaken: FaceCallback;
+  onPhotoTaken: FaceCallback;
+  onError: (error: Error) => void;
 }
 
 /*
@@ -32,7 +29,7 @@ const FaceCamera = (props: FaceCameraProps) => {
   return <x-dot-face-auto-capture id="x-dot-face-auto-capture" />;
 };
 
-const FaceAutoCapture = ({ handlePhotoTaken }: Props) => {
+const FaceAutoCapture = ({ onPhotoTaken, onError }: Props) => {
   return (
     <>
       <h2>Face auto capture</h2>
@@ -40,7 +37,8 @@ const FaceAutoCapture = ({ handlePhotoTaken }: Props) => {
         <FaceCamera
           imageType="png"
           cameraFacing="environment"
-          photoTakenCb={handlePhotoTaken}
+          photoTakenCb={onPhotoTaken}
+          onError={onError}
         />
       </div>
     </>

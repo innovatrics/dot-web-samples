@@ -21,4 +21,8 @@ export class AppComponent {
     this.imageUrl = URL.createObjectURL(image);
     this.currentStep = Step.RESULT;
   }
+
+  handleOnError(error: Error) {
+    alert(error);
+  }
 }

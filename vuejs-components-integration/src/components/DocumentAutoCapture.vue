@@ -9,13 +9,17 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { DocumentComponentData } from '../types';
 import '@innovatrics/dot-document-auto-capture';
+import { DocumentCameraProps, DocumentComponentData } from '@innovatrics/auto-capture';
+
+interface DocumentCameraOptions {
+  cameraOptions: DocumentCameraProps;
+}
 
 export default defineComponent({
   name: 'DocumentAutoCapture',
   computed: {
-    documentAutoCapture: function () {
+    documentAutoCapture: function (): DocumentCameraOptions {
       return {
         cameraOptions: {
           imageType: 'png',
@@ -23,6 +27,8 @@ export default defineComponent({
           detectionLayerVisible: true,
           photoTakenCb: (image: Blob, data: DocumentComponentData) =>
             this.$emit('photoTakenCallBack', image, data),
+          onError: (error: Error) =>
+            this.$emit('onError', error),
         },
       };
     },

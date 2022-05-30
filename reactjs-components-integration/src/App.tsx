@@ -1,16 +1,11 @@
+import { DocumentCallback, DocumentComponentData, FaceCallback, FaceComponentData } from "@innovatrics/auto-capture";
 import { useState } from "react";
 import ComponentSelect from "./components/ComponentSelect";
 import DocumentAutoCapture from "./components/DocumentAutoCapture";
 import FaceAutoCapture from "./components/FaceAutoCapture";
 import PhotoResult from "./components/PhotoResult";
-import {
-  DocumentCallback,
-  FaceCallback,
-  DocumentComponentData,
-  FaceComponentData,
-  Step,
-} from "./types";
 import styles from "./styles/index.module.css";
+import { Step } from "./types";
 
 function App() {
   const [step, setStep] = useState<Step>(Step.SELECT_COMPONENT);
@@ -33,15 +28,19 @@ function App() {
     handlePhotoTaken(image, data);
   };
 
+  const handleError = (error: Error) => {
+    alert(error);
+  }
+
   const renderStep = (step: Step) => {
     switch (step) {
       case Step.DOCUMENT_CAPTURE:
         return (
-          <DocumentAutoCapture handlePhotoTaken={handleDocumentPhotoTaken} />
+          <DocumentAutoCapture onPhotoTaken={handleDocumentPhotoTaken} onError={handleError} />
         );
       case Step.FACE_CAPTURE:
         return (
-          <FaceAutoCapture handlePhotoTaken={handleFaceCapturePhotoTaken} />
+          <FaceAutoCapture onPhotoTaken={handleFaceCapturePhotoTaken} onError={handleError} />
         );
       case Step.IMAGE:
         return <PhotoResult photoUrl={photoUrl} setStep={setStep} />;

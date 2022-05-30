@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, NgZone } from '@angular/core';
-import { HTMLDocumentCaptureElement, PhotoTakenCbProps } from 'src/app/types';
+import { PhotoTakenCbProps } from 'src/app/types';
 import '@innovatrics/dot-document-auto-capture';
+import { HTMLDocumentCaptureElement } from '@innovatrics/auto-capture';
 
 @Component({
   selector: 'app-document-auto-capture',
@@ -8,6 +9,7 @@ import '@innovatrics/dot-document-auto-capture';
 })
 export class DocumentAutoCaptureComponent implements OnInit {
   @Output() photoTakenCallBack = new EventEmitter<PhotoTakenCbProps>();
+  @Output() onError = new EventEmitter<Error>();
 
   constructor(private ngZone: NgZone) {}
 
@@ -28,6 +30,11 @@ export class DocumentAutoCaptureComponent implements OnInit {
         photoTakenCb: (image, data) => {
           this.ngZone.run(() => {
             this.photoTakenCallBack.emit({ image, data });
+          });
+        },
+        onError: (error) => {
+          this.ngZone.run(() => {
+            this.onError.emit(error);
           });
         },
       };

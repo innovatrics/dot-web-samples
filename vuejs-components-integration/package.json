@@ -1,6 +1,6 @@
 {
   "name": "vuejs-components-integration",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "scripts": {
     "copy-sam": "cp ./node_modules/@innovatrics/dot-document-auto-capture/sam.wasm ./public",
@@ -9,8 +9,8 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@innovatrics/dot-document-auto-capture": "^3.1.2",
-    "@innovatrics/dot-face-auto-capture": "^3.1.2",
+    "@innovatrics/dot-document-auto-capture": "3.2.0",
+    "@innovatrics/dot-face-auto-capture": "3.2.0",
     "core-js": "^3.6.5",
     "vue": "^3.0.0"
   },
