@@ -14,12 +14,12 @@ export class AppComponent {
 
   handleStepChange(step: Step) {
     this.currentStep = step;
+    this.imageUrl = '';
   }
 
   handlePhotoTaken({ image, data }: PhotoTakenCbProps) {
     console.log("Data: ", data);
     this.imageUrl = URL.createObjectURL(image);
-    this.currentStep = Step.RESULT;
   }
 
   handleOnError(error: Error) {

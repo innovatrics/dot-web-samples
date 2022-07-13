@@ -17,7 +17,6 @@ function App() {
   ) => {
     const imageUrl = URL.createObjectURL(image);
     setPhotoUrl(imageUrl);
-    setStep(Step.IMAGE);
   };
 
   const handleDocumentPhotoTaken: DocumentCallback = (image, data) => {
@@ -32,18 +31,27 @@ function App() {
     alert(error);
   }
 
+  const handleBackClick = () => {
+    setPhotoUrl(undefined);
+    setStep(Step.SELECT_COMPONENT);
+  }
+
   const renderStep = (step: Step) => {
     switch (step) {
       case Step.DOCUMENT_CAPTURE:
         return (
-          <DocumentAutoCapture onPhotoTaken={handleDocumentPhotoTaken} onError={handleError} />
+          <>
+            <DocumentAutoCapture onPhotoTaken={handleDocumentPhotoTaken} onError={handleError} onBackClick={handleBackClick} />
+            {photoUrl && <PhotoResult photoUrl={photoUrl} />}
+          </>
         );
       case Step.FACE_CAPTURE:
         return (
-          <FaceAutoCapture onPhotoTaken={handleFaceCapturePhotoTaken} onError={handleError} />
+          <>
+            <FaceAutoCapture onPhotoTaken={handleFaceCapturePhotoTaken} onError={handleError} onBackClick={handleBackClick} />
+            {photoUrl && <PhotoResult photoUrl={photoUrl} />}
+          </>
         );
-      case Step.IMAGE:
-        return <PhotoResult photoUrl={photoUrl} setStep={setStep} />;
       default:
         return <ComponentSelect setStep={setStep} />;
     }

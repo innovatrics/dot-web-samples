@@ -1,5 +1,5 @@
 import { Component, NgZone, OnInit, Output, EventEmitter } from '@angular/core';
-import { PhotoTakenCbProps } from 'src/app/types';
+import { PhotoTakenCbProps, Step } from 'src/app/types';
 import '@innovatrics/dot-face-auto-capture'
 import { HTMLDocumentCaptureElement } from '@innovatrics/auto-capture';
 
@@ -10,11 +10,28 @@ import { HTMLDocumentCaptureElement } from '@innovatrics/auto-capture';
 export class FaceAutoCaptureComponent implements OnInit {
   @Output() photoTakenCallBack = new EventEmitter<PhotoTakenCbProps>();
   @Output() onError = new EventEmitter<Error>();
+  @Output() backBtnClick = new EventEmitter<Step>();
+
+  isButtonDisabled = true;
 
   constructor(private ngzone: NgZone) { }
 
   ngOnInit(): void {
     this.initFaceAutoCapture();
+  }
+
+  onBackClick() {
+    this.backBtnClick.emit(Step.SELECT_COMPONENT)
+  }
+
+  handleContinue() {
+    document.dispatchEvent(
+      new CustomEvent('face-auto-capture', {
+        detail: { instruction: 'continue-detection' },
+      }),
+    );
+
+    this.isButtonDisabled = true;
   }
 
   initFaceAutoCapture() {
@@ -25,6 +42,7 @@ export class FaceAutoCaptureComponent implements OnInit {
         imageType: 'png',
         cameraFacing: 'environment',
         photoTakenCb: (image, data) => {
+          this.isButtonDisabled = false;
           this.ngzone.run(() => {
             this.photoTakenCallBack.emit({ image, data });
           });

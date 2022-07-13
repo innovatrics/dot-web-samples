@@ -10,8 +10,8 @@
 }
 
 .container {
+  margin-top: 1rem;
   width: 40rem;
-  height: 25rem;
 }
 
 .container img {

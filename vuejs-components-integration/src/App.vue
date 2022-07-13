@@ -1,21 +1,22 @@
 <template>
   <div>
     <h1>DOT components integration</h1>
-    <document-auto-capture
-      v-if="currentStep === step.DOCUMENT_CAPTURE"
-      @photoTakenCallBack="handlePhotoTaken"
-      @onError="handleError"
-    />
-    <face-auto-capture
-      v-else-if="currentStep === step.FACE_CAPTURE"
-      @photoTakenCallBack="handlePhotoTaken"
-      @onError="handleError"
-    />
-    <result
-      v-else-if="currentStep === step.RESULT"
-      @onBack="handleStepChange"
-      :imageSrc="this.imageUrl"
-    />
+    <div v-if="currentStep === step.DOCUMENT_CAPTURE">
+      <document-auto-capture
+        @photoTakenCallBack="handlePhotoTaken"
+        @onError="handleError"
+        @onBack="handleStepChange"
+      />
+      <result v-if="this.imageUrl" :imageSrc="this.imageUrl" />
+    </div>
+    <div v-else-if="currentStep === step.FACE_CAPTURE">
+      <face-auto-capture
+        @photoTakenCallBack="handlePhotoTaken"
+        @onError="handleError"
+        @onBack="handleStepChange"
+      />
+      <result v-if="this.imageUrl" :imageSrc="this.imageUrl" />
+    </div>
     <component-select v-else @onClick="handleStepChange" />
   </div>
 </template>
@@ -27,7 +28,10 @@ import FaceAutoCapture from "./components/FaceAutoCapture.vue";
 import Result from "./components/Result.vue";
 import ComponentSelect from "./components/ComponentSelect.vue";
 import { Step } from "./types";
-import { DocumentComponentData, FaceComponentData } from "@innovatrics/auto-capture";
+import {
+  DocumentComponentData,
+  FaceComponentData,
+} from "@innovatrics/auto-capture";
 
 export default defineComponent({
   name: "App",
@@ -47,6 +51,7 @@ export default defineComponent({
   methods: {
     handleStepChange(step: Step) {
       this.currentStep = step;
+      this.imageUrl = "";
     },
     handlePhotoTaken(
       image: Blob,
@@ -54,7 +59,6 @@ export default defineComponent({
     ) {
       console.log("Data: ", data);
       this.imageUrl = URL.createObjectURL(image);
-      this.currentStep = Step.RESULT;
     },
     handleError(error: Error) {
       alert(error);
@@ -72,11 +76,10 @@ export default defineComponent({
   text-align: center;
 }
 .container {
-  width: 50rem;
-  height: 25rem;
-  margin: 0 auto;
+  max-width: 50rem;
+  margin: 20px auto;
 }
-.select-component-btn {
+.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -91,5 +94,10 @@ export default defineComponent({
   font-weight: 600;
   font-size: 1rem;
   margin: 0 0.5rem 1rem 0.5rem;
+}
+.button[disabled] {
+  background-color: lightgrey;
+  color: gray;
+  cursor: not-allowed;
 }
 </style>

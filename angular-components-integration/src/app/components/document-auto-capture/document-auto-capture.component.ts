@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, NgZone } from '@angular/core';
-import { PhotoTakenCbProps } from 'src/app/types';
+import { PhotoTakenCbProps, Step } from 'src/app/types';
 import '@innovatrics/dot-document-auto-capture';
 import { HTMLDocumentCaptureElement } from '@innovatrics/auto-capture';
 
@@ -10,11 +10,28 @@ import { HTMLDocumentCaptureElement } from '@innovatrics/auto-capture';
 export class DocumentAutoCaptureComponent implements OnInit {
   @Output() photoTakenCallBack = new EventEmitter<PhotoTakenCbProps>();
   @Output() onError = new EventEmitter<Error>();
+  @Output() backBtnClick = new EventEmitter<Step>();
 
-  constructor(private ngZone: NgZone) {}
+  isButtonDisabled = true;
+
+  constructor(private ngZone: NgZone) { }
 
   ngOnInit(): void {
     this.initDocumentAutoCapture();
+  }
+
+  onBackClick() {
+    this.backBtnClick.emit(Step.SELECT_COMPONENT)
+  }
+
+  handleContinue() {
+    document.dispatchEvent(
+      new CustomEvent('document-auto-capture', {
+        detail: { instruction: 'continue-detection' },
+      }),
+    );
+
+    this.isButtonDisabled = true;
   }
 
   initDocumentAutoCapture() {
@@ -28,6 +45,7 @@ export class DocumentAutoCaptureComponent implements OnInit {
         cameraFacing: 'environment',
         detectionLayerVisible: true,
         photoTakenCb: (image, data) => {
+          this.isButtonDisabled = false;
           this.ngZone.run(() => {
             this.photoTakenCallBack.emit({ image, data });
           });

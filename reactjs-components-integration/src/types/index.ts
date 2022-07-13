@@ -14,5 +14,4 @@ export enum Step {
   SELECT_COMPONENT,
   DOCUMENT_CAPTURE,
   FACE_CAPTURE,
-  IMAGE,
 }

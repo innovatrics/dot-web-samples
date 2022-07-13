@@ -1,11 +1,13 @@
-import { FaceCallback, FaceCameraProps, HTMLFaceCaptureElement } from "@innovatrics/auto-capture";
+import { FaceCallback, FaceCameraProps, FaceComponentData, HTMLFaceCaptureElement } from "@innovatrics/auto-capture";
 import "@innovatrics/dot-face-auto-capture";
-import { useEffect } from "react";
-import styles from "../styles/index.module.css";
+import { useEffect, useState } from "react";
+import styles from '../styles/index.module.css';
+import buttonStyles from "../styles/button.module.css";
 
 interface Props {
   onPhotoTaken: FaceCallback;
   onError: (error: Error) => void;
+  onBackClick: () => void;
 }
 
 /*
@@ -29,15 +31,39 @@ const FaceCamera = (props: FaceCameraProps) => {
   return <x-dot-face-auto-capture id="x-dot-face-auto-capture" />;
 };
 
-const FaceAutoCapture = ({ onPhotoTaken, onError }: Props) => {
+const FaceAutoCapture = ({ onPhotoTaken, onError, onBackClick }: Props) => {
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  const handlePhotoTaken = (image: Blob, data: FaceComponentData) => {
+    setIsButtonDisabled(false);
+    onPhotoTaken(image, data);
+  }
+
+  const handleContinueDetection = () => {
+    document.dispatchEvent(
+      new CustomEvent('face-auto-capture', {
+        detail: { instruction: 'continue-detection' },
+      }),
+    );
+
+    setIsButtonDisabled(true);
+  };
   return (
     <>
       <h2>Face auto capture</h2>
+      <div>
+        <button className={buttonStyles.primary} onClick={handleContinueDetection} disabled={isButtonDisabled}>
+          Continue detection
+        </button>
+        <button className={buttonStyles.primary} onClick={onBackClick}>
+          Back
+        </button>
+      </div>
       <div className={styles.container}>
         <FaceCamera
           imageType="png"
           cameraFacing="environment"
-          photoTakenCb={onPhotoTaken}
+          photoTakenCb={handlePhotoTaken}
           onError={onError}
         />
       </div>

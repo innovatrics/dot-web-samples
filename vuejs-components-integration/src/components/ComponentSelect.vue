@@ -1,9 +1,7 @@
 <template>
   <div>
-    <button class="select-component-btn" @click="onDocumentClick()">
-      Document
-    </button>
-    <button class="select-component-btn" @click="onFaceClick()">Face</button>
+    <button class="button" @click="onDocumentClick()">Document</button>
+    <button class="button" @click="onFaceClick()">Face</button>
   </div>
 </template>
 

@@ -1,11 +1,13 @@
-import { DocumentCallback, DocumentCameraProps, HTMLDocumentCaptureElement } from '@innovatrics/auto-capture';
+import { DocumentCallback, DocumentCameraProps, DocumentComponentData, HTMLDocumentCaptureElement } from '@innovatrics/auto-capture';
 import '@innovatrics/dot-document-auto-capture';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../styles/index.module.css';
+import buttonStyles from "../styles/button.module.css";
 
 interface Props {
   onPhotoTaken: DocumentCallback;
   onError: (error: Error) => void;
+  onBackClick: () => void;
 }
 
 /*
@@ -29,16 +31,41 @@ const DocumentCamera = (props: DocumentCameraProps) => {
   return <x-dot-document-auto-capture id="x-dot-document-auto-capture" />;
 };
 
-const DocumentAutoCapture = ({ onPhotoTaken, onError }: Props) => {
+const DocumentAutoCapture = ({ onPhotoTaken, onError, onBackClick }: Props) => {
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  const handlePhotoTaken = (image: Blob, data: DocumentComponentData) => {
+    setIsButtonDisabled(false);
+    onPhotoTaken(image, data);
+  }
+
+  const handleContinueDetection = () => {
+    document.dispatchEvent(
+      new CustomEvent('document-auto-capture', {
+        detail: { instruction: 'continue-detection' },
+      }),
+    );
+
+    setIsButtonDisabled(true);
+  };
+
   return (
     <>
       <h2>Document auto capture</h2>
+      <div>
+        <button className={buttonStyles.primary} onClick={handleContinueDetection} disabled={isButtonDisabled}>
+          Continue detection
+        </button>
+        <button className={buttonStyles.primary} onClick={onBackClick}>
+          Back
+        </button>
+      </div>
       <div className={styles.container}>
         <DocumentCamera
           imageType="png"
           cameraFacing="environment"
           detectionLayerVisible
-          photoTakenCb={onPhotoTaken}
+          photoTakenCb={handlePhotoTaken}
           onError={onError}
         />
       </div>

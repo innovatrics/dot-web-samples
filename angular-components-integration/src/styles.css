@@ -6,11 +6,10 @@
   text-align: center;
 }
 .container {
-  width: 50rem;
-  height: 25rem;
-  margin: 0 auto;
+  max-width: 50rem;
+  margin: 1rem auto;
 }
-.select-component-btn {
+.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -26,4 +25,9 @@
   font-weight: 600;
   font-size: 1rem;
   margin: 0 0.5rem 1rem 0.5rem;
+}
+.button[disabled] {
+  background-color: lightgrey;
+  color: gray;
+  cursor: not-allowed;
 }

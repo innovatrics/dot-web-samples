@@ -15,9 +15,14 @@ html, body {
   text-align: center;
 }
 
-#container {
-  width: 40rem;
-  height: 25rem;
+#container,
+#result {
+  margin: 1rem auto;
+  max-width: 40rem;
+}
+
+img {
+  max-width: 100%;
 }
 
 #container img {
@@ -25,7 +30,7 @@ html, body {
   max-width: 100%;
 }
 
-.primary {
+.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -43,6 +48,8 @@ html, body {
   margin: 0.5rem;
 }
 
-a.primary, a.primary:visited, a.primary:hover, a.primary:active {
-  text-decoration: none;
+.button[disabled] {
+  background-color: lightgrey;
+  color: gray;
+  cursor: not-allowed;
 }

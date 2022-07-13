@@ -1212,10 +1212,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@innovatrics/dot-document-auto-capture@3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-3.2.0.tgz#4a9dec6bea44c9c93620997bc41e3871d5416302"
-  integrity sha512-3GaeENPU0gxgOlHLYarkmbXKm/yCMFoZ7NpPNfY8xj2rNzqIdh7wItvxJvHwXpISWkFcb5MSxXsIxK+Sw4nsdg==
+"@innovatrics/dot-document-auto-capture@3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-3.3.1.tgz#cf0eebf504f7527a5a8a68362c9aeef121fa39bc"
+  integrity sha512-Ug0EyQTtYYS+Sk877zfGO2hgAQVVzmWhgWO+yS7v0Hy0xOUPgTVPEO2r0k9vJlikU4JWOwoKsOb2b7KVREVi1w==
   dependencies:
     "@types/emscripten" "^1.39.5"
     polished "^4.1.0"
@@ -1225,10 +1225,10 @@
     styled-components "^5.2.1"
     tar "^6.1.11"
 
-"@innovatrics/dot-face-auto-capture@3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-3.2.0.tgz#2b38792e6f347a04819c2158eceeb9beed119b30"
-  integrity sha512-GmGaAR/rhDs51wK7EC9cteB2EtNYtJA3dKB9sdpcNnJ1ra1z0EN8bse4YHMFR9Lj7H7uQAeintwIkpPk5sECGg==
+"@innovatrics/dot-face-auto-capture@3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-3.3.1.tgz#677913cb1f8858e0eec095a3561671c4e05fb527"
+  integrity sha512-TFcK3u+MZHmxx6kCQR2Mx2J51QUcL4vjtslPQpg3KHWqHCIOT53eS/Vceo0SwaxJeuKE5031cXZRWylvLTjswA==
   dependencies:
     polished "^4.1.0"
     preact "^10.5.12"
