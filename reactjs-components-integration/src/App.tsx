@@ -1,5 +1,6 @@
-import { DocumentCallback, DocumentComponentData, FaceCallback, FaceComponentData } from "@innovatrics/auto-capture";
-import { useState } from "react";
+import type { DocumentCallback, DocumentComponentData } from "@innovatrics/dot-document-auto-capture";
+import type { FaceCallback, FaceComponentData } from "@innovatrics/dot-face-auto-capture";
+import { useCallback, useState } from "react";
 import ComponentSelect from "./components/ComponentSelect";
 import DocumentAutoCapture from "./components/DocumentAutoCapture";
 import FaceAutoCapture from "./components/FaceAutoCapture";
@@ -27,9 +28,12 @@ function App() {
     handlePhotoTaken(image, data);
   };
 
-  const handleError = (error: Error) => {
-    alert(error);
-  }
+  const handleError = useCallback(
+    (error: Error) => {
+      alert(error)
+    },
+    [],
+  );
 
   const handleBackClick = () => {
     setPhotoUrl(undefined);

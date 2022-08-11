@@ -1,7 +1,7 @@
 import { Component, NgZone, OnInit, Output, EventEmitter } from '@angular/core';
 import { PhotoTakenCbProps, Step } from 'src/app/types';
 import '@innovatrics/dot-face-auto-capture'
-import { HTMLDocumentCaptureElement } from '@innovatrics/auto-capture';
+import type { HTMLDocumentCaptureElement } from '@innovatrics/dot-document-auto-capture';
 
 @Component({
   selector: 'app-face-auto-capture',

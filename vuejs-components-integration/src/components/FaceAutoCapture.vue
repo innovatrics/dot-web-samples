@@ -18,7 +18,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import "@innovatrics/dot-face-auto-capture";
-import { FaceCameraProps, FaceComponentData } from "@innovatrics/auto-capture";
+import type { FaceCameraProps, FaceComponentData } from "@innovatrics/dot-face-auto-capture";
 import { Step } from "../types";
 
 interface FaceCameraOptions {

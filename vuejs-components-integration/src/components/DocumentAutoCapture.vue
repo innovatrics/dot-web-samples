@@ -18,10 +18,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import "@innovatrics/dot-document-auto-capture";
-import {
-  DocumentCameraProps,
-  DocumentComponentData,
-} from "@innovatrics/auto-capture";
+import type { DocumentCameraProps, DocumentComponentData } from "@innovatrics/dot-document-auto-capture";
 import { Step } from "../types";
 
 interface DocumentCameraOptions {

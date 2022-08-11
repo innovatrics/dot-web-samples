@@ -1,5 +1,5 @@
-import { FaceCallback, FaceCameraProps, FaceComponentData, HTMLFaceCaptureElement } from "@innovatrics/auto-capture";
 import "@innovatrics/dot-face-auto-capture";
+import type { FaceCallback, FaceCameraProps, FaceComponentData, HTMLFaceCaptureElement } from "@innovatrics/dot-face-auto-capture";
 import { useEffect, useState } from "react";
 import styles from '../styles/index.module.css';
 import buttonStyles from "../styles/button.module.css";

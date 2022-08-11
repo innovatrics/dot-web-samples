@@ -1,5 +1,5 @@
-import { DocumentCallback, DocumentCameraProps, DocumentComponentData, HTMLDocumentCaptureElement } from '@innovatrics/auto-capture';
 import '@innovatrics/dot-document-auto-capture';
+import type { DocumentCallback, DocumentCameraProps, DocumentComponentData, HTMLDocumentCaptureElement } from '@innovatrics/dot-document-auto-capture';
 import { useEffect, useState } from 'react';
 import styles from '../styles/index.module.css';
 import buttonStyles from "../styles/button.module.css";

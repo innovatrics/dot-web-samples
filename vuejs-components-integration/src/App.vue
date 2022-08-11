@@ -28,10 +28,8 @@ import FaceAutoCapture from "./components/FaceAutoCapture.vue";
 import Result from "./components/Result.vue";
 import ComponentSelect from "./components/ComponentSelect.vue";
 import { Step } from "./types";
-import {
-  DocumentComponentData,
-  FaceComponentData,
-} from "@innovatrics/auto-capture";
+import type { FaceComponentData } from "@innovatrics/dot-face-auto-capture";
+import type { DocumentComponentData } from "@innovatrics/dot-document-auto-capture";
 
 export default defineComponent({
   name: "App",
