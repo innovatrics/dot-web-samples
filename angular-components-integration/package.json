@@ -1,6 +1,6 @@
 {
   "name": "angular-components-integration",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "scripts": {
     "copy-sam": "cp ./node_modules/@innovatrics/dot-document-auto-capture/sam.wasm ./src",
     "ng": "ng",

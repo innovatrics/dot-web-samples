@@ -15,6 +15,6 @@ Version of components in samples: 3.4.2
 
 For more information about components integration please read documentation
 
-[Document Auto Capture Component docs](https://dot.pages.innovatrics.net/dot-documentation-public/technical/remote/dot-web-document/latest/documentation/)
+[Document Auto Capture Component docs](https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-web-document/latest/documentation/)
 
-[Face Auto Capture Component docs](https://dot.pages.innovatrics.net/dot-documentation-public/technical/remote/dot-web-face/latest/documentation/)
+[Face Auto Capture Component docs](https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-web-face/latest/documentation/)

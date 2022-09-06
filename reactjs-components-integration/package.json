@@ -1,6 +1,6 @@
 {
   "name": "reactjs-components-integration",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "private": true,
   "dependencies": {
     "@innovatrics/dot-document-auto-capture": "3.4.2",
