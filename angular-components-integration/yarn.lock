@@ -1242,19 +1242,19 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
-"@innovatrics/dot-document-auto-capture@3.4.2":
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-3.4.2.tgz#c170f4b2c24ee21b263310b9f1945a34b58b16f8"
-  integrity sha512-NR+Z0kDeCEAMnX8QMN/v8J3qR9zSEXNqgjY36zopZh23Q1xJbV3JAkCrTPMJvC4Go2kJVh0ANQOF0JrneBVYVQ==
+"@innovatrics/dot-document-auto-capture@3.4.3":
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-3.4.3.tgz#4f1ab00efddb447700c28454159ab0f6c10ece63"
+  integrity sha512-7ckTR2Hio+U7KJnKtHnX+iKxQmBDWafSO3HLoapE1AI1IM6O8ykztUg7i3pT01Hmd3S3RUJTGLZAll/5etG+Mg==
   dependencies:
     preact "^10.9.0"
     preact-custom-element "^4.2.1"
     styled-components "^5.3.5"
 
-"@innovatrics/dot-face-auto-capture@3.4.2":
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-3.4.2.tgz#c9a6ee74bbad9ec607df3e9bdc1a3a68d773df39"
-  integrity sha512-mO01gSbp/SIlsd+ckNat6K2eJ7ZhyAZN90NvpvLBt966qYsig2XMlZmyO0+YPBg83xH15HplILG1kOVdujqE4Q==
+"@innovatrics/dot-face-auto-capture@3.4.3":
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-3.4.3.tgz#e0866cf5988ee00bb1e31d7b4322a17d95cb4a57"
+  integrity sha512-wWWwId2kD67+Xm31Dq1BapCLnPpew3WJcu0gv0L3YoYJ52KWobS2qZwTOPVaskUJOXPu8sYGnyB/WWr/IgpMTg==
   dependencies:
     preact "^10.9.0"
     preact-custom-element "^4.2.1"

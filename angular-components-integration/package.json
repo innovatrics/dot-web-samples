@@ -1,6 +1,6 @@
 {
   "name": "angular-components-integration",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "scripts": {
     "copy-sam": "cp ./node_modules/@innovatrics/dot-document-auto-capture/sam.wasm ./src",
     "ng": "ng",
@@ -19,8 +19,8 @@
     "@angular/platform-browser": "~13.1.0",
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
-    "@innovatrics/dot-document-auto-capture": "3.4.2",
-    "@innovatrics/dot-face-auto-capture": "3.4.2",
+    "@innovatrics/dot-document-auto-capture": "3.4.3",
+    "@innovatrics/dot-face-auto-capture": "3.4.3",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
