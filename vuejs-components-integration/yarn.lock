@@ -997,19 +997,19 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
-"@innovatrics/dot-document-auto-capture@3.4.3":
-  version "3.4.3"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-3.4.3.tgz#4f1ab00efddb447700c28454159ab0f6c10ece63"
-  integrity sha512-7ckTR2Hio+U7KJnKtHnX+iKxQmBDWafSO3HLoapE1AI1IM6O8ykztUg7i3pT01Hmd3S3RUJTGLZAll/5etG+Mg==
+"@innovatrics/dot-document-auto-capture@3.5.1":
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-3.5.1.tgz#ebc5cf51375dee5b779981e08e8f6ed89f77f048"
+  integrity sha512-EmiiQ/PmtJJwWdSPaFgtYBd8KdChE7JBvsT53MHO6+0nAWIrr+pIJGeltXDkvW76eoccuvfY1oiu1uvpMJMVaQ==
   dependencies:
     preact "^10.9.0"
     preact-custom-element "^4.2.1"
     styled-components "^5.3.5"
 
-"@innovatrics/dot-face-auto-capture@3.4.3":
-  version "3.4.3"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-3.4.3.tgz#e0866cf5988ee00bb1e31d7b4322a17d95cb4a57"
-  integrity sha512-wWWwId2kD67+Xm31Dq1BapCLnPpew3WJcu0gv0L3YoYJ52KWobS2qZwTOPVaskUJOXPu8sYGnyB/WWr/IgpMTg==
+"@innovatrics/dot-face-auto-capture@3.5.1":
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-3.5.1.tgz#ceaefc545d6dc6f93de2cc9e3a28ad79a6dfd656"
+  integrity sha512-yk1W9Nn2eoyOLmV9l+y9ZXZgRYYl8Piqt5Msis2GPW8DhF9AdhD1Gn5S3D62f4BPJAqRKrEEqLMdvyqL47E/iw==
   dependencies:
     preact "^10.9.0"
     preact-custom-element "^4.2.1"
