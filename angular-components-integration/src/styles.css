@@ -8,6 +8,7 @@
 .container {
   max-width: 50rem;
   margin: 1rem auto;
+  position: relative;
 }
 .button {
   display: inline-flex;

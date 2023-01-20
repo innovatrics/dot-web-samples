@@ -1,66 +1,64 @@
+<script setup lang="ts">
+import { ref } from "vue";
+import type { FaceComponentData } from "@innovatrics/dot-face-auto-capture";
+import {
+  dispatchControlEvent,
+  FaceCustomEvent,
+  ControlEventInstruction,
+} from "@innovatrics/dot-face-auto-capture/events";
+import { Step } from "../types";
+import FaceCamera from "./FaceCamera.vue";
+import FaceUi from "./FaceUi.vue";
+
+const emit = defineEmits<{
+  (e: "onPhotoTaken", image: Blob, data: FaceComponentData): void;
+  (e: "onError", error: Error): void;
+  (e: "onBack", step: Step): void;
+}>();
+
+const isButtonDisabled = ref(true);
+
+const handlePhotoTaken = (image: Blob, data: FaceComponentData) => {
+  isButtonDisabled.value = false;
+  emit("onPhotoTaken", image, data);
+};
+
+const handleContinueDetection = () => {
+  dispatchControlEvent(
+    FaceCustomEvent.CONTROL,
+    ControlEventInstruction.CONTINUE_DETECTION
+  );
+  isButtonDisabled.value = true;
+};
+
+const handleError = (error: Error) => {
+  emit("onError", error);
+};
+</script>
+
 <template>
   <div>
     <h2>Face auto capture</h2>
-    <button @click="onBackClick()" class="button">Go back</button>
+    <button @click="emit('onBack', Step.SELECT_COMPONENT)" class="button">
+      Go back
+    </button>
     <button
       :disabled="isButtonDisabled"
-      @click="handleContinueDetection()"
+      @click="handleContinueDetection"
       class="button"
     >
       Continue detection
     </button>
     <div class="container">
-      <x-dot-face-auto-capture v-bind="faceAutoCapture" />
+      <FaceCamera
+        :cameraOptions="{
+          imageType: 'png',
+          cameraFacing: 'user',
+          onPhotoTaken: handlePhotoTaken,
+          onError: handleError,
+        }"
+      />
+      <FaceUi :uiProps="{showCameraButtons: true}" />
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-import "@innovatrics/dot-face-auto-capture";
-import type { FaceCameraProps, FaceComponentData } from "@innovatrics/dot-face-auto-capture";
-import { Step } from "../types";
-
-interface FaceCameraOptions {
-  cameraOptions: FaceCameraProps;
-}
-
-export default defineComponent({
-  name: "FaceAutoCapture",
-  data() {
-    return {
-      isButtonDisabled: true,
-    };
-  },
-  computed: {
-    faceAutoCapture: function (): FaceCameraOptions {
-      return {
-        cameraOptions: {
-          imageType: "png",
-          cameraFacing: "environment",
-          photoTakenCb: this.handlePhotoTaken,
-          onError: (error: Error) => this.$emit("onError", error),
-        },
-      };
-    },
-  },
-  methods: {
-    onBackClick() {
-      this.$emit("onBack", Step.SELECT_COMPONENT);
-    },
-    handlePhotoTaken(image: Blob, data: FaceComponentData) {
-      this.isButtonDisabled = false;
-      this.$emit("photoTakenCallBack", image, data);
-    },
-    handleContinueDetection() {
-      document.dispatchEvent(
-        new CustomEvent("face-auto-capture", {
-          detail: { instruction: "continue-detection" },
-        })
-      );
-
-      this.isButtonDisabled = true;
-    },
-  },
-});
-</script>

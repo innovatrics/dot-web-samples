@@ -1,61 +1,44 @@
-import { Component, OnInit, Output, EventEmitter, NgZone } from '@angular/core';
-import { PhotoTakenCbProps, Step } from 'src/app/types';
-import '@innovatrics/dot-document-auto-capture';
-import type { HTMLDocumentCaptureElement } from '@innovatrics/dot-document-auto-capture';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { OnPhotoTakenEventValue, Step } from 'src/app/types';
+import {
+  dispatchControlEvent,
+  DocumentCustomEvent,
+  ControlEventInstruction,
+} from '@innovatrics/dot-document-auto-capture/events';
 
 @Component({
   selector: 'app-document-auto-capture',
   templateUrl: './document-auto-capture.component.html',
 })
 export class DocumentAutoCaptureComponent implements OnInit {
-  @Output() photoTakenCallBack = new EventEmitter<PhotoTakenCbProps>();
+  @Output() onPhotoTaken = new EventEmitter<OnPhotoTakenEventValue>();
   @Output() onError = new EventEmitter<Error>();
-  @Output() backBtnClick = new EventEmitter<Step>();
+  @Output() onBack = new EventEmitter<Step>();
 
   isButtonDisabled = true;
 
-  constructor(private ngZone: NgZone) { }
+  constructor() {}
 
-  ngOnInit(): void {
-    this.initDocumentAutoCapture();
-  }
+  ngOnInit(): void {}
 
   onBackClick() {
-    this.backBtnClick.emit(Step.SELECT_COMPONENT)
+    this.onBack.emit(Step.SELECT_COMPONENT);
   }
 
   handleContinue() {
-    document.dispatchEvent(
-      new CustomEvent('document-auto-capture', {
-        detail: { instruction: 'continue-detection' },
-      }),
+    dispatchControlEvent(
+      DocumentCustomEvent.CONTROL,
+      ControlEventInstruction.CONTINUE_DETECTION
     );
-
     this.isButtonDisabled = true;
   }
 
-  initDocumentAutoCapture() {
-    const documentElement = document.getElementById(
-      'dot-document-auto-capture'
-    ) as HTMLDocumentCaptureElement | null;
+  handlePhotoTaken({ image, data }: OnPhotoTakenEventValue) {
+    this.onPhotoTaken.emit({ image, data });
+    this.isButtonDisabled = false;
+  }
 
-    if (documentElement) {
-      documentElement.cameraOptions = {
-        imageType: 'png',
-        cameraFacing: 'environment',
-        detectionLayerVisible: true,
-        photoTakenCb: (image, data) => {
-          this.isButtonDisabled = false;
-          this.ngZone.run(() => {
-            this.photoTakenCallBack.emit({ image, data });
-          });
-        },
-        onError: (error) => {
-          this.ngZone.run(() => {
-            this.onError.emit(error);
-          });
-        },
-      };
-    }
+  handleError(error: Error) {
+    this.onError.emit(error);
   }
 }

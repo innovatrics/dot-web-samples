@@ -15,7 +15,13 @@ html, body {
   text-align: center;
 }
 
-#container,
+#container {
+  margin: 1rem auto;
+  max-width: 40rem;
+  position: relative;
+  min-height: 10rem;
+}
+
 #result {
   margin: 1rem auto;
   max-width: 40rem;

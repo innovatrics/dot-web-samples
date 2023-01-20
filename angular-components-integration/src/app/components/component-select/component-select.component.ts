@@ -6,12 +6,11 @@ import { Step } from '../../types';
   templateUrl: './component-select.component.html',
 })
 export class ComponentSelectComponent implements OnInit {
-  @Output() btnClick = new EventEmitter<Step>()
+  @Output() btnClick = new EventEmitter<Step>();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onFaceClick() {
     this.btnClick.emit(Step.FACE_CAPTURE);

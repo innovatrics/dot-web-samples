@@ -12,6 +12,7 @@
 .container {
   margin-top: 1rem;
   width: 40rem;
+  position: relative;
 }
 
 .container img {

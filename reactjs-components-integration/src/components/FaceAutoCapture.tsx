@@ -1,8 +1,17 @@
-import "@innovatrics/dot-face-auto-capture";
-import type { FaceCallback, FaceCameraProps, FaceComponentData, HTMLFaceCaptureElement } from "@innovatrics/dot-face-auto-capture";
-import { useEffect, useState } from "react";
-import styles from '../styles/index.module.css';
+import type {
+  FaceCallback,
+  FaceComponentData,
+} from "@innovatrics/dot-face-auto-capture";
+import {
+  dispatchControlEvent,
+  FaceCustomEvent,
+  ControlEventInstruction,
+} from "@innovatrics/dot-face-auto-capture/events";
+import { useState } from "react";
+import styles from "../styles/index.module.css";
 import buttonStyles from "../styles/button.module.css";
+import FaceCamera from "./FaceCamera";
+import FaceUi from "./FaceUi";
 
 interface Props {
   onPhotoTaken: FaceCallback;
@@ -10,40 +19,18 @@ interface Props {
   onBackClick: () => void;
 }
 
-/*
- * When component is initiliazed, sam.wasm file will be fetched from http://localhost:3000/sam.wasm.
- * That's why sam.wasm file need to be placed in root of public folder.
- */
-
-const FaceCamera = (props: FaceCameraProps) => {
-  useEffect(() => {
-    // 2. Init existed custom web-component
-    const faceAutoCaptureHTMLElement = document.getElementById(
-      "x-dot-face-auto-capture"
-    ) as HTMLFaceCaptureElement | null;
-
-    if (faceAutoCaptureHTMLElement) {
-      faceAutoCaptureHTMLElement.cameraOptions = props;
-    }
-  });
-
-  // 1. Return empty custom web-component html TAG
-  return <x-dot-face-auto-capture id="x-dot-face-auto-capture" />;
-};
-
 const FaceAutoCapture = ({ onPhotoTaken, onError, onBackClick }: Props) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const handlePhotoTaken = (image: Blob, data: FaceComponentData) => {
     setIsButtonDisabled(false);
     onPhotoTaken(image, data);
-  }
+  };
 
   const handleContinueDetection = () => {
-    document.dispatchEvent(
-      new CustomEvent('face-auto-capture', {
-        detail: { instruction: 'continue-detection' },
-      }),
+    dispatchControlEvent(
+      FaceCustomEvent.CONTROL,
+      ControlEventInstruction.CONTINUE_DETECTION
     );
 
     setIsButtonDisabled(true);
@@ -52,7 +39,11 @@ const FaceAutoCapture = ({ onPhotoTaken, onError, onBackClick }: Props) => {
     <>
       <h2>Face auto capture</h2>
       <div>
-        <button className={buttonStyles.primary} onClick={handleContinueDetection} disabled={isButtonDisabled}>
+        <button
+          className={buttonStyles.primary}
+          onClick={handleContinueDetection}
+          disabled={isButtonDisabled}
+        >
           Continue detection
         </button>
         <button className={buttonStyles.primary} onClick={onBackClick}>
@@ -62,10 +53,11 @@ const FaceAutoCapture = ({ onPhotoTaken, onError, onBackClick }: Props) => {
       <div className={styles.container}>
         <FaceCamera
           imageType="png"
-          cameraFacing="environment"
-          photoTakenCb={handlePhotoTaken}
+          cameraFacing="user"
+          onPhotoTaken={handlePhotoTaken}
           onError={onError}
         />
+        <FaceUi showCameraButtons/>
       </div>
     </>
   );

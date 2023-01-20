@@ -7,6 +7,9 @@
     Continue detection
   </button>
   <div class="container">
-    <x-dot-document-auto-capture id="dot-document-auto-capture"></x-dot-document-auto-capture>
+   <app-document-camera 
+   (onPhotoTaken)="handlePhotoTaken($event)" 
+   (onError)="handleError($event)"></app-document-camera>
+   <app-document-ui></app-document-ui>
   </div>
 </div>

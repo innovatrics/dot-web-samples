@@ -1,59 +1,44 @@
-import { Component, NgZone, OnInit, Output, EventEmitter } from '@angular/core';
-import { PhotoTakenCbProps, Step } from 'src/app/types';
-import '@innovatrics/dot-face-auto-capture'
-import type { HTMLDocumentCaptureElement } from '@innovatrics/dot-document-auto-capture';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { OnPhotoTakenEventValue, Step } from 'src/app/types';
+import {
+  dispatchControlEvent,
+  FaceCustomEvent,
+  ControlEventInstruction,
+} from '@innovatrics/dot-face-auto-capture/events';
 
 @Component({
   selector: 'app-face-auto-capture',
   templateUrl: './face-auto-capture.component.html',
 })
 export class FaceAutoCaptureComponent implements OnInit {
-  @Output() photoTakenCallBack = new EventEmitter<PhotoTakenCbProps>();
+  @Output() onPhotoTaken = new EventEmitter<OnPhotoTakenEventValue>();
   @Output() onError = new EventEmitter<Error>();
-  @Output() backBtnClick = new EventEmitter<Step>();
+  @Output() onBack = new EventEmitter<Step>();
 
   isButtonDisabled = true;
 
-  constructor(private ngzone: NgZone) { }
+  constructor() {}
 
-  ngOnInit(): void {
-    this.initFaceAutoCapture();
-  }
+  ngOnInit(): void {}
 
   onBackClick() {
-    this.backBtnClick.emit(Step.SELECT_COMPONENT)
+    this.onBack.emit(Step.SELECT_COMPONENT);
   }
 
   handleContinue() {
-    document.dispatchEvent(
-      new CustomEvent('face-auto-capture', {
-        detail: { instruction: 'continue-detection' },
-      }),
+    dispatchControlEvent(
+      FaceCustomEvent.CONTROL,
+      ControlEventInstruction.CONTINUE_DETECTION
     );
-
     this.isButtonDisabled = true;
   }
 
-  initFaceAutoCapture() {
-    const faceElement = document.getElementById('dot-face-auto-capture') as HTMLDocumentCaptureElement | null;
-
-    if (faceElement) {
-      faceElement.cameraOptions = {
-        imageType: 'png',
-        cameraFacing: 'environment',
-        photoTakenCb: (image, data) => {
-          this.isButtonDisabled = false;
-          this.ngzone.run(() => {
-            this.photoTakenCallBack.emit({ image, data });
-          });
-        },
-        onError: (error) => {
-          this.ngzone.run(() => {
-            this.onError.emit(error);
-          });
-        },
-      }
-    }
+  handlePhotoTaken({ image, data }: OnPhotoTakenEventValue) {
+    this.onPhotoTaken.emit({ image, data });
+    this.isButtonDisabled = false;
   }
 
+  handleError(error: Error) {
+    this.onError.emit(error);
+  }
 }

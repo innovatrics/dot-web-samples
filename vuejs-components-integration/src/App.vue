@@ -1,69 +1,56 @@
-<template>
-  <div>
-    <h1>DOT components integration</h1>
-    <div v-if="currentStep === step.DOCUMENT_CAPTURE">
-      <document-auto-capture
-        @photoTakenCallBack="handlePhotoTaken"
-        @onError="handleError"
-        @onBack="handleStepChange"
-      />
-      <result v-if="this.imageUrl" :imageSrc="this.imageUrl" />
-    </div>
-    <div v-else-if="currentStep === step.FACE_CAPTURE">
-      <face-auto-capture
-        @photoTakenCallBack="handlePhotoTaken"
-        @onError="handleError"
-        @onBack="handleStepChange"
-      />
-      <result v-if="this.imageUrl" :imageSrc="this.imageUrl" />
-    </div>
-    <component-select v-else @onClick="handleStepChange" />
-  </div>
-</template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { ref } from "vue";
 import DocumentAutoCapture from "./components/DocumentAutoCapture.vue";
 import FaceAutoCapture from "./components/FaceAutoCapture.vue";
-import Result from "./components/Result.vue";
+import ResultStep from "./components/ResultStep.vue";
 import ComponentSelect from "./components/ComponentSelect.vue";
 import { Step } from "./types";
 import type { FaceComponentData } from "@innovatrics/dot-face-auto-capture";
 import type { DocumentComponentData } from "@innovatrics/dot-document-auto-capture";
 
-export default defineComponent({
-  name: "App",
-  components: {
-    DocumentAutoCapture,
-    FaceAutoCapture,
-    Result,
-    ComponentSelect,
-  },
-  data() {
-    return {
-      currentStep: Step.SELECT_COMPONENT,
-      step: Step,
-      imageUrl: "",
-    };
-  },
-  methods: {
-    handleStepChange(step: Step) {
-      this.currentStep = step;
-      this.imageUrl = "";
-    },
-    handlePhotoTaken(
-      image: Blob,
-      data: DocumentComponentData | FaceComponentData
-    ) {
-      console.log("Data: ", data);
-      this.imageUrl = URL.createObjectURL(image);
-    },
-    handleError(error: Error) {
-      alert(error);
-    },
-  },
-});
+const currentStep = ref(Step.SELECT_COMPONENT);
+const imageUrl = ref("");
+
+const handlePhotoTaken = (
+  image: Blob,
+  data: DocumentComponentData | FaceComponentData
+) => {
+  console.log("Data: ", data);
+  imageUrl.value = URL.createObjectURL(image);
+};
+
+const handleError = (error: Error) => {
+  alert(error);
+};
+
+const handleStepChange = (step: Step) => {
+  currentStep.value = step;
+  imageUrl.value = ""
+};
 </script>
+
+<template>
+  <div>
+    <h1>DOT components integration</h1>
+    <div v-if="currentStep === Step.DOCUMENT_CAPTURE">
+      <DocumentAutoCapture
+        @on-photo-taken="handlePhotoTaken"
+        @on-error="handleError"
+        @on-back="handleStepChange"
+      />
+      <ResultStep v-if="imageUrl" :imageSrc="imageUrl" />
+    </div>
+    <div v-else-if="currentStep === Step.FACE_CAPTURE">
+      <FaceAutoCapture
+        @on-photo-taken="handlePhotoTaken"
+        @on-error="handleError"
+        @on-back="handleStepChange"
+      />
+      <ResultStep v-if="imageUrl" :imageSrc="imageUrl" />
+    </div>
+    <ComponentSelect v-else @onClick="handleStepChange" />
+  </div>
+</template>
 
 <style>
 #app {
@@ -76,6 +63,7 @@ export default defineComponent({
 .container {
   max-width: 50rem;
   margin: 20px auto;
+  position: relative;
 }
 .button {
   display: inline-flex;

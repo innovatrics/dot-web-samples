@@ -2,17 +2,17 @@
   <h1>DOT components integration</h1>
   <div *ngIf="currentStep === step.DOCUMENT_CAPTURE">
     <app-document-auto-capture 
-      (photoTakenCallBack)="handlePhotoTaken($event)" 
-      (onError)="handleOnError($event)"
-      (backBtnClick)="handleStepChange($event)">
+      (onPhotoTaken)="handlePhotoTaken($event)" 
+      (onError)="handleError($event)"
+      (onBack)="handleStepChange($event)">
     </app-document-auto-capture>
     <app-result *ngIf="imageUrl" [imageUrl]="imageUrl"></app-result>
   </div>
   <div *ngIf="currentStep === step.FACE_CAPTURE">
     <app-face-auto-capture 
-      (photoTakenCallBack)="handlePhotoTaken($event)" 
-      (onError)="handleOnError($event)"
-      (backBtnClick)="handleStepChange($event)">
+      (onPhotoTaken)="handlePhotoTaken($event)" 
+      (onError)="handleError($event)"
+      (onBack)="handleStepChange($event)">
     </app-face-auto-capture>
     <app-result *ngIf="imageUrl" [imageUrl]="imageUrl"></app-result>
   </div>

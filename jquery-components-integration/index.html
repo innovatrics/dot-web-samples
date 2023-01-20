@@ -6,8 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="lib/index-face.js"></script>
-  <script src="lib/index-document.js"></script>
+  <script src="lib/document.js"></script>
+  <script src="lib/document-ui.js"></script>
+  <script src="lib/face.js"></script>
+  <script src="lib/face-ui.js"></script>
   <script src="index.js"></script>
   <title>JQuery Integration Sample</title>
 </head>
@@ -22,9 +24,7 @@
       <button disabled="true" id="continue" class="button">Continue detection</button>
     </div>
     <div id="container">
-      <x-dot-face-auto-capture></x-dot-face-auto-capture>
-      <!-- initial render of the custom components, needs to be supplied props to properly start -->
-      <x-dot-document-auto-capture></x-dot-document-auto-capture>
+      <!-- custom components will render here -->
     </div>
     <div id="result"></div>
   </div>

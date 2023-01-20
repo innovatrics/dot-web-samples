@@ -1,10 +1,13 @@
 $(function () {
   $('#selfie').click(function () {
     let cam = document.createElement('x-dot-face-auto-capture'); // since the components dont support reinitialisation, we need to make sure we have a fresh one
+    let ui = document.createElement('x-dot-face-auto-capture-ui');
     $('#container')
       .empty() // remove any potential existing components
-      .append(cam); // and append the newly created fresh copy
+      .append(cam) // and append the newly created fresh copy
+      .append(ui); // append newly created ui
     loadFaceProps(); // and now that the component is rendered, we supply it with props to properly start it
+    loadFaceUiProps();
     resetState();
     $('#continue').on('click', continueFaceDetection);
   });
@@ -12,15 +15,17 @@ $(function () {
   $('#document').click(function () {
     // same as face component above, we need to make sure we're workign with a fresh copy before supplying it with props
     let cam = document.createElement('x-dot-document-auto-capture');
-    $('#container').empty().append(cam);
+    let ui = document.createElement('x-dot-document-auto-capture-ui');
+    $('#container').empty().append(cam).append(ui);
     loadDocumentProps();
+    loadDocumentUiProps();
     resetState();
     $('#continue').on('click', continueDocumentDetection);
   });
 });
 
 function resetState() {
-  $('#continue').attr("disabled", true);
+  $('#continue').attr('disabled', true);
   $('#result').empty();
   $('#continue').off('click', continueFaceDetection);
   $('#continue').off('click', continueDocumentDetection);
@@ -30,17 +35,44 @@ async function handleDocumentPhotoTaken(image, data) {
   const img = await blobToImage(image);
   console.log(data);
   $('#result').empty().append(img);
-  $('#continue').attr("disabled", false);
+  $('#continue').attr('disabled', false);
 }
 
 // the component needs to have props supplied after first render, this must be done via the .prop() method, as attributes dont support objects and functions
 function loadDocumentProps() {
   $('x-dot-document-auto-capture').prop('cameraOptions', {
     imageType: 'png',
-    detectionLayerVisible: true,
-    photoTakenCb: handleDocumentPhotoTaken,
+    onPhotoTaken: handleDocumentPhotoTaken,
     onError: handleError,
     samWasmUrl: 'lib/sam.wasm',
+    cameraFacing: 'environment',
+  });
+}
+
+function loadDocumentUiProps() {
+  $('x-dot-document-auto-capture-ui').prop('props', {
+    showCameraButtons: true,
+    // customize document UI props here
+    // DOCS: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-web-document/latest/documentation/
+  });
+}
+
+// the component needs to have props supplied after first render, this must be done via the .prop() method, as attributes dont support objects and functions
+function loadFaceProps() {
+  $('x-dot-face-auto-capture').prop('cameraOptions', {
+    imageType: 'png',
+    onPhotoTaken: handleFacePhotoTaken,
+    onError: handleError,
+    samWasmUrl: 'lib/sam.wasm',
+    cameraFacing: 'user',
+  });
+}
+
+function loadFaceUiProps() {
+  $('x-dot-face-auto-capture-ui').prop('props', {
+    showCameraButtons: true,
+    // customize face UI props here
+    // DOCS: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-web-face/latest/documentation/
   });
 }
 
@@ -48,17 +80,7 @@ async function handleFacePhotoTaken(image, data) {
   const img = await blobToImage(image);
   console.log(data);
   $('#result').empty().append(img);
-  $('#continue').attr("disabled", false);
-}
-
-// the component needs to have props supplied after first render, this must be done via the .prop() method, as attributes dont support objects and functions
-function loadFaceProps() {
-  $('x-dot-face-auto-capture').prop('cameraOptions', {
-    imageType: 'png',
-    photoTakenCb: handleFacePhotoTaken,
-    onError: handleError,
-    samWasmUrl: 'lib/sam.wasm',
-  });
+  $('#continue').attr('disabled', false);
 }
 
 function handleError(e) {
@@ -83,18 +105,18 @@ function blobToImage(blob) {
 
 function continueDocumentDetection() {
   document.dispatchEvent(
-    new CustomEvent('document-auto-capture', {
+    new CustomEvent('document-auto-capture:control', {
       detail: { instruction: 'continue-detection' },
-    }),
+    })
   );
-  $('#continue').attr("disabled", true);
+  $('#continue').attr('disabled', true);
 }
 
 function continueFaceDetection() {
   document.dispatchEvent(
-    new CustomEvent('face-auto-capture', {
+    new CustomEvent('face-auto-capture:control', {
       detail: { instruction: 'continue-detection' },
-    }),
+    })
   );
-  $('#continue').attr("disabled", true);
+  $('#continue').attr('disabled', true);
 }

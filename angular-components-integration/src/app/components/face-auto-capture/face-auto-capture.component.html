@@ -1,12 +1,23 @@
 <div>
   <h2>Face auto capture</h2>
-  <button (click)="onBackClick()" class="button">
+  <button
+    (click)="onBackClick()"
+    class="button"
+  >
     Go back
   </button>
-  <button (click)="handleContinue()" class="button" [disabled]="isButtonDisabled">
+  <button
+    (click)="handleContinue()"
+    class="button"
+    [disabled]="isButtonDisabled"
+  >
     Continue detection
   </button>
   <div class="container">
-    <x-dot-face-auto-capture id="dot-face-auto-capture"></x-dot-face-auto-capture>
+    <app-face-camera
+      (onPhotoTaken)="handlePhotoTaken($event)"
+      (onError)="handleError($event)"
+    ></app-face-camera>
+    <app-face-ui ></app-face-ui>
   </div>
 </div>

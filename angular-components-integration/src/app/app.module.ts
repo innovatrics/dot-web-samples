@@ -6,6 +6,10 @@ import { DocumentAutoCaptureComponent } from './components/document-auto-capture
 import { FaceAutoCaptureComponent } from './components/face-auto-capture/face-auto-capture.component';
 import { ResultComponent } from './components/result/result.component';
 import { ComponentSelectComponent } from './components/component-select/component-select.component';
+import { DocumentCameraComponent } from './components/document-camera/document-camera.component';
+import { DocumentUiComponent } from './components/document-ui/document-ui.component';
+import { FaceUiComponent } from './components/face-ui/face-ui.component';
+import { FaceCameraComponent } from './components/face-camera/face-camera.component';
 
 @NgModule({
   declarations: [
@@ -14,13 +18,14 @@ import { ComponentSelectComponent } from './components/component-select/componen
     FaceAutoCaptureComponent,
     ResultComponent,
     ComponentSelectComponent,
-
+    DocumentCameraComponent,
+    DocumentUiComponent,
+    FaceUiComponent,
+    FaceCameraComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [
-    BrowserModule
-  ],
+  imports: [BrowserModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

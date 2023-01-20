@@ -8,9 +8,8 @@ describe('FaceAutoCaptureComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FaceAutoCaptureComponent ]
-    })
-    .compileComponents();
+      declarations: [FaceAutoCaptureComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

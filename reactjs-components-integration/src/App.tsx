@@ -1,5 +1,11 @@
-import type { DocumentCallback, DocumentComponentData } from "@innovatrics/dot-document-auto-capture";
-import type { FaceCallback, FaceComponentData } from "@innovatrics/dot-face-auto-capture";
+import type {
+  DocumentCallback,
+  DocumentComponentData,
+} from "@innovatrics/dot-document-auto-capture";
+import type {
+  FaceCallback,
+  FaceComponentData,
+} from "@innovatrics/dot-face-auto-capture";
 import { useCallback, useState } from "react";
 import ComponentSelect from "./components/ComponentSelect";
 import DocumentAutoCapture from "./components/DocumentAutoCapture";
@@ -28,31 +34,36 @@ function App() {
     handlePhotoTaken(image, data);
   };
 
-  const handleError = useCallback(
-    (error: Error) => {
-      alert(error)
-    },
-    [],
-  );
+  const handleError = useCallback((error: Error) => {
+    alert(error);
+  }, []);
 
   const handleBackClick = () => {
     setPhotoUrl(undefined);
     setStep(Step.SELECT_COMPONENT);
-  }
+  };
 
   const renderStep = (step: Step) => {
     switch (step) {
       case Step.DOCUMENT_CAPTURE:
         return (
           <>
-            <DocumentAutoCapture onPhotoTaken={handleDocumentPhotoTaken} onError={handleError} onBackClick={handleBackClick} />
+            <DocumentAutoCapture
+              onPhotoTaken={handleDocumentPhotoTaken}
+              onError={handleError}
+              onBackClick={handleBackClick}
+            />
             {photoUrl && <PhotoResult photoUrl={photoUrl} />}
           </>
         );
       case Step.FACE_CAPTURE:
         return (
           <>
-            <FaceAutoCapture onPhotoTaken={handleFaceCapturePhotoTaken} onError={handleError} onBackClick={handleBackClick} />
+            <FaceAutoCapture
+              onPhotoTaken={handleFaceCapturePhotoTaken}
+              onError={handleError}
+              onBackClick={handleBackClick}
+            />
             {photoUrl && <PhotoResult photoUrl={photoUrl} />}
           </>
         );

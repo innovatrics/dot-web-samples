@@ -8,9 +8,8 @@ describe('DocumentAutoCaptureComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DocumentAutoCaptureComponent ]
-    })
-    .compileComponents();
+      declarations: [DocumentAutoCaptureComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

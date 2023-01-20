@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PhotoTakenCbProps, Step } from './types';
+import { OnPhotoTakenEventValue, Step } from './types';
 
 @Component({
   selector: 'app-root',
@@ -10,19 +10,19 @@ export class AppComponent {
   currentStep: Step = Step.SELECT_COMPONENT;
   imageUrl: string = '';
 
-  constructor() { }
+  constructor() {}
 
   handleStepChange(step: Step) {
     this.currentStep = step;
     this.imageUrl = '';
   }
 
-  handlePhotoTaken({ image, data }: PhotoTakenCbProps) {
-    console.log("Data: ", data);
+  handlePhotoTaken({ image, data }: OnPhotoTakenEventValue) {
+    console.log('Data: ', data);
     this.imageUrl = URL.createObjectURL(image);
   }
 
-  handleOnError(error: Error) {
+  handleError(error: Error) {
     alert(error);
   }
 }
