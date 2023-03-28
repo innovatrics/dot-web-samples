@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone, EventEmitter, Output } from '@angular/core';
 import { OnPhotoTakenEventValue } from 'src/app/types';
 import '@innovatrics/dot-document-auto-capture';
-import type { HTMLDocumentCaptureElement } from '@innovatrics/dot-document-auto-capture';
+import type { DocumentComponentData, HTMLDocumentCaptureElement } from '@innovatrics/dot-document-auto-capture';
 
 @Component({
   selector: 'app-document-camera',
@@ -9,10 +9,10 @@ import type { HTMLDocumentCaptureElement } from '@innovatrics/dot-document-auto-
   styleUrls: ['./document-camera.component.css'],
 })
 export class DocumentCameraComponent implements OnInit {
-  @Output() onPhotoTaken = new EventEmitter<OnPhotoTakenEventValue>();
+  @Output() onPhotoTaken = new EventEmitter<OnPhotoTakenEventValue<DocumentComponentData>>();
   @Output() onError = new EventEmitter<Error>();
 
-  constructor(private ngZone: NgZone) {}
+  constructor(private ngZone: NgZone) { }
 
   ngOnInit(): void {
     this.initDocumentAutoCapture();

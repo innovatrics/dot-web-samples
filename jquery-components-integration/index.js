@@ -1,6 +1,6 @@
 $(function () {
   $('#selfie').click(function () {
-    let cam = document.createElement('x-dot-face-auto-capture'); // since the components dont support reinitialisation, we need to make sure we have a fresh one
+    let cam = document.createElement('x-dot-face-auto-capture'); // since the components don't support reinitialization, we need to make sure we have a fresh one
     let ui = document.createElement('x-dot-face-auto-capture-ui');
     $('#container')
       .empty() // remove any potential existing components
@@ -13,7 +13,7 @@ $(function () {
   });
 
   $('#document').click(function () {
-    // same as face component above, we need to make sure we're workign with a fresh copy before supplying it with props
+    // same as face component above, we need to make sure we're working with a fresh copy before supplying it with props
     let cam = document.createElement('x-dot-document-auto-capture');
     let ui = document.createElement('x-dot-document-auto-capture-ui');
     $('#container').empty().append(cam).append(ui);
@@ -21,6 +21,16 @@ $(function () {
     loadDocumentUiProps();
     resetState();
     $('#continue').on('click', continueDocumentDetection);
+  });
+
+  $('#magnifeye').click(function () {
+    // same as face component above, we need to make sure we're working with a fresh copy before supplying it with props
+    let cam = document.createElement('x-dot-magnifeye-liveness');
+    let ui = document.createElement('x-dot-magnifeye-liveness-ui');
+    $('#container').empty().append(cam).append(ui);
+    loadMagnifEyeProps();
+    loadMagnifEyeUiProps();
+    $('#result').empty();
   });
 });
 
@@ -57,6 +67,13 @@ function loadDocumentUiProps() {
   });
 }
 
+async function handleFacePhotoTaken(image, data) {
+  const img = await blobToImage(image);
+  console.log(data);
+  $('#result').empty().append(img);
+  $('#continue').attr('disabled', false);
+}
+
 // the component needs to have props supplied after first render, this must be done via the .prop() method, as attributes dont support objects and functions
 function loadFaceProps() {
   $('x-dot-face-auto-capture').prop('cameraOptions', {
@@ -76,12 +93,28 @@ function loadFaceUiProps() {
   });
 }
 
-async function handleFacePhotoTaken(image, data) {
-  const img = await blobToImage(image);
-  console.log(data);
+async function handleMagnifEyeComplete(data, content) {
+  const img = await blobToImage(data.image);
+  console.log(data.data);
   $('#result').empty().append(img);
-  $('#continue').attr('disabled', false);
 }
+
+function loadMagnifEyeProps() {
+  $('x-dot-magnifeye-liveness').prop('props', {
+    onComplete: handleMagnifEyeComplete,
+    onError: handleError,
+    samWasmUrl: 'lib/sam.wasm',
+  });
+}
+
+function loadMagnifEyeUiProps() {
+  $('x-dot-magnifeye-liveness-ui').prop('props', {
+    showCameraButtons: true,
+    // customize magnifEye UI props here
+    // DOCS: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-web-magnifeye-liveness/latest/documentation/
+  });
+}
+
 
 function handleError(e) {
   alert(e);

@@ -5,13 +5,17 @@ interface Props {
   setStep: (step: Step) => void;
 }
 
-const ComponentSelect = ({ setStep }: Props) => {
+function ComponentSelect({ setStep }: Props) {
   const handleDocumentClick = () => {
     setStep(Step.DOCUMENT_CAPTURE);
   };
 
   const handleFaceClick = () => {
     setStep(Step.FACE_CAPTURE);
+  };
+
+  const handleMagnifEyeLivenessClick = () => {
+    setStep(Step.MAGNIFEYE_LIVENESS);
   };
 
   return (
@@ -22,8 +26,11 @@ const ComponentSelect = ({ setStep }: Props) => {
       <button className={styles.primary} onClick={handleFaceClick}>
         Face
       </button>
+      <button className={styles.primary} onClick={handleMagnifEyeLivenessClick}>
+        MagnifEye Liveness
+      </button>
     </div>
   );
-};
+}
 
 export default ComponentSelect;

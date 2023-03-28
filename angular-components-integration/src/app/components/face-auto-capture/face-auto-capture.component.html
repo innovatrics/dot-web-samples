@@ -1,11 +1,6 @@
 <div>
   <h2>Face auto capture</h2>
-  <button
-    (click)="onBackClick()"
-    class="button"
-  >
-    Go back
-  </button>
+  <button (click)="onBackClick()" class="button">Go back</button>
   <button
     (click)="handleContinue()"
     class="button"
@@ -18,6 +13,6 @@
       (onPhotoTaken)="handlePhotoTaken($event)"
       (onError)="handleError($event)"
     ></app-face-camera>
-    <app-face-ui ></app-face-ui>
+    <app-face-ui></app-face-ui>
   </div>
 </div>

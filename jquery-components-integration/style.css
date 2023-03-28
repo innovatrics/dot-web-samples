@@ -20,6 +20,7 @@ html, body {
   max-width: 40rem;
   position: relative;
   min-height: 10rem;
+  overflow: hidden;
 }
 
 #result {

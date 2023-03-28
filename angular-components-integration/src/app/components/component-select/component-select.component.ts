@@ -8,9 +8,9 @@ import { Step } from '../../types';
 export class ComponentSelectComponent implements OnInit {
   @Output() btnClick = new EventEmitter<Step>();
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onFaceClick() {
     this.btnClick.emit(Step.FACE_CAPTURE);
@@ -18,5 +18,9 @@ export class ComponentSelectComponent implements OnInit {
 
   onDocumentClick() {
     this.btnClick.emit(Step.DOCUMENT_CAPTURE);
+  }
+
+  onMagnifEyeLivenessClick() {
+    this.btnClick.emit(Step.MAGNIFEYE_LIVENESS);
   }
 }

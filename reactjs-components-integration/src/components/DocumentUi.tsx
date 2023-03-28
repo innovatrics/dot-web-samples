@@ -5,7 +5,7 @@ import type {
   HTMLDocumentUiElement,
 } from "@innovatrics/dot-auto-capture-ui/document";
 
-const DocumentUi = (props: DocumentUiProps) => {
+function DocumentUi(props: DocumentUiProps) {
   useEffect(() => {
     const uiElement = document.getElementById(
       "x-dot-document-auto-capture-ui"
@@ -17,6 +17,6 @@ const DocumentUi = (props: DocumentUiProps) => {
   });
 
   return <x-dot-document-auto-capture-ui id="x-dot-document-auto-capture-ui" />;
-};
+}
 
 export default DocumentUi;

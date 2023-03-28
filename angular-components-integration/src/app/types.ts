@@ -1,13 +1,12 @@
-import type { DocumentComponentData } from '@innovatrics/dot-document-auto-capture';
-import type { FaceComponentData } from '@innovatrics/dot-face-auto-capture';
 
 export enum Step {
   SELECT_COMPONENT,
   DOCUMENT_CAPTURE,
   FACE_CAPTURE,
+  MAGNIFEYE_LIVENESS
 }
 
-export type OnPhotoTakenEventValue = {
+export type OnPhotoTakenEventValue<T> = {
   image: Blob;
-  data: DocumentComponentData | FaceComponentData;
+  data: T
 };

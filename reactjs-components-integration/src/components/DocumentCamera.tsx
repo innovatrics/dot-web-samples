@@ -10,7 +10,7 @@ import { useEffect } from "react";
  * That's why sam.wasm file need to be placed in root of public folder.
  */
 
-const DocumentCamera = (props: DocumentCameraProps) => {
+function DocumentCamera(props: DocumentCameraProps) {
   useEffect(() => {
     // 2. Init existed custom web-component
     const documentAutoCaptureHTMLElement = document.getElementById(
@@ -23,6 +23,6 @@ const DocumentCamera = (props: DocumentCameraProps) => {
   });
   // 1. Return empty custom web-component html TAG
   return <x-dot-document-auto-capture id="x-dot-document-auto-capture" />;
-};
+}
 
 export default DocumentCamera;

@@ -1,0 +1,11 @@
+<div>
+  <h2>MagnifEye Liveness</h2>
+  <button (click)="onBackClick()" class="button">Go back</button>
+  <div class="container">
+    <app-magnifeye-liveness-camera
+      (onPhotoTaken)="handlePhotoTaken($event)"
+      (onError)="handleError($event)"
+    ></app-magnifeye-liveness-camera>
+    <app-magnifeye-liveness-ui></app-magnifeye-liveness-ui>
+  </div>
+</div>

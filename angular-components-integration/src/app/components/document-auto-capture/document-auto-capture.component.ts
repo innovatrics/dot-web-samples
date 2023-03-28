@@ -5,21 +5,22 @@ import {
   DocumentCustomEvent,
   ControlEventInstruction,
 } from '@innovatrics/dot-document-auto-capture/events';
+import { DocumentComponentData } from '@innovatrics/dot-document-auto-capture';
 
 @Component({
   selector: 'app-document-auto-capture',
   templateUrl: './document-auto-capture.component.html',
 })
 export class DocumentAutoCaptureComponent implements OnInit {
-  @Output() onPhotoTaken = new EventEmitter<OnPhotoTakenEventValue>();
+  @Output() onPhotoTaken = new EventEmitter<OnPhotoTakenEventValue<DocumentComponentData>>();
   @Output() onError = new EventEmitter<Error>();
   @Output() onBack = new EventEmitter<Step>();
 
   isButtonDisabled = true;
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onBackClick() {
     this.onBack.emit(Step.SELECT_COMPONENT);
@@ -33,7 +34,7 @@ export class DocumentAutoCaptureComponent implements OnInit {
     this.isButtonDisabled = true;
   }
 
-  handlePhotoTaken({ image, data }: OnPhotoTakenEventValue) {
+  handlePhotoTaken({ image, data }: OnPhotoTakenEventValue<DocumentComponentData>) {
     this.onPhotoTaken.emit({ image, data });
     this.isButtonDisabled = false;
   }

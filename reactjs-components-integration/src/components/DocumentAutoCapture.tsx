@@ -19,7 +19,7 @@ interface Props {
   onBackClick: () => void;
 }
 
-const DocumentAutoCapture = ({ onPhotoTaken, onError, onBackClick }: Props) => {
+function DocumentAutoCapture({ onPhotoTaken, onError, onBackClick }: Props) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const handlePhotoTaken = (image: Blob, data: DocumentComponentData) => {
@@ -60,10 +60,10 @@ const DocumentAutoCapture = ({ onPhotoTaken, onError, onBackClick }: Props) => {
           onPhotoTaken={handlePhotoTaken}
           onError={onError}
         />
-        <DocumentUi showCameraButtons/>
+        <DocumentUi showCameraButtons />
       </div>
     </>
   );
-};
+}
 
 export default DocumentAutoCapture;

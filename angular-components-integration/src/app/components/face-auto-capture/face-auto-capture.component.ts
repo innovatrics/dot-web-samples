@@ -5,21 +5,22 @@ import {
   FaceCustomEvent,
   ControlEventInstruction,
 } from '@innovatrics/dot-face-auto-capture/events';
+import { FaceComponentData } from '@innovatrics/dot-face-auto-capture/';
 
 @Component({
   selector: 'app-face-auto-capture',
   templateUrl: './face-auto-capture.component.html',
 })
 export class FaceAutoCaptureComponent implements OnInit {
-  @Output() onPhotoTaken = new EventEmitter<OnPhotoTakenEventValue>();
+  @Output() onPhotoTaken = new EventEmitter<OnPhotoTakenEventValue<FaceComponentData>>();
   @Output() onError = new EventEmitter<Error>();
   @Output() onBack = new EventEmitter<Step>();
 
   isButtonDisabled = true;
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onBackClick() {
     this.onBack.emit(Step.SELECT_COMPONENT);
@@ -33,7 +34,7 @@ export class FaceAutoCaptureComponent implements OnInit {
     this.isButtonDisabled = true;
   }
 
-  handlePhotoTaken({ image, data }: OnPhotoTakenEventValue) {
+  handlePhotoTaken({ image, data }: OnPhotoTakenEventValue<FaceComponentData>) {
     this.onPhotoTaken.emit({ image, data });
     this.isButtonDisabled = false;
   }

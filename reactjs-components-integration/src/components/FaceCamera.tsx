@@ -9,7 +9,7 @@ import { useEffect } from "react";
  * That's why sam.wasm file need to be placed in root of public folder.
  */
 
-const FaceCamera = (props: FaceCameraProps) => {
+function FaceCamera(props: FaceCameraProps) {
   useEffect(() => {
     // 2. Init existed custom web-component
     const faceAutoCaptureHTMLElement = document.getElementById(
@@ -23,6 +23,6 @@ const FaceCamera = (props: FaceCameraProps) => {
 
   // 1. Return empty custom web-component html TAG
   return <x-dot-face-auto-capture id="x-dot-face-auto-capture" />;
-};
+}
 
 export default FaceCamera;

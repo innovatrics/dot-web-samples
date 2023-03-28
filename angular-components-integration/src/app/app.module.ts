@@ -10,6 +10,9 @@ import { DocumentCameraComponent } from './components/document-camera/document-c
 import { DocumentUiComponent } from './components/document-ui/document-ui.component';
 import { FaceUiComponent } from './components/face-ui/face-ui.component';
 import { FaceCameraComponent } from './components/face-camera/face-camera.component';
+import { MagnifEyeLivenessCameraComponent } from './components/magnifeye-liveness-camera/magnifeye-liveness-camera.component';
+import { MagnifEyeLivenessUiComponent } from './components/magnifeye-liveness-ui/magnifeye-liveness-ui.component';
+import { MagnifEyeLivenessComponent } from './components/magnifeye-liveness/magnifeye-liveness.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { FaceCameraComponent } from './components/face-camera/face-camera.compon
     DocumentUiComponent,
     FaceUiComponent,
     FaceCameraComponent,
+    MagnifEyeLivenessCameraComponent,
+    MagnifEyeLivenessUiComponent,
+    MagnifEyeLivenessComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [BrowserModule],

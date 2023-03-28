@@ -8,16 +8,16 @@ import { OnPhotoTakenEventValue, Step } from './types';
 export class AppComponent {
   step: typeof Step = Step;
   currentStep: Step = Step.SELECT_COMPONENT;
-  imageUrl: string = '';
+  imageUrl = '';
 
-  constructor() {}
+  constructor() { }
 
   handleStepChange(step: Step) {
     this.currentStep = step;
     this.imageUrl = '';
   }
 
-  handlePhotoTaken({ image, data }: OnPhotoTakenEventValue) {
+  handlePhotoTaken<T>({ image, data }: OnPhotoTakenEventValue<T>) {
     console.log('Data: ', data);
     this.imageUrl = URL.createObjectURL(image);
   }

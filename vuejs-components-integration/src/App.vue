@@ -5,16 +5,12 @@ import FaceAutoCapture from "./components/FaceAutoCapture.vue";
 import ResultStep from "./components/ResultStep.vue";
 import ComponentSelect from "./components/ComponentSelect.vue";
 import { Step } from "./types";
-import type { FaceComponentData } from "@innovatrics/dot-face-auto-capture";
-import type { DocumentComponentData } from "@innovatrics/dot-document-auto-capture";
+import MagnifEyeLiveness from "./components/MagnifEyeLiveness.vue";
 
 const currentStep = ref(Step.SELECT_COMPONENT);
 const imageUrl = ref("");
 
-const handlePhotoTaken = (
-  image: Blob,
-  data: DocumentComponentData | FaceComponentData
-) => {
+const handlePhotoTaken = <T,>(image: Blob, data: T) => {
   console.log("Data: ", data);
   imageUrl.value = URL.createObjectURL(image);
 };
@@ -25,7 +21,7 @@ const handleError = (error: Error) => {
 
 const handleStepChange = (step: Step) => {
   currentStep.value = step;
-  imageUrl.value = ""
+  imageUrl.value = "";
 };
 </script>
 
@@ -33,19 +29,15 @@ const handleStepChange = (step: Step) => {
   <div>
     <h1>DOT components integration</h1>
     <div v-if="currentStep === Step.DOCUMENT_CAPTURE">
-      <DocumentAutoCapture
-        @on-photo-taken="handlePhotoTaken"
-        @on-error="handleError"
-        @on-back="handleStepChange"
-      />
+      <DocumentAutoCapture @on-photo-taken="handlePhotoTaken" @on-error="handleError" @on-back="handleStepChange" />
       <ResultStep v-if="imageUrl" :imageSrc="imageUrl" />
     </div>
     <div v-else-if="currentStep === Step.FACE_CAPTURE">
-      <FaceAutoCapture
-        @on-photo-taken="handlePhotoTaken"
-        @on-error="handleError"
-        @on-back="handleStepChange"
-      />
+      <FaceAutoCapture @on-photo-taken="handlePhotoTaken" @on-error="handleError" @on-back="handleStepChange" />
+      <ResultStep v-if="imageUrl" :imageSrc="imageUrl" />
+    </div>
+    <div v-else-if="currentStep === Step.MAGNIFEYE_CAPTURE">
+      <MagnifEyeLiveness @on-complete="handlePhotoTaken" @on-error="handleError" @on-back="handleStepChange" />
       <ResultStep v-if="imageUrl" :imageSrc="imageUrl" />
     </div>
     <ComponentSelect v-else @onClick="handleStepChange" />
@@ -60,11 +52,17 @@ const handleStepChange = (step: Step) => {
   color: #404354;
   text-align: center;
 }
+
 .container {
   max-width: 50rem;
   margin: 20px auto;
   position: relative;
 }
+
+.container.overflow-hidden {
+  overflow: hidden;
+}
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -81,6 +79,7 @@ const handleStepChange = (step: Step) => {
   font-size: 1rem;
   margin: 0 0.5rem 1rem 0.5rem;
 }
+
 .button[disabled] {
   background-color: lightgrey;
   color: gray;

@@ -5,7 +5,7 @@ import type {
 import { useEffect } from "react";
 import "@innovatrics/dot-auto-capture-ui/face";
 
-const FaceUi = (props: FaceUiProps) => {
+function FaceUi(props: FaceUiProps) {
   useEffect(() => {
     const uiElement = document.getElementById(
       "x-dot-face-auto-capture-ui"
@@ -17,6 +17,6 @@ const FaceUi = (props: FaceUiProps) => {
   });
 
   return <x-dot-face-auto-capture-ui id="x-dot-face-auto-capture-ui" />;
-};
+}
 
 export default FaceUi;

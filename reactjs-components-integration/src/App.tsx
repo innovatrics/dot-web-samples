@@ -1,15 +1,11 @@
-import type {
-  DocumentCallback,
-  DocumentComponentData,
-} from "@innovatrics/dot-document-auto-capture";
-import type {
-  FaceCallback,
-  FaceComponentData,
-} from "@innovatrics/dot-face-auto-capture";
+import type { DocumentCallback } from "@innovatrics/dot-document-auto-capture";
+import type { FaceCallback } from "@innovatrics/dot-face-auto-capture";
+import type { MagnifEyeLivenessCallback } from "@innovatrics/dot-magnifeye-liveness";
 import { useCallback, useState } from "react";
 import ComponentSelect from "./components/ComponentSelect";
 import DocumentAutoCapture from "./components/DocumentAutoCapture";
 import FaceAutoCapture from "./components/FaceAutoCapture";
+import MagnifEyeLiveness from "./components/MagnifEyeLiveness";
 import PhotoResult from "./components/PhotoResult";
 import styles from "./styles/index.module.css";
 import { Step } from "./types";
@@ -18,10 +14,7 @@ function App() {
   const [step, setStep] = useState<Step>(Step.SELECT_COMPONENT);
   const [photoUrl, setPhotoUrl] = useState<string>();
 
-  const handlePhotoTaken = (
-    image: Blob,
-    data: DocumentComponentData | FaceComponentData
-  ) => {
+  const handlePhotoTaken = <T,>(image: Blob, data: T) => {
     const imageUrl = URL.createObjectURL(image);
     setPhotoUrl(imageUrl);
   };
@@ -34,6 +27,13 @@ function App() {
     handlePhotoTaken(image, data);
   };
 
+  const handleMagnifEyeComplete: MagnifEyeLivenessCallback = ({
+    image,
+    data,
+  }) => {
+    handlePhotoTaken(image, data);
+  };
+
   const handleError = useCallback((error: Error) => {
     alert(error);
   }, []);
@@ -43,8 +43,8 @@ function App() {
     setStep(Step.SELECT_COMPONENT);
   };
 
-  const renderStep = (step: Step) => {
-    switch (step) {
+  const renderStep = (currentStep: Step) => {
+    switch (currentStep) {
       case Step.DOCUMENT_CAPTURE:
         return (
           <>
@@ -61,6 +61,17 @@ function App() {
           <>
             <FaceAutoCapture
               onPhotoTaken={handleFaceCapturePhotoTaken}
+              onError={handleError}
+              onBackClick={handleBackClick}
+            />
+            {photoUrl && <PhotoResult photoUrl={photoUrl} />}
+          </>
+        );
+      case Step.MAGNIFEYE_LIVENESS:
+        return (
+          <>
+            <MagnifEyeLiveness
+              onComplete={handleMagnifEyeComplete}
               onError={handleError}
               onBackClick={handleBackClick}
             />

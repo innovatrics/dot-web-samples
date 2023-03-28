@@ -19,7 +19,7 @@ interface Props {
   onBackClick: () => void;
 }
 
-const FaceAutoCapture = ({ onPhotoTaken, onError, onBackClick }: Props) => {
+function FaceAutoCapture({ onPhotoTaken, onError, onBackClick }: Props) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const handlePhotoTaken = (image: Blob, data: FaceComponentData) => {
@@ -57,10 +57,10 @@ const FaceAutoCapture = ({ onPhotoTaken, onError, onBackClick }: Props) => {
           onPhotoTaken={handlePhotoTaken}
           onError={onError}
         />
-        <FaceUi showCameraButtons/>
+        <FaceUi showCameraButtons />
       </div>
     </>
   );
-};
+}
 
 export default FaceAutoCapture;
