@@ -14,7 +14,7 @@ function App() {
   const [step, setStep] = useState<Step>(Step.SELECT_COMPONENT);
   const [photoUrl, setPhotoUrl] = useState<string>();
 
-  const handlePhotoTaken = <T,>(image: Blob, data: T) => {
+  const handlePhotoTaken = <T,>(image: Blob, data: T, content?: Uint8Array) => {
     const imageUrl = URL.createObjectURL(image);
     setPhotoUrl(imageUrl);
   };
@@ -27,11 +27,15 @@ function App() {
     handlePhotoTaken(image, data);
   };
 
-  const handleMagnifEyeComplete: MagnifEyeLivenessCallback = ({
-    image,
-    data,
-  }) => {
-    handlePhotoTaken(image, data);
+  /**
+   * At this point use @content property with Digital Identity Service in order to evaluate the MagnifEye liveness score.
+   * See: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-dis/latest/documentation/#_magnifeye_liveness_check
+   */
+  const handleMagnifEyeComplete: MagnifEyeLivenessCallback = (
+    { image, data },
+    content
+  ) => {
+    handlePhotoTaken(image, data, content);
   };
 
   const handleError = useCallback((error: Error) => {

@@ -92,7 +92,10 @@ function loadFaceUiProps() {
     // DOCS: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-web-face/latest/documentation/
   });
 }
-
+/**
+ * At this point use @content property with Digital Identity Service in order to evaluate the MagnifEye liveness score.
+ * See: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-dis/latest/documentation/#_magnifeye_liveness_check
+ */
 async function handleMagnifEyeComplete(data, content) {
   const img = await blobToImage(data.image);
   console.log(data.data);
@@ -114,7 +117,6 @@ function loadMagnifEyeUiProps() {
     // DOCS: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-web-magnifeye-liveness/latest/documentation/
   });
 }
-
 
 function handleError(e) {
   alert(e);

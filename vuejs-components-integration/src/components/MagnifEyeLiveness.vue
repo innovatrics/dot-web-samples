@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { Step } from "../types";
 import MagnifEyeLivenessCamera from "./MagnifEyeLivenessCamera.vue";
 import MagnifEyeLivenessUi from "./MagnifEyeLivenessUi.vue";
-import { OnCompleteData } from "@innovatrics/dot-magnifeye-liveness";
+import { MagnifEyeLivenessCallback } from "@innovatrics/dot-magnifeye-liveness";
 import { FaceComponentData } from "@innovatrics/dot-face-auto-capture/.";
 
 const emit = defineEmits<{
@@ -14,7 +14,11 @@ const emit = defineEmits<{
 
 const isButtonDisabled = ref(true);
 
-const onComplete = (imageData: OnCompleteData) => {
+/**
+ * At this point use @content property with Digital Identity Service in order to evaluate the MagnifEye liveness score.
+ * See: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-dis/latest/documentation/#_magnifeye_liveness_check
+ */
+const onComplete: MagnifEyeLivenessCallback = (imageData, content) => {
   isButtonDisabled.value = false;
   emit("onComplete", imageData.image, imageData.data);
 };

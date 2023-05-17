@@ -18,5 +18,5 @@ module.exports  = {
     "no-alert": "off",
     "react/require-default-props": "off"
   },
-  ignorePatterns: [".eslintrc.js"]
+  ignorePatterns: [".eslintrc.cjs"]
 };
