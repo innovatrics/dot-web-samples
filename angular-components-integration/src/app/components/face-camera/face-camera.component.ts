@@ -25,11 +25,10 @@ export class FaceCameraComponent implements OnInit {
 
     if (faceElement) {
       faceElement.cameraOptions = {
-        imageType: 'png',
         cameraFacing: 'user',
-        onPhotoTaken: (image, data) => {
+        onPhotoTaken: (imageData, content) => {
           this.ngZone.run(() => {
-            this.onPhotoTaken.emit({ image, data });
+            this.onPhotoTaken.emit({ imageData, content });
           });
         },
         onError: (error) => {

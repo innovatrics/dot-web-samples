@@ -1,16 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Step } from "../types";
+import { Step, Emits } from "../types";
 import MagnifEyeLivenessCamera from "./MagnifEyeLivenessCamera.vue";
 import MagnifEyeLivenessUi from "./MagnifEyeLivenessUi.vue";
 import { MagnifEyeLivenessCallback } from "@innovatrics/dot-magnifeye-liveness";
-import { FaceComponentData } from "@innovatrics/dot-face-auto-capture/.";
 
-const emit = defineEmits<{
-  (e: "onComplete", image: Blob, data: Partial<FaceComponentData>): void;
-  (e: "onError", error: Error): void;
-  (e: "onBack", step: Step): void;
-}>();
+const emit = defineEmits<Emits<MagnifEyeLivenessCallback>>();
 
 const isButtonDisabled = ref(true);
 
@@ -20,7 +15,7 @@ const isButtonDisabled = ref(true);
  */
 const onComplete: MagnifEyeLivenessCallback = (imageData, content) => {
   isButtonDisabled.value = false;
-  emit("onComplete", imageData.image, imageData.data);
+  emit("onComplete", imageData, content);
 };
 
 const onError = (error: Error) => {

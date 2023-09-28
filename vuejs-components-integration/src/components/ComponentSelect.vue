@@ -17,5 +17,8 @@ const emit = defineEmits<{
     <button class="button" @click="emit('onClick', Step.MAGNIFEYE_CAPTURE)">
       MagnifEye Liveness
     </button>
+    <button class="button" @click="emit('onClick', Step.SMILE_CAPTURE)">
+      Smile Liveness
+    </button>
   </div>
 </template>

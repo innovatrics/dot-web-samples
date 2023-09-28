@@ -1,26 +1,23 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type { DocumentComponentData } from "@innovatrics/dot-document-auto-capture";
+import type { DocumentCallback } from "@innovatrics/dot-document-auto-capture";
 import {
   dispatchControlEvent,
   DocumentCustomEvent,
   ControlEventInstruction,
 } from "@innovatrics/dot-document-auto-capture/events";
-import { Step } from "../types";
+import { Step, Emits } from "../types";
 import DocumentCamera from "./DocumentCamera.vue";
 import DocumentUi from "./DocumentUi.vue";
 
-const emit = defineEmits<{
-  (e: "onPhotoTaken", image: Blob, data: DocumentComponentData): void;
-  (e: "onError", error: Error): void;
-  (e: "onBack", step: Step): void;
-}>();
+
+const emit = defineEmits<Emits<DocumentCallback>>();
 
 const isButtonDisabled = ref(true);
 
-const handlePhotoTaken = (image: Blob, data: DocumentComponentData) => {
+const handlePhotoTaken: DocumentCallback = async (imageData, content) => {
   isButtonDisabled.value = false;
-  emit("onPhotoTaken", image, data);
+  emit("onComplete", imageData, content);
 };
 
 const handleContinueDetection = () => {
@@ -42,23 +39,16 @@ const handleError = (error: Error) => {
     <button @click="emit('onBack', Step.SELECT_COMPONENT)" class="button">
       Go back
     </button>
-    <button
-      :disabled="isButtonDisabled"
-      @click="handleContinueDetection"
-      class="button"
-    >
+    <button :disabled="isButtonDisabled" @click="handleContinueDetection" class="button">
       Continue detection
     </button>
     <div class="container">
-      <DocumentCamera
-        :cameraOptions="{
-          imageType: 'png',
-          cameraFacing: 'environment',
-          onPhotoTaken: handlePhotoTaken,
-          onError: handleError,
-        }"
-      />
-      <DocumentUi :uiProps="{showCameraButtons: true}" />
+      <DocumentCamera :cameraOptions="{
+        cameraFacing: 'environment',
+        onPhotoTaken: handlePhotoTaken,
+        onError: handleError,
+      }" />
+      <DocumentUi :uiProps="{ showCameraButtons: true }" />
     </div>
   </div>
 </template>

@@ -23,4 +23,8 @@ export class ComponentSelectComponent implements OnInit {
   onMagnifEyeLivenessClick() {
     this.btnClick.emit(Step.MAGNIFEYE_LIVENESS);
   }
+
+  onSmileLivenessClick() {
+    this.btnClick.emit(Step.SMILE_LIVENESS);
+  }
 }

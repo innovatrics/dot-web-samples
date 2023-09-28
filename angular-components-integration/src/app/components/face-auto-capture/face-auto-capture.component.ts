@@ -34,8 +34,8 @@ export class FaceAutoCaptureComponent implements OnInit {
     this.isButtonDisabled = true;
   }
 
-  handlePhotoTaken({ image, data }: OnPhotoTakenEventValue<FaceComponentData>) {
-    this.onPhotoTaken.emit({ image, data });
+  handlePhotoTaken({ imageData, content }: OnPhotoTakenEventValue<FaceComponentData>) {
+    this.onPhotoTaken.emit({ imageData, content });
     this.isButtonDisabled = false;
   }
 

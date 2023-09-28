@@ -18,6 +18,10 @@ function ComponentSelect({ setStep }: Props) {
     setStep(Step.MAGNIFEYE_LIVENESS);
   };
 
+  const handleSmileLivenessClick = () => {
+    setStep(Step.SMILE_LIVENESS);
+  };
+
   return (
     <div>
       <button className={styles.primary} onClick={handleDocumentClick}>
@@ -28,6 +32,9 @@ function ComponentSelect({ setStep }: Props) {
       </button>
       <button className={styles.primary} onClick={handleMagnifEyeLivenessClick}>
         MagnifEye Liveness
+      </button>
+      <button className={styles.primary} onClick={handleSmileLivenessClick}>
+        Smile Liveness
       </button>
     </div>
   );

@@ -17,9 +17,8 @@ export class AppComponent {
     this.imageUrl = '';
   }
 
-  handlePhotoTaken<T>({ image, data }: OnPhotoTakenEventValue<T>) {
-    console.log('Data: ', data);
-    this.imageUrl = URL.createObjectURL(image);
+  handlePhotoTaken<T>({ imageData, content }: OnPhotoTakenEventValue<T>) {
+    this.imageUrl = URL.createObjectURL(imageData.image);
   }
 
   handleError(error: Error) {

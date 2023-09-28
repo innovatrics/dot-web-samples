@@ -25,11 +25,10 @@ export class DocumentCameraComponent implements OnInit {
 
     if (documentElement) {
       documentElement.cameraOptions = {
-        imageType: 'png',
         cameraFacing: 'environment',
-        onPhotoTaken: (image, data) => {
+        onPhotoTaken: (imageData, content) => {
           this.ngZone.run(() => {
-            this.onPhotoTaken.emit({ image, data });
+            this.onPhotoTaken.emit({ imageData, content });
           });
         },
         onError: (error) => {

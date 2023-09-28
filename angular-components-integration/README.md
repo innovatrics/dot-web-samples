@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
 
+## License
+
+In order to use these components integrated in the samples you will need a license agreement. To obtain it, please contact support@innovatrics.com.
+
 ## Install dependencies
 
 Run `yarn`.

@@ -8,7 +8,7 @@ import type {
 function DocumentUi(props: DocumentUiProps) {
   useEffect(() => {
     const uiElement = document.getElementById(
-      "x-dot-document-auto-capture-ui"
+      "x-dot-document-auto-capture-ui",
     ) as HTMLDocumentUiElement | null;
 
     if (uiElement) {

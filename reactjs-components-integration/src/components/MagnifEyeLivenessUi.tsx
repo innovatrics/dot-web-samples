@@ -8,7 +8,7 @@ import type {
 function MagnifEyeLivenessUi(props: MagnifEyeLivenessUiProps) {
   useEffect(() => {
     const uiElement = document.getElementById(
-      "x-dot-magnifeye-liveness-ui"
+      "x-dot-magnifeye-liveness-ui",
     ) as HTMLMagnifEyeLivenessUiElement | null;
 
     if (uiElement) {

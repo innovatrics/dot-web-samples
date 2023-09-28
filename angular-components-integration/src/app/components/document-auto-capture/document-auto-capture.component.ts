@@ -34,8 +34,8 @@ export class DocumentAutoCaptureComponent implements OnInit {
     this.isButtonDisabled = true;
   }
 
-  handlePhotoTaken({ image, data }: OnPhotoTakenEventValue<DocumentComponentData>) {
-    this.onPhotoTaken.emit({ image, data });
+  handlePhotoTaken({ imageData, content }: OnPhotoTakenEventValue<DocumentComponentData>) {
+    this.onPhotoTaken.emit({ imageData, content });
     this.isButtonDisabled = false;
   }
 

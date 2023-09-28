@@ -8,7 +8,7 @@ import "@innovatrics/dot-auto-capture-ui/face";
 function FaceUi(props: FaceUiProps) {
   useEffect(() => {
     const uiElement = document.getElementById(
-      "x-dot-face-auto-capture-ui"
+      "x-dot-face-auto-capture-ui",
     ) as HTMLFacetUiElement | null;
 
     if (uiElement) {

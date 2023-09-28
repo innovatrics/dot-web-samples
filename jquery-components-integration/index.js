@@ -32,6 +32,17 @@ $(function () {
     loadMagnifEyeUiProps();
     $('#result').empty();
   });
+
+  $('#smile').click(function () {
+    // same as face component above, we need to make sure we're working with a fresh copy before supplying it with props
+    let cam = document.createElement('x-dot-smile-liveness');
+    let ui = document.createElement('x-dot-smile-liveness-ui');
+    $('#container').empty().append(cam).append(ui);
+    loadSmileProps();
+    loadSmileUiProps();
+    $('#result').empty();
+  });
+
 });
 
 function resetState() {
@@ -41,9 +52,8 @@ function resetState() {
   $('#continue').off('click', continueDocumentDetection);
 }
 
-async function handleDocumentPhotoTaken(image, data) {
-  const img = await blobToImage(image);
-  console.log(data);
+async function handleDocumentPhotoTaken(imageData, content) {
+  const img = await blobToImage(imageData.image);
   $('#result').empty().append(img);
   $('#continue').attr('disabled', false);
 }
@@ -67,9 +77,8 @@ function loadDocumentUiProps() {
   });
 }
 
-async function handleFacePhotoTaken(image, data) {
-  const img = await blobToImage(image);
-  console.log(data);
+async function handleFacePhotoTaken(imageData, content) {
+  const img = await blobToImage(imageData.image);
   $('#result').empty().append(img);
   $('#continue').attr('disabled', false);
 }
@@ -96,10 +105,16 @@ function loadFaceUiProps() {
  * At this point use @content property with Digital Identity Service in order to evaluate the MagnifEye liveness score.
  * See: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-dis/latest/documentation/#_magnifeye_liveness_check
  */
-async function handleMagnifEyeComplete(data, content) {
-  const img = await blobToImage(data.image);
-  console.log(data.data);
+async function handleMagnifEyeComplete(imageData, content) {
+  const img = await blobToImage(imageData.image);
   $('#result').empty().append(img);
+}
+
+async function handleSmileComplete(imageData, content) {
+  const [, smileImageData] = imageData;
+  const img = await blobToImage(smileImageData.image);
+  $('#result').empty().append(img);
+  $('#continue').attr('disabled', true);
 }
 
 function loadMagnifEyeProps() {
@@ -117,6 +132,21 @@ function loadMagnifEyeUiProps() {
     // DOCS: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-web-magnifeye-liveness/latest/documentation/
   });
 }
+
+function loadSmileProps() {
+  $('x-dot-smile-liveness').prop('props', {
+    onComplete: handleSmileComplete,
+    onError: handleError,
+    samWasmUrl: 'lib/sam.wasm',
+  });
+}
+
+function loadSmileUiProps() {
+  $('x-dot-smile-liveness-ui').prop('props', {
+    showCameraButtons: true,
+  });
+}
+
 
 function handleError(e) {
   alert(e);

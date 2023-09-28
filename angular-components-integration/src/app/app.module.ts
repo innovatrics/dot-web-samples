@@ -13,6 +13,9 @@ import { FaceCameraComponent } from './components/face-camera/face-camera.compon
 import { MagnifEyeLivenessCameraComponent } from './components/magnifeye-liveness-camera/magnifeye-liveness-camera.component';
 import { MagnifEyeLivenessUiComponent } from './components/magnifeye-liveness-ui/magnifeye-liveness-ui.component';
 import { MagnifEyeLivenessComponent } from './components/magnifeye-liveness/magnifeye-liveness.component';
+import { SmileLivenessCameraComponent } from './components/smile-liveness-camera/smile-liveness-camera.component';
+import { SmileLivenessUiComponent } from './components/smile-liveness-ui/smile-liveness-ui.component';
+import { SmileLivenessComponent } from './components/smile-liveness/smile-liveness.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import { MagnifEyeLivenessComponent } from './components/magnifeye-liveness/magn
     MagnifEyeLivenessCameraComponent,
     MagnifEyeLivenessUiComponent,
     MagnifEyeLivenessComponent,
+    SmileLivenessCameraComponent,
+    SmileLivenessUiComponent,
+    SmileLivenessComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [BrowserModule],

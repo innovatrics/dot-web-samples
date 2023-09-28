@@ -13,7 +13,7 @@ function FaceCamera(props: FaceCameraProps) {
   useEffect(() => {
     // 2. Init existed custom web-component
     const faceAutoCaptureHTMLElement = document.getElementById(
-      "x-dot-face-auto-capture"
+      "x-dot-face-auto-capture",
     ) as HTMLFaceCaptureElement | null;
 
     if (faceAutoCaptureHTMLElement) {

@@ -22,15 +22,15 @@ interface Props {
 function FaceAutoCapture({ onPhotoTaken, onError, onBackClick }: Props) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const handlePhotoTaken = (image: Blob, data: FaceComponentData) => {
+  const handlePhotoTaken: FaceCallback = async (imageData, content) => {
     setIsButtonDisabled(false);
-    onPhotoTaken(image, data);
+    onPhotoTaken(imageData, content);
   };
 
   const handleContinueDetection = () => {
     dispatchControlEvent(
       FaceCustomEvent.CONTROL,
-      ControlEventInstruction.CONTINUE_DETECTION
+      ControlEventInstruction.CONTINUE_DETECTION,
     );
 
     setIsButtonDisabled(true);
@@ -52,7 +52,6 @@ function FaceAutoCapture({ onPhotoTaken, onError, onBackClick }: Props) {
       </div>
       <div className={styles.container}>
         <FaceCamera
-          imageType="png"
           cameraFacing="user"
           onPhotoTaken={handlePhotoTaken}
           onError={onError}

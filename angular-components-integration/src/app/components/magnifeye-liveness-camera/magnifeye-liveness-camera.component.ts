@@ -29,9 +29,9 @@ export class MagnifEyeLivenessCameraComponent implements OnInit {
          * At this point use @content property with Digital Identity Service in order to evaluate the MagnifEye liveness score.
          * See: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-dis/latest/documentation/#_magnifeye_liveness_check
          */
-        onComplete: ({ data, image }, content) => {
+        onComplete: (imageData, content) => {
           this.ngZone.run(() => {
-            this.onPhotoTaken.emit({ image, data });
+            this.onPhotoTaken.emit({imageData, content});
           });
         },
         onError: (error) => {

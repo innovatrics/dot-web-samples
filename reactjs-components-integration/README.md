@@ -5,6 +5,10 @@ This project was bootstrapped with [Vite](https://vitejs.dev/).
 When component (face or document) is initiliazed, sam.wasm file will be fetched from http://localhost:3000/sam.wasm.
 That's why sam.wasm file need to be placed in root of public folder.
 
+## License
+
+In order to use these components integrated in the samples you will need a license agreement. To obtain it, please contact support@innovatrics.com.
+
 ## Available Scripts
 
 In the project directory, you can run:

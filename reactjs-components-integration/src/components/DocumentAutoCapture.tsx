@@ -22,15 +22,15 @@ interface Props {
 function DocumentAutoCapture({ onPhotoTaken, onError, onBackClick }: Props) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const handlePhotoTaken = (image: Blob, data: DocumentComponentData) => {
+  const handlePhotoTaken: DocumentCallback = async (imageData, content) => {
     setIsButtonDisabled(false);
-    onPhotoTaken(image, data);
+    onPhotoTaken(imageData, content);
   };
 
   const handleContinueDetection = () => {
     dispatchControlEvent(
       DocumentCustomEvent.CONTROL,
-      ControlEventInstruction.CONTINUE_DETECTION
+      ControlEventInstruction.CONTINUE_DETECTION,
     );
 
     setIsButtonDisabled(true);
@@ -55,7 +55,6 @@ function DocumentAutoCapture({ onPhotoTaken, onError, onBackClick }: Props) {
       {/* parent container must have position: relative */}
       <div className={styles.container}>
         <DocumentCamera
-          imageType="png"
           cameraFacing="environment"
           onPhotoTaken={handlePhotoTaken}
           onError={onError}

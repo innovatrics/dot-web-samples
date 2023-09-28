@@ -6,13 +6,20 @@ import ResultStep from "./components/ResultStep.vue";
 import ComponentSelect from "./components/ComponentSelect.vue";
 import { Step } from "./types";
 import MagnifEyeLiveness from "./components/MagnifEyeLiveness.vue";
+import SmileLiveness from "./components/SmileLiveness.vue"
+import { CallbackImage } from "@innovatrics/dot-document-auto-capture";
+
 
 const currentStep = ref(Step.SELECT_COMPONENT);
 const imageUrl = ref("");
 
-const handlePhotoTaken = <T,>(image: Blob, data: T) => {
-  console.log("Data: ", data);
-  imageUrl.value = URL.createObjectURL(image);
+const handlePhotoTaken = <T,>(imageData: CallbackImage<T>, _content: Uint8Array) => {
+  imageUrl.value = URL.createObjectURL(imageData.image);
+};
+
+const handleSmilePhotoTaken = <T,>(imageData: CallbackImage<T>[], _content: Uint8Array) => {
+  const [, smileImageData] = imageData;
+  imageUrl.value = URL.createObjectURL(smileImageData.image);
 };
 
 const handleError = (error: Error) => {
@@ -38,6 +45,10 @@ const handleStepChange = (step: Step) => {
     </div>
     <div v-else-if="currentStep === Step.MAGNIFEYE_CAPTURE">
       <MagnifEyeLiveness @on-complete="handlePhotoTaken" @on-error="handleError" @on-back="handleStepChange" />
+      <ResultStep v-if="imageUrl" :imageSrc="imageUrl" />
+    </div>
+    <div v-else-if="currentStep === Step.SMILE_CAPTURE">
+      <SmileLiveness @on-complete="handleSmilePhotoTaken" @on-error="handleError" @on-back="handleStepChange" />
       <ResultStep v-if="imageUrl" :imageSrc="imageUrl" />
     </div>
     <ComponentSelect v-else @onClick="handleStepChange" />

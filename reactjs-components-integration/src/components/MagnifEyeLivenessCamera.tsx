@@ -14,7 +14,7 @@ function MagnifEyeLivenessCamera(props: MagnifEyeLivenessProps) {
   useEffect(() => {
     // 2. Init existed custom web-component
     const magnifEyeLivenessHTMLElement = document.getElementById(
-      "x-dot-magnifeye-liveness"
+      "x-dot-magnifeye-liveness",
     ) as HTMLMagnifEyeLivenessElement | null;
 
     if (magnifEyeLivenessHTMLElement) {

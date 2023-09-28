@@ -20,8 +20,8 @@ export class MagnifEyeLivenessComponent implements OnInit {
     this.onBack.emit(Step.SELECT_COMPONENT);
   }
 
-  handlePhotoTaken({ image, data }: OnPhotoTakenEventValue<OnCompleteData['data']>) {
-    this.onPhotoTaken.emit({ image, data });
+  handlePhotoTaken({ imageData, content }: OnPhotoTakenEventValue<OnCompleteData['data']>) {
+    this.onPhotoTaken.emit({ imageData, content });
   }
 
   handleError(error: Error) {

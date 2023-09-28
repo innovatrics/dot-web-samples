@@ -1,0 +1,11 @@
+<div>
+  <h2>Smile Liveness</h2>
+  <button (click)="onBackClick()" class="button">Go back</button>
+  <div class="container">
+    <app-smile-liveness-camera
+      (onPhotoTaken)="handlePhotoTaken($event)"
+      (onError)="handleError($event)"
+    ></app-smile-liveness-camera>
+    <app-smile-liveness-ui></app-smile-liveness-ui>
+  </div>
+</div>

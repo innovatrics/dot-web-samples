@@ -1,26 +1,22 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type { FaceComponentData } from "@innovatrics/dot-face-auto-capture";
+import type { FaceCallback } from "@innovatrics/dot-face-auto-capture";
 import {
   dispatchControlEvent,
   FaceCustomEvent,
   ControlEventInstruction,
 } from "@innovatrics/dot-face-auto-capture/events";
-import { Step } from "../types";
+import { Step, Emits } from "../types";
 import FaceCamera from "./FaceCamera.vue";
 import FaceUi from "./FaceUi.vue";
 
-const emit = defineEmits<{
-  (e: "onPhotoTaken", image: Blob, data: FaceComponentData): void;
-  (e: "onError", error: Error): void;
-  (e: "onBack", step: Step): void;
-}>();
+const emit = defineEmits<Emits<FaceCallback>>();
 
 const isButtonDisabled = ref(true);
 
-const handlePhotoTaken = (image: Blob, data: FaceComponentData) => {
+const handlePhotoTaken: FaceCallback = async (imageData, content) => {
   isButtonDisabled.value = false;
-  emit("onPhotoTaken", image, data);
+  emit("onComplete", imageData, content);
 };
 
 const handleContinueDetection = () => {
@@ -42,23 +38,16 @@ const handleError = (error: Error) => {
     <button @click="emit('onBack', Step.SELECT_COMPONENT)" class="button">
       Go back
     </button>
-    <button
-      :disabled="isButtonDisabled"
-      @click="handleContinueDetection"
-      class="button"
-    >
+    <button :disabled="isButtonDisabled" @click="handleContinueDetection" class="button">
       Continue detection
     </button>
     <div class="container">
-      <FaceCamera
-        :cameraOptions="{
-          imageType: 'png',
-          cameraFacing: 'user',
-          onPhotoTaken: handlePhotoTaken,
-          onError: handleError,
-        }"
-      />
-      <FaceUi :uiProps="{showCameraButtons: true}" />
+      <FaceCamera :cameraOptions="{
+        cameraFacing: 'user',
+        onPhotoTaken: handlePhotoTaken,
+        onError: handleError,
+      }" />
+      <FaceUi :uiProps="{ showCameraButtons: true }" />
     </div>
   </div>
 </template>
