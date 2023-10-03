@@ -31,10 +31,18 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://vitejs.dev/guide/build.html) for more information.
 
-### `yarn copy-sam`
+### `yarn copy-wasm`
 
-Copy `sam.wasm` file from node modules into public folder.
+For detection to work `wasm` folder with web assembly files in it has to be present in `public` folder.
+This script copies wasm folder from node modules into public folder. 
 
+```
+yarn copy-wasm
+```
+
+or do it manually:
+
+Copy `wasm` folder from `node_modules/@innovatrics/dot-document-auto-capture` or other auto-capture package to `reactjs-components-integration/public` folder.
 ## Learn More
 
 You can learn more in the [Vite documentation](https://vitejs.dev/guide/).

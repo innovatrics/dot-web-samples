@@ -1253,49 +1253,49 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@innovatrics/dot-auto-capture-ui@5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-auto-capture-ui/-/dot-auto-capture-ui-5.1.0.tgz#82e47f429993993019a2fa283d9b770344b8afa2"
-  integrity sha512-xcGriFNTDZQMSO9lO2pFS4UUBonDUVROKUq0vcowGYtBIRrCxBxs+dAUBR7psIaFn1XynnrVsSnbGq7I6oRYpA==
+"@innovatrics/dot-auto-capture-ui@5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-auto-capture-ui/-/dot-auto-capture-ui-5.2.0.tgz#59b67491413fd2d72786ffe505dca5f307dac450"
+  integrity sha512-vcZXbAR77pXwHjntUxgWi8arSYaTad0iI0rlXW3UP/HWG8rqBJUM5dlmBOudfOiNV0QSdh50h/wv1cmJ1w3Cgw==
   dependencies:
     preact "^10.16.0"
     preact-custom-element "^4.2.1"
     styled-components "^6.0.3"
 
-"@innovatrics/dot-document-auto-capture@5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-5.1.0.tgz#34f0fc3ec711a0c2e884b3901e39009f879cb7f5"
-  integrity sha512-pnAw0ABFZQuLBQGEASZp5bOuFOu7aM1aQbRBPiPg8hJ3/x+hJ3c8Fkr3FuUaPKLRKqH3WCGb5hnPSbMpBVc17Q==
-  dependencies:
-    comlink "^4.4.1"
-    preact "^10.16.0"
-    preact-custom-element "^4.2.1"
-    styled-components "^6.0.3"
-
-"@innovatrics/dot-face-auto-capture@5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-5.1.0.tgz#6bc1aa5f585d2bdca57224275ee02a35bb8932bf"
-  integrity sha512-gNhpKqF1Z+bPNeeZW+Z1pwWfcwJI97GfBmZArEUAHGWofYLoAWpVXi2KY2VhyYdJVaM6bXA3+JfuxNkDzrm+nw==
+"@innovatrics/dot-document-auto-capture@5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-5.2.0.tgz#9c54e61305d4ac03b980198f07da0c8625f51765"
+  integrity sha512-GzUbe6umGvmJnOiNWgITkSOv4tRVN+NF4GOSy4IEws/74+/xe1ytAteffsm6ZHJ6DxfGpoWSPwr8rAAr17cLjw==
   dependencies:
     comlink "^4.4.1"
     preact "^10.16.0"
     preact-custom-element "^4.2.1"
     styled-components "^6.0.3"
 
-"@innovatrics/dot-magnifeye-liveness@5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-magnifeye-liveness/-/dot-magnifeye-liveness-5.1.0.tgz#8784788c68aa2776534d726af36476937a9e23ff"
-  integrity sha512-8jbjS4FztsIUmEMryb5QkMr6mdUQXef8l/o1hRS7ck8IZOL5BLqbR9DbfIMo5WvJZm8O2Qp/CTz9l0I7MwweFg==
+"@innovatrics/dot-face-auto-capture@5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-5.2.0.tgz#bb39dd8cf2e56041cdac59f9397563589d4cc117"
+  integrity sha512-Zwxi82xC8HzOw6g1fYyBSq3hLOl9ErVKRkJpH7VIGA5SDIkIKEv/j/+FldpI3R2orUF5UPdyPia4Zye14zlIBg==
+  dependencies:
+    comlink "^4.4.1"
+    preact "^10.16.0"
+    preact-custom-element "^4.2.1"
+    styled-components "^6.0.3"
+
+"@innovatrics/dot-magnifeye-liveness@5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-magnifeye-liveness/-/dot-magnifeye-liveness-5.2.0.tgz#5131cba7de9de7b1f6202384d77b011858e399a1"
+  integrity sha512-JSSj8oXEepYUAqXsSKXlj95WV+eguZllwyXKhIY26te0fFAkn+yot1wkvoLl3VDw0hHmy0Rwv1szOzxHZ8/yxQ==
   dependencies:
     "@preact/signals" "^1.1.5"
     preact "^10.16.0"
     preact-custom-element "^4.2.1"
     styled-components "^6.0.3"
 
-"@innovatrics/dot-smile-liveness@5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-smile-liveness/-/dot-smile-liveness-5.1.0.tgz#c48c54423fddb4017701fbae5cb03d6397d96c96"
-  integrity sha512-pL4SWuA91kED1JZ6ZXh3uMXPkvVB5HQBTE4j15CiOBsNBvn8AnsHwbrHgCzQwKOIwAsXIvmpX66T7a1OQ28J5w==
+"@innovatrics/dot-smile-liveness@5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-smile-liveness/-/dot-smile-liveness-5.2.0.tgz#8f5b14e68c23c8e1c8d6443bd8dde5e6919f224b"
+  integrity sha512-S5N0BZN8kYoHYgTWip0uxksSRs1jBNFSRLBwJFMQJfcWaCSb1GdLjoHkAuGpbSR/hkUksUCZHHwvVK8qgULBjg==
   dependencies:
     "@preact/signals" "^1.1.5"
     preact "^10.16.0"

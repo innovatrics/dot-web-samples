@@ -61,10 +61,8 @@ async function handleDocumentPhotoTaken(imageData, content) {
 // the component needs to have props supplied after first render, this must be done via the .prop() method, as attributes dont support objects and functions
 function loadDocumentProps() {
   $('x-dot-document-auto-capture').prop('cameraOptions', {
-    imageType: 'png',
     onPhotoTaken: handleDocumentPhotoTaken,
     onError: handleError,
-    samWasmUrl: 'lib/sam.wasm',
     cameraFacing: 'environment',
   });
 }
@@ -86,10 +84,8 @@ async function handleFacePhotoTaken(imageData, content) {
 // the component needs to have props supplied after first render, this must be done via the .prop() method, as attributes dont support objects and functions
 function loadFaceProps() {
   $('x-dot-face-auto-capture').prop('cameraOptions', {
-    imageType: 'png',
     onPhotoTaken: handleFacePhotoTaken,
     onError: handleError,
-    samWasmUrl: 'lib/sam.wasm',
     cameraFacing: 'user',
   });
 }
@@ -121,7 +117,6 @@ function loadMagnifEyeProps() {
   $('x-dot-magnifeye-liveness').prop('props', {
     onComplete: handleMagnifEyeComplete,
     onError: handleError,
-    samWasmUrl: 'lib/sam.wasm',
   });
 }
 
@@ -137,7 +132,6 @@ function loadSmileProps() {
   $('x-dot-smile-liveness').prop('props', {
     onComplete: handleSmileComplete,
     onError: handleError,
-    samWasmUrl: 'lib/sam.wasm',
   });
 }
 

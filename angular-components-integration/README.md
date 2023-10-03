@@ -10,17 +10,22 @@ In order to use these components integrated in the samples you will need a licen
 
 Run `yarn`.
 
-## Copy sam.wasm
+## Copy wasm folder
 
-For detection to work `sam.wasm` file has to be present in `src` folder.
+For detection to work `wasm` folder with web assembly files in it has to be present in `src` folder.
+This script copies wasm folder from node modules into `src` folder. 
 
-Run `yarn copy-sam` or do it manually:
+```
+yarn copy-wasm
+```
 
-Copy `sam.wasm` file from *node_modules/@innovatrics/dot-document-auto-capture* or *node_modules/@innovatrics/dot-face-auto-capture* to *angular-components-integration/src* folder.
+or do it manually:
+
+Copy `wasm` folder from `node_modules/@innovatrics/dot-document-auto-capture` or other auto-capture package to `angular-components-integration/src` folder.
 
 &nbsp;
 
-> **_When creating new project:_** Add `src/sam.wasm` under `assets` in your `angular.json` file.
+> **_When creating new project:_** Add `src/wasm` under `assets` in your `angular.json` file.
 
 ## Tsconfig
 
