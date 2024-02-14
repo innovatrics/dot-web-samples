@@ -1,31 +1,47 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { OnPhotoTakenEventValue, Step } from 'src/app/types';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { OnPhotoTakenEventValue, Step } from '../../types';
 import type { OnCompleteData } from '@innovatrics/dot-smile-liveness';
 import '@innovatrics/dot-smile-liveness';
+import { SmileLivenessCameraComponent } from './smile-liveness-camera.component';
+import { SmileLivenessUiComponent } from './smile-liveness-ui.component';
 
 @Component({
   selector: 'app-smile-liveness',
-  templateUrl: './smile-liveness.component.html',
-  styleUrls: ['./smile-liveness.component.css']
+  standalone: true,
+  imports: [SmileLivenessCameraComponent, SmileLivenessUiComponent],
+  template: `
+    <div>
+      <h2>Smile Liveness</h2>
+      <button (click)="onBackClick()" class="button">Go back</button>
+      <div class="container">
+        <app-smile-liveness-camera
+          (photoTaken)="handlePhotoTaken($event)"
+          (captureError)="handleError($event)"
+        ></app-smile-liveness-camera>
+        <app-smile-liveness-ui></app-smile-liveness-ui>
+      </div>
+    </div>
+  `,
 })
-export class SmileLivenessComponent implements OnInit {
-  @Output() onPhotoTaken = new EventEmitter<OnPhotoTakenEventValue<OnCompleteData['data']>>();
-  @Output() onError = new EventEmitter<Error>();
-  @Output() onBack = new EventEmitter<Step>();
-
-  constructor() { }
-
-  ngOnInit(): void { }
+export class SmileLivenessComponent {
+  @Output() photoTaken = new EventEmitter<
+    OnPhotoTakenEventValue<OnCompleteData['data']>
+  >();
+  @Output() captureError = new EventEmitter<Error>();
+  @Output() back = new EventEmitter<Step>();
 
   onBackClick() {
-    this.onBack.emit(Step.SELECT_COMPONENT);
+    this.back.emit(Step.SELECT_COMPONENT);
   }
 
-  handlePhotoTaken({ imageData, content }: OnPhotoTakenEventValue<OnCompleteData['data']>) {
-    this.onPhotoTaken.emit({ imageData, content });
+  handlePhotoTaken({
+    imageData,
+    content,
+  }: OnPhotoTakenEventValue<OnCompleteData['data']>) {
+    this.photoTaken.emit({ imageData, content });
   }
 
   handleError(error: Error) {
-    this.onError.emit(error);
+    this.captureError.emit(error);
   }
 }

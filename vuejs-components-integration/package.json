@@ -1,7 +1,7 @@
 {
   "name": "vuejs-components-integration",
   "private": true,
-  "version": "1.0.16",
+  "version": "1.0.18",
   "type": "module",
   "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
@@ -12,11 +12,11 @@
     "copy-wasm": "cp -R ./node_modules/@innovatrics/dot-document-auto-capture/wasm ./public"
   },
   "dependencies": {
-    "@innovatrics/dot-auto-capture-ui": "5.2.0",
-    "@innovatrics/dot-document-auto-capture": "5.2.0",
-    "@innovatrics/dot-face-auto-capture": "5.2.0",
-    "@innovatrics/dot-magnifeye-liveness": "5.2.0",
-    "@innovatrics/dot-smile-liveness": "5.2.0",
+    "@innovatrics/dot-auto-capture-ui": "5.2.4",
+    "@innovatrics/dot-document-auto-capture": "5.2.4",
+    "@innovatrics/dot-face-auto-capture": "5.2.4",
+    "@innovatrics/dot-magnifeye-liveness": "5.2.4",
+    "@innovatrics/dot-smile-liveness": "5.2.4",
     "vue": "^3.3.4"
   },
   "devDependencies": {

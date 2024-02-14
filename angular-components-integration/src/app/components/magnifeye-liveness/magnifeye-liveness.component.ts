@@ -1,30 +1,46 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { OnPhotoTakenEventValue, Step } from 'src/app/types';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { OnPhotoTakenEventValue, Step } from '../../types';
 import type { OnCompleteData } from '@innovatrics/dot-magnifeye-liveness';
+import { MagnifEyeLivenessCameraComponent } from './magnifeye-liveness-camera.component';
+import { MagnifEyeLivenessUiComponent } from './magnifeye-liveness-ui.component';
 
 @Component({
   selector: 'app-magnifeye-liveness',
-  templateUrl: './magnifeye-liveness.component.html',
-  styleUrls: ['./magnifeye-liveness.component.css']
+  standalone: true,
+  imports: [MagnifEyeLivenessCameraComponent, MagnifEyeLivenessUiComponent],
+  template: `
+    <div>
+      <h2>MagnifEye Liveness</h2>
+      <button (click)="onBackClick()" class="button">Go back</button>
+      <div class="container">
+        <app-magnifeye-liveness-camera
+          (photoTaken)="handlePhotoTaken($event)"
+          (captureError)="handleError($event)"
+        ></app-magnifeye-liveness-camera>
+        <app-magnifeye-liveness-ui></app-magnifeye-liveness-ui>
+      </div>
+    </div>
+  `,
 })
-export class MagnifEyeLivenessComponent implements OnInit {
-  @Output() onPhotoTaken = new EventEmitter<OnPhotoTakenEventValue<OnCompleteData['data']>>();
-  @Output() onError = new EventEmitter<Error>();
-  @Output() onBack = new EventEmitter<Step>();
-
-  constructor() { }
-
-  ngOnInit(): void { }
+export class MagnifEyeLivenessComponent {
+  @Output() photoTaken = new EventEmitter<
+    OnPhotoTakenEventValue<OnCompleteData['data']>
+  >();
+  @Output() captureError = new EventEmitter<Error>();
+  @Output() back = new EventEmitter<Step>();
 
   onBackClick() {
-    this.onBack.emit(Step.SELECT_COMPONENT);
+    this.back.emit(Step.SELECT_COMPONENT);
   }
 
-  handlePhotoTaken({ imageData, content }: OnPhotoTakenEventValue<OnCompleteData['data']>) {
-    this.onPhotoTaken.emit({ imageData, content });
+  handlePhotoTaken({
+    imageData,
+    content,
+  }: OnPhotoTakenEventValue<OnCompleteData['data']>) {
+    this.photoTaken.emit({ imageData, content });
   }
 
   handleError(error: Error) {
-    this.onError.emit(error);
+    this.captureError.emit(error);
   }
 }

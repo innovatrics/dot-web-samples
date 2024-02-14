@@ -36,11 +36,11 @@ const handleStepChange = (step: Step) => {
   <div>
     <h1>DOT components integration</h1>
     <div v-if="currentStep === Step.DOCUMENT_CAPTURE">
-      <DocumentAutoCapture @on-photo-taken="handlePhotoTaken" @on-error="handleError" @on-back="handleStepChange" />
+      <DocumentAutoCapture @on-complete="handlePhotoTaken" @on-error="handleError" @on-back="handleStepChange" />
       <ResultStep v-if="imageUrl" :imageSrc="imageUrl" />
     </div>
     <div v-else-if="currentStep === Step.FACE_CAPTURE">
-      <FaceAutoCapture @on-photo-taken="handlePhotoTaken" @on-error="handleError" @on-back="handleStepChange" />
+      <FaceAutoCapture @on-complete="handlePhotoTaken" @on-error="handleError" @on-back="handleStepChange" />
       <ResultStep v-if="imageUrl" :imageSrc="imageUrl" />
     </div>
     <div v-else-if="currentStep === Step.MAGNIFEYE_CAPTURE">
