@@ -2,7 +2,7 @@
 
 This repository contains integration samples of Innovatrics DOT Web Auto Capture Components in various technologies.
 
-Version of components in samples: 5.2.4
+Version of components in samples: 5.2.8
 
 ## License
 
@@ -13,7 +13,7 @@ In order to use these components you will need a license agreement. To obtain it
 - angular-components-integration
 - jquery-components-integration
 - reactjs-components-integration
-- vuejs--components-integration
+- vuejs-components-integration
 
 ## Documentation
 
