@@ -10,5 +10,5 @@ const props = defineProps<Props>()
 </script>
 
 <template>
-    <x-dot-smile-liveness-ui .props="props.uiProps" />
+    <x-dot-smile-liveness-ui .props="props.uiProps" id="x-dot-smile-liveness-ui" />
 </template>

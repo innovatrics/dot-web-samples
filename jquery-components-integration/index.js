@@ -2,6 +2,8 @@ $(function () {
   $('#selfie').click(function () {
     let cam = document.createElement('x-dot-face-auto-capture'); // since the components don't support reinitialization, we need to make sure we have a fresh one
     let ui = document.createElement('x-dot-face-auto-capture-ui');
+    cam.setAttribute('id', 'x-dot-face-auto-capture');
+    ui.setAttribute('id', 'x-dot-face-auto-capture-ui');
     $('#container')
       .empty() // remove any potential existing components
       .append(cam) // and append the newly created fresh copy
@@ -16,6 +18,8 @@ $(function () {
     // same as face component above, we need to make sure we're working with a fresh copy before supplying it with props
     let cam = document.createElement('x-dot-document-auto-capture');
     let ui = document.createElement('x-dot-document-auto-capture-ui');
+    cam.setAttribute('id', 'x-dot-document-auto-capture');
+    ui.setAttribute('id', 'x-dot-document-auto-capture-ui');
     $('#container').empty().append(cam).append(ui);
     loadDocumentProps();
     loadDocumentUiProps();
@@ -27,6 +31,8 @@ $(function () {
     // same as face component above, we need to make sure we're working with a fresh copy before supplying it with props
     let cam = document.createElement('x-dot-magnifeye-liveness');
     let ui = document.createElement('x-dot-magnifeye-liveness-ui');
+    cam.setAttribute('id', 'x-dot-magnifeye-liveness');
+    ui.setAttribute('id', 'x-dot-magnifeye-liveness-ui');
     $('#container').empty().append(cam).append(ui);
     loadMagnifEyeProps();
     loadMagnifEyeUiProps();
@@ -37,6 +43,8 @@ $(function () {
     // same as face component above, we need to make sure we're working with a fresh copy before supplying it with props
     let cam = document.createElement('x-dot-smile-liveness');
     let ui = document.createElement('x-dot-smile-liveness-ui');
+    cam.setAttribute('id', 'x-dot-smile-liveness');
+    ui.setAttribute('id', 'x-dot-smile-liveness-ui');
     $('#container').empty().append(cam).append(ui);
     loadSmileProps();
     loadSmileUiProps();

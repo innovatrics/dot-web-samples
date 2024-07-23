@@ -9,5 +9,5 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-  <x-dot-document-auto-capture .cameraOptions="props.cameraOptions" />
+  <x-dot-document-auto-capture .cameraOptions="props.cameraOptions" id="x-dot-document-auto-capture" />
 </template>

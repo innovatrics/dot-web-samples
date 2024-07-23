@@ -9,5 +9,5 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-  <x-dot-document-auto-capture-ui .props="props.uiProps" />
+  <x-dot-document-auto-capture-ui .props="props.uiProps" id="x-dot-document-auto-capture-ui"/>
 </template>

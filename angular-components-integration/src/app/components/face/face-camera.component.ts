@@ -19,7 +19,7 @@ import type {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <x-dot-face-auto-capture
-      id="dot-face-auto-capture"
+      id="x-dot-face-auto-capture"
     ></x-dot-face-auto-capture>
   `,
 })
@@ -37,7 +37,7 @@ export class FaceCameraComponent implements OnInit {
 
   initFaceAutoCapture() {
     const faceElement = document.getElementById(
-      'dot-face-auto-capture',
+      'x-dot-face-auto-capture',
     ) as HTMLFaceCaptureElement | null;
 
     if (faceElement) {

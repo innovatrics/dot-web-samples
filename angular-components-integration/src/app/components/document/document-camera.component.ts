@@ -19,7 +19,7 @@ import type {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <x-dot-document-auto-capture
-      id="dot-document-auto-capture"
+      id="x-dot-document-auto-capture"
     ></x-dot-document-auto-capture>
   `,
 })
@@ -37,7 +37,7 @@ export class DocumentCameraComponent implements OnInit {
 
   initDocumentAutoCapture() {
     const documentElement = document.getElementById(
-      'dot-document-auto-capture',
+      'x-dot-document-auto-capture',
     ) as HTMLDocumentCaptureElement | null;
 
     if (documentElement) {

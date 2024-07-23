@@ -6,7 +6,7 @@ import '@innovatrics/dot-auto-capture-ui/document';
   selector: 'app-document-ui',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `<x-dot-document-auto-capture-ui
-    id="dot-document-auto-capture-ui"
+    id="x-dot-document-auto-capture-ui"
   />`,
   standalone: true,
 })
@@ -19,7 +19,7 @@ export class DocumentUiComponent implements OnInit {
 
   initDocumentUi() {
     const documentUiElement = document.getElementById(
-      'dot-document-auto-capture-ui',
+      'x-dot-document-auto-capture-ui',
     ) as HTMLDocumentUiElement | null;
 
     if (documentUiElement) {

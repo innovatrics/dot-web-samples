@@ -71,7 +71,7 @@ The price of Server Runtime license and the price of Client Runtime licenses ord
 
 Company has to order and pay for Runtime Licenses prior to Deployment of the Application. Payment for the Runtime licenses ordered from Innovatrics, support and maintenance fees and shipping costs, if any, shall be due at the time of order placement. 
 
-Runtime Licenses are electronically available to the Company upon request at http://crm.innovatrics.com or at sales@innovatrics.com.
+Runtime Licenses are electronically available to the Company upon request at https://customerportal.innovatrics.com/ or at sales@innovatrics.com.
 
 All payments made to Innovatrics shall be in Euros or the equivalent amount in United States dollars. Company's obligation to pay Innovatrics under this Agreement shall not be affected by its ability to collect payment from its Customers. In addition, Company shall pay all charges reasonably incurred in the handling and/or shipment of Software/Product to Customers, including transportation charges, insurance premiums, taxes, duties and other applicable government assessments.
 

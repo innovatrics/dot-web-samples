@@ -8,7 +8,7 @@ import '@innovatrics/dot-auto-capture-ui/face';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   template: `
     <x-dot-face-auto-capture-ui
-      id="dot-face-auto-capture-ui"
+      id="x-dot-face-auto-capture-ui"
     ></x-dot-face-auto-capture-ui>
   `,
 })
@@ -21,7 +21,7 @@ export class FaceUiComponent implements OnInit {
 
   initFaceUi() {
     const faceUiElement = document.getElementById(
-      'dot-face-auto-capture-ui',
+      'x-dot-face-auto-capture-ui',
     ) as HTMLFacetUiElement | null;
 
     if (faceUiElement) {

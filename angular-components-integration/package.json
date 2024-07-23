@@ -1,6 +1,6 @@
 {
   "name": "angular-components-integration",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -22,11 +22,11 @@
     "@angular/platform-browser": "^17.1.0",
     "@angular/platform-browser-dynamic": "^17.1.0",
     "@angular/router": "^17.1.0",
-    "@innovatrics/dot-auto-capture-ui": "5.2.8",
-    "@innovatrics/dot-document-auto-capture": "5.2.8",
-    "@innovatrics/dot-face-auto-capture": "5.2.8",
-    "@innovatrics/dot-magnifeye-liveness": "5.2.8",
-    "@innovatrics/dot-smile-liveness": "5.2.8",
+    "@innovatrics/dot-auto-capture-ui": "6.1.0",
+    "@innovatrics/dot-document-auto-capture": "6.1.0",
+    "@innovatrics/dot-face-auto-capture": "6.1.0",
+    "@innovatrics/dot-magnifeye-liveness": "6.1.0",
+    "@innovatrics/dot-smile-liveness": "6.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

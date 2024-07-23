@@ -9,5 +9,5 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-  <x-dot-magnifeye-liveness .props="props.cameraOptions" />
+  <x-dot-magnifeye-liveness .props="props.cameraOptions" id="x-dot-magnifeye-liveness" />
 </template>
