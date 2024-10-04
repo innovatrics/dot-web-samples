@@ -2054,39 +2054,7 @@ function Da({ children: e, props: t, videoElementSize: n }) {
   );
   return /* @__PURE__ */ _(Be.Provider, { value: o, children: e });
 }
-function La(e, t) {
-  return e ? `${e}, ${t}` : t;
-}
-const Ma = {
-  placeholderColor: "white",
-  placeholderColorSuccess: "#00BFB2",
-  instructionColor: "#F8FBFB",
-  instructionColorSuccess: "#00BFB2",
-  instructionTextColor: "#021B41;"
-}, Ha = {
-  family: "Montserrat, Arial, sans-serif",
-  weight: "600",
-  style: "normal",
-  minimumSize: lo
-}, De = {
-  colors: Ma,
-  font: Ha
-}, Fa = (e) => {
-  var t;
-  return e ? {
-    ...De,
-    ...e,
-    colors: {
-      ...De.colors,
-      ...e.colors
-    },
-    font: {
-      ...De.font,
-      ...e.font,
-      family: La((t = e.font) == null ? void 0 : t.family, De.font.family)
-    }
-  } : De;
-}, fo = ({ svgSize: e }) => /* @__PURE__ */ _("svg", { fill: "none", height: e, viewBox: "0 0 16 14", width: e, xmlns: "http://www.w3.org/2000/svg", children: /* @__PURE__ */ _(
+const fo = ({ svgSize: e }) => /* @__PURE__ */ _("svg", { fill: "none", height: e, viewBox: "0 0 16 14", width: e, xmlns: "http://www.w3.org/2000/svg", children: /* @__PURE__ */ _(
   "path",
   {
     clipRule: "evenodd",
@@ -2094,7 +2062,7 @@ const Ma = {
     fill: "currentColor",
     fillRule: "evenodd"
   }
-) }), Ua = L.div`
+) }), La = L.div`
   width: 100%;
   height: 100%;
   top: 0;
@@ -2112,14 +2080,14 @@ const Ma = {
       aspect-ratio: 9/16;
     }
   `}
-`, Ba = L.div`
+`, Ma = L.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: ${(e) => e.theme.colors.instructionTextColor};
-`, Wa = L.p`
+`, Ha = L.p`
   background: ${(e) => e.theme.colors.instructionColor};
   border-radius: 0.25em;
   padding: 0.583em 0.666em;
@@ -2129,12 +2097,12 @@ const Ma = {
   max-width: 80%;
 `, rn = ({ Icon: e, isCameraReady: t, position: n = "absolute", text: r }) => {
   const { fontSize: o } = ve();
-  return /* @__PURE__ */ _(Ua, { $isCameraReady: t, $position: n, children: /* @__PURE__ */ _(Ba, { children: [
+  return /* @__PURE__ */ _(La, { $isCameraReady: t, $position: n, children: /* @__PURE__ */ _(Ma, { children: [
     e ? /* @__PURE__ */ _(e, { svgSize: o * 2 }) : null,
-    /* @__PURE__ */ _(Wa, { $fontSize: o, children: r })
+    /* @__PURE__ */ _(Ha, { $fontSize: o, children: r })
   ] }) });
 }, _o = ({ text: e = "An unknown error has occurred" }) => /* @__PURE__ */ _(rn, { Icon: fo, position: "relative", text: e });
-class za extends z {
+class Fa extends z {
   constructor(t) {
     super(t), this.state = { hasError: !1 };
   }
@@ -2149,16 +2117,13 @@ class za extends z {
     return this.state.hasError ? /* @__PURE__ */ _(_o, { Icon: fo, isCameraReady: !1 }) : this.props.children;
   }
 }
-const ja = L.div`
+const Ua = L.div`
   font-family: ${(e) => e.theme.font.family};
   font-style: ${(e) => e.theme.font.style};
   font-weight: ${(e) => e.theme.font.weight};
-`, Ga = ({ children: e, uiProps: t, videoElementSize: n }) => {
-  const r = Fa(t.theme);
-  return q(() => {
-    Pa();
-  }, []), /* @__PURE__ */ _(ya, { target: t.styleTarget, children: /* @__PURE__ */ _(Sa, { theme: r, children: /* @__PURE__ */ _(ja, { children: /* @__PURE__ */ _(za, { videoElementSize: n, children: /* @__PURE__ */ _(Da, { props: t, videoElementSize: n, children: e }) }) }) }) });
-}, Ye = (e, t) => {
+`, Ba = ({ children: e, uiProps: t, videoElementSize: n }) => (q(() => {
+  Pa();
+}, []), /* @__PURE__ */ _(ya, { target: t.styleTarget, children: /* @__PURE__ */ _(Sa, { theme: t.theme, children: /* @__PURE__ */ _(Ua, { children: /* @__PURE__ */ _(Fa, { videoElementSize: n, children: /* @__PURE__ */ _(Da, { props: t, videoElementSize: n, children: e }) }) }) }) })), Ye = (e, t) => {
   const n = Xe(t);
   q(() => {
     n.current = t;
@@ -2172,7 +2137,7 @@ const ja = L.div`
     [e]
     // Re-run if eventName
   );
-}, Va = (e) => {
+}, Wa = (e) => {
   const [t, n] = H(), r = pe(
     (o) => {
       var i;
@@ -2181,6 +2146,39 @@ const ja = L.div`
     [n]
   );
   return Ye(e, r), t;
+};
+function za(e, t) {
+  return e ? `${e}, ${t}` : t;
+}
+const ja = {
+  placeholderColor: "white",
+  placeholderColorSuccess: "#00BFB2",
+  instructionColor: "#F8FBFB",
+  instructionColorSuccess: "#00BFB2",
+  instructionTextColor: "#021B41;"
+}, Ga = {
+  family: "Montserrat, Arial, sans-serif",
+  weight: "600",
+  style: "normal",
+  minimumSize: lo
+}, De = {
+  colors: ja,
+  font: Ga
+}, Va = (e) => {
+  var t;
+  return e ? {
+    ...De,
+    ...e,
+    colors: {
+      ...De.colors,
+      ...e.colors
+    },
+    font: {
+      ...De.font,
+      ...e.font,
+      family: za((t = e.font) == null ? void 0 : t.family, De.font.family)
+    }
+  } : De;
 }, Ya = 0.75, Za = 2, On = (e, t) => {
   document.dispatchEvent(
     new CustomEvent(e, {
@@ -2890,22 +2888,23 @@ const Ps = L.canvas`
     }
   );
 }, qs = (e) => {
-  var i, a;
+  var a, s;
   const t = { ...Na, ...e == null ? void 0 : e.instructions }, n = {
     [Ge.LOADING]: {
       ...lr.loading,
-      ...(i = e == null ? void 0 : e.appStateInstructions) == null ? void 0 : i.loading
+      ...(a = e == null ? void 0 : e.appStateInstructions) == null ? void 0 : a.loading
     },
-    [Ge.DONE]: { ...lr.done, ...(a = e == null ? void 0 : e.appStateInstructions) == null ? void 0 : a.done }
-  }, r = (e == null ? void 0 : e.backdropColor) ?? Ta, o = (e == null ? void 0 : e.showCameraButtons) ?? !1;
+    [Ge.DONE]: { ...lr.done, ...(s = e == null ? void 0 : e.appStateInstructions) == null ? void 0 : s.done }
+  }, r = (e == null ? void 0 : e.backdropColor) ?? Ta, o = (e == null ? void 0 : e.showCameraButtons) ?? !1, i = Va(e == null ? void 0 : e.theme);
   return {
     backdropColor: r,
     instructions: t,
     appStateInstructions: n,
-    showCameraButtons: o
+    showCameraButtons: o,
+    theme: i
   };
 }, Xs = ({ props: e }) => {
-  const t = Va(Se.VIDEO_ELEMENT_SIZE);
-  return /* @__PURE__ */ _(Ga, { uiProps: qs(e), videoElementSize: t, children: /* @__PURE__ */ _(Zs, {}) });
+  const t = Wa(Se.VIDEO_ELEMENT_SIZE);
+  return /* @__PURE__ */ _(Ba, { uiProps: qs(e), videoElementSize: t, children: /* @__PURE__ */ _(Zs, {}) });
 };
 Ro(Xs, "x-dot-magnifeye-liveness-ui", ["props"]);

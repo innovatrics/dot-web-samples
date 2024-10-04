@@ -2041,39 +2041,7 @@ function Ia({ children: t, props: e, videoElementSize: r }) {
   );
   return /* @__PURE__ */ a(Ut.Provider, { value: o, children: t });
 }
-function Da(t, e) {
-  return t ? `${t}, ${e}` : e;
-}
-const Ra = {
-  placeholderColor: "white",
-  placeholderColorSuccess: "#00BFB2",
-  instructionColor: "#F8FBFB",
-  instructionColorSuccess: "#00BFB2",
-  instructionTextColor: "#021B41;"
-}, Ta = {
-  family: "Montserrat, Arial, sans-serif",
-  weight: "600",
-  style: "normal",
-  minimumSize: so
-}, Rt = {
-  colors: Ra,
-  font: Ta
-}, Aa = (t) => {
-  var e;
-  return t ? {
-    ...Rt,
-    ...t,
-    colors: {
-      ...Rt.colors,
-      ...t.colors
-    },
-    font: {
-      ...Rt.font,
-      ...t.font,
-      family: Da((e = t.font) == null ? void 0 : e.family, Rt.font.family)
-    }
-  } : Rt;
-}, co = ({ svgSize: t }) => /* @__PURE__ */ a("svg", { fill: "none", height: t, viewBox: "0 0 16 14", width: t, xmlns: "http://www.w3.org/2000/svg", children: /* @__PURE__ */ a(
+const co = ({ svgSize: t }) => /* @__PURE__ */ a("svg", { fill: "none", height: t, viewBox: "0 0 16 14", width: t, xmlns: "http://www.w3.org/2000/svg", children: /* @__PURE__ */ a(
   "path",
   {
     clipRule: "evenodd",
@@ -2081,7 +2049,7 @@ const Ra = {
     fill: "currentColor",
     fillRule: "evenodd"
   }
-) }), Pa = A.div`
+) }), Da = A.div`
   width: 100%;
   height: 100%;
   top: 0;
@@ -2099,14 +2067,14 @@ const Ra = {
       aspect-ratio: 9/16;
     }
   `}
-`, Za = A.div`
+`, Ra = A.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: ${(t) => t.theme.colors.instructionTextColor};
-`, Ha = A.p`
+`, Ta = A.p`
   background: ${(t) => t.theme.colors.instructionColor};
   border-radius: 0.25em;
   padding: 0.583em 0.666em;
@@ -2116,12 +2084,12 @@ const Ra = {
   max-width: 80%;
 `, nr = ({ Icon: t, isCameraReady: e, position: r = "absolute", text: n }) => {
   const { fontSize: o } = Ct();
-  return /* @__PURE__ */ a(Pa, { $isCameraReady: e, $position: r, children: /* @__PURE__ */ a(Za, { children: [
+  return /* @__PURE__ */ a(Da, { $isCameraReady: e, $position: r, children: /* @__PURE__ */ a(Ra, { children: [
     t ? /* @__PURE__ */ a(t, { svgSize: o * 2 }) : null,
-    /* @__PURE__ */ a(Ha, { $fontSize: o, children: n })
+    /* @__PURE__ */ a(Ta, { $fontSize: o, children: n })
   ] }) });
 }, lo = ({ text: t = "An unknown error has occurred" }) => /* @__PURE__ */ a(nr, { Icon: co, position: "relative", text: t });
-class Ba extends F {
+class Aa extends F {
   constructor(e) {
     super(e), this.state = { hasError: !1 };
   }
@@ -2136,16 +2104,13 @@ class Ba extends F {
     return this.state.hasError ? /* @__PURE__ */ a(lo, { Icon: co, isCameraReady: !1 }) : this.props.children;
   }
 }
-const Ua = A.div`
+const Pa = A.div`
   font-family: ${(t) => t.theme.font.family};
   font-style: ${(t) => t.theme.font.style};
   font-weight: ${(t) => t.theme.font.weight};
-`, Wa = ({ children: t, uiProps: e, videoElementSize: r }) => {
-  const n = Aa(e.theme);
-  return nt(() => {
-    Ma();
-  }, []), /* @__PURE__ */ a(_a, { target: e.styleTarget, children: /* @__PURE__ */ a(va, { theme: n, children: /* @__PURE__ */ a(Ua, { children: /* @__PURE__ */ a(Ba, { videoElementSize: r, children: /* @__PURE__ */ a(Ia, { props: e, videoElementSize: r, children: t }) }) }) }) });
-}, Wt = (t, e) => {
+`, Za = ({ children: t, uiProps: e, videoElementSize: r }) => (nt(() => {
+  Ma();
+}, []), /* @__PURE__ */ a(_a, { target: e.styleTarget, children: /* @__PURE__ */ a(va, { theme: e.theme, children: /* @__PURE__ */ a(Pa, { children: /* @__PURE__ */ a(Aa, { videoElementSize: r, children: /* @__PURE__ */ a(Ia, { props: e, videoElementSize: r, children: t }) }) }) }) })), Wt = (t, e) => {
   const r = Yt(e);
   nt(() => {
     r.current = e;
@@ -2159,7 +2124,7 @@ const Ua = A.div`
     [t]
     // Re-run if eventName
   );
-}, Fa = (t) => {
+}, Ha = (t) => {
   const [e, r] = B(), n = pt(
     (o) => {
       var i;
@@ -2168,6 +2133,39 @@ const Ua = A.div`
     [r]
   );
   return Wt(t, n), e;
+};
+function Ba(t, e) {
+  return t ? `${t}, ${e}` : e;
+}
+const Ua = {
+  placeholderColor: "white",
+  placeholderColorSuccess: "#00BFB2",
+  instructionColor: "#F8FBFB",
+  instructionColorSuccess: "#00BFB2",
+  instructionTextColor: "#021B41;"
+}, Wa = {
+  family: "Montserrat, Arial, sans-serif",
+  weight: "600",
+  style: "normal",
+  minimumSize: so
+}, Rt = {
+  colors: Ua,
+  font: Wa
+}, Fa = (t) => {
+  var e;
+  return t ? {
+    ...Rt,
+    ...t,
+    colors: {
+      ...Rt.colors,
+      ...t.colors
+    },
+    font: {
+      ...Rt.font,
+      ...t.font,
+      family: Ba((e = t.font) == null ? void 0 : e.family, Rt.font.family)
+    }
+  } : Rt;
 }, za = 1.5, ja = 0.85, Te = 1e3, Ga = (t, e) => t < Te && e >= Te ? Te : t, Ya = (t, e) => t < e ? t : e, qa = ({ height: t, width: e }) => {
   let r;
   return e > t ? r = Ga(t, e) : r = e, {
@@ -3657,21 +3655,22 @@ const ys = () => /* @__PURE__ */ a(
     }
   );
 }, Bs = (t) => {
-  var c, u;
+  var u, d;
   const e = { ...Va, ...t == null ? void 0 : t.instructions }, r = {
-    [q.LOADING]: { ...an.loading, ...(c = t == null ? void 0 : t.appStateInstructions) == null ? void 0 : c.loading },
-    [q.WAITING]: { ...an.waiting, ...(u = t == null ? void 0 : t.appStateInstructions) == null ? void 0 : u.waiting }
-  }, n = (t == null ? void 0 : t.placeholder) ?? Ea, o = (t == null ? void 0 : t.backdropColor) ?? ka, i = (t == null ? void 0 : t.showDetectionLayer) ?? !1, s = (t == null ? void 0 : t.showCameraButtons) ?? !1;
+    [q.LOADING]: { ...an.loading, ...(u = t == null ? void 0 : t.appStateInstructions) == null ? void 0 : u.loading },
+    [q.WAITING]: { ...an.waiting, ...(d = t == null ? void 0 : t.appStateInstructions) == null ? void 0 : d.waiting }
+  }, n = (t == null ? void 0 : t.placeholder) ?? Ea, o = (t == null ? void 0 : t.backdropColor) ?? ka, i = (t == null ? void 0 : t.showDetectionLayer) ?? !1, s = (t == null ? void 0 : t.showCameraButtons) ?? !1, c = Fa(t == null ? void 0 : t.theme);
   return {
     instructions: e,
     appStateInstructions: r,
     placeholder: n,
     backdropColor: o,
     showDetectionLayer: i,
-    showCameraButtons: s
+    showCameraButtons: s,
+    theme: c
   };
 }, Us = ({ props: t }) => {
-  const e = Fa(ht.VIDEO_ELEMENT_SIZE);
-  return /* @__PURE__ */ a(Wa, { uiProps: Bs(t), videoElementSize: e, children: /* @__PURE__ */ a(Hs, {}) });
+  const e = Ha(ht.VIDEO_ELEMENT_SIZE);
+  return /* @__PURE__ */ a(Za, { uiProps: Bs(t), videoElementSize: e, children: /* @__PURE__ */ a(Hs, {}) });
 };
 No(Us, "x-dot-document-auto-capture-ui", ["props"]);

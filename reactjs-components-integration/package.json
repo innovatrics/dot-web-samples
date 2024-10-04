@@ -1,7 +1,7 @@
 {
   "name": "reactjs-components-integration",
   "private": true,
-  "version": "1.2.5",
+  "version": "1.2.6",
   "license": "SEE LICENSE IN LICENSE.txt",
   "type": "module",
   "scripts": {
@@ -13,11 +13,11 @@
     "copy-wasm": "cp -R ./node_modules/@innovatrics/dot-document-auto-capture/wasm ./public"
   },
   "dependencies": {
-    "@innovatrics/dot-auto-capture-ui": "6.1.5",
-    "@innovatrics/dot-document-auto-capture": "6.1.5",
-    "@innovatrics/dot-face-auto-capture": "6.1.5",
-    "@innovatrics/dot-magnifeye-liveness": "6.1.5",
-    "@innovatrics/dot-smile-liveness": "6.1.5",
+    "@innovatrics/dot-auto-capture-ui": "6.1.8",
+    "@innovatrics/dot-document-auto-capture": "6.1.8",
+    "@innovatrics/dot-face-auto-capture": "6.1.8",
+    "@innovatrics/dot-magnifeye-liveness": "6.1.8",
+    "@innovatrics/dot-smile-liveness": "6.1.8",
     "@vitejs/plugin-react": "^4.3.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "react": "^18.3.1",

@@ -13,6 +13,10 @@ In order to use these components integrated in the samples you will need a licen
 
 In the project directory, you can run:
 
+### `yarn`
+
+Installs all dependencies needed for the project to run.
+
 ### `yarn start`
 
 Runs the app in the development mode.\

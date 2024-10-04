@@ -2076,39 +2076,7 @@ function zs({ children: e, props: t, videoElementSize: n }) {
   );
   return /* @__PURE__ */ f(ze.Provider, { value: o, children: e });
 }
-function js(e, t) {
-  return e ? `${e}, ${t}` : t;
-}
-const Gs = {
-  placeholderColor: "white",
-  placeholderColorSuccess: "#00BFB2",
-  instructionColor: "#F8FBFB",
-  instructionColorSuccess: "#00BFB2",
-  instructionTextColor: "#021B41;"
-}, Vs = {
-  family: "Montserrat, Arial, sans-serif",
-  weight: "600",
-  style: "normal",
-  minimumSize: go
-}, De = {
-  colors: Gs,
-  font: Vs
-}, Ys = (e) => {
-  var t;
-  return e ? {
-    ...De,
-    ...e,
-    colors: {
-      ...De.colors,
-      ...e.colors
-    },
-    font: {
-      ...De.font,
-      ...e.font,
-      family: js((t = e.font) == null ? void 0 : t.family, De.font.family)
-    }
-  } : De;
-}, yo = ({ svgSize: e }) => /* @__PURE__ */ f("svg", { fill: "none", height: e, viewBox: "0 0 16 14", width: e, xmlns: "http://www.w3.org/2000/svg", children: /* @__PURE__ */ f(
+const yo = ({ svgSize: e }) => /* @__PURE__ */ f("svg", { fill: "none", height: e, viewBox: "0 0 16 14", width: e, xmlns: "http://www.w3.org/2000/svg", children: /* @__PURE__ */ f(
   "path",
   {
     clipRule: "evenodd",
@@ -2116,7 +2084,7 @@ const Gs = {
     fill: "currentColor",
     fillRule: "evenodd"
   }
-) }), Zs = H.div`
+) }), js = H.div`
   width: 100%;
   height: 100%;
   top: 0;
@@ -2134,14 +2102,14 @@ const Gs = {
       aspect-ratio: 9/16;
     }
   `}
-`, qs = H.div`
+`, Gs = H.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: ${(e) => e.theme.colors.instructionTextColor};
-`, Xs = H.p`
+`, Vs = H.p`
   background: ${(e) => e.theme.colors.instructionColor};
   border-radius: 0.25em;
   padding: 0.583em 0.666em;
@@ -2151,12 +2119,12 @@ const Gs = {
   max-width: 80%;
 `, on = ({ Icon: e, isCameraReady: t, position: n = "absolute", text: r }) => {
   const { fontSize: o } = Se();
-  return /* @__PURE__ */ f(Zs, { $isCameraReady: t, $position: n, children: /* @__PURE__ */ f(qs, { children: [
+  return /* @__PURE__ */ f(js, { $isCameraReady: t, $position: n, children: /* @__PURE__ */ f(Gs, { children: [
     e ? /* @__PURE__ */ f(e, { svgSize: o * 2 }) : null,
-    /* @__PURE__ */ f(Xs, { $fontSize: o, children: r })
+    /* @__PURE__ */ f(Vs, { $fontSize: o, children: r })
   ] }) });
 }, Co = ({ text: e = "An unknown error has occurred" }) => /* @__PURE__ */ f(on, { Icon: yo, position: "relative", text: e });
-class Ks extends j {
+class Ys extends j {
   constructor(t) {
     super(t), this.state = { hasError: !1 };
   }
@@ -2171,16 +2139,13 @@ class Ks extends j {
     return this.state.hasError ? /* @__PURE__ */ f(Co, { Icon: yo, isCameraReady: !1 }) : this.props.children;
   }
 }
-const Qs = H.div`
+const Zs = H.div`
   font-family: ${(e) => e.theme.font.family};
   font-style: ${(e) => e.theme.font.style};
   font-weight: ${(e) => e.theme.font.weight};
-`, Js = ({ children: e, uiProps: t, videoElementSize: n }) => {
-  const r = Ys(t.theme);
-  return q(() => {
-    Ws();
-  }, []), /* @__PURE__ */ f($s, { target: t.styleTarget, children: /* @__PURE__ */ f(Is, { theme: r, children: /* @__PURE__ */ f(Qs, { children: /* @__PURE__ */ f(Ks, { videoElementSize: n, children: /* @__PURE__ */ f(zs, { props: t, videoElementSize: n, children: e }) }) }) }) });
-}, Ye = (e, t) => {
+`, qs = ({ children: e, uiProps: t, videoElementSize: n }) => (q(() => {
+  Ws();
+}, []), /* @__PURE__ */ f($s, { target: t.styleTarget, children: /* @__PURE__ */ f(Is, { theme: t.theme, children: /* @__PURE__ */ f(Zs, { children: /* @__PURE__ */ f(Ys, { videoElementSize: n, children: /* @__PURE__ */ f(zs, { props: t, videoElementSize: n, children: e }) }) }) }) })), Ye = (e, t) => {
   const n = Xe(t);
   q(() => {
     n.current = t;
@@ -2194,7 +2159,7 @@ const Qs = H.div`
     [e]
     // Re-run if eventName
   );
-}, ea = (e) => {
+}, Xs = (e) => {
   const [t, n] = M(), r = ge(
     (o) => {
       var i;
@@ -2203,6 +2168,39 @@ const Qs = H.div`
     [n]
   );
   return Ye(e, r), t;
+};
+function Ks(e, t) {
+  return e ? `${e}, ${t}` : t;
+}
+const Qs = {
+  placeholderColor: "white",
+  placeholderColorSuccess: "#00BFB2",
+  instructionColor: "#F8FBFB",
+  instructionColorSuccess: "#00BFB2",
+  instructionTextColor: "#021B41;"
+}, Js = {
+  family: "Montserrat, Arial, sans-serif",
+  weight: "600",
+  style: "normal",
+  minimumSize: go
+}, De = {
+  colors: Qs,
+  font: Js
+}, ea = (e) => {
+  var t;
+  return e ? {
+    ...De,
+    ...e,
+    colors: {
+      ...De.colors,
+      ...e.colors
+    },
+    font: {
+      ...De.font,
+      ...e.font,
+      family: Ks((t = e.font) == null ? void 0 : t.family, De.font.family)
+    }
+  } : De;
 }, ta = 0.75, Fe = (e, t) => Math.hypot(t.x - e.x, t.y - e.y), ur = (e, t, n) => {
   const r = (t.x - e.x) * n, o = (t.y - e.y) * n;
   return {
@@ -2888,7 +2886,7 @@ to {
     }
   );
 }, tc = (e) => {
-  var i, s;
+  var s, a;
   const t = {
     ...Ds,
     ...e == null ? void 0 : e.instructions
@@ -2897,19 +2895,20 @@ to {
   const n = {
     [$e.LOADING]: {
       ...cr.loading,
-      ...(i = e == null ? void 0 : e.appStateInstructions) == null ? void 0 : i.loading
+      ...(s = e == null ? void 0 : e.appStateInstructions) == null ? void 0 : s.loading
     },
-    [$e.DONE]: { ...cr.done, ...(s = e == null ? void 0 : e.appStateInstructions) == null ? void 0 : s.done }
-  }, r = (e == null ? void 0 : e.backdropColor) ?? Ms, o = (e == null ? void 0 : e.showCameraButtons) ?? !1;
+    [$e.DONE]: { ...cr.done, ...(a = e == null ? void 0 : e.appStateInstructions) == null ? void 0 : a.done }
+  }, r = (e == null ? void 0 : e.backdropColor) ?? Ms, o = (e == null ? void 0 : e.showCameraButtons) ?? !1, i = ea(e == null ? void 0 : e.theme);
   return {
     placeholder: K.CIRCLE_SOLID,
     backdropColor: r,
     instructions: t,
     appStateInstructions: n,
-    showCameraButtons: o
+    showCameraButtons: o,
+    theme: i
   };
 }, nc = ({ props: e }) => {
-  const t = ea(Ge.VIDEO_ELEMENT_SIZE);
-  return /* @__PURE__ */ f(Js, { uiProps: tc(e), videoElementSize: t, children: /* @__PURE__ */ f(ec, {}) });
+  const t = Xs(Ge.VIDEO_ELEMENT_SIZE);
+  return /* @__PURE__ */ f(qs, { uiProps: tc(e), videoElementSize: t, children: /* @__PURE__ */ f(ec, {}) });
 };
 Fo(nc, "x-dot-smile-liveness-ui", ["props"]);
