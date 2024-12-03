@@ -23,7 +23,7 @@
     "@angular/platform-browser-dynamic": "^18.1.2",
     "@angular/router": "^18.1.2",
     "@innovatrics/dot-auto-capture-ui": "6.2.0",
-    "@innovatrics/dot-document-auto-capture": "6.2.0",
+    "@innovatrics/dot-document-auto-capture": "./innovatrics-dot-document-auto-capture-7.0.0.tgz",
     "@innovatrics/dot-face-auto-capture": "6.2.0",
     "@innovatrics/dot-magnifeye-liveness": "6.2.0",
     "@innovatrics/dot-smile-liveness": "6.2.0",
