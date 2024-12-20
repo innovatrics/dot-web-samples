@@ -2,7 +2,7 @@
 
 This repository contains integration samples of Innovatrics DOT Web Auto Capture Components in various technologies.
 
-Version of components in samples: 6.2.0
+Version of components in samples: 6.2.1
 
 ## License
 
