@@ -1,7 +1,7 @@
 {
   "name": "reactjs-components-integration",
   "private": true,
-  "version": "1.2.9",
+  "version": "1.2.10",
   "license": "SEE LICENSE IN LICENSE.txt",
   "type": "module",
   "scripts": {
@@ -11,7 +11,8 @@
     "lint:fix": "yarn lint --fix",
     "preview": "vite preview",
     "delete-assets": "rm -rf ./public/dot-assets",
-    "copy-assets": "find ./node_modules/@innovatrics -type d -name 'dot-assets' -exec cp -R {} ./public \\;"
+    "copy-assets": "find ./node_modules/@innovatrics -type d -name 'dot-assets' -exec cp -R {} ./public \\;",
+    "copy-assets-win": "for /d %i in (node_modules\\@innovatrics\\*) do xcopy /E /I /Y %i\\dot-assets public\\dot-assets"
   },
   "dependencies": {
     "@innovatrics/dot-auto-capture-ui": "7.0.0",

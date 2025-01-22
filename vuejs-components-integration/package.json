@@ -1,7 +1,7 @@
 {
   "name": "vuejs-components-integration",
   "private": true,
-  "version": "1.2.9",
+  "version": "1.2.10",
   "type": "module",
   "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
     "delete-assets": "rm -rf ./public/dot-assets",
-    "copy-assets": "find ./node_modules/@innovatrics -type d -name 'dot-assets' -exec cp -R {} ./public \\;"
+    "copy-assets": "find ./node_modules/@innovatrics -type d -name 'dot-assets' -exec cp -R {} ./public \\;",
+    "copy-assets-win": "for /d %i in (node_modules\\@innovatrics\\*) do xcopy /E /I /Y %i\\dot-assets public\\dot-assets"
   },
   "dependencies": {
     "@innovatrics/dot-auto-capture-ui": "7.0.0",

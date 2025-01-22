@@ -35,18 +35,23 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://vitejs.dev/guide/build.html) for more information.
 
-### `yarn copy-wasm`
+### `yarn copy-assets` or `yarn copy-assets-win`
 
-For detection to work `wasm` folder with web assembly files in it has to be present in `public` folder.
-This script copies wasm folder from node modules into public folder. 
+In order to use the components, you need to copy the `dot-assets` folder from all `node_modules/@innovatrics/*` components to the `src` folder after all dependencies have been installed.
+To do this, on linux/mac run.
 
 ```
-yarn copy-wasm
+yarn copy-assets
 ```
 
-or do it manually:
+or on windows run
 
-Copy `wasm` folder from `node_modules/@innovatrics/dot-document-auto-capture` or other auto-capture package to `reactjs-components-integration/public` folder.
+```
+yarn copy-assets-win
+```
+
+or do it manually.
+
 ## Learn More
 
 You can learn more in the [Vite documentation](https://vitejs.dev/guide/).

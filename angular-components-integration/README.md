@@ -10,22 +10,26 @@ In order to use these components integrated in the samples you will need a licen
 
 Run `yarn`.
 
-## Copy wasm folder
+## Copy dot-assets folder
 
-For detection to work `wasm` folder with web assembly files in it has to be present in `src` folder.
-This script copies wasm folder from node modules into `src` folder. 
+In order to use the components, you need to copy the `dot-assets` folder from all `node_modules/@innovatrics/*` components to the `src` folder after all dependencies have been installed. 
+To do this, on linux/mac run. 
 
 ```
-yarn copy-wasm
+yarn copy-assets
 ```
 
-or do it manually:
+or on windows run
 
-Copy `wasm` folder from `node_modules/@innovatrics/dot-document-auto-capture` or other auto-capture package to `angular-components-integration/src` folder.
+```
+yarn copy-assets-win
+```
+
+or do it manually.
 
 &nbsp;
 
-> **_When creating new project:_** Add `src/wasm` under `assets` in your `angular.json` file.
+> **_When creating new project:_** Add `src/dot-assets` under `assets` in your `angular.json` file.
 
 ## Tsconfig
 

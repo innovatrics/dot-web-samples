@@ -6,7 +6,7 @@ In order to use these components integrated in the samples you will need a licen
 
 ## Project setup
 
-For detection to work, `sam.wasm` must be fetchable, this means that a web server must be used for development, as `file:/// URLs` are not allowed for WebAssembly binaries.
+For detection to work, all files from the `dot-assets` folder from every component must be fetchable. This means that a web server must be used for development, as `file:///` URLs are not allowed for WebAssembly binaries.
 
 ## Development server
 

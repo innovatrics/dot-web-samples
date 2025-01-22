@@ -1,6 +1,6 @@
 {
   "name": "angular-components-integration",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,7 +11,8 @@
     "prettier": "npx prettier --write .",
     "pr": "yarn run lint --fix && yarn run prettier",
     "delete-assets": "rm -rf ./src/dot-assets",
-    "copy-assets": "find ./node_modules/@innovatrics -type d -name 'dot-assets' -exec cp -R {} ./src \\;"
+    "copy-assets": "find ./node_modules/@innovatrics -type d -name 'dot-assets' -exec cp -R {} ./src \\;",
+    "copy-assets-win": "for /d %i in (node_modules\\@innovatrics\\*) do xcopy /E /I /Y %i\\dot-assets src\\dot-assets"
   },
   "private": true,
   "dependencies": {
