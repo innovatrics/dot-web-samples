@@ -39,15 +39,15 @@ function FaceAutoCapture({ onPhotoTaken, onError, onBackClick }: Props) {
     <>
       <h2>Face auto capture</h2>
       <div>
+        <button className={buttonStyles.primary} onClick={onBackClick}>
+          Go back
+        </button>
         <button
           className={buttonStyles.primary}
           onClick={handleContinueDetection}
           disabled={isButtonDisabled}
         >
           Continue detection
-        </button>
-        <button className={buttonStyles.primary} onClick={onBackClick}>
-          Back
         </button>
       </div>
       <div className={styles.container}>

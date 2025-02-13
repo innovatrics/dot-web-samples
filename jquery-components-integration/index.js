@@ -1,5 +1,5 @@
 $(function () {
-  $('#selfie').click(function () {
+  $('#face').click(function () {
     let cam = document.createElement('x-dot-face-auto-capture'); // since the components don't support reinitialization, we need to make sure we have a fresh one
     let ui = document.createElement('x-dot-face-auto-capture-ui');
     cam.setAttribute('id', 'x-dot-face-auto-capture');

@@ -17,23 +17,17 @@ html, body {
 
 #container {
   margin: 1rem auto;
-  max-width: 40rem;
+  max-width: 50rem;
   position: relative;
   min-height: 10rem;
   overflow: hidden;
 }
 
 #result {
-  margin: 1rem auto;
-  max-width: 40rem;
+  max-width: 50rem;
 }
 
 img {
-  max-width: 100%;
-}
-
-#container img {
-  margin-top: 1rem;
   max-width: 100%;
 }
 

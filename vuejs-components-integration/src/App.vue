@@ -34,7 +34,7 @@ const handleStepChange = (step: Step) => {
 
 <template>
   <div>
-    <h1>DOT components integration</h1>
+    <h1>DOT Web Components Integration</h1>
     <div v-if="currentStep === Step.DOCUMENT_CAPTURE">
       <DocumentAutoCapture @on-complete="handlePhotoTaken" @on-error="handleError" @on-back="handleStepChange" />
       <ResultStep v-if="imageUrl" :imageSrc="imageUrl" />
@@ -66,7 +66,7 @@ const handleStepChange = (step: Step) => {
 
 .container {
   max-width: 50rem;
-  margin: 20px auto;
+  margin: 1rem auto;
   position: relative;
 }
 

@@ -16,7 +16,7 @@ function SmileLiveness({ onBackClick, onComplete, onError }: Props) {
       <h2>Smile Liveness</h2>
       <div>
         <button className={buttonStyles.primary} onClick={onBackClick}>
-          Back
+          Go back
         </button>
       </div>
       <div className={styles.container}>

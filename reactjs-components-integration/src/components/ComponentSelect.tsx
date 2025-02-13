@@ -24,11 +24,11 @@ function ComponentSelect({ setStep }: Props) {
 
   return (
     <div>
-      <button className={styles.primary} onClick={handleDocumentClick}>
-        Document
-      </button>
       <button className={styles.primary} onClick={handleFaceClick}>
         Face
+      </button>
+      <button className={styles.primary} onClick={handleDocumentClick}>
+        Document
       </button>
       <button className={styles.primary} onClick={handleMagnifEyeLivenessClick}>
         MagnifEye Liveness

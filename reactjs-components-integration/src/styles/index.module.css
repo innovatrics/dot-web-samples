@@ -1,7 +1,6 @@
 .app {
   font-family: "Montserrat", sans-serif;
   font-size: 100%;
-  line-height: 1.5;
   color: #404354;
   display: flex;
   flex-flow: column;
@@ -10,13 +9,12 @@
 }
 
 .container {
-  margin-top: 1rem;
-  width: 40rem;
+  max-width: 50rem;
+  margin: .5rem auto;
   position: relative;
   overflow: hidden;
-}
+} 
 
 .container img {
-  margin-top: 1rem;
   max-width: 100%;
 }
