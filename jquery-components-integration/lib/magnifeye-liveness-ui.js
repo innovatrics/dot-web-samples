@@ -2634,18 +2634,7 @@ const Ls = L.canvas`
     instruction: i,
     isMirroring: n
   };
-}, Us = (e, t) => {
-  const [n, r] = H(!1);
-  return q(() => {
-    if (t === Ge.CLOSEUP) {
-      r(!0);
-      const o = setTimeout(() => {
-        r(!1);
-      }, ds);
-      return () => clearTimeout(o);
-    }
-  }, [t]), e && n ? e === je.CANDIDATE_SELECTION ? e : je.FIT_YOUR_EYE : e;
-}, Bs = () => {
+}, Us = () => {
   const [e, t] = H(Ge.DISTANT), [n, r] = H(Ve.LOADING), [o, i] = H(), a = pe(
     (s) => {
       const { error: c, phase: l, state: f } = s.detail || {};
@@ -2658,6 +2647,17 @@ const Ls = L.canvas`
     magnifEyeState: n,
     magnifEyeError: o
   };
+}, Bs = (e, t) => {
+  const [n, r] = H(!1);
+  return q(() => {
+    if (t === Ge.CLOSEUP) {
+      r(!0);
+      const o = setTimeout(() => {
+        r(!1);
+      }, ds);
+      return () => clearTimeout(o);
+    }
+  }, [t]), e && n ? e === je.CANDIDATE_SELECTION ? e : je.FIT_YOUR_EYE : e;
 }, zs = L.div`
   z-index: 1;
   position: absolute;
@@ -2869,7 +2869,7 @@ const Ls = L.canvas`
   /* @__PURE__ */ _(Zs, { $isAnimating: e, $isInCandidateSelection: t, children: /* @__PURE__ */ _(js, {}) }),
   /* @__PURE__ */ _(Ys, { $isAnimating: e, children: /* @__PURE__ */ _(Gs, {}) })
 ] }), Xs = () => {
-  const { cameraResolution: e, instruction: t, isMirroring: n } = Fs(), { magnifEyeError: r, magnifEyePhase: o, magnifEyeState: i } = Bs(), { instructions: a } = ve(), s = Us(t.code, o), c = s === je.CANDIDATE_SELECTION, l = o === Ge.MIDDLE || o === Ge.CLOSEUP;
+  const { cameraResolution: e, instruction: t, isMirroring: n } = Fs(), { magnifEyeError: r, magnifEyePhase: o, magnifEyeState: i } = Us(), { instructions: a } = ve(), s = Bs(t.code, o), c = s === je.CANDIDATE_SELECTION, l = o === Ge.MIDDLE || o === Ge.CLOSEUP;
   if (i === Ve.ERROR)
     return /* @__PURE__ */ _(_o, { text: r == null ? void 0 : r.message });
   if (i === Ve.RUNNING && e) {
