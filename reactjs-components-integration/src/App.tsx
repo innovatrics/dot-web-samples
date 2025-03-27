@@ -3,13 +3,11 @@ import type {
   DocumentCallback,
   DocumentComponentData,
 } from "@innovatrics/dot-document-auto-capture";
-import type {
-  FaceCallback,
-  FaceComponentData,
-} from "@innovatrics/dot-face-auto-capture";
+import type { FaceCallback } from "@innovatrics/dot-face-auto-capture";
 import type { MagnifEyeLivenessCallback } from "@innovatrics/dot-magnifeye-liveness";
 import { SmileLivenessCallback } from "@innovatrics/dot-smile-liveness";
 import { useCallback, useState } from "react";
+import { PalmCallback } from "@innovatrics/dot-palm-capture";
 import ComponentSelect from "./components/ComponentSelect";
 import DocumentAutoCapture from "./components/DocumentAutoCapture";
 import FaceAutoCapture from "./components/FaceAutoCapture";
@@ -18,6 +16,7 @@ import PhotoResult from "./components/PhotoResult";
 import SmileLiveness from "./components/SmileLiveness";
 import styles from "./styles/index.module.css";
 import { Step } from "./types";
+import PalmCapture from "./components/PalmCapture";
 
 function App() {
   const [step, setStep] = useState<Step>(Step.SELECT_COMPONENT);
@@ -36,6 +35,10 @@ function App() {
   };
 
   const handleFaceCapturePhotoTaken: FaceCallback = (imageData, content) => {
+    handlePhotoTaken(imageData, content);
+  };
+
+  const handlePalmCapturePhotoTaken: PalmCallback = (imageData, content) => {
     handlePhotoTaken(imageData, content);
   };
 
@@ -71,47 +74,43 @@ function App() {
     switch (currentStep) {
       case Step.DOCUMENT_CAPTURE:
         return (
-          <>
-            <DocumentAutoCapture
-              onPhotoTaken={handleDocumentPhotoTaken}
-              onError={handleError}
-              onBackClick={handleBackClick}
-            />
-            {photoUrl && <PhotoResult photoUrl={photoUrl} />}
-          </>
+          <DocumentAutoCapture
+            onPhotoTaken={handleDocumentPhotoTaken}
+            onError={handleError}
+            onBackClick={handleBackClick}
+          />
         );
       case Step.FACE_CAPTURE:
         return (
-          <>
-            <FaceAutoCapture
-              onPhotoTaken={handleFaceCapturePhotoTaken}
-              onError={handleError}
-              onBackClick={handleBackClick}
-            />
-            {photoUrl && <PhotoResult photoUrl={photoUrl} />}
-          </>
+          <FaceAutoCapture
+            onPhotoTaken={handleFaceCapturePhotoTaken}
+            onError={handleError}
+            onBackClick={handleBackClick}
+          />
+        );
+      case Step.PALM_CAPTURE:
+        return (
+          <PalmCapture
+            onPhotoTaken={handlePalmCapturePhotoTaken}
+            onError={handleError}
+            onBackClick={handleBackClick}
+          />
         );
       case Step.MAGNIFEYE_LIVENESS:
         return (
-          <>
-            <MagnifEyeLiveness
-              onComplete={handleMagnifEyeComplete}
-              onError={handleError}
-              onBackClick={handleBackClick}
-            />
-            {photoUrl && <PhotoResult photoUrl={photoUrl} />}
-          </>
+          <MagnifEyeLiveness
+            onComplete={handleMagnifEyeComplete}
+            onError={handleError}
+            onBackClick={handleBackClick}
+          />
         );
       case Step.SMILE_LIVENESS:
         return (
-          <>
-            <SmileLiveness
-              onComplete={handleSmileComplete}
-              onError={handleError}
-              onBackClick={handleBackClick}
-            />
-            {photoUrl && <PhotoResult photoUrl={photoUrl} />}
-          </>
+          <SmileLiveness
+            onComplete={handleSmileComplete}
+            onError={handleError}
+            onBackClick={handleBackClick}
+          />
         );
       default:
         return <ComponentSelect setStep={setStep} />;
@@ -122,6 +121,7 @@ function App() {
     <div className={styles.app}>
       <h1>DOT Web Components Integration</h1>
       {renderStep(step)}
+      {photoUrl && <PhotoResult photoUrl={photoUrl} />}
     </div>
   );
 }

@@ -14,6 +14,9 @@ const emit = defineEmits<{
     <button class="button" @click="emit('onClick', Step.DOCUMENT_CAPTURE)">
       Document
     </button>
+    <button class="button" @click="emit('onClick', Step.PALM_CAPTURE)">
+      Palm
+    </button>
     <button class="button" @click="emit('onClick', Step.MAGNIFEYE_CAPTURE)">
       MagnifEye Liveness
     </button>

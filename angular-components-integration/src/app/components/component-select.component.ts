@@ -7,6 +7,7 @@ import { Step } from '../types';
     <div>
       <button (click)="onFaceClick()" class="button">Face</button>
       <button (click)="onDocumentClick()" class="button">Document</button>
+      <button (click)="onPalmClick()" class="button">Palm</button>
       <button (click)="onMagnifEyeLivenessClick()" class="button">
         MagnifEye Liveness
       </button>
@@ -26,6 +27,10 @@ export class ComponentSelectComponent {
 
   onDocumentClick() {
     this.btnClick.emit(Step.DOCUMENT_CAPTURE);
+  }
+
+  onPalmClick() {
+    this.btnClick.emit(Step.PALM_CAPTURE);
   }
 
   onMagnifEyeLivenessClick() {

@@ -14,6 +14,10 @@ function ComponentSelect({ setStep }: Props) {
     setStep(Step.FACE_CAPTURE);
   };
 
+  const handlePalmClick = () => {
+    setStep(Step.PALM_CAPTURE);
+  };
+
   const handleMagnifEyeLivenessClick = () => {
     setStep(Step.MAGNIFEYE_LIVENESS);
   };
@@ -29,6 +33,9 @@ function ComponentSelect({ setStep }: Props) {
       </button>
       <button className={styles.primary} onClick={handleDocumentClick}>
         Document
+      </button>
+      <button className={styles.primary} onClick={handlePalmClick}>
+        Palm
       </button>
       <button className={styles.primary} onClick={handleMagnifEyeLivenessClick}>
         MagnifEye Liveness

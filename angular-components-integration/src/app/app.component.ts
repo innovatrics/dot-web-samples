@@ -6,6 +6,7 @@ import { ResultComponent } from './components/result.component';
 import { FaceAutoCaptureComponent } from './components/face/face-auto-capture.component';
 import { MagnifEyeLivenessComponent } from './components/magnifeye-liveness/magnifeye-liveness.component';
 import { SmileLivenessComponent } from './components/smile-liveness/smile-liveness.component';
+import { PalmCaptureComponent } from './components/palm/palm-capture.component';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ import { SmileLivenessComponent } from './components/smile-liveness/smile-livene
     FaceAutoCaptureComponent,
     MagnifEyeLivenessComponent,
     SmileLivenessComponent,
+    PalmCaptureComponent,
   ],
 })
 export class AppComponent {

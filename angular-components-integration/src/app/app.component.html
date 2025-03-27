@@ -26,6 +26,19 @@
       }
     </div>
   }
+  @if (currentStep === step.PALM_CAPTURE) {
+    <div>
+      <app-palm-auto-capture
+        (photoTaken)="handlePhotoTaken($event)"
+        (captureError)="handleError($event)"
+        (back)="handleStepChange($event)"
+      >
+      </app-palm-auto-capture>
+      @if (imageUrl) {
+        <app-result [imageUrl]="imageUrl"></app-result>
+      }
+    </div>
+  }
   @if (currentStep === step.MAGNIFEYE_LIVENESS) {
     <div>
       <app-magnifeye-liveness

@@ -1,7 +1,7 @@
 {
   "name": "reactjs-components-integration",
   "private": true,
-  "version": "1.2.14",
+  "version": "1.2.15",
   "license": "SEE LICENSE IN LICENSE.txt",
   "type": "module",
   "scripts": {
@@ -15,11 +15,12 @@
     "copy-assets-win": "for /d %i in (node_modules\\@innovatrics\\*) do xcopy /E /I /Y %i\\dot-assets public\\dot-assets"
   },
   "dependencies": {
-    "@innovatrics/dot-auto-capture-ui": "7.1.2",
-    "@innovatrics/dot-document-auto-capture": "7.1.2",
-    "@innovatrics/dot-face-auto-capture": "7.1.2",
-    "@innovatrics/dot-magnifeye-liveness": "7.1.2",
-    "@innovatrics/dot-smile-liveness": "7.1.2",
+    "@innovatrics/dot-auto-capture-ui": "7.2.1",
+    "@innovatrics/dot-document-auto-capture": "7.2.1",
+    "@innovatrics/dot-face-auto-capture": "7.2.1",
+    "@innovatrics/dot-magnifeye-liveness": "7.2.1",
+    "@innovatrics/dot-palm-capture": "7.2.1",
+    "@innovatrics/dot-smile-liveness": "7.2.1",
     "@vitejs/plugin-react": "^4.3.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "react": "^18.3.1",

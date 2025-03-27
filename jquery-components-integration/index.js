@@ -27,6 +27,19 @@ $(function () {
     $('#continue').on('click', continueDocumentDetection);
   });
 
+  $('#palm').click(function () {
+    // same as face component above, we need to make sure we're working with a fresh copy before supplying it with props
+    let cam = document.createElement('x-dot-palm-capture');
+    let ui = document.createElement('x-dot-palm-capture-ui');
+    cam.setAttribute('id', 'x-dot-palm-capture');
+    ui.setAttribute('id', 'x-dot-palm-capture-ui');
+    $('#container').empty().append(cam).append(ui);
+    loadPalmProps();
+    loadPalmUiProps();
+    resetState();
+    $('#continue').on('click', continuePalmDetection);
+  });
+
   $('#magnifeye').click(function () {
     // same as face component above, we need to make sure we're working with a fresh copy before supplying it with props
     let cam = document.createElement('x-dot-magnifeye-liveness');
@@ -58,6 +71,7 @@ function resetState() {
   $('#result').empty();
   $('#continue').off('click', continueFaceDetection);
   $('#continue').off('click', continueDocumentDetection);
+  $('#continue').off('click', continuePalmDetection);
 }
 
 async function handleDocumentPhotoTaken(imageData, content) {
@@ -105,6 +119,27 @@ function loadFaceUiProps() {
     // DOCS: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-web-face/latest/documentation/
   });
 }
+
+async function handlePalmPhotoTaken(imageData, content) {
+  const img = await blobToImage(imageData.image);
+  $('#result').empty().append(img);
+  $('#continue').attr('disabled', false);
+}
+
+function loadPalmProps() {
+  $('x-dot-palm-capture').prop('cameraOptions', {
+    onPhotoTaken: handlePalmPhotoTaken,
+    onError: handleError,
+    cameraFacing: 'environment',
+  });
+}
+
+function loadPalmUiProps() {
+  $('x-dot-palm-capture-ui').prop('props', {
+    showCameraButtons: true,
+  });
+}
+
 /**
  * At this point use @content property with Digital Identity Service in order to evaluate the MagnifEye liveness score.
  * See: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-dis/latest/documentation/#_magnifeye_liveness_check
@@ -182,6 +217,15 @@ function continueDocumentDetection() {
 function continueFaceDetection() {
   document.dispatchEvent(
     new CustomEvent('face-auto-capture:control', {
+      detail: { instruction: 'continue-detection' },
+    })
+  );
+  $('#continue').attr('disabled', true);
+}
+
+function continuePalmDetection() {
+  document.dispatchEvent(
+    new CustomEvent('palm-capture:control', {
       detail: { instruction: 'continue-detection' },
     })
   );
