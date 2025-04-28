@@ -35,6 +35,7 @@ function FaceAutoCapture({ onPhotoTaken, onError, onBackClick }: Props) {
 
     setIsButtonDisabled(true);
   };
+
   return (
     <>
       <h2>Face auto capture</h2>

@@ -4,6 +4,11 @@ import { Step, Emits } from "../types";
 import MagnifEyeLivenessCamera from "./MagnifEyeLivenessCamera.vue";
 import MagnifEyeLivenessUi from "./MagnifEyeLivenessUi.vue";
 import { MagnifEyeLivenessCallback } from "@innovatrics/dot-magnifeye-liveness";
+import {
+  dispatchControlEvent,
+  MagnifEyeCustomEvent,
+  ControlEventInstruction,
+} from "@innovatrics/dot-magnifeye-liveness/events";
 
 const emit = defineEmits<Emits<MagnifEyeLivenessCallback>>();
 
@@ -18,6 +23,14 @@ const onComplete: MagnifEyeLivenessCallback = (imageData, content) => {
   emit("onComplete", imageData, content);
 };
 
+const handleContinueDetection = () => {
+  dispatchControlEvent(
+    MagnifEyeCustomEvent.CONTROL,
+    ControlEventInstruction.CONTINUE_DETECTION
+  );
+  isButtonDisabled.value = true;
+};
+
 const onError = (error: Error) => {
   emit("onError", error);
 };
@@ -28,6 +41,9 @@ const onError = (error: Error) => {
     <h2>MagnifEye Liveness</h2>
     <button @click="emit('onBack', Step.SELECT_COMPONENT)" class="button">
       Go back
+    </button>
+    <button :disabled="isButtonDisabled" @click="handleContinueDetection" class="button">
+      Continue detection
     </button>
     <div class="container overflow-hidden">
       <MagnifEyeLivenessCamera :cameraOptions="{

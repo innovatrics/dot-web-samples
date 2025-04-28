@@ -1,6 +1,6 @@
 {
   "name": "angular-components-integration",
-  "version": "1.2.15",
+  "version": "1.2.16",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -15,6 +15,7 @@
     "copy-assets-win": "for /d %i in (node_modules\\@innovatrics\\*) do xcopy /E /I /Y %i\\dot-assets src\\dot-assets"
   },
   "private": true,
+  "packageManager": "yarn@1.22.22",
   "dependencies": {
     "@angular/animations": "^18.1.2",
     "@angular/common": "^18.1.2",
@@ -24,12 +25,12 @@
     "@angular/platform-browser": "^18.1.2",
     "@angular/platform-browser-dynamic": "^18.1.2",
     "@angular/router": "^18.1.2",
-    "@innovatrics/dot-auto-capture-ui": "7.2.1",
-    "@innovatrics/dot-document-auto-capture": "7.2.1",
-    "@innovatrics/dot-face-auto-capture": "7.2.1",
-    "@innovatrics/dot-magnifeye-liveness": "7.2.1",
-    "@innovatrics/dot-palm-capture": "7.2.1",
-    "@innovatrics/dot-smile-liveness": "7.2.1",
+    "@innovatrics/dot-auto-capture-ui": "7.3.2",
+    "@innovatrics/dot-document-auto-capture": "7.3.2",
+    "@innovatrics/dot-face-auto-capture": "7.3.2",
+    "@innovatrics/dot-magnifeye-liveness": "7.3.2",
+    "@innovatrics/dot-palm-capture": "7.3.2",
+    "@innovatrics/dot-smile-liveness": "7.3.2",
     "rxjs": "~7.8.1",
     "tslib": "^2.6.3",
     "zone.js": "~0.14.8"

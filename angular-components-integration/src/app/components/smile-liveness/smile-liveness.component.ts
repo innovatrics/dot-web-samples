@@ -5,6 +5,11 @@ import '@innovatrics/dot-smile-liveness';
 import { SmileLivenessCameraComponent } from './smile-liveness-camera.component';
 import { SmileLivenessUiComponent } from './smile-liveness-ui.component';
 
+import {
+  dispatchControlEvent,
+  SmileCustomEvent,
+  ControlEventInstruction,
+} from '@innovatrics/dot-smile-liveness/events';
 @Component({
   selector: 'app-smile-liveness',
   standalone: true,
@@ -13,6 +18,13 @@ import { SmileLivenessUiComponent } from './smile-liveness-ui.component';
     <div>
       <h2>Smile Liveness</h2>
       <button (click)="onBackClick()" class="button">Go back</button>
+      <button
+        (click)="handleContinue()"
+        class="button"
+        [disabled]="isButtonDisabled"
+      >
+        Continue detection
+      </button>
       <div class="container">
         <app-smile-liveness-camera
           (photoTaken)="handlePhotoTaken($event)"
@@ -30,8 +42,18 @@ export class SmileLivenessComponent {
   @Output() captureError = new EventEmitter<Error>();
   @Output() back = new EventEmitter<Step>();
 
+  isButtonDisabled = true;
+
   onBackClick() {
     this.back.emit(Step.SELECT_COMPONENT);
+  }
+
+  handleContinue() {
+    dispatchControlEvent(
+      SmileCustomEvent.CONTROL,
+      ControlEventInstruction.CONTINUE_DETECTION,
+    );
+    this.isButtonDisabled = true;
   }
 
   handlePhotoTaken({
@@ -39,6 +61,7 @@ export class SmileLivenessComponent {
     content,
   }: OnPhotoTakenEventValue<OnCompleteData['data']>) {
     this.photoTaken.emit({ imageData, content });
+    this.isButtonDisabled = false;
   }
 
   handleError(error: Error) {

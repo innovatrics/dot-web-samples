@@ -49,7 +49,8 @@ $(function () {
     $('#container').empty().append(cam).append(ui);
     loadMagnifEyeProps();
     loadMagnifEyeUiProps();
-    $('#result').empty();
+    resetState();
+    $('#continue').on('click', continueMagnifEyeDetection);
   });
 
   $('#smile').click(function () {
@@ -61,18 +62,13 @@ $(function () {
     $('#container').empty().append(cam).append(ui);
     loadSmileProps();
     loadSmileUiProps();
-    $('#result').empty();
+    resetState();
+    $('#continue').on('click', continueSmileDetection);
   });
 
 });
 
-function resetState() {
-  $('#continue').attr('disabled', true);
-  $('#result').empty();
-  $('#continue').off('click', continueFaceDetection);
-  $('#continue').off('click', continueDocumentDetection);
-  $('#continue').off('click', continuePalmDetection);
-}
+// component event handlers
 
 async function handleDocumentPhotoTaken(imageData, content) {
   const img = await blobToImage(imageData.image);
@@ -80,7 +76,37 @@ async function handleDocumentPhotoTaken(imageData, content) {
   $('#continue').attr('disabled', false);
 }
 
-// the component needs to have props supplied after first render, this must be done via the .prop() method, as attributes dont support objects and functions
+async function handleFacePhotoTaken(imageData, content) {
+  const img = await blobToImage(imageData.image);
+  $('#result').empty().append(img);
+  $('#continue').attr('disabled', false);
+}
+
+async function handlePalmPhotoTaken(imageData, content) {
+  const img = await blobToImage(imageData.image);
+  $('#result').empty().append(img);
+  $('#continue').attr('disabled', false);
+}
+
+/**
+ * At this point use @content property with Digital Identity Service in order to evaluate the MagnifEye liveness score.
+ * See: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-dis/latest/documentation/#_magnifeye_liveness_check
+ */
+async function handleMagnifEyeComplete(imageData, content) {
+  const img = await blobToImage(imageData.image);
+  $('#result').empty().append(img);
+  $('#continue').attr('disabled', false);
+}
+
+async function handleSmileComplete(imageData, content) {
+  const [, smileImageData] = imageData;
+  const img = await blobToImage(smileImageData.image);
+  $('#result').empty().append(img);
+  $('#continue').attr('disabled', false);
+}
+
+// component props
+
 function loadDocumentProps() {
   $('x-dot-document-auto-capture').prop('cameraOptions', {
     onPhotoTaken: handleDocumentPhotoTaken,
@@ -95,12 +121,6 @@ function loadDocumentUiProps() {
     // customize document UI props here
     // DOCS: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-web-document/latest/documentation/
   });
-}
-
-async function handleFacePhotoTaken(imageData, content) {
-  const img = await blobToImage(imageData.image);
-  $('#result').empty().append(img);
-  $('#continue').attr('disabled', false);
 }
 
 // the component needs to have props supplied after first render, this must be done via the .prop() method, as attributes dont support objects and functions
@@ -120,12 +140,6 @@ function loadFaceUiProps() {
   });
 }
 
-async function handlePalmPhotoTaken(imageData, content) {
-  const img = await blobToImage(imageData.image);
-  $('#result').empty().append(img);
-  $('#continue').attr('disabled', false);
-}
-
 function loadPalmProps() {
   $('x-dot-palm-capture').prop('cameraOptions', {
     onPhotoTaken: handlePalmPhotoTaken,
@@ -138,22 +152,6 @@ function loadPalmUiProps() {
   $('x-dot-palm-capture-ui').prop('props', {
     showCameraButtons: true,
   });
-}
-
-/**
- * At this point use @content property with Digital Identity Service in order to evaluate the MagnifEye liveness score.
- * See: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-dis/latest/documentation/#_magnifeye_liveness_check
- */
-async function handleMagnifEyeComplete(imageData, content) {
-  const img = await blobToImage(imageData.image);
-  $('#result').empty().append(img);
-}
-
-async function handleSmileComplete(imageData, content) {
-  const [, smileImageData] = imageData;
-  const img = await blobToImage(smileImageData.image);
-  $('#result').empty().append(img);
-  $('#continue').attr('disabled', true);
 }
 
 function loadMagnifEyeProps() {
@@ -184,26 +182,7 @@ function loadSmileUiProps() {
   });
 }
 
-
-function handleError(e) {
-  alert(e);
-}
-
-function blobToImage(blob) {
-  return new Promise((resolve, reject) => {
-    const url = URL.createObjectURL(blob);
-    const img = new Image();
-    img.onerror = (e) => {
-      URL.revokeObjectURL(url);
-      reject(e);
-    };
-    img.onload = () => {
-      URL.revokeObjectURL(url);
-      resolve(img);
-    };
-    img.src = url;
-  });
-}
+// component control events
 
 function continueDocumentDetection() {
   document.dispatchEvent(
@@ -230,4 +209,50 @@ function continuePalmDetection() {
     })
   );
   $('#continue').attr('disabled', true);
+}
+
+function continueSmileDetection() {
+  document.dispatchEvent(
+    new CustomEvent('smile-auto-capture:control', {
+      detail: { instruction: 'continue-detection' },
+    })
+  );
+}
+
+function continueMagnifEyeDetection() {
+  document.dispatchEvent(
+    new CustomEvent('magnifeye-auto-capture:control', {
+      detail: { instruction: 'continue-detection' },
+    })
+  );
+}
+
+// global functions
+
+function resetState() {
+  $('#continue').attr('disabled', true);
+  $('#result').empty();
+  $('#continue').off('click', continueFaceDetection);
+  $('#continue').off('click', continueDocumentDetection);
+  $('#continue').off('click', continuePalmDetection);
+}
+
+function handleError(e) {
+  alert(e);
+}
+
+function blobToImage(blob) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+    img.onerror = (e) => {
+      URL.revokeObjectURL(url);
+      reject(e);
+    };
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      resolve(img);
+    };
+    img.src = url;
+  });
 }

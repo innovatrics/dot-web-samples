@@ -3,7 +3,11 @@ import { OnPhotoTakenEventValue, Step } from '../../types';
 import type { OnCompleteData } from '@innovatrics/dot-magnifeye-liveness';
 import { MagnifEyeLivenessCameraComponent } from './magnifeye-liveness-camera.component';
 import { MagnifEyeLivenessUiComponent } from './magnifeye-liveness-ui.component';
-
+import {
+  dispatchControlEvent,
+  MagnifEyeCustomEvent,
+  ControlEventInstruction,
+} from '@innovatrics/dot-magnifeye-liveness/events';
 @Component({
   selector: 'app-magnifeye-liveness',
   standalone: true,
@@ -12,6 +16,13 @@ import { MagnifEyeLivenessUiComponent } from './magnifeye-liveness-ui.component'
     <div>
       <h2>MagnifEye Liveness</h2>
       <button (click)="onBackClick()" class="button">Go back</button>
+      <button
+        (click)="handleContinue()"
+        class="button"
+        [disabled]="isButtonDisabled"
+      >
+        Continue detection
+      </button>
       <div class="container">
         <app-magnifeye-liveness-camera
           (photoTaken)="handlePhotoTaken($event)"
@@ -29,8 +40,18 @@ export class MagnifEyeLivenessComponent {
   @Output() captureError = new EventEmitter<Error>();
   @Output() back = new EventEmitter<Step>();
 
+  isButtonDisabled = true;
+
   onBackClick() {
     this.back.emit(Step.SELECT_COMPONENT);
+  }
+
+  handleContinue() {
+    dispatchControlEvent(
+      MagnifEyeCustomEvent.CONTROL,
+      ControlEventInstruction.CONTINUE_DETECTION,
+    );
+    this.isButtonDisabled = true;
   }
 
   handlePhotoTaken({
@@ -38,6 +59,7 @@ export class MagnifEyeLivenessComponent {
     content,
   }: OnPhotoTakenEventValue<OnCompleteData['data']>) {
     this.photoTaken.emit({ imageData, content });
+    this.isButtonDisabled = false;
   }
 
   handleError(error: Error) {

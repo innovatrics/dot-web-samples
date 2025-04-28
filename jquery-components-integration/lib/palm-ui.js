@@ -2327,7 +2327,182 @@ const Ja = () => {
       }
     )
   ] });
-}, is = D.div`
+}, is = "2.5s", as = "0.3s", ss = "linear", cs = Et`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+Et`
+  100% {
+    transform: translate(-50%, -50%) scale(2.6);
+    top: 50%;
+    left: 50%;
+  }
+`;
+Et`
+  5% {
+    transform: translate(-50%, -50%) scale(0.7);
+    opacity: 1;
+  }
+  10% {
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  40% {
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0.5;
+  }
+`;
+Et`
+  5% {
+    opacity: 1;
+  }
+  70% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+`;
+const ls = D.div`
+  position: absolute;
+  left: 50%;
+
+  ${(e) => e.$cssTop ? `top: ${e.$cssTop}%;` : ""}
+  ${(e) => e.$cssBottom ? `bottom: ${e.$cssBottom}%;` : ""}
+    ${(e) => e.$isAnimating && vn`
+      animation: ${cs} ${as}
+        ${ss} both;
+      animation-delay: ${is};
+
+      @media (orientation: landscape) {
+        bottom: ${e.$cssBottom ? e.$cssBottom - 15 : ""}%;
+      }
+
+      @media (max-width: 1024px) and (orientation: landscape) {
+        bottom: ${e.$cssBottom ? e.$cssBottom - 13 : ""}%;
+      }
+
+      @media (max-width: 768px) {
+        bottom: ${e.$cssBottom ? e.$cssBottom + 3 : ""}%;
+      }
+
+      @media (max-width: 480px) and (orientation: portrait) {
+        bottom: ${e.$cssBottom ? e.$cssBottom - 10 : ""}%;
+      }
+    `};
+
+  transform: translateX(-50%)
+    translateY(
+      ${(e) => e.$cssTop || e.$isPortrait ? "-50%" : e.$isPortrait ? "" : "50%"}
+    );
+  z-index: 2;
+`, us = D.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 0.25em;
+  margin: 0 auto;
+  padding: 0.583em 0.666em;
+  background: ${(e) => e.$isInCandidateSelection ? `${e.theme.colors.instructionColorSuccess}` : `${e.theme.colors.instructionColor}`};
+  color: ${(e) => e.theme.colors.instructionTextColor};
+  border: 0;
+  line-height: 1em;
+  font-size: ${(e) => `${e.$fontSize}px`};
+  white-space: ${(e) => e.$wrap ? "break-spaces" : "nowrap"};
+`, fs = ({
+  children: e,
+  cssBottom: t,
+  cssTop: n,
+  isAnimating: r,
+  isInCandidateSelection: o,
+  isPortrait: i
+}) => {
+  const { fontSize: a } = Ce();
+  return /* @__PURE__ */ _(ls, { $cssBottom: t, $cssTop: n, $isAnimating: r, $isPortrait: i, children: /* @__PURE__ */ _(
+    us,
+    {
+      $fontSize: a,
+      $isInCandidateSelection: o,
+      $wrap: e.length > $a,
+      children: e
+    }
+  ) });
+}, ds = D.canvas`
+  transform: ${(e) => e.$isImageMirror ? "rotateY(180deg)" : "none"};
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+`, _s = (e) => {
+  const t = e.getContext("2d");
+  t && t.clearRect(0, 0, t.canvas.width, t.canvas.height);
+}, Be = (e, t) => Math.hypot(t.x - e.x, t.y - e.y), sr = (e, t, n) => {
+  const r = (t.x - e.x) * n, o = (t.y - e.y) * n;
+  return {
+    x: e.x + r,
+    y: e.y + o
+  };
+}, cr = (e, t, n, r) => {
+  const o = Be(e, t);
+  return n * r / o;
+}, hs = (e) => {
+  const { bottomLeft: t, bottomRight: n, topLeft: r, topRight: o } = e, i = Be(r, o), a = Be(o, n), s = Be(t, n), l = Be(r, t);
+  return Math.min(i, a, s, l);
+};
+function ps({ cameraResolution: e, isImageMirror: t }) {
+  const n = Ze(null), r = oo(), [o, i] = B(), a = _e(
+    (s) => {
+      var l;
+      i((l = s == null ? void 0 : s.detail) == null ? void 0 : l.detectedObject);
+    },
+    [i]
+  );
+  return Ee(Cr.DETECTED_DOCUMENT_CHANGED, a), Ee(de.DETECTED_PALM_CHANGED, a), ne(() => {
+    if (!n.current)
+      return;
+    const s = (u, d, c, h) => {
+      var g;
+      const f = cr(
+        d,
+        u,
+        h,
+        rr
+      ), p = cr(
+        d,
+        c,
+        h,
+        rr
+      ), y = sr(d, u, f), v = sr(d, c, p), m = (g = n == null ? void 0 : n.current) == null ? void 0 : g.getContext("2d");
+      m && (m.beginPath(), m.lineWidth = ba, m.strokeStyle = r.colors.placeholderColor, m.moveTo(y.x, y.y), m.arcTo(d.x, d.y, v.x, v.y, wa), m.lineTo(v.x, v.y), m.stroke());
+    }, l = (u) => {
+      if (!u)
+        return;
+      const { bottomLeft: d, bottomRight: c, topLeft: h, topRight: f } = u, p = hs(u);
+      s(d, h, f, p), s(h, f, c, p), s(f, c, d, p), s(c, d, h, p);
+    };
+    n.current.width = e.width, n.current.height = e.height, _s(n.current), l(o);
+  }, [e, o, r.colors.placeholderColor]), /* @__PURE__ */ _(ds, { ref: n, $isImageMirror: t });
+}
+const ms = D.div`
   color: ${(e) => e.theme.colors.instructionTextColor};
   animation: spin 2s linear infinite;
 
@@ -2336,7 +2511,7 @@ const Ja = () => {
       transform: rotate(-360deg);
     }
   }
-`, as = ({ svgSize: e }) => /* @__PURE__ */ _(is, { children: /* @__PURE__ */ _("svg", { fill: "none", height: e, viewBox: "0 0 48 48", width: e, xmlns: "http://www.w3.org/2000/svg", children: [
+`, gs = ({ svgSize: e }) => /* @__PURE__ */ _(ms, { children: /* @__PURE__ */ _("svg", { fill: "none", height: e, viewBox: "0 0 48 48", width: e, xmlns: "http://www.w3.org/2000/svg", children: [
   /* @__PURE__ */ _(
     "path",
     {
@@ -2393,202 +2568,29 @@ const Ja = () => {
       fill: "currentColor"
     }
   )
-] }) }), ss = D.div`
+] }) }), ys = D.div`
   z-index: 1;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-`, cs = ({ children: e, height: t, width: n }) => {
+`, vs = ({ children: e, height: t, width: n }) => {
   const { backdropColor: r } = Ce();
-  return /* @__PURE__ */ _(ss, { children: /* @__PURE__ */ _("svg", { viewBox: `0 0 ${n} ${t}`, children: [
+  return /* @__PURE__ */ _(ys, { children: /* @__PURE__ */ _("svg", { viewBox: `0 0 ${n} ${t}`, children: [
     /* @__PURE__ */ _("defs", { children: /* @__PURE__ */ _("mask", { id: "mask", children: [
       /* @__PURE__ */ _("rect", { fill: "#fff", height: "100%", width: "100%" }),
       e
     ] }) }),
     /* @__PURE__ */ _("rect", { fill: r, height: "100%", mask: "url(#mask)", width: "100%" })
   ] }) });
-}, ls = ({ cameraHeight: e, cameraWidth: t, isBackdrop: n, state: r }) => {
+};
+function Cs({ cameraHeight: e, cameraWidth: t, isBackdrop: n, state: r }) {
   const { appStateInstructions: o } = Ce(), i = r === Y.ERROR || r === Y.RUNNING;
   return !r || i || !(o != null && o[r].visible) ? null : r === Y.WAITING ? /* @__PURE__ */ _(j, { children: [
-    n && e && t && /* @__PURE__ */ _(cs, { height: e, width: t }),
+    n && e && t && /* @__PURE__ */ _(vs, { height: e, width: t }),
     /* @__PURE__ */ _(en, { isCameraReady: !0, text: o[Y.WAITING].text })
-  ] }) : /* @__PURE__ */ _(en, { Icon: as, isCameraReady: !0, text: o[Y.LOADING].text });
-}, us = "2.5s", fs = "0.3s", ds = "linear", _s = Et`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
-Et`
-  100% {
-    transform: translate(-50%, -50%) scale(2.6);
-    top: 50%;
-    left: 50%;
-  }
-`;
-Et`
-  5% {
-    transform: translate(-50%, -50%) scale(0.7);
-    opacity: 1;
-  }
-  10% {
-    transform: translate(-50%, -50%) scale(0.6);
-  }
-  40% {
-    transform: translate(-50%, -50%) scale(0.6);
-  }
-  70% {
-    transform: translate(-50%, -50%) scale(0.85);
-    opacity: 1;
-  }
-  90% {
-    transform: translate(-50%, -50%) scale(0.85);
-    opacity: 0.5;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(0.85);
-    opacity: 0.5;
-  }
-`;
-Et`
-  5% {
-    opacity: 1;
-  }
-  70% {
-    transform: scale(1.1);
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-`;
-const hs = D.div`
-  position: absolute;
-  left: 50%;
-
-  ${(e) => e.$cssTop ? `top: ${e.$cssTop}%;` : ""}
-  ${(e) => e.$cssBottom ? `bottom: ${e.$cssBottom}%;` : ""}
-    ${(e) => e.$isAnimating && vn`
-      animation: ${_s} ${fs}
-        ${ds} both;
-      animation-delay: ${us};
-
-      @media (orientation: landscape) {
-        bottom: ${e.$cssBottom ? e.$cssBottom - 15 : ""}%;
-      }
-
-      @media (max-width: 1024px) and (orientation: landscape) {
-        bottom: ${e.$cssBottom ? e.$cssBottom - 13 : ""}%;
-      }
-
-      @media (max-width: 768px) {
-        bottom: ${e.$cssBottom ? e.$cssBottom + 3 : ""}%;
-      }
-
-      @media (max-width: 480px) and (orientation: portrait) {
-        bottom: ${e.$cssBottom ? e.$cssBottom - 10 : ""}%;
-      }
-    `};
-
-  transform: translateX(-50%)
-    translateY(
-      ${(e) => e.$cssTop || e.$isPortrait ? "-50%" : e.$isPortrait ? "" : "50%"}
-    );
-  z-index: 2;
-`, ps = D.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-radius: 0.25em;
-  margin: 0 auto;
-  padding: 0.583em 0.666em;
-  background: ${(e) => e.$isInCandidateSelection ? `${e.theme.colors.instructionColorSuccess}` : `${e.theme.colors.instructionColor}`};
-  color: ${(e) => e.theme.colors.instructionTextColor};
-  border: 0;
-  line-height: 1em;
-  font-size: ${(e) => `${e.$fontSize}px`};
-  white-space: ${(e) => e.$wrap ? "break-spaces" : "nowrap"};
-`, ms = ({
-  children: e,
-  cssBottom: t,
-  cssTop: n,
-  isAnimating: r,
-  isInCandidateSelection: o,
-  isPortrait: i
-}) => {
-  const { fontSize: a } = Ce();
-  return /* @__PURE__ */ _(hs, { $cssBottom: t, $cssTop: n, $isAnimating: r, $isPortrait: i, children: /* @__PURE__ */ _(
-    ps,
-    {
-      $fontSize: a,
-      $isInCandidateSelection: o,
-      $wrap: e.length > $a,
-      children: e
-    }
-  ) });
-}, gs = D.canvas`
-  transform: ${(e) => e.$isImageMirror ? "rotateY(180deg)" : "none"};
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-`, ys = (e) => {
-  const t = e.getContext("2d");
-  t && t.clearRect(0, 0, t.canvas.width, t.canvas.height);
-}, Be = (e, t) => Math.hypot(t.x - e.x, t.y - e.y), sr = (e, t, n) => {
-  const r = (t.x - e.x) * n, o = (t.y - e.y) * n;
-  return {
-    x: e.x + r,
-    y: e.y + o
-  };
-}, cr = (e, t, n, r) => {
-  const o = Be(e, t);
-  return n * r / o;
-}, vs = (e) => {
-  const { bottomLeft: t, bottomRight: n, topLeft: r, topRight: o } = e, i = Be(r, o), a = Be(o, n), s = Be(t, n), l = Be(r, t);
-  return Math.min(i, a, s, l);
-};
-function Cs({ cameraResolution: e, isImageMirror: t }) {
-  const n = Ze(null), r = oo(), [o, i] = B(), a = _e(
-    (s) => {
-      var l;
-      i((l = s == null ? void 0 : s.detail) == null ? void 0 : l.detectedObject);
-    },
-    [i]
-  );
-  return Ee(Cr.DETECTED_DOCUMENT_CHANGED, a), Ee(de.DETECTED_PALM_CHANGED, a), ne(() => {
-    if (!n.current)
-      return;
-    const s = (u, d, c, h) => {
-      var g;
-      const f = cr(
-        d,
-        u,
-        h,
-        rr
-      ), p = cr(
-        d,
-        c,
-        h,
-        rr
-      ), y = sr(d, u, f), v = sr(d, c, p), m = (g = n == null ? void 0 : n.current) == null ? void 0 : g.getContext("2d");
-      m && (m.beginPath(), m.lineWidth = ba, m.strokeStyle = r.colors.placeholderColor, m.moveTo(y.x, y.y), m.arcTo(d.x, d.y, v.x, v.y, wa), m.lineTo(v.x, v.y), m.stroke());
-    }, l = (u) => {
-      if (!u)
-        return;
-      const { bottomLeft: d, bottomRight: c, topLeft: h, topRight: f } = u, p = vs(u);
-      s(d, h, f, p), s(h, f, c, p), s(f, c, d, p), s(c, d, h, p);
-    };
-    n.current.width = e.width, n.current.height = e.height, ys(n.current), l(o);
-  }, [e, o, r.colors.placeholderColor]), /* @__PURE__ */ _(gs, { ref: n, $isImageMirror: t });
+  ] }) : /* @__PURE__ */ _(en, { Icon: gs, isCameraReady: !0, text: o[Y.LOADING].text });
 }
 function ws() {
   return /* @__PURE__ */ _(
@@ -2709,7 +2711,7 @@ function Ns() {
 function ks() {
   const { appState: e, cameraResolution: t, error: n, instruction: r, isMirroring: o } = Ns(), i = r.code === z.CANDIDATE_SELECTION, { instructions: a, showDetectionLayer: s } = Ce();
   return e === Y.ERROR ? /* @__PURE__ */ _(lo, { text: n == null ? void 0 : n.message }) : e === Y.RUNNING && t ? /* @__PURE__ */ _(j, { children: [
-    s && /* @__PURE__ */ _(Cs, { cameraResolution: t, isImageMirror: o }),
+    s && /* @__PURE__ */ _(ps, { cameraResolution: t, isImageMirror: o }),
     /* @__PURE__ */ _(
       $s,
       {
@@ -2717,9 +2719,9 @@ function ks() {
         placeholderRectangle: qa(t)
       }
     ),
-    r.code && /* @__PURE__ */ _(ms, { cssTop: 50, isInCandidateSelection: i, children: a[r.code] }),
+    r.code && /* @__PURE__ */ _(fs, { cssTop: 50, isInCandidateSelection: i, children: a[r.code] }),
     /* @__PURE__ */ _(os, { customControlEvent: de.CONTROL, isSwitchCameraDisabled: i })
-  ] }) : /* @__PURE__ */ _(ls, { cameraHeight: t == null ? void 0 : t.height, cameraWidth: t == null ? void 0 : t.width, state: e });
+  ] }) : /* @__PURE__ */ _(Cs, { cameraHeight: t == null ? void 0 : t.height, cameraWidth: t == null ? void 0 : t.width, state: e });
 }
 const xs = (e) => {
   var l, u;

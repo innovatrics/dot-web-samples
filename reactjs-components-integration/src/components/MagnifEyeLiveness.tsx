@@ -1,4 +1,10 @@
 import type { MagnifEyeLivenessCallback } from "@innovatrics/dot-magnifeye-liveness";
+import { useState } from "react";
+import {
+  dispatchControlEvent,
+  MagnifEyeCustomEvent,
+  ControlEventInstruction,
+} from "@innovatrics/dot-magnifeye-liveness/events";
 import styles from "../styles/index.module.css";
 import buttonStyles from "../styles/button.module.css";
 import MagnifEyeLivenessCamera from "./MagnifEyeLivenessCamera";
@@ -11,6 +17,24 @@ interface Props {
 }
 
 function MagnifEyeLiveness({ onBackClick, onComplete, onError }: Props) {
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  const handleOnComplete: MagnifEyeLivenessCallback = async (
+    imageData,
+    content,
+  ) => {
+    setIsButtonDisabled(false);
+    onComplete(imageData, content);
+  };
+
+  const handleContinueDetection = () => {
+    dispatchControlEvent(
+      MagnifEyeCustomEvent.CONTROL,
+      ControlEventInstruction.CONTINUE_DETECTION,
+    );
+
+    setIsButtonDisabled(true);
+  };
   return (
     <>
       <h2>MagnifEye Liveness</h2>
@@ -18,9 +42,19 @@ function MagnifEyeLiveness({ onBackClick, onComplete, onError }: Props) {
         <button className={buttonStyles.primary} onClick={onBackClick}>
           Go back
         </button>
+        <button
+          className={buttonStyles.primary}
+          onClick={handleContinueDetection}
+          disabled={isButtonDisabled}
+        >
+          Continue detection
+        </button>
       </div>
       <div className={styles.container}>
-        <MagnifEyeLivenessCamera onComplete={onComplete} onError={onError} />
+        <MagnifEyeLivenessCamera
+          onComplete={handleOnComplete}
+          onError={onError}
+        />
         <MagnifEyeLivenessUi showCameraButtons />
       </div>
     </>
