@@ -1736,69 +1736,69 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-2.0.2.tgz#d9fae00a2d5cb40f92cfe64b47ad749fbc38f917"
   integrity sha512-6EwiSjwWYP7pTckG6I5eyFANjPhmPjUX9JRLUSfNPC7FX7zK9gyZAfUEaECL6ALTpGX5AjnBq3C9XmVWPitNpw==
 
-"@innovatrics/dot-auto-capture-ui@7.3.2":
-  version "7.3.2"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-auto-capture-ui/-/dot-auto-capture-ui-7.3.2.tgz#5f2caef8e7991fc987ee2f4b6b23a6c7ff0865ea"
-  integrity sha512-I54vfPmNAtmRWafFCSD22mPmJgdme35R0ByLgCenZyVVe9NgUkiqE7WBI26KEQTGYOwn0/oiI/SUl3u1VCx/yQ==
+"@innovatrics/dot-auto-capture-ui@7.3.3":
+  version "7.3.3"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-auto-capture-ui/-/dot-auto-capture-ui-7.3.3.tgz#0e8ef1539e504698a7e18d791ae6e9a12e81cb0e"
+  integrity sha512-EwmDsmgPhc0kQXQuJdsxapiFQasyFokubpakIL4X10m6SiiQwB3KRVB5eLR/YdZoSVwJ0kVLWDGn05TnhH3gzw==
   dependencies:
-    preact "^10.22.1"
+    preact "^10.26.6"
     preact-custom-element "^4.3.0"
-    styled-components "^6.1.11"
+    styled-components "^6.1.18"
 
-"@innovatrics/dot-document-auto-capture@7.3.2":
-  version "7.3.2"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-7.3.2.tgz#ab1429ee9113f56ef9792b413ab22461ff447a5a"
-  integrity sha512-qH4g8kurZitCZMyf7ehFUs+r7qaZ9CrUoJ8/19QlX3IJtb+o6XumI9K9bfuwDKvE56Kc3Oh0BNUoYHb+W+wexQ==
+"@innovatrics/dot-document-auto-capture@7.3.3":
+  version "7.3.3"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-7.3.3.tgz#bc1e1d6bfe78d1bbfd546264adc329a7af7c9fe5"
+  integrity sha512-zpHn/0OhaG8dmMI0Q9xVw+z6oIrO+G4nKtlFgKjzTSZ3X26kdYU/aO1tBmic+zSl0GkqjYv+iFp5DIYMDVRAkg==
   dependencies:
-    "@preact/signals" "^1.3.0"
-    comlink "^4.4.1"
-    preact "^10.22.1"
+    "@preact/signals" "^2.0.4"
+    comlink "^4.4.2"
+    preact "^10.26.6"
     preact-custom-element "^4.3.0"
-    styled-components "^6.1.11"
+    styled-components "^6.1.18"
 
-"@innovatrics/dot-face-auto-capture@7.3.2":
-  version "7.3.2"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-7.3.2.tgz#7d4fa38f4202e4a87bfcde2e27ad19ed0c701bf2"
-  integrity sha512-RiPGGZPYL000eSYBYNXuaAjwKZ1eU4PLnrA7oH1vW5PeppO0u4XFfAfum+zd53QK2osKwFBwCFIlkFdb98TElA==
+"@innovatrics/dot-face-auto-capture@7.3.3":
+  version "7.3.3"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-7.3.3.tgz#ab2ca0c743941c326d12c7af1ca678257609cb8d"
+  integrity sha512-xJ6qEPE+XUZfQQmDKjZATvWY8sbAGaR2vxf00i7qYMUDEK3l/iUdcpbOYxUz3kQ+itLV6lKuGtiehdazYZB/MQ==
   dependencies:
-    "@preact/signals" "^1.3.0"
-    comlink "^4.4.1"
-    preact "^10.22.1"
+    "@preact/signals" "^2.0.4"
+    comlink "^4.4.2"
+    preact "^10.26.6"
     preact-custom-element "^4.3.0"
-    styled-components "^6.1.11"
+    styled-components "^6.1.18"
 
-"@innovatrics/dot-magnifeye-liveness@7.3.2":
-  version "7.3.2"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-magnifeye-liveness/-/dot-magnifeye-liveness-7.3.2.tgz#13f8e9b59368162b38de132e7bbbefc1d7c88118"
-  integrity sha512-dJ9kj7106cohYa4OdY5a+y/12c7ySaVrApToVJNnDMYj7olLh0yKyrf+mXiv3huNErMLiXIYrH7xEIE07EcjMA==
+"@innovatrics/dot-magnifeye-liveness@7.3.3":
+  version "7.3.3"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-magnifeye-liveness/-/dot-magnifeye-liveness-7.3.3.tgz#d39b551b3d9fb74e9040ed872db1ee2dac450a8b"
+  integrity sha512-/Oyl0ZQQMctbVMM0wcDDh4yACIfacCvgqKQV/gZI8v2HSp8NHLgSFXqUnCy999R7icJWGbRp7biv8hiIVZGH5A==
   dependencies:
-    "@preact/signals" "^1.3.0"
-    comlink "^4.4.1"
-    preact "^10.22.1"
+    "@preact/signals" "^2.0.4"
+    comlink "^4.4.2"
+    preact "^10.26.6"
     preact-custom-element "^4.3.0"
-    styled-components "^6.1.11"
+    styled-components "^6.1.18"
 
-"@innovatrics/dot-palm-capture@7.3.2":
-  version "7.3.2"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-palm-capture/-/dot-palm-capture-7.3.2.tgz#3f79f8443b7371555db1dfda4a4198627a720b49"
-  integrity sha512-LrodiYIEXo3CmdPj0gNqysCEW3u5avDitF7hImAfd6o1HfGFUIh68WYXXL2Rg46t+ezB+awjDsfacfoj/+ycNw==
+"@innovatrics/dot-palm-capture@7.3.3":
+  version "7.3.3"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-palm-capture/-/dot-palm-capture-7.3.3.tgz#be27e9742ed9df2cead757c4b75e0136fac950ee"
+  integrity sha512-dQYEjwvc35v6dBTxwacGbbA6BpMZ730Q/F4ExorBQpFeJJ2S7ky4V8FDZ60O+CcVn3LQH+XWu7l1gzBG807M5Q==
   dependencies:
-    "@preact/signals" "^1.3.0"
-    comlink "^4.4.1"
-    preact "^10.22.1"
+    "@preact/signals" "^2.0.4"
+    comlink "^4.4.2"
+    preact "^10.26.6"
     preact-custom-element "^4.3.0"
-    styled-components "^6.1.11"
+    styled-components "^6.1.18"
 
-"@innovatrics/dot-smile-liveness@7.3.2":
-  version "7.3.2"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-smile-liveness/-/dot-smile-liveness-7.3.2.tgz#3bebb1939b325a81ce8f77d8dd713ce45d461016"
-  integrity sha512-bmmFH9Dg8DXB9INWvNYY5NCkXHG0TzFP4xYOcuwkI+6VHVSQzBcHx5jAY/C+YnB3hvbZHYiYxgy+WJsspEdDzg==
+"@innovatrics/dot-smile-liveness@7.3.3":
+  version "7.3.3"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-smile-liveness/-/dot-smile-liveness-7.3.3.tgz#8e540fbd2bbdd0c835e4fee2045f12145ba75903"
+  integrity sha512-K4RWphL+fwFNkKYrR7P9CsjJLcEdcchYvsKexGU5/c2uhGq98bsz8F0ryFZ37ednabVgd8lHcc1Afly/l32rQg==
   dependencies:
-    "@preact/signals" "^1.3.0"
-    comlink "^4.4.1"
-    preact "^10.22.1"
+    "@preact/signals" "^2.0.4"
+    comlink "^4.4.2"
+    preact "^10.26.6"
     preact-custom-element "^4.3.0"
-    styled-components "^6.1.11"
+    styled-components "^6.1.18"
 
 "@inquirer/checkbox@^2.3.7":
   version "2.4.2"
@@ -2339,17 +2339,17 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@preact/signals-core@^1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@preact/signals-core/-/signals-core-1.7.0.tgz#3ffb886bfac80ff14dac365dd09184a289a2e64c"
-  integrity sha512-bEZLgmJGSBVP5PUPDowhPW3bVdMmp9Tr5OEl+SQK+8Tv9T7UsIfyN905cfkmmeqw8z4xp8T6zrl4M1uj9+HAfg==
+"@preact/signals-core@^1.9.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@preact/signals-core/-/signals-core-1.10.0.tgz#765eb7045998b98c437e1ad1a660e5ff96a40136"
+  integrity sha512-qlKeXlfqtlC+sjxCPHt6Sk0/dXBrKZVcPlianqjNc/vW263YBFiP5mRrgKpHoO0q222Thm1TdYQWfCKpbbgvwA==
 
-"@preact/signals@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@preact/signals/-/signals-1.3.0.tgz#07d0210d0f813b932255ed30e0ffadae0d64fe13"
-  integrity sha512-EOMeg42SlLS72dhoq6Vjq08havnLseWmPQ8A0YsgIAqMgWgx7V1a39+Pxo6i7SY5NwJtH4849JogFq3M67AzWg==
+"@preact/signals@^2.0.4":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@preact/signals/-/signals-2.2.0.tgz#dc71d88b25a6e887421af7cc27ec74874214163c"
+  integrity sha512-P3KPcEYyVk9Wiwfw68QQzRpPkt0H+zjfH3X4AaGCDlc86GuRBYFGiAxT1nC5F5qlsVIEmjNJ9yVYe7C91z3L+g==
   dependencies:
-    "@preact/signals-core" "^1.7.0"
+    "@preact/signals-core" "^1.9.0"
 
 "@rollup/rollup-android-arm-eabi@4.18.0":
   version "4.18.0"
@@ -3707,10 +3707,10 @@ combined-stream@^1.0.8:
   dependencies:
     delayed-stream "~1.0.0"
 
-comlink@^4.4.1:
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/comlink/-/comlink-4.4.1.tgz#e568b8e86410b809e8600eb2cf40c189371ef981"
-  integrity sha512-+1dlx0aY5Jo1vHy/tSsIGpSkN4tS9rZSW8FIhG0JH/crs9wwweswIo/POr451r7bZww3hFbPAKnTpimzL/mm4Q==
+comlink@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/comlink/-/comlink-4.4.2.tgz#cbbcd82742fbebc06489c28a183eedc5c60a2bca"
+  integrity sha512-OxGdvBmJuNKSCMO4NTl1L47VRp6xn2wG4F/2hYzB6tiCb709otOxtEYCSvK80PtjODfXXZu8ds+Nw5kVCjqd2g==
 
 commander@^2.20.0:
   version "2.20.3"
@@ -6723,6 +6723,11 @@ picocolors@^1.0.1:
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.1.tgz#a8ad579b571952f0e5d25892de5445bcfe25aaa1"
   integrity sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==
 
+picocolors@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.1.1.tgz#3d321af3eab939b083c8f929a1d12cda81c26b6b"
+  integrity sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==
+
 picomatch@4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-4.0.2.tgz#77c742931e8f3b8820946c76cd0c1f13730d1dab"
@@ -6816,6 +6821,15 @@ postcss@8.4.38:
     picocolors "^1.0.0"
     source-map-js "^1.2.0"
 
+postcss@8.4.49:
+  version "8.4.49"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.49.tgz#4ea479048ab059ab3ae61d082190fabfd994fe19"
+  integrity sha512-OCVPnIObs4N29kxTjzLfUryOkvZEq+pf8jTF0lg8E7uETuWHA+v7j3c/xJmiqpX450191LlmZfUKkXxkTry7nA==
+  dependencies:
+    nanoid "^3.3.7"
+    picocolors "^1.1.1"
+    source-map-js "^1.2.1"
+
 postcss@^8.2.14, postcss@^8.4.23:
   version "8.4.34"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.34.tgz#563276e86b4ff20dfa5eed0d394d4c53853b2051"
@@ -6839,10 +6853,10 @@ preact-custom-element@^4.3.0:
   resolved "https://registry.yarnpkg.com/preact-custom-element/-/preact-custom-element-4.3.0.tgz#0404a0759f797a133adf246ec25eb179256fc55a"
   integrity sha512-5hG7nQhU4e7RNfCEQklaUqYQiiyibLuJ2wbhR+E2v1m8m9NDsJok5MykW/Nx0YLLBcXr8xnkap6DwByGy2TzDA==
 
-preact@^10.22.1:
-  version "10.23.1"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.23.1.tgz#d400107289bc979881c5212cb5f5cd22cd1dc38c"
-  integrity sha512-O5UdRsNh4vdZaTieWe3XOgSpdMAmkIYBCT3VhQDlKrzyCm8lUYsk0fmVEvoQQifoOjFRTaHZO69ylrzTW2BH+A==
+preact@^10.26.6:
+  version "10.26.9"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.26.9.tgz#b3898d1b65140640799062ad73b89846c293b6a7"
+  integrity sha512-SSjF9vcnF27mJK1XyFMNJzFd5u3pQiATFqoaDy03XuN00u4ziveVVEGt5RKJrDR8MHE/wJo9Nnad56RLzS2RMA==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
@@ -7536,6 +7550,11 @@ source-map-js@^1.2.0:
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.0.tgz#16b809c162517b5b8c3e7dcd315a2a5c2612b2af"
   integrity sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==
 
+source-map-js@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.1.tgz#1ce5650fddd87abc099eda37dcff024c2667ae46"
+  integrity sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==
+
 source-map-loader@5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/source-map-loader/-/source-map-loader-5.0.0.tgz#f593a916e1cc54471cfc8851b905c8a845fc7e38"
@@ -7737,17 +7756,17 @@ strong-log-transformer@^2.1.0:
     minimist "^1.2.0"
     through "^2.3.4"
 
-styled-components@^6.1.11:
-  version "6.1.12"
-  resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-6.1.12.tgz#0d9d511aacfb9052936146dcc2856559e6fae4df"
-  integrity sha512-n/O4PzRPhbYI0k1vKKayfti3C/IGcPf+DqcrOB7O/ab9x4u/zjqraneT5N45+sIe87cxrCApXM8Bna7NYxwoTA==
+styled-components@^6.1.18:
+  version "6.1.19"
+  resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-6.1.19.tgz#9a41b4db79a3b7a2477daecabe8dd917235263d6"
+  integrity sha512-1v/e3Dl1BknC37cXMhwGomhO8AkYmN41CqyX9xhUDxry1ns3BFQy2lLDRQXJRdVVWB9OHemv/53xaStimvWyuA==
   dependencies:
     "@emotion/is-prop-valid" "1.2.2"
     "@emotion/unitless" "0.8.1"
     "@types/stylis" "4.2.5"
     css-to-react-native "3.2.0"
     csstype "3.1.3"
-    postcss "8.4.38"
+    postcss "8.4.49"
     shallowequal "1.1.0"
     stylis "4.3.2"
     tslib "2.6.2"
