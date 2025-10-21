@@ -9,7 +9,7 @@ import {
 import { OnPhotoTakenEventValue } from '../../types';
 import '@innovatrics/dot-document-auto-capture';
 import type {
-  DocumentComponentData,
+  DetectedDocument,
   HTMLDocumentCaptureElement,
 } from '@innovatrics/dot-document-auto-capture';
 
@@ -25,7 +25,7 @@ import type {
 })
 export class DocumentCameraComponent implements OnInit {
   @Output() photoTaken = new EventEmitter<
-    OnPhotoTakenEventValue<DocumentComponentData>
+    OnPhotoTakenEventValue<DetectedDocument>
   >();
   @Output() captureError = new EventEmitter<Error>();
 

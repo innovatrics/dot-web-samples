@@ -9,8 +9,8 @@ import {
 import { OnPhotoTakenEventValue } from '../../types';
 import '@innovatrics/dot-palm-capture';
 import type {
-  PalmComponentData,
   HTMLPalmCaptureElement,
+  DetectedPalm,
 } from '@innovatrics/dot-palm-capture';
 
 @Component({
@@ -23,7 +23,7 @@ import type {
 })
 export class PalmCameraComponent implements OnInit {
   @Output() photoTaken = new EventEmitter<
-    OnPhotoTakenEventValue<PalmComponentData>
+    OnPhotoTakenEventValue<DetectedPalm>
   >();
   @Output() captureError = new EventEmitter<Error>();
 

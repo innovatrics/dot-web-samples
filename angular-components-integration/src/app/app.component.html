@@ -65,6 +65,19 @@
       }
     </div>
   }
+  @if (currentStep === step.MULTI_RANGE_LIVENESS) {
+    <div>
+      <app-multi-range-liveness
+        (photoTaken)="handlePhotoTaken($event)"
+        (captureError)="handleError($event)"
+        (back)="handleStepChange($event)"
+      >
+      </app-multi-range-liveness>
+      @if (imageUrl) {
+        <app-result [imageUrl]="imageUrl"></app-result>
+      }
+    </div>
+  }
   @if (currentStep === step.SELECT_COMPONENT) {
     <app-component-select (btnClick)="handleStepChange($event)">
     </app-component-select>

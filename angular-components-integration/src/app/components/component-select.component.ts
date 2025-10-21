@@ -1,4 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+
 import { Step } from '../types';
 
 @Component({
@@ -8,12 +9,9 @@ import { Step } from '../types';
       <button (click)="onFaceClick()" class="button">Face</button>
       <button (click)="onDocumentClick()" class="button">Document</button>
       <button (click)="onPalmClick()" class="button">Palm</button>
-      <button (click)="onMagnifEyeLivenessClick()" class="button">
-        MagnifEye Liveness
-      </button>
-      <button (click)="onSmileLivenessClick()" class="button">
-        Smile Liveness
-      </button>
+      <button (click)="onMagnifEyeLivenessClick()" class="button">MagnifEye Liveness</button>
+      <button (click)="onSmileLivenessClick()" class="button">Smile Liveness</button>
+      <button (click)="onMultiRangeLivenessClick()" class="button">Multi Range Liveness</button>
     </div>
   `,
   standalone: true,
@@ -39,5 +37,9 @@ export class ComponentSelectComponent {
 
   onSmileLivenessClick() {
     this.btnClick.emit(Step.SMILE_LIVENESS);
+  }
+
+  onMultiRangeLivenessClick() {
+    this.btnClick.emit(Step.MULTI_RANGE_LIVENESS);
   }
 }

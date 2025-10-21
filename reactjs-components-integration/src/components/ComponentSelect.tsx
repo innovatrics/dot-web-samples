@@ -26,6 +26,10 @@ function ComponentSelect({ setStep }: Props) {
     setStep(Step.SMILE_LIVENESS);
   };
 
+  const handleMultiRangeLivenessClick = () => {
+    setStep(Step.MULTI_RANGE_LIVENESS);
+  };
+
   return (
     <div>
       <button className={styles.primary} onClick={handleFaceClick}>
@@ -42,6 +46,12 @@ function ComponentSelect({ setStep }: Props) {
       </button>
       <button className={styles.primary} onClick={handleSmileLivenessClick}>
         Smile Liveness
+      </button>
+      <button
+        className={styles.primary}
+        onClick={handleMultiRangeLivenessClick}
+      >
+        MultiRange Liveness
       </button>
     </div>
   );

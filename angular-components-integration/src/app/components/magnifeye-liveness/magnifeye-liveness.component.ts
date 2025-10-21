@@ -1,6 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { OnPhotoTakenEventValue, Step } from '../../types';
-import type { OnCompleteData } from '@innovatrics/dot-magnifeye-liveness';
 import { MagnifEyeLivenessCameraComponent } from './magnifeye-liveness-camera.component';
 import { MagnifEyeLivenessUiComponent } from './magnifeye-liveness-ui.component';
 import {
@@ -8,6 +7,7 @@ import {
   MagnifEyeCustomEvent,
   ControlEventInstruction,
 } from '@innovatrics/dot-magnifeye-liveness/events';
+import { DetectedFace } from '@innovatrics/dot-magnifeye-liveness/ui-common/src/types';
 @Component({
   selector: 'app-magnifeye-liveness',
   standalone: true,
@@ -35,7 +35,7 @@ import {
 })
 export class MagnifEyeLivenessComponent {
   @Output() photoTaken = new EventEmitter<
-    OnPhotoTakenEventValue<OnCompleteData['data']>
+    OnPhotoTakenEventValue<DetectedFace>
   >();
   @Output() captureError = new EventEmitter<Error>();
   @Output() back = new EventEmitter<Step>();
@@ -57,7 +57,7 @@ export class MagnifEyeLivenessComponent {
   handlePhotoTaken({
     imageData,
     content,
-  }: OnPhotoTakenEventValue<OnCompleteData['data']>) {
+  }: OnPhotoTakenEventValue<DetectedFace>) {
     this.photoTaken.emit({ imageData, content });
     this.isButtonDisabled = false;
   }

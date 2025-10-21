@@ -7,9 +7,10 @@ export enum Step {
   PALM_CAPTURE,
   MAGNIFEYE_LIVENESS,
   SMILE_LIVENESS,
+  MULTI_RANGE_LIVENESS,
 }
 
 export type OnPhotoTakenEventValue<T> = {
-  imageData: CallbackImage<T>;
   content: Uint8Array;
+  imageData: CallbackImage<T>;
 };

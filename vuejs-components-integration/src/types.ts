@@ -1,8 +1,9 @@
-import { DocumentCallback } from '@innovatrics/dot-document-auto-capture/.';
-import { FaceCallback } from '@innovatrics/dot-face-auto-capture';
-import { MagnifEyeLivenessCallback } from '@innovatrics/dot-magnifeye-liveness';
-import { PalmCallback } from '@innovatrics/dot-palm-capture/.';
-import { SmileLivenessCallback } from '@innovatrics/dot-smile-liveness';
+import type { DocumentCallback } from '@innovatrics/dot-document-auto-capture';
+import type { FaceCallback } from '@innovatrics/dot-face-auto-capture';
+import type { MagnifEyeLivenessCallback } from '@innovatrics/dot-magnifeye-liveness';
+import type { OnCompleteCallback } from '@innovatrics/dot-multi-range-liveness';
+import type { PalmCallback } from '@innovatrics/dot-palm-capture';
+import type { SmileLivenessCallback } from '@innovatrics/dot-smile-liveness';
 
 export enum Step {
   SELECT_COMPONENT,
@@ -11,6 +12,7 @@ export enum Step {
   PALM_CAPTURE,
   MAGNIFEYE_CAPTURE,
   SMILE_CAPTURE,
+  MULTIRANGE_CAPTURE,
 }
 
 export type Emits<
@@ -20,6 +22,7 @@ export type Emits<
     | DocumentCallback
     | SmileLivenessCallback
     | PalmCallback
+    | OnCompleteCallback,
 > = {
   (e: 'onComplete', ...args: Parameters<T>): void;
   (e: 'onError', error: Error): void;

@@ -9,7 +9,8 @@ import {
 import { OnPhotoTakenEventValue } from '../../types';
 import '@innovatrics/dot-face-auto-capture';
 import type {
-  FaceComponentData,
+  DetectedFace,
+  
   HTMLFaceCaptureElement,
 } from '@innovatrics/dot-face-auto-capture';
 
@@ -25,7 +26,7 @@ import type {
 })
 export class FaceCameraComponent implements OnInit {
   @Output() photoTaken = new EventEmitter<
-    OnPhotoTakenEventValue<FaceComponentData>
+    OnPhotoTakenEventValue<DetectedFace>
   >();
   @Output() captureError = new EventEmitter<Error>();
 

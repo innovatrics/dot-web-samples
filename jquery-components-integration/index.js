@@ -66,6 +66,19 @@ $(function () {
     $('#continue').on('click', continueSmileDetection);
   });
 
+  $('#multi-range').click(function () {
+    // same as face component above, we need to make sure we're working with a fresh copy before supplying it with props
+    let cam = document.createElement('x-dot-multi-range-liveness');
+    let ui = document.createElement('x-dot-multi-range-liveness-ui');
+    cam.setAttribute('id', 'x-dot-multi-range-liveness');
+    ui.setAttribute('id', 'x-dot-multi-range-liveness-ui');
+    $('#container').empty().append(cam).append(ui);
+    loadMultiRangeProps();
+    loadMultiRangeUiProps();
+    resetState();
+    $('#continue').on('click', continueMultiRangeDetection);
+  });
+
 });
 
 // component event handlers
@@ -101,6 +114,12 @@ async function handleMagnifEyeComplete(imageData, content) {
 async function handleSmileComplete(imageData, content) {
   const [, smileImageData] = imageData;
   const img = await blobToImage(smileImageData.image);
+  $('#result').empty().append(img);
+  $('#continue').attr('disabled', false);
+}
+
+async function handleMultiRangeComplete(imageData, content) {
+  const img = await blobToImage(imageData.image);
   $('#result').empty().append(img);
   $('#continue').attr('disabled', false);
 }
@@ -182,6 +201,20 @@ function loadSmileUiProps() {
   });
 }
 
+function loadMultiRangeProps() {
+  $('x-dot-multi-range-liveness').prop('configuration', {
+    onComplete: handleMultiRangeComplete,
+    onError: handleError,
+    challengeSequence: ['ONE', 'THREE', 'FIVE', 'ZERO'],
+  });
+}
+
+function loadMultiRangeUiProps() {
+  $('x-dot-multi-range-liveness-ui').prop('props', {
+    showCameraButtons: true,
+  });
+}
+
 // component control events
 
 function continueDocumentDetection() {
@@ -222,6 +255,14 @@ function continueSmileDetection() {
 function continueMagnifEyeDetection() {
   document.dispatchEvent(
     new CustomEvent('magnifeye-auto-capture:control', {
+      detail: { instruction: 'continue-detection' },
+    })
+  );
+}
+
+function continueMultiRangeDetection() {
+  document.dispatchEvent(
+    new CustomEvent('multi-range-auto-capture:control', {
       detail: { instruction: 'continue-detection' },
     })
   );

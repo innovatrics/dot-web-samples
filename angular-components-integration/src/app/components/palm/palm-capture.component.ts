@@ -5,7 +5,7 @@ import {
   PalmCustomEvent,
   ControlEventInstruction,
 } from '@innovatrics/dot-palm-capture/events';
-import { PalmComponentData } from '@innovatrics/dot-palm-capture';
+import { DetectedPalm } from '@innovatrics/dot-palm-capture';
 import { PalmCameraComponent } from './palm-camera.component';
 import { PalmUiComponent } from './palm-ui.component';
 
@@ -36,7 +36,7 @@ import { PalmUiComponent } from './palm-ui.component';
 })
 export class PalmCaptureComponent {
   @Output() photoTaken = new EventEmitter<
-    OnPhotoTakenEventValue<PalmComponentData>
+    OnPhotoTakenEventValue<DetectedPalm>
   >();
   @Output() captureError = new EventEmitter<Error>();
   @Output() back = new EventEmitter<Step>();
@@ -58,7 +58,7 @@ export class PalmCaptureComponent {
   handlePhotoTaken({
     imageData,
     content,
-  }: OnPhotoTakenEventValue<PalmComponentData>) {
+  }: OnPhotoTakenEventValue<DetectedPalm>) {
     this.photoTaken.emit({ imageData, content });
     this.isButtonDisabled = false;
   }

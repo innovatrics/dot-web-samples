@@ -23,5 +23,8 @@ const emit = defineEmits<{
     <button class="button" @click="emit('onClick', Step.SMILE_CAPTURE)">
       Smile Liveness
     </button>
+    <button class="button" @click="emit('onClick', Step.MULTIRANGE_CAPTURE)">
+      MultiRange Liveness
+    </button>
   </div>
 </template>

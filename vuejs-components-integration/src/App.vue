@@ -8,6 +8,7 @@ import { Step } from "./types";
 import MagnifEyeLiveness from "./components/MagnifEyeLiveness.vue";
 import SmileLiveness from "./components/SmileLiveness.vue"
 import { CallbackImage } from "@innovatrics/dot-document-auto-capture";
+import MultiRangeLiveness from "./components/MultiRangeLiveness.vue";
 import PalmCapture from "./components/PalmCapture.vue";
 
 const currentStep = ref(Step.SELECT_COMPONENT);
@@ -53,6 +54,10 @@ const handleStepChange = (step: Step) => {
     </div>
     <div v-else-if="currentStep === Step.SMILE_CAPTURE">
       <SmileLiveness @on-complete="handleSmilePhotoTaken" @on-error="handleError" @on-back="handleStepChange" />
+      <ResultStep v-if="imageUrl" :imageSrc="imageUrl" />
+    </div>
+    <div v-else-if="currentStep === Step.MULTIRANGE_CAPTURE">
+      <MultiRangeLiveness @on-complete="handlePhotoTaken" @on-error="handleError" @on-back="handleStepChange" />
       <ResultStep v-if="imageUrl" :imageSrc="imageUrl" />
     </div>
     <ComponentSelect v-else @onClick="handleStepChange" />

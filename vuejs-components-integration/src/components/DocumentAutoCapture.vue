@@ -42,7 +42,7 @@ const handleError = (error: Error) => {
     <button :disabled="isButtonDisabled" @click="handleContinueDetection" class="button">
       Continue detection
     </button>
-    <div class="container">
+    <div class="container overflow-hidden">
       <DocumentCamera :cameraOptions="{
         cameraFacing: 'environment',
         onPhotoTaken: handlePhotoTaken,

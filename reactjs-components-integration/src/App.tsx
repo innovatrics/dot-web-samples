@@ -1,32 +1,30 @@
-import type {
-  CallbackImage,
-  DocumentCallback,
-  DocumentComponentData,
-} from "@innovatrics/dot-document-auto-capture";
-import type { FaceCallback } from "@innovatrics/dot-face-auto-capture";
-import type { MagnifEyeLivenessCallback } from "@innovatrics/dot-magnifeye-liveness";
-import { SmileLivenessCallback } from "@innovatrics/dot-smile-liveness";
-import { useCallback, useState } from "react";
-import { PalmCallback } from "@innovatrics/dot-palm-capture";
-import ComponentSelect from "./components/ComponentSelect";
-import DocumentAutoCapture from "./components/DocumentAutoCapture";
-import FaceAutoCapture from "./components/FaceAutoCapture";
-import MagnifEyeLiveness from "./components/MagnifEyeLiveness";
-import PhotoResult from "./components/PhotoResult";
-import SmileLiveness from "./components/SmileLiveness";
-import styles from "./styles/index.module.css";
-import { Step } from "./types";
-import PalmCapture from "./components/PalmCapture";
+import type { CallbackImage, DocumentCallback } from '@innovatrics/dot-document-auto-capture';
+import type { FaceCallback } from '@innovatrics/dot-face-auto-capture';
+import type { MagnifEyeLivenessCallback } from '@innovatrics/dot-magnifeye-liveness';
+import type { MultiRangeLivenessCallback } from '@innovatrics/dot-multi-range-liveness';
+import type { PalmCallback } from '@innovatrics/dot-palm-capture';
+import type { SmileLivenessCallback } from '@innovatrics/dot-smile-liveness';
+
+import { useCallback, useState } from 'react';
+
+import ComponentSelect from './components/ComponentSelect';
+import DocumentAutoCapture from './components/DocumentAutoCapture';
+import FaceAutoCapture from './components/FaceAutoCapture';
+import MagnifEyeLiveness from './components/MagnifEyeLiveness';
+import MultiRangeLiveness from './components/MultiRangeLiveness';
+import PalmCapture from './components/PalmCapture';
+import PhotoResult from './components/PhotoResult';
+import SmileLiveness from './components/SmileLiveness';
+import styles from './styles/index.module.css';
+import { Step } from './types';
 
 function App() {
   const [step, setStep] = useState<Step>(Step.SELECT_COMPONENT);
   const [photoUrl, setPhotoUrl] = useState<string>();
 
-  const handlePhotoTaken = <T,>(
-    imageData: CallbackImage<T>,
-    content?: Uint8Array,
-  ) => {
+  const handlePhotoTaken = <T,>(imageData: CallbackImage<T>, _content?: Uint8Array) => {
     const imageUrl = URL.createObjectURL(imageData.image);
+
     setPhotoUrl(imageUrl);
   };
 
@@ -46,10 +44,7 @@ function App() {
    * At this point use @content property with Digital Identity Service in order to evaluate the MagnifEye liveness score.
    * See: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-dis/latest/documentation/#_magnifeye_liveness_check
    */
-  const handleMagnifEyeComplete: MagnifEyeLivenessCallback = (
-    imageData,
-    content,
-  ) => {
+  const handleMagnifEyeComplete: MagnifEyeLivenessCallback = (imageData, content) => {
     handlePhotoTaken(imageData, content);
   };
 
@@ -58,10 +53,16 @@ function App() {
    */
   const handleSmileComplete: SmileLivenessCallback = (imageData, content) => {
     const [, smileImageData] = imageData;
+
     handlePhotoTaken(smileImageData, content);
   };
 
+  const handleMultiRangeComplete: MultiRangeLivenessCallback = (imageData, content) => {
+    handlePhotoTaken(imageData, content);
+  };
+
   const handleError = useCallback((error: Error) => {
+    // eslint-disable-next-line no-alert
     alert(error);
   }, []);
 
@@ -75,41 +76,35 @@ function App() {
       case Step.DOCUMENT_CAPTURE:
         return (
           <DocumentAutoCapture
-            onPhotoTaken={handleDocumentPhotoTaken}
-            onError={handleError}
             onBackClick={handleBackClick}
+            onError={handleError}
+            onPhotoTaken={handleDocumentPhotoTaken}
           />
         );
       case Step.FACE_CAPTURE:
         return (
           <FaceAutoCapture
-            onPhotoTaken={handleFaceCapturePhotoTaken}
-            onError={handleError}
             onBackClick={handleBackClick}
+            onError={handleError}
+            onPhotoTaken={handleFaceCapturePhotoTaken}
           />
         );
       case Step.PALM_CAPTURE:
         return (
-          <PalmCapture
-            onPhotoTaken={handlePalmCapturePhotoTaken}
-            onError={handleError}
-            onBackClick={handleBackClick}
-          />
+          <PalmCapture onBackClick={handleBackClick} onError={handleError} onPhotoTaken={handlePalmCapturePhotoTaken} />
         );
       case Step.MAGNIFEYE_LIVENESS:
         return (
-          <MagnifEyeLiveness
-            onComplete={handleMagnifEyeComplete}
-            onError={handleError}
-            onBackClick={handleBackClick}
-          />
+          <MagnifEyeLiveness onBackClick={handleBackClick} onComplete={handleMagnifEyeComplete} onError={handleError} />
         );
       case Step.SMILE_LIVENESS:
+        return <SmileLiveness onBackClick={handleBackClick} onComplete={handleSmileComplete} onError={handleError} />;
+      case Step.MULTI_RANGE_LIVENESS:
         return (
-          <SmileLiveness
-            onComplete={handleSmileComplete}
-            onError={handleError}
+          <MultiRangeLiveness
             onBackClick={handleBackClick}
+            onComplete={handleMultiRangeComplete}
+            onError={handleError}
           />
         );
       default:

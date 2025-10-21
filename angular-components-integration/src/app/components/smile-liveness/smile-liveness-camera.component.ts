@@ -9,9 +9,9 @@ import {
 import '@innovatrics/dot-smile-liveness';
 import { OnPhotoTakenEventValue } from '../../types';
 import type {
-  OnCompleteData,
   HTMLSmileLivenessElement,
 } from '@innovatrics/dot-smile-liveness';
+import { DetectedFace } from '@innovatrics/dot-smile-liveness/ui-common/src/types';
 
 @Component({
   selector: 'app-smile-liveness-camera',
@@ -23,7 +23,7 @@ import type {
 })
 export class SmileLivenessCameraComponent implements OnInit {
   @Output() photoTaken = new EventEmitter<
-    OnPhotoTakenEventValue<OnCompleteData['data']>
+    OnPhotoTakenEventValue<DetectedFace>
   >();
   @Output() captureError = new EventEmitter<Error>();
 

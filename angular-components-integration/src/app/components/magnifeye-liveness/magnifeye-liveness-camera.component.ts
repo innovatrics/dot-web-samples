@@ -9,9 +9,9 @@ import {
 import '@innovatrics/dot-magnifeye-liveness';
 import { OnPhotoTakenEventValue } from '../../types';
 import type {
-  OnCompleteData,
   HTMLMagnifEyeLivenessElement,
 } from '@innovatrics/dot-magnifeye-liveness';
+import { DetectedFace } from '@innovatrics/dot-magnifeye-liveness/ui-common/src/types';
 
 @Component({
   selector: 'app-magnifeye-liveness-camera',
@@ -25,7 +25,7 @@ import type {
 })
 export class MagnifEyeLivenessCameraComponent implements OnInit {
   @Output() photoTaken = new EventEmitter<
-    OnPhotoTakenEventValue<OnCompleteData['data']>
+    OnPhotoTakenEventValue<DetectedFace>
   >();
   @Output() captureError = new EventEmitter<Error>();
 
