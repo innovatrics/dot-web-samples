@@ -25,8 +25,10 @@ export class FaceUiComponent implements OnInit {
     ) as HTMLFacetUiElement | null;
 
     if (faceUiElement) {
-      faceUiElement.props = {
-        showCameraButtons: true,
+      faceUiElement.configuration = {
+        control: {
+          showCameraButtons: true,
+        },
       };
     }
   }

@@ -1,18 +1,14 @@
-import "@innovatrics/dot-auto-capture-ui/document";
-import { useEffect } from "react";
-import type {
-  DocumentUiProps,
-  HTMLDocumentUiElement,
-} from "@innovatrics/dot-auto-capture-ui/document";
+import '@innovatrics/dot-auto-capture-ui/document';
+import type { DocumentUiConfiguration, HTMLDocumentUiElement } from '@innovatrics/dot-auto-capture-ui/document';
 
-function DocumentUi(props: DocumentUiProps) {
+import { useEffect } from 'react';
+
+function DocumentUi(configuration: DocumentUiConfiguration) {
   useEffect(() => {
-    const uiElement = document.getElementById(
-      "x-dot-document-auto-capture-ui",
-    ) as HTMLDocumentUiElement | null;
+    const uiElement = document.getElementById('x-dot-document-auto-capture-ui') as HTMLDocumentUiElement | null;
 
     if (uiElement) {
-      uiElement.props = props;
+      uiElement.configuration = configuration;
     }
   });
 

@@ -37,8 +37,8 @@ export class AppComponent {
     this.imageUrl = '';
   }
 
-  handlePhotoTaken<T>({ imageData }: OnPhotoTakenEventValue<T>) {
-    this.imageUrl = URL.createObjectURL(imageData.image);
+  handlePhotoTaken({ image }: OnPhotoTakenEventValue) {
+    this.imageUrl = URL.createObjectURL(image);
   }
 
   handleError(error: Error) {

@@ -8,10 +8,7 @@ import {
 } from '@angular/core';
 import '@innovatrics/dot-smile-liveness';
 import { OnPhotoTakenEventValue } from '../../types';
-import type {
-  HTMLSmileLivenessElement,
-} from '@innovatrics/dot-smile-liveness';
-import { DetectedFace } from '@innovatrics/dot-smile-liveness/ui-common/src/types';
+import type { HTMLSmileLivenessElement } from '@innovatrics/dot-smile-liveness';
 
 @Component({
   selector: 'app-smile-liveness-camera',
@@ -22,9 +19,7 @@ import { DetectedFace } from '@innovatrics/dot-smile-liveness/ui-common/src/type
   ></x-dot-smile-liveness>`,
 })
 export class SmileLivenessCameraComponent implements OnInit {
-  @Output() photoTaken = new EventEmitter<
-    OnPhotoTakenEventValue<DetectedFace>
-  >();
+  @Output() photoTaken = new EventEmitter<OnPhotoTakenEventValue>();
   @Output() captureError = new EventEmitter<Error>();
 
   constructor(private ngZone: NgZone) {}
@@ -42,11 +37,12 @@ export class SmileLivenessCameraComponent implements OnInit {
       /**
        * At this point use @content property with Digital Identity Service in order to evaluate the Smile liveness score.
        */
-      smileLivenessElement.props = {
-        onComplete: (imageData, content) => {
-          const [, smileImageData] = imageData;
+      smileLivenessElement.configuration = {
+        onComplete: (imageData) => {
           this.ngZone.run(() => {
-            this.photoTaken.emit({ imageData: smileImageData, content });
+            this.photoTaken.emit({
+              image: imageData.smilePhaseImageWithMetadata.image,
+            });
           });
         },
         onError: (error) => {

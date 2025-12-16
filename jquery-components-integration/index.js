@@ -83,19 +83,19 @@ $(function () {
 
 // component event handlers
 
-async function handleDocumentPhotoTaken(imageData, content) {
+async function handleDocumentComplete(imageData, content) {
   const img = await blobToImage(imageData.image);
   $('#result').empty().append(img);
   $('#continue').attr('disabled', false);
 }
 
-async function handleFacePhotoTaken(imageData, content) {
+async function handleFaceComplete(imageData, content) {
   const img = await blobToImage(imageData.image);
   $('#result').empty().append(img);
   $('#continue').attr('disabled', false);
 }
 
-async function handlePalmPhotoTaken(imageData, content) {
+async function handlePalmComplete(imageData, content) {
   const img = await blobToImage(imageData.image);
   $('#result').empty().append(img);
   $('#continue').attr('disabled', false);
@@ -112,14 +112,14 @@ async function handleMagnifEyeComplete(imageData, content) {
 }
 
 async function handleSmileComplete(imageData, content) {
-  const [, smileImageData] = imageData;
-  const img = await blobToImage(smileImageData.image);
+  const img = await blobToImage(imageData.smilePhaseImageWithMetadata.image);
   $('#result').empty().append(img);
   $('#continue').attr('disabled', false);
 }
 
 async function handleMultiRangeComplete(imageData, content) {
-  const img = await blobToImage(imageData.image);
+  console.log('imageData', imageData);
+  const img = await blobToImage(imageData.imageWithMetadata.image);
   $('#result').empty().append(img);
   $('#continue').attr('disabled', false);
 }
@@ -127,16 +127,16 @@ async function handleMultiRangeComplete(imageData, content) {
 // component props
 
 function loadDocumentProps() {
-  $('x-dot-document-auto-capture').prop('cameraOptions', {
-    onPhotoTaken: handleDocumentPhotoTaken,
+  $('x-dot-document-auto-capture').prop('configuration', {
+    onComplete: handleDocumentComplete,
     onError: handleError,
-    cameraFacing: 'environment',
+    camera: { facingMode: 'environment' },
   });
 }
 
 function loadDocumentUiProps() {
-  $('x-dot-document-auto-capture-ui').prop('props', {
-    showCameraButtons: true,
+  $('x-dot-document-auto-capture-ui').prop('configuration', {
+    control: { showCameraButtons: true },
     // customize document UI props here
     // DOCS: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-web-document/latest/documentation/
   });
@@ -144,60 +144,60 @@ function loadDocumentUiProps() {
 
 // the component needs to have props supplied after first render, this must be done via the .prop() method, as attributes dont support objects and functions
 function loadFaceProps() {
-  $('x-dot-face-auto-capture').prop('cameraOptions', {
-    onPhotoTaken: handleFacePhotoTaken,
+  $('x-dot-face-auto-capture').prop('configuration', {
+    onComplete: handleFaceComplete,
     onError: handleError,
-    cameraFacing: 'user',
+    camera: { facingMode: 'user' },
   });
 }
 
 function loadFaceUiProps() {
-  $('x-dot-face-auto-capture-ui').prop('props', {
-    showCameraButtons: true,
+  $('x-dot-face-auto-capture-ui').prop('configuration', {
+    control: { showCameraButtons: true },
     // customize face UI props here
     // DOCS: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-web-face/latest/documentation/
   });
 }
 
 function loadPalmProps() {
-  $('x-dot-palm-capture').prop('cameraOptions', {
-    onPhotoTaken: handlePalmPhotoTaken,
+  $('x-dot-palm-capture').prop('configuration', {
+    onComplete: handlePalmComplete,
     onError: handleError,
-    cameraFacing: 'environment',
+    camera: { facingMode: 'environment' },
   });
 }
 
 function loadPalmUiProps() {
-  $('x-dot-palm-capture-ui').prop('props', {
-    showCameraButtons: true,
+  $('x-dot-palm-capture-ui').prop('configuration', {
+    control: { showCameraButtons: true },
   });
 }
 
 function loadMagnifEyeProps() {
-  $('x-dot-magnifeye-liveness').prop('props', {
+  $('x-dot-magnifeye-liveness').prop('configuration', {
     onComplete: handleMagnifEyeComplete,
     onError: handleError,
   });
 }
 
 function loadMagnifEyeUiProps() {
-  $('x-dot-magnifeye-liveness-ui').prop('props', {
-    showCameraButtons: true,
+  $('x-dot-magnifeye-liveness-ui').prop('configuration', {
+    control: { showCameraButtons: true },
     // customize magnifEye UI props here
     // DOCS: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-web-magnifeye-liveness/latest/documentation/
   });
 }
 
 function loadSmileProps() {
-  $('x-dot-smile-liveness').prop('props', {
+  $('x-dot-smile-liveness').prop('configuration', {
     onComplete: handleSmileComplete,
     onError: handleError,
   });
 }
 
 function loadSmileUiProps() {
-  $('x-dot-smile-liveness-ui').prop('props', {
-    showCameraButtons: true,
+  $('x-dot-smile-liveness-ui').prop('configuration', {
+    control: { showCameraButtons: true },
   });
 }
 
@@ -210,8 +210,8 @@ function loadMultiRangeProps() {
 }
 
 function loadMultiRangeUiProps() {
-  $('x-dot-multi-range-liveness-ui').prop('props', {
-    showCameraButtons: true,
+  $('x-dot-multi-range-liveness-ui').prop('configuration', {
+    control: { showCameraButtons: true },
   });
 }
 

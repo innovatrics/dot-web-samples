@@ -8,11 +8,7 @@ import {
 } from '@angular/core';
 import { OnPhotoTakenEventValue } from '../../types';
 import '@innovatrics/dot-face-auto-capture';
-import type {
-  DetectedFace,
-  
-  HTMLFaceCaptureElement,
-} from '@innovatrics/dot-face-auto-capture';
+import type { HTMLFaceCaptureElement } from '@innovatrics/dot-face-auto-capture';
 
 @Component({
   selector: 'app-face-camera',
@@ -25,9 +21,7 @@ import type {
   `,
 })
 export class FaceCameraComponent implements OnInit {
-  @Output() photoTaken = new EventEmitter<
-    OnPhotoTakenEventValue<DetectedFace>
-  >();
+  @Output() photoTaken = new EventEmitter<OnPhotoTakenEventValue>();
   @Output() captureError = new EventEmitter<Error>();
 
   constructor(private ngZone: NgZone) {}
@@ -42,11 +36,11 @@ export class FaceCameraComponent implements OnInit {
     ) as HTMLFaceCaptureElement | null;
 
     if (faceElement) {
-      faceElement.cameraOptions = {
-        cameraFacing: 'user',
-        onPhotoTaken: (imageData, content) => {
+      faceElement.configuration = {
+        camera: { facingMode: 'user' },
+        onComplete: (imageData) => {
           this.ngZone.run(() => {
-            this.photoTaken.emit({ imageData, content });
+            this.photoTaken.emit({ image: imageData.image });
           });
         },
         onError: (error) => {

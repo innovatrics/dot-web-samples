@@ -25,8 +25,10 @@ export class MagnifEyeLivenessUiComponent implements OnInit {
     ) as HTMLMagnifEyeLivenessUiElement | null;
 
     if (magnifEyeUiElement) {
-      magnifEyeUiElement.props = {
-        showCameraButtons: true,
+      magnifEyeUiElement.configuration = {
+        control: {
+          showCameraButtons: true,
+        },
       };
     }
   }

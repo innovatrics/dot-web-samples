@@ -1,5 +1,3 @@
-import type { CallbackImage } from '@innovatrics/dot-document-auto-capture';
-
 export enum Step {
   SELECT_COMPONENT,
   DOCUMENT_CAPTURE,
@@ -10,7 +8,6 @@ export enum Step {
   MULTI_RANGE_LIVENESS,
 }
 
-export type OnPhotoTakenEventValue<T> = {
-  content: Uint8Array;
-  imageData: CallbackImage<T>;
+export type OnPhotoTakenEventValue = {
+  image: Blob;
 };

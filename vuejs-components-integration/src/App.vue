@@ -10,27 +10,33 @@ import SmileLiveness from "./components/SmileLiveness.vue"
 import { CallbackImage } from "@innovatrics/dot-document-auto-capture";
 import MultiRangeLiveness from "./components/MultiRangeLiveness.vue";
 import PalmCapture from "./components/PalmCapture.vue";
+import { OnCompleteCallbackImages as SmileLivenessOnCompleteCallbackImages } from '@innovatrics/dot-smile-liveness';
+import { OnCompleteCallbackImage as MultiRangeLivenessOnCompleteCallbackImage } from '@innovatrics/dot-multi-range-liveness';
 
 const currentStep = ref(Step.SELECT_COMPONENT);
 const imageUrl = ref("");
 
-const handlePhotoTaken = <T,>(imageData: CallbackImage<T>, _content: Uint8Array) => {
+function handlePhotoTaken<T>(imageData: CallbackImage<T>, _content: Uint8Array) {
   imageUrl.value = URL.createObjectURL(imageData.image);
-};
+}
 
-const handleSmilePhotoTaken = <T,>(imageData: CallbackImage<T>[], _content: Uint8Array) => {
-  const [, smileImageData] = imageData;
-  imageUrl.value = URL.createObjectURL(smileImageData.image);
-};
+function handleSmilePhotoTaken(imageData: SmileLivenessOnCompleteCallbackImages, _content: Uint8Array) {
+    const { smilePhaseImageWithMetadata } = imageData;
+  imageUrl.value = URL.createObjectURL(smilePhaseImageWithMetadata.image);
+}
 
-const handleError = (error: Error) => {
+function handleMultiRangePhotoTaken(imageData: MultiRangeLivenessOnCompleteCallbackImage, _content: Uint8Array) {
+  imageUrl.value = URL.createObjectURL(imageData.imageWithMetadata.image);
+}
+
+function handleError(error: Error) {
   alert(error);
-};
+}
 
-const handleStepChange = (step: Step) => {
+function handleStepChange(step: Step) {
   currentStep.value = step;
   imageUrl.value = "";
-};
+}
 </script>
 
 <template>
@@ -57,7 +63,7 @@ const handleStepChange = (step: Step) => {
       <ResultStep v-if="imageUrl" :imageSrc="imageUrl" />
     </div>
     <div v-else-if="currentStep === Step.MULTIRANGE_CAPTURE">
-      <MultiRangeLiveness @on-complete="handlePhotoTaken" @on-error="handleError" @on-back="handleStepChange" />
+      <MultiRangeLiveness @on-complete="handleMultiRangePhotoTaken" @on-error="handleError" @on-back="handleStepChange" />
       <ResultStep v-if="imageUrl" :imageSrc="imageUrl" />
     </div>
     <ComponentSelect v-else @onClick="handleStepChange" />

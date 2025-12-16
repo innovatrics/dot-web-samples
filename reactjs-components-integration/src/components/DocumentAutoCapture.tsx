@@ -1,37 +1,37 @@
 import type {
-  DocumentCallback,
-  DocumentComponentData,
-} from "@innovatrics/dot-document-auto-capture";
+  DocumentOnCompleteCallback,
+  DocumentOnCompleteCallbackImage,
+} from '@innovatrics/dot-document-auto-capture';
+
 import {
+  ControlEventInstruction,
   dispatchControlEvent,
   DocumentCustomEvent,
-  ControlEventInstruction,
-} from "@innovatrics/dot-document-auto-capture/events";
-import { useState } from "react";
-import styles from "../styles/index.module.css";
-import buttonStyles from "../styles/button.module.css";
-import DocumentCamera from "./DocumentCamera";
-import DocumentUi from "./DocumentUi";
+} from '@innovatrics/dot-document-auto-capture/events';
+import { useState } from 'react';
+
+import buttonStyles from '../styles/button.module.css';
+import styles from '../styles/index.module.css';
+
+import DocumentCamera from './DocumentCamera';
+import DocumentUi from './DocumentUi';
 
 interface Props {
-  onPhotoTaken: DocumentCallback;
-  onError: (error: Error) => void;
   onBackClick: () => void;
+  onError: (error: Error) => void;
+  onComplete: DocumentOnCompleteCallback;
 }
 
-function DocumentAutoCapture({ onPhotoTaken, onError, onBackClick }: Props) {
+function DocumentAutoCapture({ onBackClick, onError, onComplete }: Props) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const handlePhotoTaken: DocumentCallback = async (imageData, content) => {
+  function handlePhotoTaken(imageData: DocumentOnCompleteCallbackImage, content: Uint8Array) {
     setIsButtonDisabled(false);
-    onPhotoTaken(imageData, content);
-  };
+    onComplete(imageData, content);
+  }
 
   const handleContinueDetection = () => {
-    dispatchControlEvent(
-      DocumentCustomEvent.CONTROL,
-      ControlEventInstruction.CONTINUE_DETECTION,
-    );
+    dispatchControlEvent(DocumentCustomEvent.CONTROL, ControlEventInstruction.CONTINUE_DETECTION);
 
     setIsButtonDisabled(true);
   };
@@ -43,22 +43,14 @@ function DocumentAutoCapture({ onPhotoTaken, onError, onBackClick }: Props) {
         <button className={buttonStyles.primary} onClick={onBackClick}>
           Go back
         </button>
-        <button
-          className={buttonStyles.primary}
-          onClick={handleContinueDetection}
-          disabled={isButtonDisabled}
-        >
+        <button className={buttonStyles.primary} disabled={isButtonDisabled} onClick={handleContinueDetection}>
           Continue detection
         </button>
       </div>
       {/* parent container must have position: relative */}
       <div className={styles.container}>
-        <DocumentCamera
-          cameraFacing="environment"
-          onPhotoTaken={handlePhotoTaken}
-          onError={onError}
-        />
-        <DocumentUi showCameraButtons />
+        <DocumentCamera camera={{ facingMode: 'environment' }} onComplete={handlePhotoTaken} onError={onError} />
+        <DocumentUi control={{ showCameraButtons: true }} />
       </div>
     </>
   );

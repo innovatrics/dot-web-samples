@@ -1,18 +1,14 @@
-import type {
-  FaceUiProps,
-  HTMLFacetUiElement,
-} from "@innovatrics/dot-auto-capture-ui/face";
-import { useEffect } from "react";
-import "@innovatrics/dot-auto-capture-ui/face";
+import type { FaceUiConfiguration, HTMLFacetUiElement } from '@innovatrics/dot-auto-capture-ui/face';
 
-function FaceUi(props: FaceUiProps) {
+import { useEffect } from 'react';
+import '@innovatrics/dot-auto-capture-ui/face';
+
+function FaceUi(configuration: FaceUiConfiguration) {
   useEffect(() => {
-    const uiElement = document.getElementById(
-      "x-dot-face-auto-capture-ui",
-    ) as HTMLFacetUiElement | null;
+    const uiElement = document.getElementById('x-dot-face-auto-capture-ui') as HTMLFacetUiElement | null;
 
     if (uiElement) {
-      uiElement.props = props;
+      uiElement.configuration = configuration;
     }
   });
 

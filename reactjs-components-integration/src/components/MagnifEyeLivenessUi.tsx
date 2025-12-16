@@ -1,18 +1,17 @@
-import "@innovatrics/dot-auto-capture-ui/magnifeye-liveness";
-import { useEffect } from "react";
+import '@innovatrics/dot-auto-capture-ui/magnifeye-liveness';
 import type {
-  MagnifEyeLivenessUiProps,
   HTMLMagnifEyeLivenessUiElement,
-} from "@innovatrics/dot-auto-capture-ui/magnifeye-liveness";
+  MagnifEyeLivenessUiConfiguration,
+} from '@innovatrics/dot-auto-capture-ui/magnifeye-liveness';
 
-function MagnifEyeLivenessUi(props: MagnifEyeLivenessUiProps) {
+import { useEffect } from 'react';
+
+function MagnifEyeLivenessUi(configuration: MagnifEyeLivenessUiConfiguration) {
   useEffect(() => {
-    const uiElement = document.getElementById(
-      "x-dot-magnifeye-liveness-ui",
-    ) as HTMLMagnifEyeLivenessUiElement | null;
+    const uiElement = document.getElementById('x-dot-magnifeye-liveness-ui') as HTMLMagnifEyeLivenessUiElement | null;
 
     if (uiElement) {
-      uiElement.props = props;
+      uiElement.configuration = configuration;
     }
   });
 

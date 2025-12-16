@@ -1,8 +1,5 @@
 import '@innovatrics/dot-multi-range-liveness';
-import type {
-  Configuration,
-  HTMLMultiRangeLivenessElement,
-} from '@innovatrics/dot-multi-range-liveness';
+import type { Configuration, HTMLMultiRangeLivenessElement } from '@innovatrics/dot-multi-range-liveness';
 
 import { useEffect } from 'react';
 

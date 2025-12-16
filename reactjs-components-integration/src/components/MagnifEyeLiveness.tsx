@@ -1,4 +1,7 @@
-import type { MagnifEyeLivenessCallback } from '@innovatrics/dot-magnifeye-liveness';
+import type {
+  MagnifEyeLivenessOnCompleteCallback,
+  MagnifEyeLivenessOnCompleteCallbackImage,
+} from '@innovatrics/dot-magnifeye-liveness';
 
 import {
   ControlEventInstruction,
@@ -15,17 +18,17 @@ import MagnifEyeLivenessUi from './MagnifEyeLivenessUi';
 
 interface Props {
   onBackClick: () => void;
-  onComplete: MagnifEyeLivenessCallback;
+  onComplete: MagnifEyeLivenessOnCompleteCallback;
   onError: (error: Error) => void;
 }
 
 function MagnifEyeLiveness({ onBackClick, onComplete, onError }: Props) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const handleOnComplete: MagnifEyeLivenessCallback = async (imageData, content) => {
+  async function handleOnComplete(imageData: MagnifEyeLivenessOnCompleteCallbackImage, content: Uint8Array) {
     setIsButtonDisabled(false);
     onComplete(imageData, content);
-  };
+  }
 
   const handleContinueDetection = () => {
     dispatchControlEvent(MagnifEyeCustomEvent.CONTROL, ControlEventInstruction.CONTINUE_DETECTION);
@@ -46,7 +49,7 @@ function MagnifEyeLiveness({ onBackClick, onComplete, onError }: Props) {
       </div>
       <div className={styles.container}>
         <MagnifEyeLivenessCamera onComplete={handleOnComplete} onError={onError} />
-        <MagnifEyeLivenessUi showCameraButtons />
+        <MagnifEyeLivenessUi control={{ showCameraButtons: true }} />
       </div>
     </>
   );

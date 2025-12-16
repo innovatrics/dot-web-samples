@@ -21,8 +21,10 @@ export class PalmUiComponent implements OnInit {
     ) as HTMLPalmUiElement | null;
 
     if (palmUiElement) {
-      palmUiElement.props = {
-        showCameraButtons: true,
+      palmUiElement.configuration = {
+        control: {
+          showCameraButtons: true,
+        },
       };
     }
   }

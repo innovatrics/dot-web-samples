@@ -3,14 +3,14 @@ import { ref } from "vue";
 import { Step, Emits } from "../types";
 import MagnifEyeLivenessCamera from "./MagnifEyeLivenessCamera.vue";
 import MagnifEyeLivenessUi from "./MagnifEyeLivenessUi.vue";
-import { MagnifEyeLivenessCallback } from "@innovatrics/dot-magnifeye-liveness";
+import { MagnifEyeLivenessOnCompleteCallback, MagnifEyeLivenessOnCompleteCallbackImage } from "@innovatrics/dot-magnifeye-liveness";
 import {
   dispatchControlEvent,
   MagnifEyeCustomEvent,
   ControlEventInstruction,
 } from "@innovatrics/dot-magnifeye-liveness/events";
 
-const emit = defineEmits<Emits<MagnifEyeLivenessCallback>>();
+const emit = defineEmits<Emits<MagnifEyeLivenessOnCompleteCallback>>();
 
 const isButtonDisabled = ref(true);
 
@@ -18,22 +18,22 @@ const isButtonDisabled = ref(true);
  * At this point use @content property with Digital Identity Service in order to evaluate the MagnifEye liveness score.
  * See: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-dis/latest/documentation/#_magnifeye_liveness_check
  */
-const onComplete: MagnifEyeLivenessCallback = (imageData, content) => {
+function onComplete(imageData: MagnifEyeLivenessOnCompleteCallbackImage, content: Uint8Array) {
   isButtonDisabled.value = false;
   emit("onComplete", imageData, content);
-};
+}
 
-const handleContinueDetection = () => {
+function handleContinueDetection() {
   dispatchControlEvent(
     MagnifEyeCustomEvent.CONTROL,
     ControlEventInstruction.CONTINUE_DETECTION
   );
   isButtonDisabled.value = true;
-};
+}
 
-const onError = (error: Error) => {
+function onError(error: Error) {
   emit("onError", error);
-};
+}
 </script>
 
 <template>
@@ -46,11 +46,11 @@ const onError = (error: Error) => {
       Continue detection
     </button>
     <div class="container overflow-hidden">
-      <MagnifEyeLivenessCamera :cameraOptions="{
+      <MagnifEyeLivenessCamera :configuration="{
         onComplete: onComplete,
         onError: onError,
       }" />
-      <MagnifEyeLivenessUi :uiProps="{ showCameraButtons: true }" />
+      <MagnifEyeLivenessUi :configuration="{ control: { showCameraButtons: true } }" />
     </div>
   </div>
 </template>

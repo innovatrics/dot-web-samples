@@ -5,7 +5,6 @@ import {
   DocumentCustomEvent,
   ControlEventInstruction,
 } from '@innovatrics/dot-document-auto-capture/events';
-import { DetectedDocument } from '@innovatrics/dot-document-auto-capture';
 import { DocumentCameraComponent } from './document-camera.component';
 import { DocumentUiComponent } from './document-ui.component';
 
@@ -35,9 +34,7 @@ import { DocumentUiComponent } from './document-ui.component';
   `,
 })
 export class DocumentAutoCaptureComponent {
-  @Output() photoTaken = new EventEmitter<
-    OnPhotoTakenEventValue<DetectedDocument>
-  >();
+  @Output() photoTaken = new EventEmitter<OnPhotoTakenEventValue>();
   @Output() captureError = new EventEmitter<Error>();
   @Output() back = new EventEmitter<Step>();
 
@@ -55,11 +52,8 @@ export class DocumentAutoCaptureComponent {
     this.isButtonDisabled = true;
   }
 
-  handlePhotoTaken({
-    imageData,
-    content,
-  }: OnPhotoTakenEventValue<DetectedDocument>) {
-    this.photoTaken.emit({ imageData, content });
+  handlePhotoTaken(event: OnPhotoTakenEventValue) {
+    this.photoTaken.emit(event);
     this.isButtonDisabled = false;
   }
 

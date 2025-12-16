@@ -8,10 +8,7 @@ import {
 } from '@angular/core';
 import '@innovatrics/dot-magnifeye-liveness';
 import { OnPhotoTakenEventValue } from '../../types';
-import type {
-  HTMLMagnifEyeLivenessElement,
-} from '@innovatrics/dot-magnifeye-liveness';
-import { DetectedFace } from '@innovatrics/dot-magnifeye-liveness/ui-common/src/types';
+import type { HTMLMagnifEyeLivenessElement } from '@innovatrics/dot-magnifeye-liveness';
 
 @Component({
   selector: 'app-magnifeye-liveness-camera',
@@ -24,9 +21,7 @@ import { DetectedFace } from '@innovatrics/dot-magnifeye-liveness/ui-common/src/
   `,
 })
 export class MagnifEyeLivenessCameraComponent implements OnInit {
-  @Output() photoTaken = new EventEmitter<
-    OnPhotoTakenEventValue<DetectedFace>
-  >();
+  @Output() photoTaken = new EventEmitter<OnPhotoTakenEventValue>();
   @Output() captureError = new EventEmitter<Error>();
 
   constructor(private ngZone: NgZone) {}
@@ -41,14 +36,14 @@ export class MagnifEyeLivenessCameraComponent implements OnInit {
     ) as HTMLMagnifEyeLivenessElement | null;
 
     if (magnifEyeLivenessElement) {
-      magnifEyeLivenessElement.props = {
+      magnifEyeLivenessElement.configuration = {
         /**
          * At this point use @content property with Digital Identity Service in order to evaluate the MagnifEye liveness score.
          * See: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-dis/latest/documentation/#_magnifeye_liveness_check
          */
-        onComplete: (imageData, content) => {
+        onComplete: (imageData) => {
           this.ngZone.run(() => {
-            this.photoTaken.emit({ imageData, content });
+            this.photoTaken.emit({ image: imageData.image });
           });
         },
         onError: (error) => {

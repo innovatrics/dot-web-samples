@@ -1,10 +1,10 @@
-import styles from "../styles/index.module.css";
+import styles from '../styles/index.module.css';
 
 interface Props {
   photoUrl?: string;
 }
 
-function PhotoResult({ photoUrl = "" }: Props) {
+function PhotoResult({ photoUrl = '' }: Props) {
   return (
     <div className={styles.container}>
       <img alt="Web component result" src={photoUrl} />

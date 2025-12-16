@@ -7,7 +7,7 @@ module.exports  = {
     "airbnb",
     "airbnb-typescript",
     "plugin:import/typescript",
-    "plugin:prettier/recommended"
+    "prettier"
   ],
   parser: "@typescript-eslint/parser",
   rules: {
@@ -16,7 +16,9 @@ module.exports  = {
     "import/prefer-default-export": "off",
     "react/button-has-type": "off",
     "no-alert": "off",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-no-bind": "off"
   },
   ignorePatterns: [".eslintrc.cjs"]
 };

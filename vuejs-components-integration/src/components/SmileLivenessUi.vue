@@ -1,14 +1,14 @@
 <script setup lang="ts">
 
-import type { SmileLivenessUiProps } from "@innovatrics/dot-auto-capture-ui/smile-liveness";
+import type { SmileLivenessUiConfiguration } from "@innovatrics/dot-auto-capture-ui/smile-liveness";
 import "@innovatrics/dot-auto-capture-ui/smile-liveness";
 
 type Props = {
-    uiProps: SmileLivenessUiProps
+    configuration: SmileLivenessUiConfiguration
 }
 const props = defineProps<Props>()
 </script>
 
 <template>
-    <x-dot-smile-liveness-ui .props="props.uiProps" id="x-dot-smile-liveness-ui" />
+    <x-dot-smile-liveness-ui .configuration="props.configuration" id="x-dot-smile-liveness-ui" />
 </template>

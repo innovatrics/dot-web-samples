@@ -9,7 +9,6 @@ import { OnPhotoTakenEventValue, Step } from '../../types';
 
 import { MultiRangeLivenessCameraComponent } from './multi-range-liveness-camera.component';
 import { MultiRangeLivenessUiComponent } from './multi-range-liveness-ui.component';
-import { DetectedFace } from '@innovatrics/dot-multi-range-liveness/ui-common/src/types/face';
 
 @Component({
   selector: 'app-multi-range-liveness',
@@ -19,7 +18,13 @@ import { DetectedFace } from '@innovatrics/dot-multi-range-liveness/ui-common/sr
     <div>
       <h2>Multi Range Liveness</h2>
       <button (click)="onBackClick()" class="button">Go back</button>
-      <button (click)="handleContinue()" class="button" [disabled]="isButtonDisabled">Continue detection</button>
+      <button
+        (click)="handleContinue()"
+        class="button"
+        [disabled]="isButtonDisabled"
+      >
+        Continue detection
+      </button>
       <div class="container">
         <app-multi-range-liveness-camera
           (photoTaken)="handlePhotoTaken($event)"
@@ -31,9 +36,7 @@ import { DetectedFace } from '@innovatrics/dot-multi-range-liveness/ui-common/sr
   `,
 })
 export class MultiRangeLivenessComponent {
-  @Output() photoTaken = new EventEmitter<
-  OnPhotoTakenEventValue<DetectedFace>
-  >();
+  @Output() photoTaken = new EventEmitter<OnPhotoTakenEventValue>();
   @Output() captureError = new EventEmitter<Error>();
   @Output() back = new EventEmitter<Step>();
 
@@ -44,13 +47,16 @@ export class MultiRangeLivenessComponent {
   }
 
   handleContinue() {
-    dispatchControlEvent(MultiRangeCustomEvent.CONTROL, ControlEventInstruction.CONTINUE_DETECTION);
+    dispatchControlEvent(
+      MultiRangeCustomEvent.CONTROL,
+      ControlEventInstruction.CONTINUE_DETECTION,
+    );
 
     this.isButtonDisabled = true;
   }
 
-  handlePhotoTaken({ content, imageData }: OnPhotoTakenEventValue<DetectedFace>) {
-    this.photoTaken.emit({ imageData, content });
+  handlePhotoTaken(event: OnPhotoTakenEventValue) {
+    this.photoTaken.emit(event);
     this.isButtonDisabled = false;
   }
 

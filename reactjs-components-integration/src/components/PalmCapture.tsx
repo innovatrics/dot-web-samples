@@ -1,37 +1,30 @@
-import type {
-  PalmCallback,
-  PalmComponentData,
-} from "@innovatrics/dot-palm-capture";
-import {
-  dispatchControlEvent,
-  PalmCustomEvent,
-  ControlEventInstruction,
-} from "@innovatrics/dot-palm-capture/events";
-import { useState } from "react";
-import styles from "../styles/index.module.css";
-import buttonStyles from "../styles/button.module.css";
-import PalmCamera from "./PalmCamera";
-import PalmUi from "./PalmUi";
+import type { PalmOnCompleteCallback, PalmOnCompleteCallbackImage } from '@innovatrics/dot-palm-capture';
+
+import { ControlEventInstruction, dispatchControlEvent, PalmCustomEvent } from '@innovatrics/dot-palm-capture/events';
+import { useState } from 'react';
+
+import buttonStyles from '../styles/button.module.css';
+import styles from '../styles/index.module.css';
+
+import PalmCamera from './PalmCamera';
+import PalmUi from './PalmUi';
 
 interface Props {
-  onPhotoTaken: PalmCallback;
-  onError: (error: Error) => void;
   onBackClick: () => void;
+  onError: (error: Error) => void;
+  onComplete: PalmOnCompleteCallback;
 }
 
-function PalmCapture({ onPhotoTaken, onError, onBackClick }: Props) {
+function PalmCapture({ onBackClick, onError, onComplete }: Props) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const handlePhotoTaken: PalmCallback = async (imageData, content) => {
+  async function handlePhotoTaken(imageData: PalmOnCompleteCallbackImage, content: Uint8Array) {
     setIsButtonDisabled(false);
-    onPhotoTaken(imageData, content);
-  };
+    onComplete(imageData, content);
+  }
 
   const handleContinueDetection = () => {
-    dispatchControlEvent(
-      PalmCustomEvent.CONTROL,
-      ControlEventInstruction.CONTINUE_DETECTION,
-    );
+    dispatchControlEvent(PalmCustomEvent.CONTROL, ControlEventInstruction.CONTINUE_DETECTION);
 
     setIsButtonDisabled(true);
   };
@@ -43,22 +36,14 @@ function PalmCapture({ onPhotoTaken, onError, onBackClick }: Props) {
         <button className={buttonStyles.primary} onClick={onBackClick}>
           Go back
         </button>
-        <button
-          className={buttonStyles.primary}
-          onClick={handleContinueDetection}
-          disabled={isButtonDisabled}
-        >
+        <button className={buttonStyles.primary} disabled={isButtonDisabled} onClick={handleContinueDetection}>
           Continue detection
         </button>
       </div>
       {/* parent container must have position: relative */}
       <div className={styles.container}>
-        <PalmCamera
-          cameraFacing="environment"
-          onPhotoTaken={handlePhotoTaken}
-          onError={onError}
-        />
-        <PalmUi showCameraButtons />
+        <PalmCamera camera={{ facingMode: 'environment' }} onComplete={handlePhotoTaken} onError={onError} />
+        <PalmUi control={{ showCameraButtons: true }} />
       </div>
     </>
   );

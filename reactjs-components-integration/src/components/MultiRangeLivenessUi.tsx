@@ -2,19 +2,19 @@ import '@innovatrics/dot-auto-capture-ui/multi-range-liveness';
 
 import type {
   HTMLMultiRangeLivenessUiElement,
-  MultiRangeUiProps,
-} from '@innovatrics/dot-auto-capture-ui/ui/src/types/multi-range';
+  MultiRangeUiConfiguration,
+} from '@innovatrics/dot-auto-capture-ui/multi-range-liveness';
 
 import { useEffect } from 'react';
 
-function MultiRangeLivenessUi(props: MultiRangeUiProps) {
+function MultiRangeLivenessUi(configuration: MultiRangeUiConfiguration) {
   useEffect(() => {
     const uiElement = document.getElementById(
-      'x-dot-multi-range-liveness-ui',
+      'x-dot-multi-range-liveness-ui'
     ) as HTMLMultiRangeLivenessUiElement | null;
 
     if (uiElement) {
-      uiElement.props = props;
+      uiElement.configuration = configuration;
     }
   });
 

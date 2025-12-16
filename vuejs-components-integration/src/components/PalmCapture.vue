@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type { PalmCallback } from "@innovatrics/dot-palm-capture";
+import type { PalmOnCompleteCallback, PalmOnCompleteCallbackImage } from "@innovatrics/dot-palm-capture";
 import {
   dispatchControlEvent,
   PalmCustomEvent,
@@ -11,26 +11,26 @@ import PalmCamera from "./PalmCamera.vue";
 import PalmUi from "./PalmUi.vue";
 
 
-const emit = defineEmits<Emits<PalmCallback>>();
+const emit = defineEmits<Emits<PalmOnCompleteCallback>>();
 
 const isButtonDisabled = ref(true);
 
-const handlePhotoTaken: PalmCallback = async (imageData, content) => {
+function handlePhotoTaken(imageData: PalmOnCompleteCallbackImage, content: Uint8Array) {
   isButtonDisabled.value = false;
   emit("onComplete", imageData, content);
-};
+}
 
-const handleContinueDetection = () => {
+function handleContinueDetection() {
   dispatchControlEvent(
     PalmCustomEvent.CONTROL,
     ControlEventInstruction.CONTINUE_DETECTION
   );
   isButtonDisabled.value = true;
-};
+}
 
-const handleError = (error: Error) => {
+function handleError(error: Error) {
   emit("onError", error);
-};
+}
 </script>
 
 <template>
@@ -43,12 +43,12 @@ const handleError = (error: Error) => {
       Continue detection
     </button>
     <div class="container">
-      <PalmCamera :cameraOptions="{
-        cameraFacing: 'environment',
-        onPhotoTaken: handlePhotoTaken,
+      <PalmCamera :configuration="{
+        camera: { facingMode: 'environment' },
+        onComplete: handlePhotoTaken,
         onError: handleError,
       }" />
-      <PalmUi :uiProps="{ showCameraButtons: true }" />
+      <PalmUi :configuration="{ control: { showCameraButtons: true } }" />
     </div>
   </div>
 </template>

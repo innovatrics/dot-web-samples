@@ -1,19 +1,17 @@
-import "@innovatrics/dot-auto-capture-ui/smile-liveness";
+import '@innovatrics/dot-auto-capture-ui/smile-liveness';
 
 import type {
-  SmileLivenessUiProps,
+  SmileLivenessUiConfiguration,
   HTMLSmileLivenessUiElement,
-} from "@innovatrics/dot-auto-capture-ui/smile-liveness";
-import { useEffect } from "react";
+} from '@innovatrics/dot-auto-capture-ui/smile-liveness';
+import { useEffect } from 'react';
 
-function SmileLivenessUi(props: SmileLivenessUiProps) {
+function SmileLivenessUi(configuration: SmileLivenessUiConfiguration) {
   useEffect(() => {
-    const uiElement = document.getElementById(
-      "x-dot-smile-liveness-ui",
-    ) as HTMLSmileLivenessUiElement | null;
+    const uiElement = document.getElementById('x-dot-smile-liveness-ui') as HTMLSmileLivenessUiElement | null;
 
     if (uiElement) {
-      uiElement.props = props;
+      uiElement.configuration = configuration;
     }
   });
 

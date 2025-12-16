@@ -5,7 +5,6 @@ import {
   FaceCustomEvent,
   ControlEventInstruction,
 } from '@innovatrics/dot-face-auto-capture/events';
-import { DetectedFace } from '@innovatrics/dot-face-auto-capture';
 import { FaceCameraComponent } from './face-camera.component';
 import { FaceUiComponent } from './face-ui.component';
 
@@ -35,9 +34,7 @@ import { FaceUiComponent } from './face-ui.component';
   `,
 })
 export class FaceAutoCaptureComponent {
-  @Output() photoTaken = new EventEmitter<
-    OnPhotoTakenEventValue<DetectedFace>
-  >();
+  @Output() photoTaken = new EventEmitter<OnPhotoTakenEventValue>();
   @Output() captureError = new EventEmitter<Error>();
   @Output() back = new EventEmitter<Step>();
 
@@ -55,11 +52,8 @@ export class FaceAutoCaptureComponent {
     this.isButtonDisabled = true;
   }
 
-  handlePhotoTaken({
-    imageData,
-    content,
-  }: OnPhotoTakenEventValue<DetectedFace>) {
-    this.photoTaken.emit({ imageData, content });
+  handlePhotoTaken(event: OnPhotoTakenEventValue) {
+    this.photoTaken.emit(event);
     this.isButtonDisabled = false;
   }
 

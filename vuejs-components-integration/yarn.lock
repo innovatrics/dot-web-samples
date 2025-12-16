@@ -210,30 +210,19 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-2.0.3.tgz#4a2868d75d6d6963e423bcf90b7fd1be343409d3"
   integrity sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==
 
-"@innovatrics/dot-auto-capture-ui@7.7.0":
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-auto-capture-ui/-/dot-auto-capture-ui-7.7.0.tgz#46c221c227d20293f8ac9458467aa5b53871f1d4"
-  integrity sha512-5jvqmRvYYMjU14q5Ms6hqczPGWsAxH7WFBy3d7cckUEwXg7uPdMMxS+Cq6fMSLk18yUnvZ1TUbDoZJnMq8cdpg==
+"@innovatrics/dot-auto-capture-ui@8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-auto-capture-ui/-/dot-auto-capture-ui-8.0.0.tgz#b18daa51ade4f5b49ee8839a91ae26070e9a06c6"
+  integrity sha512-TCsosAHhSuAo+/Kai2nozpaWpFpE+QezD6NAkwuYcN6AgLVd6DGIEAHYn7xJm0AyVaKb7kbg1AK2HIPW3fcHPA==
   dependencies:
     preact "^10.26.6"
     preact-custom-element "^4.3.0"
     styled-components "^6.1.18"
 
-"@innovatrics/dot-document-auto-capture@7.7.0":
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-7.7.0.tgz#43e3d490a98b35e5d92c403d9cd13548ef83f891"
-  integrity sha512-W/qpxAoy53ow+mOk8S2Zjc3PuMQLzOQn7OxsBohZd+lunAkjEXQGra/AAOrXhKzFWFIHtTf2hCcVP+XWDvuxNw==
-  dependencies:
-    "@preact/signals" "^2.0.4"
-    comlink "^4.4.2"
-    preact "^10.26.6"
-    preact-custom-element "^4.3.0"
-    styled-components "^6.1.18"
-
-"@innovatrics/dot-face-auto-capture@7.7.0":
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-7.7.0.tgz#9eff79c74a3394a5e9440eca582f61256f52530a"
-  integrity sha512-s8JYX3K0680f6KS/teJ2pEs7lNAiu5VpmteawYaE+bHoB0Tk50SuTo0/v8SUEsaW/2D0tAdCL9ZFkfiDUJKSXA==
+"@innovatrics/dot-document-auto-capture@8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-8.0.0.tgz#6058ce962b53ada0848615ce91f2de5c85851591"
+  integrity sha512-DZYIFqhNNQMd5Rt3kmW3mbeYxpI6pb5i3y0y8ifnREmHn0/Z+lmRQR6bCKbyhDusM8uD3wR6kWqwzxl+L02HVQ==
   dependencies:
     "@preact/signals" "^2.0.4"
     comlink "^4.4.2"
@@ -241,10 +230,10 @@
     preact-custom-element "^4.3.0"
     styled-components "^6.1.18"
 
-"@innovatrics/dot-magnifeye-liveness@7.7.0":
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-magnifeye-liveness/-/dot-magnifeye-liveness-7.7.0.tgz#99f138a4ff7bbe5f08cf0505075ef09507a49b2b"
-  integrity sha512-csfnfUs4g5ELAx588484v1vAkjRanMFUrIkz6QPE9htv8dDvptnvOR2STEhe8qvx+IIvGbhwxKjOw+XVclh+qw==
+"@innovatrics/dot-face-auto-capture@8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-8.0.0.tgz#4bbf8420ca08857fd07575ae92c7230abdcee84f"
+  integrity sha512-+PUyYUguJBxlUeLfzSG9GEkdSjRR8qshIXlbNa18WMmZGZlwrq85NiWtek2dg+HFDwv/Zqzr+cRb/vwK2ueuzA==
   dependencies:
     "@preact/signals" "^2.0.4"
     comlink "^4.4.2"
@@ -252,10 +241,21 @@
     preact-custom-element "^4.3.0"
     styled-components "^6.1.18"
 
-"@innovatrics/dot-multi-range-liveness@7.7.0":
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-multi-range-liveness/-/dot-multi-range-liveness-7.7.0.tgz#6ff1722e5827a61ece04da895bf3f5f40e8ad9e6"
-  integrity sha512-lzg1MKJcJ9zDXdA5mcqakWtR7UXVUAEGh8wihlVvdgEMMxqxKk6w3b6PRhsWeOBFrTjqiqLbYjgrHQsx6GCnSw==
+"@innovatrics/dot-magnifeye-liveness@8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-magnifeye-liveness/-/dot-magnifeye-liveness-8.0.0.tgz#bd044fa60de49f5645dba29954ca93e087ac8715"
+  integrity sha512-D4TWxPPg4/o5eTwkIRwjan6UCCZmBgbuPyyC6h3LK7g4mEfVJIIX/XfTEHaLEHwP0Hgq20NZguMag5OYZ5+JMQ==
+  dependencies:
+    "@preact/signals" "^2.0.4"
+    comlink "^4.4.2"
+    preact "^10.26.6"
+    preact-custom-element "^4.3.0"
+    styled-components "^6.1.18"
+
+"@innovatrics/dot-multi-range-liveness@8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-multi-range-liveness/-/dot-multi-range-liveness-8.0.0.tgz#9ab059963a98117c811e6b54922b180f168b2403"
+  integrity sha512-DsbUQ59vvHQgQKwfEXu1Bw1LTlznJkwllN9pbs7JCLD5WUnS2ZDuR5jqYfYh+LTKxgSLTJ623mJjkcvO5APzEg==
   dependencies:
     "@preact/signals" "^2.0.4"
     comlink "^4.4.2"
@@ -264,10 +264,10 @@
     styled-components "^6.1.18"
     valibot "^1.1.0"
 
-"@innovatrics/dot-palm-capture@7.7.0":
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-palm-capture/-/dot-palm-capture-7.7.0.tgz#a91cc7538a781656334c39c0c094959176ac6145"
-  integrity sha512-fncc4NoYyAEv7P+/ad8W8lafKVAruVIuGF7Gm0i/E44EqBe5tgzVKUG7f08XjZcGpVoU1TeSLDTAIx7bxoLkFQ==
+"@innovatrics/dot-palm-capture@8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-palm-capture/-/dot-palm-capture-8.0.0.tgz#d483bf2283b3687130e305e6b52324a0110024c0"
+  integrity sha512-rfRza5EWwKxoQqIGp8iwAez0VODue2gAofckfqVeoZhAg+WNDOxipMuxUrnmJ0NS3C1HgNyiyju1Ln8VB+zNuA==
   dependencies:
     "@preact/signals" "^2.0.4"
     comlink "^4.4.2"
@@ -275,16 +275,17 @@
     preact-custom-element "^4.3.0"
     styled-components "^6.1.18"
 
-"@innovatrics/dot-smile-liveness@7.7.0":
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-smile-liveness/-/dot-smile-liveness-7.7.0.tgz#eb77d59c946f55560d64ea166bc4a4e4d4159aae"
-  integrity sha512-nAltlHXIDiS6Mb+92XSQ8lSI6pDHx3p7qMIIpGynhT6u5wDcT4iv6g3AQaoDMkcXC9ZcqXN6k6Ci89uHOlUqaQ==
+"@innovatrics/dot-smile-liveness@8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-smile-liveness/-/dot-smile-liveness-8.0.0.tgz#9c1c584a5e6739eee35cbda9cd9c00ac7617b1c4"
+  integrity sha512-ycevyasvEuuagMww5EO2asFTR+M/MRixnD+5Yn9CQfsPTEAyj3XWOtdN6UwhUOIjPGwpvAw1dItyG3QKU+d5Iw==
   dependencies:
     "@preact/signals" "^2.0.4"
     comlink "^4.4.2"
     preact "^10.26.6"
     preact-custom-element "^4.3.0"
     styled-components "^6.1.18"
+    valibot "^1.1.0"
 
 "@jridgewell/sourcemap-codec@^1.5.5":
   version "1.5.5"

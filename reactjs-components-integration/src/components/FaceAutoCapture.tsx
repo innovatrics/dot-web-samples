@@ -1,37 +1,34 @@
-import type {
-  FaceCallback,
-  FaceComponentData,
-} from "@innovatrics/dot-face-auto-capture";
+import type { FaceOnCompleteCallback, FaceOnCompleteCallbackImage } from '@innovatrics/dot-face-auto-capture';
+
 import {
+  ControlEventInstruction,
   dispatchControlEvent,
   FaceCustomEvent,
-  ControlEventInstruction,
-} from "@innovatrics/dot-face-auto-capture/events";
-import { useState } from "react";
-import styles from "../styles/index.module.css";
-import buttonStyles from "../styles/button.module.css";
-import FaceCamera from "./FaceCamera";
-import FaceUi from "./FaceUi";
+} from '@innovatrics/dot-face-auto-capture/events';
+import { useState } from 'react';
+
+import buttonStyles from '../styles/button.module.css';
+import styles from '../styles/index.module.css';
+
+import FaceCamera from './FaceCamera';
+import FaceUi from './FaceUi';
 
 interface Props {
-  onPhotoTaken: FaceCallback;
-  onError: (error: Error) => void;
   onBackClick: () => void;
+  onError: (error: Error) => void;
+  onComplete: FaceOnCompleteCallback;
 }
 
-function FaceAutoCapture({ onPhotoTaken, onError, onBackClick }: Props) {
+function FaceAutoCapture({ onBackClick, onError, onComplete }: Props) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const handlePhotoTaken: FaceCallback = async (imageData, content) => {
+  async function handlePhotoTaken(imageData: FaceOnCompleteCallbackImage, content: Uint8Array) {
     setIsButtonDisabled(false);
-    onPhotoTaken(imageData, content);
-  };
+    onComplete(imageData, content);
+  }
 
   const handleContinueDetection = () => {
-    dispatchControlEvent(
-      FaceCustomEvent.CONTROL,
-      ControlEventInstruction.CONTINUE_DETECTION,
-    );
+    dispatchControlEvent(FaceCustomEvent.CONTROL, ControlEventInstruction.CONTINUE_DETECTION);
 
     setIsButtonDisabled(true);
   };
@@ -43,21 +40,13 @@ function FaceAutoCapture({ onPhotoTaken, onError, onBackClick }: Props) {
         <button className={buttonStyles.primary} onClick={onBackClick}>
           Go back
         </button>
-        <button
-          className={buttonStyles.primary}
-          onClick={handleContinueDetection}
-          disabled={isButtonDisabled}
-        >
+        <button className={buttonStyles.primary} disabled={isButtonDisabled} onClick={handleContinueDetection}>
           Continue detection
         </button>
       </div>
       <div className={styles.container}>
-        <FaceCamera
-          cameraFacing="user"
-          onPhotoTaken={handlePhotoTaken}
-          onError={onError}
-        />
-        <FaceUi showCameraButtons />
+        <FaceCamera camera={{ facingMode: 'user' }} onComplete={handlePhotoTaken} onError={onError} />
+        <FaceUi control={{ showCameraButtons: true }} />
       </div>
     </>
   );

@@ -7,7 +7,6 @@ import {
   MagnifEyeCustomEvent,
   ControlEventInstruction,
 } from '@innovatrics/dot-magnifeye-liveness/events';
-import { DetectedFace } from '@innovatrics/dot-magnifeye-liveness/ui-common/src/types';
 @Component({
   selector: 'app-magnifeye-liveness',
   standalone: true,
@@ -34,9 +33,7 @@ import { DetectedFace } from '@innovatrics/dot-magnifeye-liveness/ui-common/src/
   `,
 })
 export class MagnifEyeLivenessComponent {
-  @Output() photoTaken = new EventEmitter<
-    OnPhotoTakenEventValue<DetectedFace>
-  >();
+  @Output() photoTaken = new EventEmitter<OnPhotoTakenEventValue>();
   @Output() captureError = new EventEmitter<Error>();
   @Output() back = new EventEmitter<Step>();
 
@@ -54,11 +51,8 @@ export class MagnifEyeLivenessComponent {
     this.isButtonDisabled = true;
   }
 
-  handlePhotoTaken({
-    imageData,
-    content,
-  }: OnPhotoTakenEventValue<DetectedFace>) {
-    this.photoTaken.emit({ imageData, content });
+  handlePhotoTaken(event: OnPhotoTakenEventValue) {
+    this.photoTaken.emit(event);
     this.isButtonDisabled = false;
   }
 

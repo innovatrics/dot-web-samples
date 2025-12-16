@@ -9,7 +9,6 @@ import {
   SmileCustomEvent,
   ControlEventInstruction,
 } from '@innovatrics/dot-smile-liveness/events';
-import { DetectedFace } from '@innovatrics/dot-smile-liveness/ui-common/src/types';
 @Component({
   selector: 'app-smile-liveness',
   standalone: true,
@@ -36,9 +35,7 @@ import { DetectedFace } from '@innovatrics/dot-smile-liveness/ui-common/src/type
   `,
 })
 export class SmileLivenessComponent {
-  @Output() photoTaken = new EventEmitter<
-    OnPhotoTakenEventValue<DetectedFace>
-  >();
+  @Output() photoTaken = new EventEmitter<OnPhotoTakenEventValue>();
   @Output() captureError = new EventEmitter<Error>();
   @Output() back = new EventEmitter<Step>();
 
@@ -56,11 +53,8 @@ export class SmileLivenessComponent {
     this.isButtonDisabled = true;
   }
 
-  handlePhotoTaken({
-    imageData,
-    content,
-  }: OnPhotoTakenEventValue<DetectedFace>) {
-    this.photoTaken.emit({ imageData, content });
+  handlePhotoTaken(event: OnPhotoTakenEventValue) {
+    this.photoTaken.emit(event);
     this.isButtonDisabled = false;
   }
 

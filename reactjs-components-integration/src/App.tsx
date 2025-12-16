@@ -1,9 +1,9 @@
-import type { CallbackImage, DocumentCallback } from '@innovatrics/dot-document-auto-capture';
-import type { FaceCallback } from '@innovatrics/dot-face-auto-capture';
-import type { MagnifEyeLivenessCallback } from '@innovatrics/dot-magnifeye-liveness';
-import type { MultiRangeLivenessCallback } from '@innovatrics/dot-multi-range-liveness';
-import type { PalmCallback } from '@innovatrics/dot-palm-capture';
-import type { SmileLivenessCallback } from '@innovatrics/dot-smile-liveness';
+import type { CallbackImage, DocumentOnCompleteCallbackImage } from '@innovatrics/dot-document-auto-capture';
+import type { FaceOnCompleteCallbackImage } from '@innovatrics/dot-face-auto-capture';
+import type { MagnifEyeLivenessOnCompleteCallbackImage } from '@innovatrics/dot-magnifeye-liveness';
+import type { PalmOnCompleteCallbackImage } from '@innovatrics/dot-palm-capture';
+import type { OnCompleteCallbackImages as SmileLivenessOnCompleteCallbackImages } from '@innovatrics/dot-smile-liveness';
+import type { OnCompleteCallbackImage as MultiRangeLivenessOnCompleteCallbackImage } from '@innovatrics/dot-multi-range-liveness';
 
 import { useCallback, useState } from 'react';
 
@@ -18,81 +18,70 @@ import SmileLiveness from './components/SmileLiveness';
 import styles from './styles/index.module.css';
 import { Step } from './types';
 
+/**
+ * Use @content property with Digital Identity Service in order to evaluate the liveness score of each component.
+ * See: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-dis/latest/documentation/#_magnifeye_liveness_check
+ */
 function App() {
   const [step, setStep] = useState<Step>(Step.SELECT_COMPONENT);
   const [photoUrl, setPhotoUrl] = useState<string>();
 
-  const handlePhotoTaken = <T,>(imageData: CallbackImage<T>, _content?: Uint8Array) => {
+  function handlePhotoTaken<T>(imageData: CallbackImage<T>, _content?: Uint8Array) {
     const imageUrl = URL.createObjectURL(imageData.image);
 
     setPhotoUrl(imageUrl);
-  };
+  }
 
-  const handleDocumentPhotoTaken: DocumentCallback = (imageData, content) => {
+  function handleDocumentComplete(imageData: DocumentOnCompleteCallbackImage, content: Uint8Array) {
     handlePhotoTaken(imageData, content);
-  };
+  }
 
-  const handleFaceCapturePhotoTaken: FaceCallback = (imageData, content) => {
+  function handleFaceComplete(imageData: FaceOnCompleteCallbackImage, content: Uint8Array) {
     handlePhotoTaken(imageData, content);
-  };
+  }
 
-  const handlePalmCapturePhotoTaken: PalmCallback = (imageData, content) => {
+  function handlePalmComplete(imageData: PalmOnCompleteCallbackImage, content: Uint8Array) {
     handlePhotoTaken(imageData, content);
-  };
+  }
 
-  /**
-   * At this point use @content property with Digital Identity Service in order to evaluate the MagnifEye liveness score.
-   * See: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-dis/latest/documentation/#_magnifeye_liveness_check
-   */
-  const handleMagnifEyeComplete: MagnifEyeLivenessCallback = (imageData, content) => {
+  function handleMagnifEyeComplete(imageData: MagnifEyeLivenessOnCompleteCallbackImage, content: Uint8Array) {
     handlePhotoTaken(imageData, content);
-  };
+  }
 
-  /**
-   * At this point use @content property with Digital Identity Service in order to evaluate the Smile liveness score.
-   */
-  const handleSmileComplete: SmileLivenessCallback = (imageData, content) => {
-    const [, smileImageData] = imageData;
+  function handleSmileComplete(imageData: SmileLivenessOnCompleteCallbackImages, content: Uint8Array) {
+    const { smilePhaseImageWithMetadata } = imageData;
 
-    handlePhotoTaken(smileImageData, content);
-  };
+    handlePhotoTaken(smilePhaseImageWithMetadata, content);
+  }
 
-  const handleMultiRangeComplete: MultiRangeLivenessCallback = (imageData, content) => {
-    handlePhotoTaken(imageData, content);
-  };
+  function handleMultiRangeComplete(imageData: MultiRangeLivenessOnCompleteCallbackImage, content: Uint8Array) {
+    handlePhotoTaken(imageData.imageWithMetadata, content);
+  }
 
   const handleError = useCallback((error: Error) => {
     // eslint-disable-next-line no-alert
     alert(error);
   }, []);
 
-  const handleBackClick = () => {
+  function handleBackClick() {
     setPhotoUrl(undefined);
     setStep(Step.SELECT_COMPONENT);
-  };
+  }
 
-  const renderStep = (currentStep: Step) => {
+  function renderStep(currentStep: Step) {
     switch (currentStep) {
       case Step.DOCUMENT_CAPTURE:
         return (
           <DocumentAutoCapture
             onBackClick={handleBackClick}
             onError={handleError}
-            onPhotoTaken={handleDocumentPhotoTaken}
+            onComplete={handleDocumentComplete}
           />
         );
       case Step.FACE_CAPTURE:
-        return (
-          <FaceAutoCapture
-            onBackClick={handleBackClick}
-            onError={handleError}
-            onPhotoTaken={handleFaceCapturePhotoTaken}
-          />
-        );
+        return <FaceAutoCapture onBackClick={handleBackClick} onError={handleError} onComplete={handleFaceComplete} />;
       case Step.PALM_CAPTURE:
-        return (
-          <PalmCapture onBackClick={handleBackClick} onError={handleError} onPhotoTaken={handlePalmCapturePhotoTaken} />
-        );
+        return <PalmCapture onBackClick={handleBackClick} onError={handleError} onComplete={handlePalmComplete} />;
       case Step.MAGNIFEYE_LIVENESS:
         return (
           <MagnifEyeLiveness onBackClick={handleBackClick} onComplete={handleMagnifEyeComplete} onError={handleError} />
@@ -110,7 +99,7 @@ function App() {
       default:
         return <ComponentSelect setStep={setStep} />;
     }
-  };
+  }
 
   return (
     <div className={styles.app}>

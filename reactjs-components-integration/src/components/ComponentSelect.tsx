@@ -1,5 +1,5 @@
-import { Step } from "../types";
-import styles from "../styles/button.module.css";
+import { Step } from '../types';
+import styles from '../styles/button.module.css';
 
 interface Props {
   setStep: (step: Step) => void;
@@ -47,10 +47,7 @@ function ComponentSelect({ setStep }: Props) {
       <button className={styles.primary} onClick={handleSmileLivenessClick}>
         Smile Liveness
       </button>
-      <button
-        className={styles.primary}
-        onClick={handleMultiRangeLivenessClick}
-      >
+      <button className={styles.primary} onClick={handleMultiRangeLivenessClick}>
         MultiRange Liveness
       </button>
     </div>

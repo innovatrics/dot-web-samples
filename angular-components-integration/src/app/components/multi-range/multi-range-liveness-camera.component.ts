@@ -14,7 +14,6 @@ import {
 } from '@angular/core';
 
 import { OnPhotoTakenEventValue } from '../../types';
-import { DetectedFace } from '@innovatrics/dot-multi-range-liveness/ui-common/src/types/face';
 
 @Component({
   selector: 'app-multi-range-liveness-camera',
@@ -27,9 +26,7 @@ import { DetectedFace } from '@innovatrics/dot-multi-range-liveness/ui-common/sr
   `,
 })
 export class MultiRangeLivenessCameraComponent implements OnInit {
-  @Output() photoTaken = new EventEmitter<
-    OnPhotoTakenEventValue<DetectedFace>
-  >();
+  @Output() photoTaken = new EventEmitter<OnPhotoTakenEventValue>();
   @Output() captureError = new EventEmitter<Error>();
 
   private ngZone = inject(NgZone);
@@ -49,9 +46,9 @@ export class MultiRangeLivenessCameraComponent implements OnInit {
          * At this point use @content property with Digital Identity Service in order to evaluate the MultiRange liveness score.
          * See: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-dis/latest/documentation/#_multirange_liveness_check
          */
-        onComplete: (imageData, content) => {
+        onComplete: (imageData) => {
           this.ngZone.run(() => {
-            this.photoTaken.emit({ imageData, content });
+            this.photoTaken.emit({ image: imageData.imageWithMetadata.image });
           });
         },
         onError: (error) => {

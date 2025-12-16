@@ -1,16 +1,14 @@
 <script setup lang="ts">
-import type {
-  MultiRangeUiProps,
-} from '@innovatrics/dot-auto-capture-ui/ui/src/types/multi-range';
+import type { MultiRangeUiConfiguration } from "@innovatrics/dot-auto-capture-ui/multi-range-liveness";
 import '@innovatrics/dot-auto-capture-ui/multi-range-liveness';
 
 
 type Props = {
-  uiProps: MultiRangeUiProps;
+  configuration: MultiRangeUiConfiguration;
 };
 const props = defineProps<Props>();
 </script>
 
 <template>
-  <x-dot-multi-range-liveness-ui .props="props.uiProps" id="x-dot-multi-range-liveness-ui" />
+  <x-dot-multi-range-liveness-ui .configuration="props.configuration" id="x-dot-multi-range-liveness-ui" />
 </template>

@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { DocumentCameraProps } from "@innovatrics/dot-document-auto-capture";
+import type { DocumentConfiguration } from "@innovatrics/dot-document-auto-capture";
 import "@innovatrics/dot-document-auto-capture";
 
 type Props = {
-  cameraOptions: DocumentCameraProps;
+  configuration: DocumentConfiguration;
 };
 const props = defineProps<Props>();
 </script>
 
 <template>
-  <x-dot-document-auto-capture .cameraOptions="props.cameraOptions" id="x-dot-document-auto-capture" />
+  <x-dot-document-auto-capture .configuration="props.configuration" id="x-dot-document-auto-capture" />
 </template>

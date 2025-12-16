@@ -1,17 +1,19 @@
-import { SmileLivenessCallback } from "@innovatrics/dot-smile-liveness";
-import { useState } from "react";
+import type { OnCompleteCallback, OnCompleteCallbackImages } from '@innovatrics/dot-smile-liveness';
+
+import { useState } from 'react';
 import {
   dispatchControlEvent,
   SmileCustomEvent,
   ControlEventInstruction,
-} from "@innovatrics/dot-smile-liveness/events";
-import styles from "../styles/index.module.css";
-import buttonStyles from "../styles/button.module.css";
-import SmileLivenessCamera from "./SmileLivenessCamera";
-import SmileLivenessUi from "./SmileLivenessUi";
+} from '@innovatrics/dot-smile-liveness/events';
+
+import styles from '../styles/index.module.css';
+import buttonStyles from '../styles/button.module.css';
+import SmileLivenessCamera from './SmileLivenessCamera';
+import SmileLivenessUi from './SmileLivenessUi';
 
 interface Props {
-  onComplete: SmileLivenessCallback;
+  onComplete: OnCompleteCallback;
   onError: (error: Error) => void;
   onBackClick: () => void;
 }
@@ -19,19 +21,13 @@ interface Props {
 function SmileLiveness({ onBackClick, onComplete, onError }: Props) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const handleOnComplete: SmileLivenessCallback = async (
-    imageData,
-    content,
-  ) => {
+  function handleOnComplete(imageData: OnCompleteCallbackImages, content: Uint8Array) {
     setIsButtonDisabled(false);
     onComplete(imageData, content);
-  };
+  }
 
   const handleContinueDetection = () => {
-    dispatchControlEvent(
-      SmileCustomEvent.CONTROL,
-      ControlEventInstruction.CONTINUE_DETECTION,
-    );
+    dispatchControlEvent(SmileCustomEvent.CONTROL, ControlEventInstruction.CONTINUE_DETECTION);
 
     setIsButtonDisabled(true);
   };
@@ -43,17 +39,13 @@ function SmileLiveness({ onBackClick, onComplete, onError }: Props) {
         <button className={buttonStyles.primary} onClick={onBackClick}>
           Go back
         </button>
-        <button
-          className={buttonStyles.primary}
-          onClick={handleContinueDetection}
-          disabled={isButtonDisabled}
-        >
+        <button className={buttonStyles.primary} onClick={handleContinueDetection} disabled={isButtonDisabled}>
           Continue detection
         </button>
       </div>
       <div className={styles.container}>
         <SmileLivenessCamera onComplete={handleOnComplete} onError={onError} />
-        <SmileLivenessUi showCameraButtons />
+        <SmileLivenessUi control={{ showCameraButtons: true }} />
       </div>
     </>
   );

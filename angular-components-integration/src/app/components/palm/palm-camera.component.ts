@@ -8,10 +8,7 @@ import {
 } from '@angular/core';
 import { OnPhotoTakenEventValue } from '../../types';
 import '@innovatrics/dot-palm-capture';
-import type {
-  HTMLPalmCaptureElement,
-  DetectedPalm,
-} from '@innovatrics/dot-palm-capture';
+import type { HTMLPalmCaptureElement } from '@innovatrics/dot-palm-capture';
 
 @Component({
   selector: 'app-palm-camera',
@@ -22,9 +19,7 @@ import type {
   `,
 })
 export class PalmCameraComponent implements OnInit {
-  @Output() photoTaken = new EventEmitter<
-    OnPhotoTakenEventValue<DetectedPalm>
-  >();
+  @Output() photoTaken = new EventEmitter<OnPhotoTakenEventValue>();
   @Output() captureError = new EventEmitter<Error>();
 
   constructor(private ngZone: NgZone) {}
@@ -39,11 +34,11 @@ export class PalmCameraComponent implements OnInit {
     ) as HTMLPalmCaptureElement | null;
 
     if (palmElement) {
-      palmElement.cameraOptions = {
-        cameraFacing: 'environment',
-        onPhotoTaken: (imageData, content) => {
+      palmElement.configuration = {
+        camera: { facingMode: 'environment' },
+        onComplete: (imageData) => {
           this.ngZone.run(() => {
-            this.photoTaken.emit({ imageData, content });
+            this.photoTaken.emit({ image: imageData.image });
           });
         },
         onError: (error) => {

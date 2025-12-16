@@ -25,8 +25,10 @@ export class SmileLivenessUiComponent implements OnInit {
     ) as HTMLSmileLivenessUiElement | null;
 
     if (smileUiElement) {
-      smileUiElement.props = {
-        showCameraButtons: true,
+      smileUiElement.configuration = {
+        control: {
+          showCameraButtons: true,
+        },
       };
     }
   }

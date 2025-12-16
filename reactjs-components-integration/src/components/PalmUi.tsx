@@ -1,18 +1,14 @@
-import "@innovatrics/dot-auto-capture-ui/palm";
-import { useEffect } from "react";
-import type {
-  PalmUiProps,
-  HTMLPalmUiElement,
-} from "@innovatrics/dot-auto-capture-ui/palm";
+import '@innovatrics/dot-auto-capture-ui/palm';
+import type { HTMLPalmUiElement, PalmUiConfiguration } from '@innovatrics/dot-auto-capture-ui/palm';
 
-function PalmUi(props: PalmUiProps) {
+import { useEffect } from 'react';
+
+function PalmUi(configuration: PalmUiConfiguration) {
   useEffect(() => {
-    const uiElement = document.getElementById(
-      "x-dot-palm-capture-ui",
-    ) as HTMLPalmUiElement | null;
+    const uiElement = document.getElementById('x-dot-palm-capture-ui') as HTMLPalmUiElement | null;
 
     if (uiElement) {
-      uiElement.props = props;
+      uiElement.configuration = configuration;
     }
   });
 

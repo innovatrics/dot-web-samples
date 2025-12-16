@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { Step, Emits } from "../types";
 import MultiRangeLivenessCamera from "./MultiRangeLivenessCamera.vue";
 import MultiRangeLivenessUi from "./MultiRangeLivenessUi.vue";
-import { OnCompleteCallback } from "@innovatrics/dot-multi-range-liveness";
+import { OnCompleteCallback, OnCompleteCallbackImage } from "@innovatrics/dot-multi-range-liveness";
 import {
   ControlEventInstruction,
   dispatchControlEvent,
@@ -18,22 +18,22 @@ const isButtonDisabled = ref(true);
  * At this point use @content property with Digital Identity Service in order to evaluate the MultiRange liveness score.
  * See: https://developers.innovatrics.com/digital-onboarding/technical/remote/dot-dis/latest/documentation/#_multirange_liveness_check
  */
-const onComplete: OnCompleteCallback = (imageData, content) => {
+function onComplete(imageData: OnCompleteCallbackImage, content: Uint8Array) {
   isButtonDisabled.value = false;
   emit("onComplete", imageData, content);
-};
+}
 
-const handleContinueDetection = () => {
+function handleContinueDetection() {
   dispatchControlEvent(
     MultiRangeCustomEvent.CONTROL,
     ControlEventInstruction.CONTINUE_DETECTION
   );
   isButtonDisabled.value = true;
-};
+}
 
-const onError = (error: Error) => {
+function onError(error: Error) {
   emit("onError", error);
-};
+}
 </script>
 
 <template>
@@ -51,7 +51,7 @@ const onError = (error: Error) => {
         onComplete: onComplete,
         onError: onError,
       }" />
-      <MultiRangeLivenessUi :uiProps="{ showCameraButtons: true }" />
+      <MultiRangeLivenessUi :configuration="{ control: { showCameraButtons: true } }" />
     </div>
   </div>
 </template>

@@ -23,8 +23,10 @@ export class DocumentUiComponent implements OnInit {
     ) as HTMLDocumentUiElement | null;
 
     if (documentUiElement) {
-      documentUiElement.props = {
-        showCameraButtons: true,
+      documentUiElement.configuration = {
+        control: {
+          showCameraButtons: true,
+        },
       };
     }
   }

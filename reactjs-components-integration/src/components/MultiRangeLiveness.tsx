@@ -1,4 +1,4 @@
-import type { OnCompleteCallback } from '@innovatrics/dot-multi-range-liveness';
+import type { OnCompleteCallback, OnCompleteCallbackImage } from '@innovatrics/dot-multi-range-liveness';
 
 import {
   ControlEventInstruction,
@@ -22,16 +22,13 @@ interface Props {
 function MultiRangeLiveness({ onBackClick, onComplete, onError }: Props) {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const handleOnComplete: OnCompleteCallback = async (imageData, content) => {
+  function handleOnComplete(imageData: OnCompleteCallbackImage, content: Uint8Array) {
     setIsButtonDisabled(false);
     onComplete(imageData, content);
-  };
+  }
 
   const handleContinueDetection = () => {
-    dispatchControlEvent(
-      MultiRangeCustomEvent.CONTROL,
-      ControlEventInstruction.CONTINUE_DETECTION
-    );
+    dispatchControlEvent(MultiRangeCustomEvent.CONTROL, ControlEventInstruction.CONTINUE_DETECTION);
 
     setIsButtonDisabled(true);
   };
@@ -43,11 +40,7 @@ function MultiRangeLiveness({ onBackClick, onComplete, onError }: Props) {
         <button className={buttonStyles.primary} onClick={onBackClick}>
           Go back
         </button>
-        <button
-          className={buttonStyles.primary}
-          disabled={isButtonDisabled}
-          onClick={handleContinueDetection}
-        >
+        <button className={buttonStyles.primary} disabled={isButtonDisabled} onClick={handleContinueDetection}>
           Continue detection
         </button>
       </div>
@@ -57,7 +50,7 @@ function MultiRangeLiveness({ onBackClick, onComplete, onError }: Props) {
           onComplete={handleOnComplete}
           onError={onError}
         />
-        <MultiRangeLivenessUi showCameraButtons />
+        <MultiRangeLivenessUi control={{ showCameraButtons: true }} />
       </div>
     </>
   );
