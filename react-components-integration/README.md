@@ -56,4 +56,4 @@ or do it manually.
 
 You can learn more in the [Vite documentation](https://vitejs.dev/guide/).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To learn React, check out the [React documentation](https://react.dev/).

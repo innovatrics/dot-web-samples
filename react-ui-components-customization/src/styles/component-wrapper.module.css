@@ -1,0 +1,14 @@
+.componentWrapper {
+  position: relative;
+  overflow: hidden;
+  min-width: 100%;
+  aspect-ratio: 16/9;
+  margin: 1rem auto;
+}
+
+@media (orientation: portrait) and (max-width: 1199px) {
+    .componentWrapper {
+        width: 100%;
+        aspect-ratio: inherit;
+    }
+}

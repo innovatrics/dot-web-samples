@@ -12,7 +12,7 @@ In order to use these components you will need a license agreement. To obtain it
 
 - angular-components-integration
 - jquery-components-integration
-- reactjs-components-integration
+- react-components-integration
 - vuejs-components-integration
 
 ## Documentation

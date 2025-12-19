@@ -1,0 +1,29 @@
+.wrapper {
+  z-index: 1;
+  position: absolute;
+  transition: all 0.5s ease-in-out;
+  top: var(--placeholder-top);
+  bottom: var(--placeholder-bottom);
+  left: var(--placeholder-left);
+  right: var(--placeholder-right);
+}
+
+.wrapper svg {
+  width: 100%;
+  height: 100%;
+}
+
+.candidateSelection {
+  color: rgb(16, 146, 25);
+}
+
+.outOfCandidateSelection {
+  color: rgb(205, 205, 205);
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transition: all 0.5s ease-in-out;
+}
