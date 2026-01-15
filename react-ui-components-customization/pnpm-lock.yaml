@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@innovatrics/dot-face-auto-capture':
-        specifier: 8.0.1
-        version: 8.0.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: 8.0.2
+        version: 8.0.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -362,8 +362,8 @@ packages:
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
 
-  '@innovatrics/dot-face-auto-capture@8.0.1':
-    resolution: {integrity: sha512-nFIU19kPx6dB/svwhjFPjhQtGNPzZHNOtJ2dOUFlj+uf+XpDcM+uVBKnqxbzM9/G4MrT2pWryXMg2OCPW9QVzg==}
+  '@innovatrics/dot-face-auto-capture@8.0.2':
+    resolution: {integrity: sha512-MykXxvtkbUnWPSN9xM/7+bh0PlKYF2yalrLHTL2dxs/HvfCN69IDn10AzlMWaW1rpIIHr/8fxnCDWvjJDAOpDg==}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -1045,8 +1045,8 @@ packages:
     peerDependencies:
       preact: '>= 10.25.0 || >=11.0.0-0'
 
-  preact@10.28.0:
-    resolution: {integrity: sha512-rytDAoiXr3+t6OIP3WGlDd0ouCUG1iCWzkcY3++Nreuoi17y6T5i/zRhe6uYfoVcxq6YU+sBtJouuRDsq8vvqA==}
+  preact@10.28.2:
+    resolution: {integrity: sha512-lbteaWGzGHdlIuiJ0l2Jq454m6kcpI1zNje6d8MlGAFlYvP2GO4ibnat7P74Esfz4sPTdM6UxtTwh/d3pwM9JA==}
 
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
@@ -1486,12 +1486,12 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@innovatrics/dot-face-auto-capture@8.0.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@innovatrics/dot-face-auto-capture@8.0.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
-      '@preact/signals': 2.5.1(preact@10.28.0)
+      '@preact/signals': 2.5.1(preact@10.28.2)
       comlink: 4.4.2
-      preact: 10.28.0
-      preact-custom-element: 4.6.0(preact@10.28.0)
+      preact: 10.28.2
+      preact-custom-element: 4.6.0(preact@10.28.2)
       styled-components: 6.1.19(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
     transitivePeerDependencies:
       - react
@@ -1518,10 +1518,10 @@ snapshots:
 
   '@preact/signals-core@1.12.1': {}
 
-  '@preact/signals@2.5.1(preact@10.28.0)':
+  '@preact/signals@2.5.1(preact@10.28.2)':
     dependencies:
       '@preact/signals-core': 1.12.1
-      preact: 10.28.0
+      preact: 10.28.2
 
   '@rolldown/pluginutils@1.0.0-beta.53': {}
 
@@ -2151,11 +2151,11 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  preact-custom-element@4.6.0(preact@10.28.0):
+  preact-custom-element@4.6.0(preact@10.28.2):
     dependencies:
-      preact: 10.28.0
+      preact: 10.28.2
 
-  preact@10.28.0: {}
+  preact@10.28.2: {}
 
   prelude-ls@1.2.1: {}
 

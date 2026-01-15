@@ -160,22 +160,22 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.27.1"
 
-"@emotion/is-prop-valid@1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-1.2.2.tgz#d4175076679c6a26faa92b03bb786f9e52612337"
-  integrity sha512-uNsoYd37AFmaCdXlg6EYD1KaPOaRWRByMCYzbKUX4+hhMfrxdVSelShywL4JVaAeM/eHUOSprYBQls+/neX3pw==
+"@emotion/is-prop-valid@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-1.4.0.tgz#e9ad47adff0b5c94c72db3669ce46de33edf28c0"
+  integrity sha512-QgD4fyscGcbbKwJmqNvUMSE02OsHUa+lAWKdEUIJKgqe5IwRSKd7+KhibEWdaKwgjLj0DRSHA9biAIqGBk05lw==
   dependencies:
-    "@emotion/memoize" "^0.8.1"
+    "@emotion/memoize" "^0.9.0"
 
-"@emotion/memoize@^0.8.1":
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.8.1.tgz#c1ddb040429c6d21d38cc945fe75c818cfb68e17"
-  integrity sha512-W2P2c/VRW1/1tLox0mVUalvnWXxavmv/Oum2aPsRcoDJuob75FC3Y8FbpfLwUegRcxINtGUMPq0tFCvYNTBXNA==
+"@emotion/memoize@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.9.0.tgz#745969d649977776b43fc7648c556aaa462b4102"
+  integrity sha512-30FAj7/EoJ5mwVPOWhAyCX+FPfMDrVecJAM+Iw9NRoSl4BBAQeqj4cApHHUXOVvIPgLVDsCFoz/hGD+5QQD1GQ==
 
-"@emotion/unitless@0.8.1":
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.8.1.tgz#182b5a4704ef8ad91bde93f7a860a88fd92c79a3"
-  integrity sha512-KOEGMu6dmJZtpadb476IsZBclKvILjopjUii3V+7MnXIQCYh8W3NgNcgwo21n9LXZX6EDIKvqfjYxXebDwxKmQ==
+"@emotion/unitless@0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.10.0.tgz#2af2f7c7e5150f497bdabd848ce7b218a27cf745"
+  integrity sha512-dFoMUuQA20zvtVTuxZww6OHoJYgrzfKM1t52mVySDJnMSEa08ruEvdYQbhvyu6soU+NeLVd3yKfTfT0NeV6qGg==
 
 "@esbuild/aix-ppc64@0.21.5":
   version "0.21.5"
@@ -343,82 +343,82 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-2.0.3.tgz#4a2868d75d6d6963e423bcf90b7fd1be343409d3"
   integrity sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==
 
-"@innovatrics/dot-auto-capture-ui@8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-auto-capture-ui/-/dot-auto-capture-ui-8.0.1.tgz#5880519d3363ea89bacd47017753d34661ea0d13"
-  integrity sha512-naj48ukLoMaDIZmwTR+teKTOnqK5ehbzFNwRq32iAqXiKz+5wb3Od5a6JTmmS3wPgLHSd6AEdQGWNIQlvuzkZw==
+"@innovatrics/dot-auto-capture-ui@8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-auto-capture-ui/-/dot-auto-capture-ui-8.0.2.tgz#40f22aa64384cc69aad0d955052fa0ea422efb5f"
+  integrity sha512-PLaUyJa5wK8iMtGgo39P0L2oAfxI4c5YEbliykpL/D2nSO+ytDNTE/a62uNG6Xb9BODFyjNpaIwo/CdbE4xviw==
   dependencies:
-    preact "^10.26.6"
-    preact-custom-element "^4.3.0"
-    styled-components "^6.1.18"
+    preact "^10.28.1"
+    preact-custom-element "^4.6.0"
+    styled-components "^6.1.19"
 
-"@innovatrics/dot-document-auto-capture@8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-8.0.1.tgz#ceb396ca8af85ca204e4a60e9c7a81fddf8ad535"
-  integrity sha512-eBHFlRoHUS+X3ro2DjMR6MFKY6xTPOkQgcPHXg0AoCc9WLFtWo32GoR9qTvrbdDvXFqUdUf/81ULRzFU+MKT+Q==
+"@innovatrics/dot-document-auto-capture@8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-8.0.2.tgz#2d170bc4fe25613970f412e04af5a5191ca25f95"
+  integrity sha512-LG1hB8GFemzSHJK8eSBhfuh6ZjdqDebcMrOR0XfsbxkRGEZo850q5ZfYunWAGaacVNkPyx2s030cZTgm1hTjpg==
   dependencies:
-    "@preact/signals" "^2.0.4"
+    "@preact/signals" "^2.5.1"
     comlink "^4.4.2"
-    preact "^10.26.6"
-    preact-custom-element "^4.3.0"
-    styled-components "^6.1.18"
+    preact "^10.28.1"
+    preact-custom-element "^4.6.0"
+    styled-components "^6.1.19"
 
-"@innovatrics/dot-face-auto-capture@8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-8.0.1.tgz#5715b969b939c0bffe5a92ee618cbfb2f3d51754"
-  integrity sha512-nFIU19kPx6dB/svwhjFPjhQtGNPzZHNOtJ2dOUFlj+uf+XpDcM+uVBKnqxbzM9/G4MrT2pWryXMg2OCPW9QVzg==
+"@innovatrics/dot-face-auto-capture@8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-8.0.2.tgz#c35900958cf371e22ea6341442ceadad997c0eeb"
+  integrity sha512-MykXxvtkbUnWPSN9xM/7+bh0PlKYF2yalrLHTL2dxs/HvfCN69IDn10AzlMWaW1rpIIHr/8fxnCDWvjJDAOpDg==
   dependencies:
-    "@preact/signals" "^2.0.4"
+    "@preact/signals" "^2.5.1"
     comlink "^4.4.2"
-    preact "^10.26.6"
-    preact-custom-element "^4.3.0"
-    styled-components "^6.1.18"
+    preact "^10.28.1"
+    preact-custom-element "^4.6.0"
+    styled-components "^6.1.19"
 
-"@innovatrics/dot-magnifeye-liveness@8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-magnifeye-liveness/-/dot-magnifeye-liveness-8.0.1.tgz#c90c42a88151bd5d34b71f4c517f91d80b2bf9a1"
-  integrity sha512-wLtahIrAkxDvKl/ZjIc6PjJGqsJlK58pZt8fuOiNnPWSkZ0jY4ZyY9E/drge1l1TVeg735Pd6g7CtHFjnJl1mw==
+"@innovatrics/dot-magnifeye-liveness@8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-magnifeye-liveness/-/dot-magnifeye-liveness-8.0.2.tgz#3b639b9efd862882e10222374450b316b30154bd"
+  integrity sha512-RlgtiXsOiCq/mfeM/sVBiVnJHtRnAv/77kFpXetCVsEzvV30gUhR3XBLtiPARcoJDvFDtjeFEQfhayaljiRdsg==
   dependencies:
-    "@preact/signals" "^2.0.4"
+    "@preact/signals" "^2.5.1"
     comlink "^4.4.2"
-    preact "^10.26.6"
-    preact-custom-element "^4.3.0"
-    styled-components "^6.1.18"
+    preact "^10.28.1"
+    preact-custom-element "^4.6.0"
+    styled-components "^6.1.19"
 
-"@innovatrics/dot-multi-range-liveness@8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-multi-range-liveness/-/dot-multi-range-liveness-8.0.1.tgz#82d0c6ac7028d9dcdb980e3739588b0b7057055c"
-  integrity sha512-BgmUJFmpMgQUferfAMCj/eYobfHC5EtcvAMJGQW4w6Zg+PdqIbH5l3CyVArfF4JcrUM2KXWQe/nT5Zf7ynR1GA==
+"@innovatrics/dot-multi-range-liveness@8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-multi-range-liveness/-/dot-multi-range-liveness-8.0.2.tgz#1290d5c3d03b12b865387f6699668f9dc62a1e50"
+  integrity sha512-lohzkZVbOfUsIL+7K6q8a5Mgl42XFXA1ZjpjuIkyajUAZy6mCsVN8PNhUsvY1GR7qJ1jtN7R0paNYAbnCvSzIw==
   dependencies:
-    "@preact/signals" "^2.0.4"
+    "@preact/signals" "^2.5.1"
     comlink "^4.4.2"
-    preact "^10.26.6"
-    preact-custom-element "^4.3.0"
-    styled-components "^6.1.18"
-    valibot "^1.1.0"
+    preact "^10.28.1"
+    preact-custom-element "^4.6.0"
+    styled-components "^6.1.19"
+    valibot "^1.2.0"
 
-"@innovatrics/dot-palm-capture@8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-palm-capture/-/dot-palm-capture-8.0.1.tgz#8e7d81b9567e39ad921932c2f198ea6782293b0c"
-  integrity sha512-RXmBlV+oCqUdEGr52lnnAu894oBNPlLQP5nURjXwHoQ504Y5xSQEhAF8dDS6FNvNMFcTj/6+6ZDPnayeAKQZJQ==
+"@innovatrics/dot-palm-capture@8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-palm-capture/-/dot-palm-capture-8.0.2.tgz#7cb2cd98632ecc37f4b3c4e1326890ee2b6f33f3"
+  integrity sha512-Em50DJXIzaeW/grWlq2BEraxli0gfjobHNDWFRgncO+wUAFm+oReB4QlrX4sSle08/0dC46qK4vDWeih6nWy3Q==
   dependencies:
-    "@preact/signals" "^2.0.4"
+    "@preact/signals" "^2.5.1"
     comlink "^4.4.2"
-    preact "^10.26.6"
-    preact-custom-element "^4.3.0"
-    styled-components "^6.1.18"
+    preact "^10.28.1"
+    preact-custom-element "^4.6.0"
+    styled-components "^6.1.19"
 
-"@innovatrics/dot-smile-liveness@8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-smile-liveness/-/dot-smile-liveness-8.0.1.tgz#e1b4d4eed4703cd63d8d6c84794d2d06ed402bc9"
-  integrity sha512-u+0zDOpYuwGmlcC79h7vG1KDsUH73ZfjEdrgE0MxwzYqgUQv4B39EIHyCtOiLpze5zef56d2BpolbomdSJYeOw==
+"@innovatrics/dot-smile-liveness@8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-smile-liveness/-/dot-smile-liveness-8.0.2.tgz#ead9d39dd592f68bee9004b809e1df88d86d1ee5"
+  integrity sha512-f8nQq9OliBKAv08EiSFLzz3ymXmrGlbyGPgNTLnTEgOa2BsDAarV4Gyq/OdKZhF48A65gLCxnBZcv+wKR1SBhw==
   dependencies:
-    "@preact/signals" "^2.0.4"
+    "@preact/signals" "^2.5.1"
     comlink "^4.4.2"
-    preact "^10.26.6"
-    preact-custom-element "^4.3.0"
-    styled-components "^6.1.18"
-    valibot "^1.1.0"
+    preact "^10.28.1"
+    preact-custom-element "^4.6.0"
+    styled-components "^6.1.19"
+    valibot "^1.2.0"
 
 "@jridgewell/gen-mapping@^0.3.12", "@jridgewell/gen-mapping@^0.3.5":
   version "0.3.13"
@@ -485,10 +485,10 @@
   resolved "https://registry.yarnpkg.com/@preact/signals-core/-/signals-core-1.12.1.tgz#714b489bb35d9874cc44b35706a9dc27da8d21c4"
   integrity sha512-BwbTXpj+9QutoZLQvbttRg5x3l5468qaV2kufh+51yha1c53ep5dY4kTuZR35+3pAZxpfQerGJiQqg34ZNZ6uA==
 
-"@preact/signals@^2.0.4":
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/@preact/signals/-/signals-2.3.2.tgz#40b737dfaa87c7e3f617ac7164d50aba4b9c174c"
-  integrity sha512-Q22avIn4z0BQnmFeo6Y5HCnJTo8VufN84zN51OtqeNgZOVCYgdwEOcJKVX1x/IrjRVxUnOy6Ubn7H5aVFujXaQ==
+"@preact/signals@^2.5.1":
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/@preact/signals/-/signals-2.5.1.tgz#523901c30b49f177a961a380f2759b4f482eee05"
+  integrity sha512-VPjk5YFt7i11Fi4UK0tzaEe5xLwfhUxXL3l89ocxQ5aPz7bRo8M5+N73LjBMPklyXKYKz6YsNo4Smp8n6nplng==
   dependencies:
     "@preact/signals-core" "^1.12.0"
 
@@ -680,10 +680,10 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
-"@types/stylis@4.2.5":
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/@types/stylis/-/stylis-4.2.5.tgz#1daa6456f40959d06157698a653a9ab0a70281df"
-  integrity sha512-1Xve+NMN7FWjY14vLoY5tL3BVEQ/n42YLwaqJIPYhotZ9uBHt87VceMwWQpzmdEt2TNXIorIFG+YeCUUW7RInw==
+"@types/stylis@4.2.7":
+  version "4.2.7"
+  resolved "https://registry.yarnpkg.com/@types/stylis/-/stylis-4.2.7.tgz#1813190525da9d2a2b6976583bdd4af5301d9fd4"
+  integrity sha512-VgDNokpBoKF+wrdvhAAfS55OMQpL6QRglwTwNC3kIgBrzZxA4WsFj+2eLfEA/uMUDzBcEhYmjSbwQakn/i3ajA==
 
 "@typescript-eslint/eslint-plugin@^7.17.0":
   version "7.18.0"
@@ -1095,7 +1095,12 @@ css-to-react-native@3.2.0:
     css-color-keywords "^1.0.0"
     postcss-value-parser "^4.0.2"
 
-csstype@3.1.3, csstype@^3.0.2:
+csstype@3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.2.3.tgz#ec48c0f3e993e50648c86da559e2610995cf989a"
+  integrity sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==
+
+csstype@^3.0.2:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.3.tgz#d80ff294d114fb0e6ac500fbf85b60137d7eff81"
   integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==
@@ -2447,15 +2452,15 @@ postcss@^8.4.43:
     picocolors "^1.1.1"
     source-map-js "^1.2.1"
 
-preact-custom-element@^4.3.0:
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/preact-custom-element/-/preact-custom-element-4.5.1.tgz#9da8e269daa3e23292e5556242495b45d13071b5"
-  integrity sha512-G5HRe5lrWibvjdsA8vkX9gZlSb8Gggs8SMNB9xU96KQ75MrqFjjezBACimozThu1IhO/SIbFwX2tW4IUMDNxpg==
+preact-custom-element@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/preact-custom-element/-/preact-custom-element-4.6.0.tgz#d3ca397da31d5a32f6c908d51b84a518e743fbbd"
+  integrity sha512-RhPMuFpEIsbpEwnF+MoRbddzX0y8AdLn1dSpJSbpc6Nx3aSAPXSW9t2xAqQyGfEH1sl/bcsi8Vf0XbvStUy/Ug==
 
-preact@^10.26.6:
-  version "10.27.2"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.27.2.tgz#19b9009c1be801a76a0aaf0fe5ba665985a09312"
-  integrity sha512-5SYSgFKSyhCbk6SrXyMpqjb5+MQBgfvEKE/OC+PujcY34sOpqtr+0AZQtPYx5IA6VxynQ7rUPCtKzyovpj9Bpg==
+preact@^10.28.1:
+  version "10.28.2"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.28.2.tgz#4b668383afa4b4a2546bbe4bd1747e02e2360138"
+  integrity sha512-lbteaWGzGHdlIuiJ0l2Jq454m6kcpI1zNje6d8MlGAFlYvP2GO4ibnat7P74Esfz4sPTdM6UxtTwh/d3pwM9JA==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
@@ -2853,25 +2858,25 @@ strip-json-comments@^3.1.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-3.1.1.tgz#31f1281b3832630434831c310c01cccda8cbe006"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
 
-styled-components@^6.1.18:
-  version "6.1.19"
-  resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-6.1.19.tgz#9a41b4db79a3b7a2477daecabe8dd917235263d6"
-  integrity sha512-1v/e3Dl1BknC37cXMhwGomhO8AkYmN41CqyX9xhUDxry1ns3BFQy2lLDRQXJRdVVWB9OHemv/53xaStimvWyuA==
+styled-components@^6.1.19:
+  version "6.3.6"
+  resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-6.3.6.tgz#2051b6816996a1cac34c96e03533fc18be42a2c9"
+  integrity sha512-eRtK6PXWk3juH+8X9cyfItRk6a0JM+0Cw2gSr9jM3T3WeErb+UPObTRkVCHAv9maYfvPof77h1wq3325I0iI7w==
   dependencies:
-    "@emotion/is-prop-valid" "1.2.2"
-    "@emotion/unitless" "0.8.1"
-    "@types/stylis" "4.2.5"
+    "@emotion/is-prop-valid" "1.4.0"
+    "@emotion/unitless" "0.10.0"
+    "@types/stylis" "4.2.7"
     css-to-react-native "3.2.0"
-    csstype "3.1.3"
+    csstype "3.2.3"
     postcss "8.4.49"
     shallowequal "1.1.0"
-    stylis "4.3.2"
-    tslib "2.6.2"
+    stylis "4.3.6"
+    tslib "2.8.1"
 
-stylis@4.3.2:
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/stylis/-/stylis-4.3.2.tgz#8f76b70777dd53eb669c6f58c997bf0a9972e444"
-  integrity sha512-bhtUjWd/z6ltJiQwg0dUfxEJ+W+jdqQd8TbWLWyeIJHlnsqmGLRFFd8e5mA0AZi/zx90smXRlN66YMTcaSFifg==
+stylis@4.3.6:
+  version "4.3.6"
+  resolved "https://registry.yarnpkg.com/stylis/-/stylis-4.3.6.tgz#7c7b97191cb4f195f03ecab7d52f7902ed378320"
+  integrity sha512-yQ3rwFWRfwNUY7H5vpU0wfdkNSnvnJinhF9830Swlaxl03zsOjCfmX0ugac+3LtK0lYSgwL/KXc8oYL3mG4YFQ==
 
 supports-color@^7.1.0:
   version "7.2.0"
@@ -2919,10 +2924,10 @@ tsconfig-paths@^3.15.0:
     minimist "^1.2.6"
     strip-bom "^3.0.0"
 
-tslib@2.6.2:
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.6.2.tgz#703ac29425e7b37cd6fd456e92404d46d1f3e4ae"
-  integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==
+tslib@2.8.1:
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.8.1.tgz#612efe4ed235d567e8aba5f2a5fab70280ade83f"
+  integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
@@ -3016,10 +3021,10 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
-valibot@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/valibot/-/valibot-1.1.0.tgz#873bb1af9e1577391690307bfe0520bd1360ec2d"
-  integrity sha512-Nk8lX30Qhu+9txPYTwM0cFlWLdPFsFr6LblzqIySfbZph9+BFsAHsNvHOymEviUepeIW6KFHzpX8TKhbptBXXw==
+valibot@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/valibot/-/valibot-1.2.0.tgz#8fc720d9e4082ba16e30a914064a39619b2f1d6f"
+  integrity sha512-mm1rxUsmOxzrwnX5arGS+U4T25RdvpPjPN4yR0u9pUBov9+zGVtO84tif1eY4r6zWxVxu3KzIyknJy3rxfRZZg==
 
 vite@^5.3.5:
   version "5.4.20"
