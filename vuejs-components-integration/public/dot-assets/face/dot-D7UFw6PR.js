@@ -1,4 +1,4 @@
-const wr = /* @__PURE__ */ Symbol("Comlink.proxy"), Po = /* @__PURE__ */ Symbol("Comlink.endpoint"), jo = /* @__PURE__ */ Symbol("Comlink.releaseProxy"), Fe = /* @__PURE__ */ Symbol("Comlink.finalizer"), xe = /* @__PURE__ */ Symbol("Comlink.thrown"), Pr = (p) => typeof p == "object" && p !== null || typeof p == "function", Io = {
+const wr = /* @__PURE__ */ Symbol("Comlink.proxy"), Po = /* @__PURE__ */ Symbol("Comlink.endpoint"), Io = /* @__PURE__ */ Symbol("Comlink.releaseProxy"), _e = /* @__PURE__ */ Symbol("Comlink.finalizer"), xe = /* @__PURE__ */ Symbol("Comlink.thrown"), Pr = (p) => typeof p == "object" && p !== null || typeof p == "function", jo = {
   canHandle: (p) => Pr(p) && p[wr],
   serialize(p) {
     const { port1: a, port2: r } = new MessageChannel();
@@ -23,8 +23,8 @@ const wr = /* @__PURE__ */ Symbol("Comlink.proxy"), Po = /* @__PURE__ */ Symbol(
   deserialize(p) {
     throw p.isError ? Object.assign(new Error(p.value.message), p.value) : p.value;
   }
-}, jr = /* @__PURE__ */ new Map([
-  ["proxy", Io],
+}, Ir = /* @__PURE__ */ new Map([
+  ["proxy", jo],
   ["throw", So]
 ]);
 function Co(p, a) {
@@ -44,7 +44,7 @@ function ft(p, a = globalThis, r = ["*"]) {
     const { id: n, type: o, path: u } = Object.assign({ path: [] }, e.data), s = (e.data.argumentList || []).map(ce);
     let h;
     try {
-      const S = u.slice(0, -1).reduce((O, j) => O[j], p), g = u.reduce((O, j) => O[j], p);
+      const S = u.slice(0, -1).reduce((O, I) => O[I], p), g = u.reduce((O, I) => O[I], p);
       switch (o) {
         case "GET":
           h = g;
@@ -63,8 +63,8 @@ function ft(p, a = globalThis, r = ["*"]) {
           break;
         case "ENDPOINT":
           {
-            const { port1: O, port2: j } = new MessageChannel();
-            ft(p, j), h = Mo(O, [O]);
+            const { port1: O, port2: I } = new MessageChannel();
+            ft(p, I), h = Mo(O, [O]);
           }
           break;
         case "RELEASE":
@@ -78,7 +78,7 @@ function ft(p, a = globalThis, r = ["*"]) {
     }
     Promise.resolve(h).catch((S) => ({ value: S, [xe]: 0 })).then((S) => {
       const [g, O] = Ve(S);
-      a.postMessage(Object.assign(Object.assign({}, g), { id: n }), O), o === "RELEASE" && (a.removeEventListener("message", t), Ir(a), Fe in p && typeof p[Fe] == "function" && p[Fe]());
+      a.postMessage(Object.assign(Object.assign({}, g), { id: n }), O), o === "RELEASE" && (a.removeEventListener("message", t), jr(a), _e in p && typeof p[_e] == "function" && p[_e]());
     }).catch((S) => {
       const [g, O] = Ve({
         value: new TypeError("Unserializable return value"),
@@ -91,7 +91,7 @@ function ft(p, a = globalThis, r = ["*"]) {
 function ko(p) {
   return p.constructor.name === "MessagePort";
 }
-function Ir(p) {
+function jr(p) {
   ko(p) && p.close();
 }
 function To(p, a) {
@@ -109,7 +109,7 @@ function To(p, a) {
       }
   }), dt(p, r, [], a);
 }
-function _e(p) {
+function Re(p) {
   if (p)
     throw new Error("Proxy has been released and is not useable");
 }
@@ -117,7 +117,7 @@ function Sr(p) {
   return ge(p, /* @__PURE__ */ new Map(), {
     type: "RELEASE"
   }).then(() => {
-    Ir(p);
+    jr(p);
   });
 }
 const Ne = /* @__PURE__ */ new WeakMap(), We = "FinalizationRegistry" in globalThis && new FinalizationRegistry((p) => {
@@ -136,7 +136,7 @@ function dt(p, a, r = [], t = function() {
   let e = !1;
   const n = new Proxy(t, {
     get(o, u) {
-      if (_e(e), u === jo)
+      if (Re(e), u === Io)
         return () => {
           Ao(n), Sr(p), a.clear(), e = !0;
         };
@@ -152,7 +152,7 @@ function dt(p, a, r = [], t = function() {
       return dt(p, a, [...r, u]);
     },
     set(o, u, s) {
-      _e(e);
+      Re(e);
       const [h, S] = Ve(s);
       return ge(p, a, {
         type: "SET",
@@ -161,7 +161,7 @@ function dt(p, a, r = [], t = function() {
       }, S).then(ce);
     },
     apply(o, u, s) {
-      _e(e);
+      Re(e);
       const h = r[r.length - 1];
       if (h === Po)
         return ge(p, a, {
@@ -177,7 +177,7 @@ function dt(p, a, r = [], t = function() {
       }, g).then(ce);
     },
     construct(o, u) {
-      _e(e);
+      Re(e);
       const [s, h] = Jt(u);
       return ge(p, a, {
         type: "CONSTRUCT",
@@ -203,7 +203,7 @@ function Lo(p) {
   return Object.assign(p, { [wr]: !0 });
 }
 function Ve(p) {
-  for (const [a, r] of jr)
+  for (const [a, r] of Ir)
     if (r.canHandle(p)) {
       const [t, e] = r.serialize(p);
       return [
@@ -226,24 +226,24 @@ function Ve(p) {
 function ce(p) {
   switch (p.type) {
     case "HANDLER":
-      return jr.get(p.name).deserialize(p.value);
+      return Ir.get(p.name).deserialize(p.value);
     case "RAW":
       return p.value;
   }
 }
 function ge(p, a, r, t) {
   return new Promise((e) => {
-    const n = Ro();
+    const n = Fo();
     a.set(n, e), p.start && p.start(), p.postMessage(Object.assign({ id: n }, r), t);
   });
 }
-function Ro() {
+function Fo() {
   return new Array(4).fill(0).map(() => Math.floor(Math.random() * Number.MAX_SAFE_INTEGER).toString(16)).join("-");
 }
 const Pe = 1e3, Zt = {
   simd: "sam_simd.wasm",
   sam: "sam.wasm"
-}, _o = async () => WebAssembly.validate(new Uint8Array([0, 97, 115, 109, 1, 0, 0, 0, 1, 5, 1, 96, 0, 1, 123, 3, 2, 1, 0, 10, 10, 1, 8, 0, 65, 0, 253, 15, 253, 98, 11]));
+}, Ro = async () => WebAssembly.validate(new Uint8Array([0, 97, 115, 109, 1, 0, 0, 0, 1, 5, 1, 96, 0, 1, 123, 3, 2, 1, 0, 10, 10, 1, 8, 0, 65, 0, 253, 15, 253, 98, 11]));
 class $ extends Error {
   cause;
   constructor(a, r) {
@@ -283,7 +283,7 @@ class $ extends Error {
     return new $(r);
   }
 }
-const Fo = {
+const _o = {
   RGBA: "RGBA"
 };
 class xo {
@@ -336,7 +336,7 @@ class No {
     }
   }
   async getSamWasmFileName() {
-    return await _o() ? Zt.simd : Zt.sam;
+    return await Ro() ? Zt.simd : Zt.sam;
   }
   async initSamModule(a, r) {
     if (this.samWasmModule)
@@ -373,7 +373,7 @@ class No {
       r.width,
       r.height,
       t.rgbaImagePointer,
-      Fo.RGBA,
+      _o.RGBA,
       t.bgr0ImagePointer
     ), t;
   }
@@ -402,7 +402,7 @@ class No {
       shiftY: O
     };
   }
-  [Fe]() {
+  [_e]() {
     this.terminateSamModule();
   }
 }
@@ -456,43 +456,43 @@ function Uo() {
     for (var r = new Array(64), t = new Array(123), e = 0; e < 64; )
       t[r[e] = e < 26 ? e + 65 : e < 52 ? e + 71 : e < 62 ? e - 4 : e - 59 | 43] = e++;
     a.encode = function(o, u, s) {
-      for (var h = null, S = [], g = 0, O = 0, j; u < s; ) {
-        var I = o[u++];
+      for (var h = null, S = [], g = 0, O = 0, I; u < s; ) {
+        var j = o[u++];
         switch (O) {
           case 0:
-            S[g++] = r[I >> 2], j = (I & 3) << 4, O = 1;
+            S[g++] = r[j >> 2], I = (j & 3) << 4, O = 1;
             break;
           case 1:
-            S[g++] = r[j | I >> 4], j = (I & 15) << 2, O = 2;
+            S[g++] = r[I | j >> 4], I = (j & 15) << 2, O = 2;
             break;
           case 2:
-            S[g++] = r[j | I >> 6], S[g++] = r[I & 63], O = 0;
+            S[g++] = r[I | j >> 6], S[g++] = r[j & 63], O = 0;
             break;
         }
         g > 8191 && ((h || (h = [])).push(String.fromCharCode.apply(String, S)), g = 0);
       }
-      return O && (S[g++] = r[j], S[g++] = 61, O === 1 && (S[g++] = 61)), h ? (g && h.push(String.fromCharCode.apply(String, S.slice(0, g))), h.join("")) : String.fromCharCode.apply(String, S.slice(0, g));
+      return O && (S[g++] = r[I], S[g++] = 61, O === 1 && (S[g++] = 61)), h ? (g && h.push(String.fromCharCode.apply(String, S.slice(0, g))), h.join("")) : String.fromCharCode.apply(String, S.slice(0, g));
     };
     var n = "invalid encoding";
     a.decode = function(o, u, s) {
       for (var h = s, S = 0, g, O = 0; O < o.length; ) {
-        var j = o.charCodeAt(O++);
-        if (j === 61 && S > 1)
+        var I = o.charCodeAt(O++);
+        if (I === 61 && S > 1)
           break;
-        if ((j = t[j]) === void 0)
+        if ((I = t[I]) === void 0)
           throw Error(n);
         switch (S) {
           case 0:
-            g = j, S = 1;
+            g = I, S = 1;
             break;
           case 1:
-            u[s++] = g << 2 | (j & 48) >> 4, g = j, S = 2;
+            u[s++] = g << 2 | (I & 48) >> 4, g = I, S = 2;
             break;
           case 2:
-            u[s++] = (g & 15) << 4 | (j & 60) >> 2, g = j, S = 3;
+            u[s++] = (g & 15) << 4 | (I & 60) >> 2, g = I, S = 3;
             break;
           case 3:
-            u[s++] = (g & 3) << 6 | j, S = 0;
+            u[s++] = (g & 3) << 6 | I, S = 0;
             break;
         }
       }
@@ -543,18 +543,18 @@ function $o() {
   function p(n) {
     return typeof Float32Array < "u" ? (function() {
       var o = new Float32Array([-0]), u = new Uint8Array(o.buffer), s = u[3] === 128;
-      function h(j, I, L) {
-        o[0] = j, I[L] = u[0], I[L + 1] = u[1], I[L + 2] = u[2], I[L + 3] = u[3];
+      function h(I, j, L) {
+        o[0] = I, j[L] = u[0], j[L + 1] = u[1], j[L + 2] = u[2], j[L + 3] = u[3];
       }
-      function S(j, I, L) {
-        o[0] = j, I[L] = u[3], I[L + 1] = u[2], I[L + 2] = u[1], I[L + 3] = u[0];
+      function S(I, j, L) {
+        o[0] = I, j[L] = u[3], j[L + 1] = u[2], j[L + 2] = u[1], j[L + 3] = u[0];
       }
       n.writeFloatLE = s ? h : S, n.writeFloatBE = s ? S : h;
-      function g(j, I) {
-        return u[0] = j[I], u[1] = j[I + 1], u[2] = j[I + 2], u[3] = j[I + 3], o[0];
+      function g(I, j) {
+        return u[0] = I[j], u[1] = I[j + 1], u[2] = I[j + 2], u[3] = I[j + 3], o[0];
       }
-      function O(j, I) {
-        return u[3] = j[I], u[2] = j[I + 1], u[1] = j[I + 2], u[0] = j[I + 3], o[0];
+      function O(I, j) {
+        return u[3] = I[j], u[2] = I[j + 1], u[1] = I[j + 2], u[0] = I[j + 3], o[0];
       }
       n.readFloatLE = s ? g : O, n.readFloatBE = s ? O : g;
     })() : (function() {
@@ -575,60 +575,60 @@ function $o() {
         else if (h < 11754943508222875e-54)
           s((O << 31 | Math.round(h / 1401298464324817e-60)) >>> 0, S, g);
         else {
-          var j = Math.floor(Math.log(h) / Math.LN2), I = Math.round(h * Math.pow(2, -j) * 8388608) & 8388607;
-          s((O << 31 | j + 127 << 23 | I) >>> 0, S, g);
+          var I = Math.floor(Math.log(h) / Math.LN2), j = Math.round(h * Math.pow(2, -I) * 8388608) & 8388607;
+          s((O << 31 | I + 127 << 23 | j) >>> 0, S, g);
         }
       }
       n.writeFloatLE = o.bind(null, a), n.writeFloatBE = o.bind(null, r);
       function u(s, h, S) {
-        var g = s(h, S), O = (g >> 31) * 2 + 1, j = g >>> 23 & 255, I = g & 8388607;
-        return j === 255 ? I ? NaN : O * (1 / 0) : j === 0 ? O * 1401298464324817e-60 * I : O * Math.pow(2, j - 150) * (I + 8388608);
+        var g = s(h, S), O = (g >> 31) * 2 + 1, I = g >>> 23 & 255, j = g & 8388607;
+        return I === 255 ? j ? NaN : O * (1 / 0) : I === 0 ? O * 1401298464324817e-60 * j : O * Math.pow(2, I - 150) * (j + 8388608);
       }
       n.readFloatLE = u.bind(null, t), n.readFloatBE = u.bind(null, e);
     })(), typeof Float64Array < "u" ? (function() {
       var o = new Float64Array([-0]), u = new Uint8Array(o.buffer), s = u[7] === 128;
-      function h(j, I, L) {
-        o[0] = j, I[L] = u[0], I[L + 1] = u[1], I[L + 2] = u[2], I[L + 3] = u[3], I[L + 4] = u[4], I[L + 5] = u[5], I[L + 6] = u[6], I[L + 7] = u[7];
+      function h(I, j, L) {
+        o[0] = I, j[L] = u[0], j[L + 1] = u[1], j[L + 2] = u[2], j[L + 3] = u[3], j[L + 4] = u[4], j[L + 5] = u[5], j[L + 6] = u[6], j[L + 7] = u[7];
       }
-      function S(j, I, L) {
-        o[0] = j, I[L] = u[7], I[L + 1] = u[6], I[L + 2] = u[5], I[L + 3] = u[4], I[L + 4] = u[3], I[L + 5] = u[2], I[L + 6] = u[1], I[L + 7] = u[0];
+      function S(I, j, L) {
+        o[0] = I, j[L] = u[7], j[L + 1] = u[6], j[L + 2] = u[5], j[L + 3] = u[4], j[L + 4] = u[3], j[L + 5] = u[2], j[L + 6] = u[1], j[L + 7] = u[0];
       }
       n.writeDoubleLE = s ? h : S, n.writeDoubleBE = s ? S : h;
-      function g(j, I) {
-        return u[0] = j[I], u[1] = j[I + 1], u[2] = j[I + 2], u[3] = j[I + 3], u[4] = j[I + 4], u[5] = j[I + 5], u[6] = j[I + 6], u[7] = j[I + 7], o[0];
+      function g(I, j) {
+        return u[0] = I[j], u[1] = I[j + 1], u[2] = I[j + 2], u[3] = I[j + 3], u[4] = I[j + 4], u[5] = I[j + 5], u[6] = I[j + 6], u[7] = I[j + 7], o[0];
       }
-      function O(j, I) {
-        return u[7] = j[I], u[6] = j[I + 1], u[5] = j[I + 2], u[4] = j[I + 3], u[3] = j[I + 4], u[2] = j[I + 5], u[1] = j[I + 6], u[0] = j[I + 7], o[0];
+      function O(I, j) {
+        return u[7] = I[j], u[6] = I[j + 1], u[5] = I[j + 2], u[4] = I[j + 3], u[3] = I[j + 4], u[2] = I[j + 5], u[1] = I[j + 6], u[0] = I[j + 7], o[0];
       }
       n.readDoubleLE = s ? g : O, n.readDoubleBE = s ? O : g;
     })() : (function() {
-      function o(s, h, S, g, O, j) {
-        var I = g < 0 ? 1 : 0;
-        if (I && (g = -g), g === 0)
-          s(0, O, j + h), s(1 / g > 0 ? (
+      function o(s, h, S, g, O, I) {
+        var j = g < 0 ? 1 : 0;
+        if (j && (g = -g), g === 0)
+          s(0, O, I + h), s(1 / g > 0 ? (
             /* positive */
             0
           ) : (
             /* negative 0 */
             2147483648
-          ), O, j + S);
+          ), O, I + S);
         else if (isNaN(g))
-          s(0, O, j + h), s(2146959360, O, j + S);
+          s(0, O, I + h), s(2146959360, O, I + S);
         else if (g > 17976931348623157e292)
-          s(0, O, j + h), s((I << 31 | 2146435072) >>> 0, O, j + S);
+          s(0, O, I + h), s((j << 31 | 2146435072) >>> 0, O, I + S);
         else {
           var L;
           if (g < 22250738585072014e-324)
-            L = g / 5e-324, s(L >>> 0, O, j + h), s((I << 31 | L / 4294967296) >>> 0, O, j + S);
+            L = g / 5e-324, s(L >>> 0, O, I + h), s((j << 31 | L / 4294967296) >>> 0, O, I + S);
           else {
             var w = Math.floor(Math.log(g) / Math.LN2);
-            w === 1024 && (w = 1023), L = g * Math.pow(2, -w), s(L * 4503599627370496 >>> 0, O, j + h), s((I << 31 | w + 1023 << 20 | L * 1048576 & 1048575) >>> 0, O, j + S);
+            w === 1024 && (w = 1023), L = g * Math.pow(2, -w), s(L * 4503599627370496 >>> 0, O, I + h), s((j << 31 | w + 1023 << 20 | L * 1048576 & 1048575) >>> 0, O, I + S);
           }
         }
       }
       n.writeDoubleLE = o.bind(null, a, 0, 4), n.writeDoubleBE = o.bind(null, r, 4, 0);
       function u(s, h, S, g, O) {
-        var j = s(g, O + h), I = s(g, O + S), L = (I >> 31) * 2 + 1, w = I >>> 20 & 2047, T = 4294967296 * (I & 1048575) + j;
+        var I = s(g, O + h), j = s(g, O + S), L = (j >> 31) * 2 + 1, w = j >>> 20 & 2047, T = 4294967296 * (j & 1048575) + I;
         return w === 2047 ? T ? NaN : L * (1 / 0) : w === 0 ? L * 5e-324 * T : L * Math.pow(2, w - 1075) * (T + 4503599627370496);
       }
       n.readDoubleLE = u.bind(null, t, 0, 4), n.readDoubleBE = u.bind(null, e, 4, 0);
@@ -906,8 +906,8 @@ function Tr() {
   if (cr) return it;
   cr = 1, it = s;
   var p = ue(), a, r = p.LongBits, t = p.base64, e = p.utf8;
-  function n(w, T, _) {
-    this.fn = w, this.len = T, this.next = void 0, this.val = _;
+  function n(w, T, R) {
+    this.fn = w, this.len = T, this.next = void 0, this.val = R;
   }
   function o() {
   }
@@ -928,16 +928,16 @@ function Tr() {
   };
   s.create = h(), s.alloc = function(w) {
     return new p.Array(w);
-  }, p.Array !== Array && (s.alloc = p.pool(s.alloc, p.Array.prototype.subarray)), s.prototype._push = function(w, T, _) {
-    return this.tail = this.tail.next = new n(w, T, _), this.len += T, this;
+  }, p.Array !== Array && (s.alloc = p.pool(s.alloc, p.Array.prototype.subarray)), s.prototype._push = function(w, T, R) {
+    return this.tail = this.tail.next = new n(w, T, R), this.len += T, this;
   };
-  function S(w, T, _) {
-    T[_] = w & 255;
+  function S(w, T, R) {
+    T[R] = w & 255;
   }
-  function g(w, T, _) {
+  function g(w, T, R) {
     for (; w > 127; )
-      T[_++] = w & 127 | 128, w >>>= 7;
-    T[_] = w;
+      T[R++] = w & 127 | 128, w >>>= 7;
+    T[R] = w;
   }
   function O(w, T) {
     this.len = w, this.next = void 0, this.val = T;
@@ -948,52 +948,52 @@ function Tr() {
       w
     )).len, this;
   }, s.prototype.int32 = function(w) {
-    return w < 0 ? this._push(j, 10, r.fromNumber(w)) : this.uint32(w);
+    return w < 0 ? this._push(I, 10, r.fromNumber(w)) : this.uint32(w);
   }, s.prototype.sint32 = function(w) {
     return this.uint32((w << 1 ^ w >> 31) >>> 0);
   };
-  function j(w, T, _) {
+  function I(w, T, R) {
     for (; w.hi; )
-      T[_++] = w.lo & 127 | 128, w.lo = (w.lo >>> 7 | w.hi << 25) >>> 0, w.hi >>>= 7;
+      T[R++] = w.lo & 127 | 128, w.lo = (w.lo >>> 7 | w.hi << 25) >>> 0, w.hi >>>= 7;
     for (; w.lo > 127; )
-      T[_++] = w.lo & 127 | 128, w.lo = w.lo >>> 7;
-    T[_++] = w.lo;
+      T[R++] = w.lo & 127 | 128, w.lo = w.lo >>> 7;
+    T[R++] = w.lo;
   }
   s.prototype.uint64 = function(w) {
     var T = r.from(w);
-    return this._push(j, T.length(), T);
+    return this._push(I, T.length(), T);
   }, s.prototype.int64 = s.prototype.uint64, s.prototype.sint64 = function(w) {
     var T = r.from(w).zzEncode();
-    return this._push(j, T.length(), T);
+    return this._push(I, T.length(), T);
   }, s.prototype.bool = function(w) {
     return this._push(S, 1, w ? 1 : 0);
   };
-  function I(w, T, _) {
-    T[_] = w & 255, T[_ + 1] = w >>> 8 & 255, T[_ + 2] = w >>> 16 & 255, T[_ + 3] = w >>> 24;
+  function j(w, T, R) {
+    T[R] = w & 255, T[R + 1] = w >>> 8 & 255, T[R + 2] = w >>> 16 & 255, T[R + 3] = w >>> 24;
   }
   s.prototype.fixed32 = function(w) {
-    return this._push(I, 4, w >>> 0);
+    return this._push(j, 4, w >>> 0);
   }, s.prototype.sfixed32 = s.prototype.fixed32, s.prototype.fixed64 = function(w) {
     var T = r.from(w);
-    return this._push(I, 4, T.lo)._push(I, 4, T.hi);
+    return this._push(j, 4, T.lo)._push(j, 4, T.hi);
   }, s.prototype.sfixed64 = s.prototype.fixed64, s.prototype.float = function(w) {
     return this._push(p.float.writeFloatLE, 4, w);
   }, s.prototype.double = function(w) {
     return this._push(p.float.writeDoubleLE, 8, w);
   };
-  var L = p.Array.prototype.set ? function(w, T, _) {
-    T.set(w, _);
-  } : function(w, T, _) {
+  var L = p.Array.prototype.set ? function(w, T, R) {
+    T.set(w, R);
+  } : function(w, T, R) {
     for (var X = 0; X < w.length; ++X)
-      T[_ + X] = w[X];
+      T[R + X] = w[X];
   };
   return s.prototype.bytes = function(w) {
     var T = w.length >>> 0;
     if (!T)
       return this._push(S, 1, 0);
     if (p.isString(w)) {
-      var _ = s.alloc(T = t.length(w));
-      t.decode(w, _, 0), w = _;
+      var R = s.alloc(T = t.length(w));
+      t.decode(w, R, 0), w = R;
     }
     return this.uint32(T)._push(L, T, w);
   }, s.prototype.string = function(w) {
@@ -1004,11 +1004,11 @@ function Tr() {
   }, s.prototype.reset = function() {
     return this.states ? (this.head = this.states.head, this.tail = this.states.tail, this.len = this.states.len, this.states = this.states.next) : (this.head = this.tail = new n(o, 0, 0), this.len = 0), this;
   }, s.prototype.ldelim = function() {
-    var w = this.head, T = this.tail, _ = this.len;
-    return this.reset().uint32(_), _ && (this.tail.next = w.next, this.tail = T, this.len += _), this;
+    var w = this.head, T = this.tail, R = this.len;
+    return this.reset().uint32(R), R && (this.tail.next = w.next, this.tail = T, this.len += R), this;
   }, s.prototype.finish = function() {
-    for (var w = this.head.next, T = this.constructor.alloc(this.len), _ = 0; w; )
-      w.fn(w.val, T, _), _ += w.len, w = w.next;
+    for (var w = this.head.next, T = this.constructor.alloc(this.len), R = 0; w; )
+      w.fn(w.val, T, R), R += w.len, w = w.next;
     return T;
   }, s._configure = function(w) {
     a = w, s.create = h(), a._configure();
@@ -1149,16 +1149,16 @@ function Dr() {
     var g = p.float.readDoubleLE(this.buf, this.pos);
     return this.pos += 8, g;
   }, n.prototype.bytes = function() {
-    var g = this.uint32(), O = this.pos, j = this.pos + g;
-    if (j > this.len)
+    var g = this.uint32(), O = this.pos, I = this.pos + g;
+    if (I > this.len)
       throw e(this, g);
     if (this.pos += g, Array.isArray(this.buf))
-      return this.buf.slice(O, j);
-    if (O === j) {
-      var I = p.Buffer;
-      return I ? I.alloc(0) : new this.buf.constructor(0);
+      return this.buf.slice(O, I);
+    if (O === I) {
+      var j = p.Buffer;
+      return j ? j.alloc(0) : new this.buf.constructor(0);
     }
-    return this._slice.call(this.buf, O, j);
+    return this._slice.call(this.buf, O, I);
   }, n.prototype.string = function() {
     var g = this.bytes();
     return t.read(g, 0, g.length);
@@ -1696,7 +1696,7 @@ i.dot = (() => {
           for (let n = Object.keys(e), o = 0; o < n.length; ++o)
             e[n[o]] != null && (this[n[o]] = e[n[o]]);
       }
-      r.prototype.supportedAbis = d.emptyArray, r.prototype.device = null, r.prototype.camera = null, r.prototype.detectionNormalizedRectangle = null, r.prototype.digests = d.emptyArray, r.prototype.digestsWithTimestamp = d.emptyArray, r.prototype.dynamicCameraFrameProperties = d.emptyObject, r.prototype.tamperingIndicators = null, r.prototype.croppedYuv420Image = null, r.prototype.yuv420ImageCrop = null;
+      r.prototype.supportedAbis = d.emptyArray, r.prototype.device = null, r.prototype.camera = null, r.prototype.detectionNormalizedRectangle = null, r.prototype.digests = d.emptyArray, r.prototype.digestsWithTimestamp = d.emptyArray, r.prototype.dynamicCameraFrameProperties = d.emptyObject, r.prototype.tamperingIndicators = null, r.prototype.croppedYuv420Image = null, r.prototype.yuv420ImageCrop = null, r.prototype.androidId = null;
       let t;
       return Object.defineProperty(r.prototype, "_device", {
         get: d.oneOfGetter(t = ["device"]),
@@ -1715,6 +1715,9 @@ i.dot = (() => {
         set: d.oneOfSetter(t)
       }), Object.defineProperty(r.prototype, "_yuv420ImageCrop", {
         get: d.oneOfGetter(t = ["yuv420ImageCrop"]),
+        set: d.oneOfSetter(t)
+      }), Object.defineProperty(r.prototype, "_androidId", {
+        get: d.oneOfGetter(t = ["androidId"]),
         set: d.oneOfSetter(t)
       }), r.create = function(e) {
         return new r(e);
@@ -1767,7 +1770,10 @@ i.dot = (() => {
         ).fork()).ldelim(), e.yuv420ImageCrop != null && Object.hasOwnProperty.call(e, "yuv420ImageCrop") && i.dot.v4.Yuv420ImageCrop.encode(e.yuv420ImageCrop, n.uint32(
           /* id 10, wireType 2 =*/
           82
-        ).fork()).ldelim(), n;
+        ).fork()).ldelim(), e.androidId != null && Object.hasOwnProperty.call(e, "androidId") && n.uint32(
+          /* id 11, wireType 2 =*/
+          90
+        ).string(e.androidId), n;
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
@@ -1806,8 +1812,8 @@ i.dot = (() => {
               s.dynamicCameraFrameProperties === d.emptyObject && (s.dynamicCameraFrameProperties = {});
               let O = e.uint32() + e.pos;
               for (h = "", S = null; e.pos < O; ) {
-                let j = e.uint32();
-                switch (j >>> 3) {
+                let I = e.uint32();
+                switch (I >>> 3) {
                   case 1:
                     h = e.string();
                     break;
@@ -1815,7 +1821,7 @@ i.dot = (() => {
                     S = i.dot.Int32List.decode(e, e.uint32());
                     break;
                   default:
-                    e.skipType(j & 7);
+                    e.skipType(I & 7);
                     break;
                 }
               }
@@ -1832,6 +1838,10 @@ i.dot = (() => {
             }
             case 10: {
               s.yuv420ImageCrop = i.dot.v4.Yuv420ImageCrop.decode(e, e.uint32());
+              break;
+            }
+            case 11: {
+              s.androidId = e.string();
               break;
             }
             default:
@@ -1902,7 +1912,7 @@ i.dot = (() => {
           if (n)
             return "yuv420ImageCrop." + n;
         }
-        return null;
+        return e.androidId != null && e.hasOwnProperty("androidId") && !d.isString(e.androidId) ? "androidId: string expected" : null;
       }, r.fromObject = function(e) {
         if (e instanceof i.dot.v4.AndroidMetadata)
           return e;
@@ -1961,7 +1971,7 @@ i.dot = (() => {
             throw TypeError(".dot.v4.AndroidMetadata.yuv420ImageCrop: object expected");
           n.yuv420ImageCrop = i.dot.v4.Yuv420ImageCrop.fromObject(e.yuv420ImageCrop);
         }
-        return n;
+        return e.androidId != null && (n.androidId = String(e.androidId)), n;
       }, r.toObject = function(e, n) {
         n || (n = {});
         let o = {};
@@ -1986,7 +1996,7 @@ i.dot = (() => {
           for (let s = 0; s < e.digestsWithTimestamp.length; ++s)
             o.digestsWithTimestamp[s] = i.dot.DigestWithTimestamp.toObject(e.digestsWithTimestamp[s], n);
         }
-        return e.camera != null && e.hasOwnProperty("camera") && (o.camera = i.dot.v4.AndroidCamera.toObject(e.camera, n), n.oneofs && (o._camera = "camera")), e.detectionNormalizedRectangle != null && e.hasOwnProperty("detectionNormalizedRectangle") && (o.detectionNormalizedRectangle = i.dot.RectangleDouble.toObject(e.detectionNormalizedRectangle, n), n.oneofs && (o._detectionNormalizedRectangle = "detectionNormalizedRectangle")), e.tamperingIndicators != null && e.hasOwnProperty("tamperingIndicators") && (o.tamperingIndicators = n.bytes === String ? d.base64.encode(e.tamperingIndicators, 0, e.tamperingIndicators.length) : n.bytes === Array ? Array.prototype.slice.call(e.tamperingIndicators) : e.tamperingIndicators, n.oneofs && (o._tamperingIndicators = "tamperingIndicators")), e.croppedYuv420Image != null && e.hasOwnProperty("croppedYuv420Image") && (o.croppedYuv420Image = i.dot.v4.Yuv420Image.toObject(e.croppedYuv420Image, n), n.oneofs && (o._croppedYuv420Image = "croppedYuv420Image")), e.yuv420ImageCrop != null && e.hasOwnProperty("yuv420ImageCrop") && (o.yuv420ImageCrop = i.dot.v4.Yuv420ImageCrop.toObject(e.yuv420ImageCrop, n), n.oneofs && (o._yuv420ImageCrop = "yuv420ImageCrop")), o;
+        return e.camera != null && e.hasOwnProperty("camera") && (o.camera = i.dot.v4.AndroidCamera.toObject(e.camera, n), n.oneofs && (o._camera = "camera")), e.detectionNormalizedRectangle != null && e.hasOwnProperty("detectionNormalizedRectangle") && (o.detectionNormalizedRectangle = i.dot.RectangleDouble.toObject(e.detectionNormalizedRectangle, n), n.oneofs && (o._detectionNormalizedRectangle = "detectionNormalizedRectangle")), e.tamperingIndicators != null && e.hasOwnProperty("tamperingIndicators") && (o.tamperingIndicators = n.bytes === String ? d.base64.encode(e.tamperingIndicators, 0, e.tamperingIndicators.length) : n.bytes === Array ? Array.prototype.slice.call(e.tamperingIndicators) : e.tamperingIndicators, n.oneofs && (o._tamperingIndicators = "tamperingIndicators")), e.croppedYuv420Image != null && e.hasOwnProperty("croppedYuv420Image") && (o.croppedYuv420Image = i.dot.v4.Yuv420Image.toObject(e.croppedYuv420Image, n), n.oneofs && (o._croppedYuv420Image = "croppedYuv420Image")), e.yuv420ImageCrop != null && e.hasOwnProperty("yuv420ImageCrop") && (o.yuv420ImageCrop = i.dot.v4.Yuv420ImageCrop.toObject(e.yuv420ImageCrop, n), n.oneofs && (o._yuv420ImageCrop = "yuv420ImageCrop")), e.androidId != null && e.hasOwnProperty("androidId") && (o.androidId = e.androidId, n.oneofs && (o._androidId = "androidId")), o;
       }, r.prototype.toJSON = function() {
         return this.constructor.toObject(this, D.util.toJSONOptions);
       }, r.getTypeUrl = function(e) {
@@ -2232,7 +2242,7 @@ i.dot = (() => {
           for (let n = Object.keys(e), o = 0; o < n.length; ++o)
             e[n[o]] != null && (this[n[o]] = e[n[o]]);
       }
-      r.prototype.cameraModelId = "", r.prototype.architectureInfo = d.emptyObject, r.prototype.camera = null, r.prototype.detectionNormalizedRectangle = null, r.prototype.digests = d.emptyArray, r.prototype.digestsWithTimestamp = d.emptyArray, r.prototype.isoValues = d.emptyArray, r.prototype.croppedYuv420Image = null, r.prototype.yuv420ImageCrop = null;
+      r.prototype.cameraModelId = "", r.prototype.architectureInfo = d.emptyObject, r.prototype.camera = null, r.prototype.detectionNormalizedRectangle = null, r.prototype.digests = d.emptyArray, r.prototype.digestsWithTimestamp = d.emptyArray, r.prototype.isoValues = d.emptyArray, r.prototype.croppedYuv420Image = null, r.prototype.yuv420ImageCrop = null, r.prototype.identifierForVendor = null;
       let t;
       return Object.defineProperty(r.prototype, "_camera", {
         get: d.oneOfGetter(t = ["camera"]),
@@ -2245,6 +2255,9 @@ i.dot = (() => {
         set: d.oneOfSetter(t)
       }), Object.defineProperty(r.prototype, "_yuv420ImageCrop", {
         get: d.oneOfGetter(t = ["yuv420ImageCrop"]),
+        set: d.oneOfSetter(t)
+      }), Object.defineProperty(r.prototype, "_identifierForVendor", {
+        get: d.oneOfGetter(t = ["identifierForVendor"]),
         set: d.oneOfSetter(t)
       }), r.create = function(e) {
         return new r(e);
@@ -2297,7 +2310,10 @@ i.dot = (() => {
         ).fork()).ldelim(), e.yuv420ImageCrop != null && Object.hasOwnProperty.call(e, "yuv420ImageCrop") && i.dot.v4.IosYuv420ImageCrop.encode(e.yuv420ImageCrop, n.uint32(
           /* id 9, wireType 2 =*/
           74
-        ).fork()).ldelim(), n;
+        ).fork()).ldelim(), e.identifierForVendor != null && Object.hasOwnProperty.call(e, "identifierForVendor") && n.uint32(
+          /* id 10, wireType 2 =*/
+          82
+        ).string(e.identifierForVendor), n;
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
@@ -2316,8 +2332,8 @@ i.dot = (() => {
               s.architectureInfo === d.emptyObject && (s.architectureInfo = {});
               let O = e.uint32() + e.pos;
               for (h = "", S = !1; e.pos < O; ) {
-                let j = e.uint32();
-                switch (j >>> 3) {
+                let I = e.uint32();
+                switch (I >>> 3) {
                   case 1:
                     h = e.string();
                     break;
@@ -2325,7 +2341,7 @@ i.dot = (() => {
                     S = e.bool();
                     break;
                   default:
-                    e.skipType(j & 7);
+                    e.skipType(I & 7);
                     break;
                 }
               }
@@ -2363,6 +2379,10 @@ i.dot = (() => {
             }
             case 9: {
               s.yuv420ImageCrop = i.dot.v4.IosYuv420ImageCrop.decode(e, e.uint32());
+              break;
+            }
+            case 10: {
+              s.identifierForVendor = e.string();
               break;
             }
             default:
@@ -2429,7 +2449,7 @@ i.dot = (() => {
           if (n)
             return "yuv420ImageCrop." + n;
         }
-        return null;
+        return e.identifierForVendor != null && e.hasOwnProperty("identifierForVendor") && !d.isString(e.identifierForVendor) ? "identifierForVendor: string expected" : null;
       }, r.fromObject = function(e) {
         if (e instanceof i.dot.v4.IosMetadata)
           return e;
@@ -2485,7 +2505,7 @@ i.dot = (() => {
             throw TypeError(".dot.v4.IosMetadata.yuv420ImageCrop: object expected");
           n.yuv420ImageCrop = i.dot.v4.IosYuv420ImageCrop.fromObject(e.yuv420ImageCrop);
         }
-        return n;
+        return e.identifierForVendor != null && (n.identifierForVendor = String(e.identifierForVendor)), n;
       }, r.toObject = function(e, n) {
         n || (n = {});
         let o = {};
@@ -2511,7 +2531,7 @@ i.dot = (() => {
           for (let s = 0; s < e.digestsWithTimestamp.length; ++s)
             o.digestsWithTimestamp[s] = i.dot.DigestWithTimestamp.toObject(e.digestsWithTimestamp[s], n);
         }
-        return e.camera != null && e.hasOwnProperty("camera") && (o.camera = i.dot.v4.IosCamera.toObject(e.camera, n), n.oneofs && (o._camera = "camera")), e.detectionNormalizedRectangle != null && e.hasOwnProperty("detectionNormalizedRectangle") && (o.detectionNormalizedRectangle = i.dot.RectangleDouble.toObject(e.detectionNormalizedRectangle, n), n.oneofs && (o._detectionNormalizedRectangle = "detectionNormalizedRectangle")), e.croppedYuv420Image != null && e.hasOwnProperty("croppedYuv420Image") && (o.croppedYuv420Image = i.dot.v4.IosYuv420Image.toObject(e.croppedYuv420Image, n), n.oneofs && (o._croppedYuv420Image = "croppedYuv420Image")), e.yuv420ImageCrop != null && e.hasOwnProperty("yuv420ImageCrop") && (o.yuv420ImageCrop = i.dot.v4.IosYuv420ImageCrop.toObject(e.yuv420ImageCrop, n), n.oneofs && (o._yuv420ImageCrop = "yuv420ImageCrop")), o;
+        return e.camera != null && e.hasOwnProperty("camera") && (o.camera = i.dot.v4.IosCamera.toObject(e.camera, n), n.oneofs && (o._camera = "camera")), e.detectionNormalizedRectangle != null && e.hasOwnProperty("detectionNormalizedRectangle") && (o.detectionNormalizedRectangle = i.dot.RectangleDouble.toObject(e.detectionNormalizedRectangle, n), n.oneofs && (o._detectionNormalizedRectangle = "detectionNormalizedRectangle")), e.croppedYuv420Image != null && e.hasOwnProperty("croppedYuv420Image") && (o.croppedYuv420Image = i.dot.v4.IosYuv420Image.toObject(e.croppedYuv420Image, n), n.oneofs && (o._croppedYuv420Image = "croppedYuv420Image")), e.yuv420ImageCrop != null && e.hasOwnProperty("yuv420ImageCrop") && (o.yuv420ImageCrop = i.dot.v4.IosYuv420ImageCrop.toObject(e.yuv420ImageCrop, n), n.oneofs && (o._yuv420ImageCrop = "yuv420ImageCrop")), e.identifierForVendor != null && e.hasOwnProperty("identifierForVendor") && (o.identifierForVendor = e.identifierForVendor, n.oneofs && (o._identifierForVendor = "identifierForVendor")), o;
       }, r.prototype.toJSON = function() {
         return this.constructor.toObject(this, D.util.toJSONOptions);
       }, r.getTypeUrl = function(e) {
@@ -3732,7 +3752,7 @@ i.dot = (() => {
           for (let n = Object.keys(e), o = 0; o < n.length; ++o)
             e[n[o]] != null && (this[n[o]] = e[n[o]]);
       }
-      r.prototype.userAgent = "", r.prototype.platform = null, r.prototype.platformVersion = null, r.prototype.architecture = null, r.prototype.model = null, r.prototype.browserVersions = d.emptyArray;
+      r.prototype.userAgent = "", r.prototype.platform = null, r.prototype.platformVersion = null, r.prototype.architecture = null, r.prototype.model = null, r.prototype.browserVersions = d.emptyArray, r.prototype.installationId = null;
       let t;
       return Object.defineProperty(r.prototype, "_platform", {
         get: d.oneOfGetter(t = ["platform"]),
@@ -3745,6 +3765,9 @@ i.dot = (() => {
         set: d.oneOfSetter(t)
       }), Object.defineProperty(r.prototype, "_model", {
         get: d.oneOfGetter(t = ["model"]),
+        set: d.oneOfSetter(t)
+      }), Object.defineProperty(r.prototype, "_installationId", {
+        get: d.oneOfGetter(t = ["installationId"]),
         set: d.oneOfSetter(t)
       }), r.create = function(e) {
         return new r(e);
@@ -3770,7 +3793,10 @@ i.dot = (() => {
               /* id 6, wireType 2 =*/
               50
             ).fork()).ldelim();
-        return n;
+        return e.installationId != null && Object.hasOwnProperty.call(e, "installationId") && n.uint32(
+          /* id 7, wireType 2 =*/
+          58
+        ).string(e.installationId), n;
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
@@ -3805,6 +3831,10 @@ i.dot = (() => {
               s.browserVersions && s.browserVersions.length || (s.browserVersions = []), s.browserVersions.push(i.dot.v4.BrowserVersion.decode(e, e.uint32()));
               break;
             }
+            case 7: {
+              s.installationId = e.string();
+              break;
+            }
             default:
               e.skipType(h & 7);
               break;
@@ -3835,7 +3865,7 @@ i.dot = (() => {
               return "browserVersions." + o;
           }
         }
-        return null;
+        return e.installationId != null && e.hasOwnProperty("installationId") && !d.isString(e.installationId) ? "installationId: string expected" : null;
       }, r.fromObject = function(e) {
         if (e instanceof i.dot.v4.PlatformDetails)
           return e;
@@ -3850,7 +3880,7 @@ i.dot = (() => {
             n.browserVersions[o] = i.dot.v4.BrowserVersion.fromObject(e.browserVersions[o]);
           }
         }
-        return n;
+        return e.installationId != null && (n.installationId = String(e.installationId)), n;
       }, r.toObject = function(e, n) {
         n || (n = {});
         let o = {};
@@ -3859,7 +3889,7 @@ i.dot = (() => {
           for (let u = 0; u < e.browserVersions.length; ++u)
             o.browserVersions[u] = i.dot.v4.BrowserVersion.toObject(e.browserVersions[u], n);
         }
-        return o;
+        return e.installationId != null && e.hasOwnProperty("installationId") && (o.installationId = e.installationId, n.oneofs && (o._installationId = "installationId")), o;
       }, r.prototype.toJSON = function() {
         return this.constructor.toObject(this, D.util.toJSONOptions);
       }, r.getTypeUrl = function(e) {
@@ -7130,11 +7160,11 @@ var ri = (() => {
     function O(c) {
       return t.locateFile ? t.locateFile(c, g) : g + c;
     }
-    var j, I;
-    (u || s) && (s ? g = self.location.href : typeof document < "u" && document.currentScript && (g = document.currentScript.src), p && (g = p), g.startsWith("blob:") ? g = "" : g = g.slice(0, g.replace(/[?#].*/, "").lastIndexOf("/") + 1), s && (I = (c) => {
+    var I, j;
+    (u || s) && (s ? g = self.location.href : typeof document < "u" && document.currentScript && (g = document.currentScript.src), p && (g = p), g.startsWith("blob:") ? g = "" : g = g.slice(0, g.replace(/[?#].*/, "").lastIndexOf("/") + 1), s && (j = (c) => {
       var l = new XMLHttpRequest();
       return l.open("GET", c, !1), l.responseType = "arraybuffer", l.send(null), new Uint8Array(l.response);
-    }), j = async (c) => {
+    }), I = async (c) => {
       if (bt(c))
         return new Promise((f, y) => {
           var b = new XMLHttpRequest();
@@ -7153,7 +7183,7 @@ var ri = (() => {
     }), t.print || console.log.bind(console);
     var L = t.printErr || console.error.bind(console);
     Object.assign(t, h), h = null, t.arguments && t.arguments, t.thisProgram && t.thisProgram;
-    var w = t.wasmBinary, T, _ = !1, X, ee, G, de, he, te, W, mt, yt, gt, ht, bt = (c) => c.startsWith("file://");
+    var w = t.wasmBinary, T, R = !1, X, ee, G, de, he, te, W, mt, yt, gt, ht, bt = (c) => c.startsWith("file://");
     function vt() {
       var c = T.buffer;
       t.HEAP8 = ee = new Int8Array(c), t.HEAP16 = de = new Int16Array(c), t.HEAPU8 = G = new Uint8Array(c), t.HEAPU16 = he = new Uint16Array(c), t.HEAP32 = te = new Int32Array(c), t.HEAPU32 = W = new Uint32Array(c), t.HEAPF32 = mt = new Float32Array(c), t.HEAPF64 = ht = new Float64Array(c), t.HEAP64 = yt = new BigInt64Array(c), t.HEAPU64 = gt = new BigUint64Array(c);
@@ -7162,10 +7192,10 @@ var ri = (() => {
       if (t.preRun)
         for (typeof t.preRun == "function" && (t.preRun = [t.preRun]); t.preRun.length; )
           $r(t.preRun.shift());
-      wt(jt);
+      wt(It);
     }
     function Mr() {
-      F.C();
+      _.C();
     }
     function Lr() {
       if (t.postRun)
@@ -7174,35 +7204,35 @@ var ri = (() => {
       wt(Pt);
     }
     var se = 0, be = null;
-    function Rr(c) {
+    function Fr(c) {
       se++, t.monitorRunDependencies?.(se);
     }
-    function _r(c) {
+    function Rr(c) {
       if (se--, t.monitorRunDependencies?.(se), se == 0 && be) {
         var l = be;
         be = null, l();
       }
     }
-    function je(c) {
-      t.onAbort?.(c), c = "Aborted(" + c + ")", L(c), _ = !0, c += ". Build with -sASSERTIONS for more info.";
+    function Ie(c) {
+      t.onAbort?.(c), c = "Aborted(" + c + ")", L(c), R = !0, c += ". Build with -sASSERTIONS for more info.";
       var l = new WebAssembly.RuntimeError(c);
       throw n(l), l;
     }
     var ze;
-    function Fr() {
+    function _r() {
       return t.locateFile ? O("dot-sam.wasm") : new URL("dot-sam.wasm", import.meta.url).href;
     }
     function xr(c) {
       if (c == ze && w)
         return new Uint8Array(w);
-      if (I)
-        return I(c);
+      if (j)
+        return j(c);
       throw "both async and sync fetching of the wasm failed";
     }
     async function Nr(c) {
       if (!w)
         try {
-          var l = await j(c);
+          var l = await I(c);
           return new Uint8Array(l);
         } catch {
         }
@@ -7213,7 +7243,7 @@ var ri = (() => {
         var f = await Nr(c), y = await WebAssembly.instantiate(f, l);
         return y;
       } catch (b) {
-        L(`failed to asynchronously prepare wasm: ${b}`), je(b);
+        L(`failed to asynchronously prepare wasm: ${b}`), Ie(b);
       }
     }
     async function Vr(c, l, f) {
@@ -7231,9 +7261,9 @@ var ri = (() => {
     }
     async function Ur() {
       function c(P, C) {
-        return F = P.exports, F = A.instrumentWasmExports(F), T = F.B, vt(), F.H, _r(), F;
+        return _ = P.exports, _ = A.instrumentWasmExports(_), T = _.B, vt(), _.H, Rr(), _;
       }
-      Rr();
+      Fr();
       function l(P) {
         return c(P.instance);
       }
@@ -7244,7 +7274,7 @@ var ri = (() => {
             c(v), P(v.exports);
           });
         });
-      ze ??= Fr();
+      ze ??= _r();
       try {
         var y = await Vr(w, ze, f), b = l(y);
         return b;
@@ -7261,7 +7291,7 @@ var ri = (() => {
     var wt = (c) => {
       for (; c.length > 0; )
         c.shift()(t);
-    }, Pt = [], Gr = (c) => Pt.unshift(c), jt = [], $r = (c) => jt.unshift(c), It = t.noExitRuntime || !0;
+    }, Pt = [], Gr = (c) => Pt.unshift(c), It = [], $r = (c) => It.unshift(c), jt = t.noExitRuntime || !0;
     class Br {
       constructor(l) {
         this.excPtr = l, this.ptr = l - 24;
@@ -7303,7 +7333,7 @@ var ri = (() => {
     var St = 0, Hr = (c, l, f) => {
       var y = new Br(c);
       throw y.init(l, f), St = c, St;
-    }, Yr = () => je(""), Ie = (c) => {
+    }, Yr = () => Ie(""), je = (c) => {
       if (c === null)
         return "null";
       var l = typeof c;
@@ -7325,8 +7355,8 @@ var ri = (() => {
       function y(v) {
         var k = f(v);
         k.length !== c.length && Ce("Mismatched type converter count");
-        for (var R = 0; R < c.length; ++R)
-          H(c[R], k[R]);
+        for (var F = 0; F < c.length; ++F)
+          H(c[F], k[F]);
       }
       var b = new Array(l.length), P = [], C = 0;
       l.forEach((v, k) => {
@@ -7368,7 +7398,7 @@ var ri = (() => {
       var P = l.indexOf("u") != -1;
       H(c, { name: l, fromWireType: (C) => C, toWireType: function(C, v) {
         if (typeof v != "bigint" && typeof v != "number")
-          throw new TypeError(`Cannot convert "${Ie(v)}" to ${this.name}`);
+          throw new TypeError(`Cannot convert "${je(v)}" to ${this.name}`);
         return typeof v == "number" && (v = BigInt(v)), v;
       }, argPackAdvance: J, readValueFromPointer: Tt(l, f, !P), destructorFunction: null });
     }, J = 8, qr = (c, l, f, y) => {
@@ -7489,7 +7519,7 @@ var ri = (() => {
     function dn(c, l) {
       if (l === null)
         return this.isReference && x(`null is not a valid ${this.name}`), 0;
-      l.$$ || x(`Cannot pass "${Ie(l)}" as a ${this.name}`), l.$$.ptr || x(`Cannot pass deleted object as a pointer of type ${this.name}`);
+      l.$$ || x(`Cannot pass "${je(l)}" as a ${this.name}`), l.$$.ptr || x(`Cannot pass deleted object as a pointer of type ${this.name}`);
       var f = l.$$.ptrType.registeredClass, y = Ae(l.$$.ptr, f, this.registeredClass);
       return y;
     }
@@ -7497,7 +7527,7 @@ var ri = (() => {
       var f;
       if (l === null)
         return this.isReference && x(`null is not a valid ${this.name}`), this.isSmartPointer ? (f = this.rawConstructor(), c !== null && c.push(this.rawDestructor, f), f) : 0;
-      (!l || !l.$$) && x(`Cannot pass "${Ie(l)}" as a ${this.name}`), l.$$.ptr || x(`Cannot pass deleted object as a pointer of type ${this.name}`), !this.isConst && l.$$.ptrType.isConst && x(`Cannot convert argument of type ${l.$$.smartPtrType ? l.$$.smartPtrType.name : l.$$.ptrType.name} to parameter type ${this.name}`);
+      (!l || !l.$$) && x(`Cannot pass "${je(l)}" as a ${this.name}`), l.$$.ptr || x(`Cannot pass deleted object as a pointer of type ${this.name}`), !this.isConst && l.$$.ptrType.isConst && x(`Cannot convert argument of type ${l.$$.smartPtrType ? l.$$.smartPtrType.name : l.$$.ptrType.name} to parameter type ${this.name}`);
       var y = l.$$.ptrType.registeredClass;
       if (f = Ae(l.$$.ptr, y, this.registeredClass), this.isSmartPointer)
         switch (l.$$.smartPtr === void 0 && x("Passing raw pointer to smart pointer is illegal"), this.sharingPolicy) {
@@ -7523,7 +7553,7 @@ var ri = (() => {
     function pn(c, l) {
       if (l === null)
         return this.isReference && x(`null is not a valid ${this.name}`), 0;
-      l.$$ || x(`Cannot pass "${Ie(l)}" as a ${this.name}`), l.$$.ptr || x(`Cannot pass deleted object as a pointer of type ${this.name}`), l.$$.ptrType.isConst && x(`Cannot convert argument of type ${l.$$.ptrType.name} to parameter type ${this.name}`);
+      l.$$ || x(`Cannot pass "${je(l)}" as a ${this.name}`), l.$$.ptr || x(`Cannot pass deleted object as a pointer of type ${this.name}`), l.$$.ptrType.isConst && x(`Cannot convert argument of type ${l.$$.ptrType.name} to parameter type ${this.name}`);
       var f = l.$$.ptrType.registeredClass, y = Ae(l.$$.ptr, f, this.registeredClass);
       return y;
     }
@@ -7537,8 +7567,8 @@ var ri = (() => {
         this.rawDestructor?.(c);
       }, argPackAdvance: J, readValueFromPointer: Ee, fromWireType: nn });
     };
-    function Me(c, l, f, y, b, P, C, v, k, R, M) {
-      this.name = c, this.registeredClass = l, this.isReference = f, this.isConst = y, this.isSmartPointer = b, this.pointeeType = P, this.sharingPolicy = C, this.rawGetPointee = v, this.rawConstructor = k, this.rawShare = R, this.rawDestructor = M, !b && l.baseClass === void 0 ? y ? (this.toWireType = dn, this.destructorFunction = null) : (this.toWireType = pn, this.destructorFunction = null) : this.toWireType = fn;
+    function Me(c, l, f, y, b, P, C, v, k, F, M) {
+      this.name = c, this.registeredClass = l, this.isReference = f, this.isConst = y, this.isSmartPointer = b, this.pointeeType = P, this.sharingPolicy = C, this.rawGetPointee = v, this.rawConstructor = k, this.rawShare = F, this.rawDestructor = M, !b && l.baseClass === void 0 ? y ? (this.toWireType = dn, this.destructorFunction = null) : (this.toWireType = pn, this.destructorFunction = null) : this.toWireType = fn;
     }
     var Lt = (c, l, f) => {
       t.hasOwnProperty(c) || Ce("Replacing nonexistent public symbol"), t[c].overloadTable !== void 0 && f !== void 0 ? t[c].overloadTable[f] = l : (t[c] = l, t[c].argCount = f);
@@ -7566,7 +7596,7 @@ var ri = (() => {
       return f.prototype = Object.create(c.prototype), f.prototype.constructor = f, f.prototype.toString = function() {
         return this.message === void 0 ? this.name : `${this.name}: ${this.message}`;
       }, f;
-    }, Rt, _t = (c) => {
+    }, Ft, Rt = (c) => {
       var l = go(c), f = V(l);
       return Q(l), f;
     }, Oe = (c, l) => {
@@ -7580,9 +7610,9 @@ var ri = (() => {
           f.push(P), y[P] = !0;
         }
       }
-      throw l.forEach(b), new Rt(`${c}: ` + f.map(_t).join([", "]));
-    }, vn = (c, l, f, y, b, P, C, v, k, R, M, N, z) => {
-      M = V(M), P = re(b, P), v &&= re(C, v), R &&= re(k, R), z = re(N, z);
+      throw l.forEach(b), new Ft(`${c}: ` + f.map(Rt).join([", "]));
+    }, vn = (c, l, f, y, b, P, C, v, k, F, M, N, z) => {
+      M = V(M), P = re(b, P), v &&= re(C, v), F &&= re(k, F), z = re(N, z);
       var Z = cn(M);
       $e(Z, function() {
         Oe(`Cannot construct ${M} due to unbound types`, [y]);
@@ -7601,12 +7631,12 @@ var ri = (() => {
           return Yt.apply(this, qe);
         }), ie = Object.create(B, { constructor: { value: q } });
         q.prototype = ie;
-        var U = new un(M, q, ie, z, oe, P, v, R);
+        var U = new un(M, q, ie, z, oe, P, v, F);
         U.baseClass && (U.baseClass.__derivedClasses ??= [], U.baseClass.__derivedClasses.push(U));
-        var ae = new Me(M, U, !0, !1, !1), Re = new Me(M + "*", U, !1, !1, !1), Ht = new Me(M + " const*", U, !1, !0, !1);
-        return Mt[c] = { pointerType: Re, constPointerType: Ht }, Lt(Z, q), [ae, Re, Ht];
+        var ae = new Me(M, U, !0, !1, !1), Fe = new Me(M + "*", U, !1, !1, !1), Ht = new Me(M + " const*", U, !1, !0, !1);
+        return Mt[c] = { pointerType: Fe, constPointerType: Ht }, Lt(Z, q), [ae, Fe, Ht];
       });
-    }, Ft = (c, l) => {
+    }, _t = (c, l) => {
       for (var f = [], y = 0; y < c; y++)
         f.push(W[l + y * 4 >> 2]);
       return f;
@@ -7626,17 +7656,17 @@ var ri = (() => {
       try {
         return c();
       } catch (l) {
-        je(l);
+        Ie(l);
       }
     }, xt = (c) => {
       if (c instanceof Ot || c == "unwind")
         return X;
       S(1, c);
-    }, Nt = 0, Wt = () => It || Nt > 0, Vt = (c) => {
-      X = c, Wt() || (t.onExit?.(c), _ = !0), S(c, new Ot(c));
+    }, Nt = 0, Wt = () => jt || Nt > 0, Vt = (c) => {
+      X = c, Wt() || (t.onExit?.(c), R = !0), S(c, new Ot(c));
     }, wn = (c, l) => {
       X = c, Vt(c);
-    }, Pn = wn, jn = () => {
+    }, Pn = wn, In = () => {
       if (!Wt())
         try {
           Pn(X);
@@ -7644,9 +7674,9 @@ var ri = (() => {
           xt(c);
         }
     }, zt = (c) => {
-      if (!_)
+      if (!R)
         try {
-          c(), jn();
+          c(), In();
         } catch (l) {
           xt(l);
         }
@@ -7662,7 +7692,7 @@ var ri = (() => {
           try {
             return y(...b);
           } finally {
-            _ || (A.exportCallStack.pop(), A.maybeStopUnwind());
+            R || (A.exportCallStack.pop(), A.maybeStopUnwind());
           }
         } : l[f] = y;
       return l;
@@ -7687,17 +7717,17 @@ var ri = (() => {
       var l = te[c + 8 >> 2], f = A.callStackIdToName[l];
       return f;
     }, getDataRewindFunc(c) {
-      var l = F[c];
+      var l = _[c];
       return l;
     }, doRewind(c) {
       var l = A.getDataRewindFuncName(c), f = A.getDataRewindFunc(l);
       return f();
     }, handleSleep(c) {
-      if (!_) {
+      if (!R) {
         if (A.state === A.State.Normal) {
           var l = !1, f = !1;
           c((y = 0) => {
-            if (!_ && (A.handleSleepReturnValue = y, l = !0, !!f)) {
+            if (!R && (A.handleSleepReturnValue = y, l = !0, !!f)) {
               A.state = A.State.Rewinding, Le(() => Oo(A.currData)), typeof MainLoop < "u" && MainLoop.func && MainLoop.resume();
               var b, P = !1;
               try {
@@ -7714,7 +7744,7 @@ var ri = (() => {
                 throw b;
             }
           }), f = !0, l || (A.state = A.State.Unwinding, A.currData = A.allocateData(), typeof MainLoop < "u" && MainLoop.func && MainLoop.pause(), Le(() => bo(A.currData)));
-        } else A.state === A.State.Rewinding ? (A.state = A.State.Normal, Le(wo), Q(A.currData), A.currData = null, A.sleepCallbacks.forEach(zt)) : je(`invalid state: ${A.state}`);
+        } else A.state === A.State.Rewinding ? (A.state = A.State.Normal, Le(wo), Q(A.currData), A.currData = null, A.sleepCallbacks.forEach(zt)) : Ie(`invalid state: ${A.state}`);
         return A.handleSleepReturnValue;
       }
     }, handleAsync(c) {
@@ -7725,11 +7755,11 @@ var ri = (() => {
     function Ut(c, l, f, y, b, P) {
       var C = l.length;
       C < 2 && x("argTypes array size mismatch! Must at least get return value and 'this' types!"), l[1];
-      var v = On(l), k = l[0].name !== "void", R = C - 2, M = new Array(R), N = [], z = [], Z = function(...K) {
+      var v = On(l), k = l[0].name !== "void", F = C - 2, M = new Array(F), N = [], z = [], Z = function(...K) {
         z.length = 0;
         var oe;
         N.length = 1, N[0] = b;
-        for (var B = 0; B < R; ++B)
+        for (var B = 0; B < F; ++B)
           M[B] = l[B + 2].toWireType(z, K[B]), N.push(M[B]);
         var q = y(...N);
         function ie(U) {
@@ -7737,8 +7767,8 @@ var ri = (() => {
             Be(z);
           else
             for (var ae = 2; ae < l.length; ae++) {
-              var Re = ae === 1 ? oe : M[ae - 2];
-              l[ae].destructorFunction !== null && l[ae].destructorFunction(Re);
+              var Fe = ae === 1 ? oe : M[ae - 2];
+              l[ae].destructorFunction !== null && l[ae].destructorFunction(Fe);
             }
           if (k)
             return l[0].fromWireType(U);
@@ -7747,8 +7777,8 @@ var ri = (() => {
       };
       return De(c, Z);
     }
-    var In = (c, l, f, y, b, P) => {
-      var C = Ft(l, f);
+    var jn = (c, l, f, y, b, P) => {
+      var C = _t(l, f);
       b = re(y, b), me([], [c], (v) => {
         v = v[0];
         var k = `constructor ${v.name}`;
@@ -7756,9 +7786,9 @@ var ri = (() => {
           throw new pe(`Cannot register multiple constructors with identical number of parameters (${l - 1}) for class '${v.name}'! Overload resolution is currently only performed using the parameter count, not actual type info!`);
         return v.registeredClass.constructor_body[l - 1] = () => {
           Oe(`Cannot construct ${v.name} due to unbound types`, C);
-        }, me([], C, (R) => (R.splice(1, 0, null), v.registeredClass.constructor_body[l - 1] = Ut(k, R, null, b, P), [])), [];
+        }, me([], C, (F) => (F.splice(1, 0, null), v.registeredClass.constructor_body[l - 1] = Ut(k, F, null, b, P), [])), [];
       });
-    }, Gt = (c, l, f) => (c instanceof Object || x(`${f} with invalid "this": ${c}`), c instanceof l.registeredClass.constructor || x(`${f} incompatible with "this" of type ${c.constructor.name}`), c.$$.ptr || x(`cannot call emscripten binding method ${f} on deleted object`), Ae(c.$$.ptr, c.$$.ptrType.registeredClass, l.registeredClass)), Sn = (c, l, f, y, b, P, C, v, k, R) => {
+    }, Gt = (c, l, f) => (c instanceof Object || x(`${f} with invalid "this": ${c}`), c instanceof l.registeredClass.constructor || x(`${f} incompatible with "this" of type ${c.constructor.name}`), c.$$.ptr || x(`cannot call emscripten binding method ${f} on deleted object`), Ae(c.$$.ptr, c.$$.ptrType.registeredClass, l.registeredClass)), Sn = (c, l, f, y, b, P, C, v, k, F) => {
       l = V(l), b = re(y, b), me([], [c], (M) => {
         M = M[0];
         var N = `${M.name}.${l}`, z = { get() {
@@ -7774,7 +7804,7 @@ var ri = (() => {
             var B = Z[1];
             oe.set = function(q) {
               var ie = Gt(this, M, N + " setter"), U = [];
-              k(R, ie, B.toWireType(U, q)), Be(U);
+              k(F, ie, B.toWireType(U, q)), Be(U);
             };
           }
           return Object.defineProperty(M.registeredClass.instancePrototype, l, oe), [];
@@ -7834,7 +7864,7 @@ var ri = (() => {
       }, toWireType: (P, C) => C.value, argPackAdvance: J, readValueFromPointer: An(l, f, y), destructorFunction: null }), $e(l, b);
     }, Je = (c, l) => {
       var f = le[c];
-      return f === void 0 && x(`${l} has unknown type ${_t(c)}`), f;
+      return f === void 0 && x(`${l} has unknown type ${Rt(c)}`), f;
     }, Mn = (c, l, f) => {
       var y = Je(c, "enum");
       l = V(l);
@@ -7854,18 +7884,18 @@ var ri = (() => {
         default:
           throw new TypeError(`invalid float width (${l}): ${c}`);
       }
-    }, Rn = (c, l, f) => {
+    }, Fn = (c, l, f) => {
       l = V(l), H(c, { name: l, fromWireType: (y) => y, toWireType: (y, b) => b, argPackAdvance: J, readValueFromPointer: Ln(l, f), destructorFunction: null });
-    }, _n = (c) => {
+    }, Rn = (c) => {
       c = c.trim();
       const l = c.indexOf("(");
       return l === -1 ? c : c.slice(0, l);
-    }, Fn = (c, l, f, y, b, P, C, v) => {
-      var k = Ft(l, f);
-      c = V(c), c = _n(c), b = re(y, b), $e(c, function() {
+    }, _n = (c, l, f, y, b, P, C, v) => {
+      var k = _t(l, f);
+      c = V(c), c = Rn(c), b = re(y, b), $e(c, function() {
         Oe(`Cannot call ${c} due to unbound types`, k);
-      }, l - 1), me([], k, (R) => {
-        var M = [R[0], null].concat(R.slice(1));
+      }, l - 1), me([], k, (F) => {
+        var M = [F[0], null].concat(F.slice(1));
         return Lt(c, Ut(c, M, null, b, P), l - 1), [];
       });
     }, xn = (c, l, f, y, b) => {
@@ -7876,12 +7906,12 @@ var ri = (() => {
         P = (M) => M << C >>> C;
       }
       var v = l.includes("unsigned"), k = (M, N) => {
-      }, R;
-      v ? R = function(M, N) {
+      }, F;
+      v ? F = function(M, N) {
         return k(N, this.name), N >>> 0;
-      } : R = function(M, N) {
+      } : F = function(M, N) {
         return k(N, this.name), N;
-      }, H(c, { name: l, fromWireType: P, toWireType: R, argPackAdvance: J, readValueFromPointer: Tt(l, f, y !== 0), destructorFunction: null });
+      }, H(c, { name: l, fromWireType: P, toWireType: F, argPackAdvance: J, readValueFromPointer: Tt(l, f, y !== 0), destructorFunction: null });
     }, Nn = (c, l, f) => {
       var y = [Int8Array, Uint8Array, Int16Array, Uint16Array, Int32Array, Uint32Array, Float32Array, Float64Array, BigInt64Array, BigUint64Array], b = y[l];
       function P(C) {
@@ -7937,8 +7967,8 @@ var ri = (() => {
         if ((C & 240) == 224 ? C = (C & 15) << 12 | v << 6 | k : C = (C & 7) << 18 | v << 12 | k << 6 | c[l++] & 63, C < 65536)
           P += String.fromCharCode(C);
         else {
-          var R = C - 65536;
-          P += String.fromCharCode(55296 | R >> 10, 56320 | R & 1023);
+          var F = C - 65536;
+          P += String.fromCharCode(55296 | F >> 10, 56320 | F & 1023);
         }
       }
       return P;
@@ -7947,7 +7977,7 @@ var ri = (() => {
         for (var y = W[f >> 2], b = f + 4, P, C, v = b, C = 0; C <= y; ++C) {
           var k = b + C;
           if (C == y || G[k] == 0) {
-            var R = k - v, M = Gn(v, R);
+            var F = k - v, M = Gn(v, F);
             P === void 0 ? P = M : (P += "\0", P += M), v = k + 1;
           }
         }
@@ -7961,8 +7991,8 @@ var ri = (() => {
           Vn(y, v, b + 1);
         else if (P)
           for (var k = 0; k < b; ++k) {
-            var R = y.charCodeAt(k);
-            R > 255 && (Q(C), x("String has UTF-16 code units that do not fit in 8 bits")), G[v + k] = R;
+            var F = y.charCodeAt(k);
+            F > 255 && (Q(C), x("String has UTF-16 code units that do not fit in 8 bits")), G[v + k] = F;
           }
         else
           for (var k = 0; k < b; ++k)
@@ -8020,18 +8050,18 @@ var ri = (() => {
       f = V(f);
       var y, b, P, C;
       l === 2 ? (y = Bn, b = Hn, C = Yn, P = (v) => he[v >> 1]) : l === 4 && (y = Jn, b = Zn, C = Kn, P = (v) => W[v >> 2]), H(c, { name: f, fromWireType: (v) => {
-        for (var k = W[v >> 2], R, M = v + 4, N = 0; N <= k; ++N) {
+        for (var k = W[v >> 2], F, M = v + 4, N = 0; N <= k; ++N) {
           var z = v + 4 + N * l;
           if (N == k || P(z) == 0) {
             var Z = z - M, K = y(M, Z);
-            R === void 0 ? R = K : (R += "\0", R += K), M = z + l;
+            F === void 0 ? F = K : (F += "\0", F += K), M = z + l;
           }
         }
-        return Q(v), R;
+        return Q(v), F;
       }, toWireType: (v, k) => {
         typeof k != "string" && x(`Cannot pass non-string to C++ string type ${f}`);
-        var R = C(k), M = Ze(4 + R + l);
-        return W[M >> 2] = R / l, b(k, M + 4, R + l), v !== null && v.push(Q, M), M;
+        var F = C(k), M = Ze(4 + F + l);
+        return W[M >> 2] = F / l, b(k, M + 4, F + l), v !== null && v.push(Q, M), M;
       }, argPackAdvance: J, readValueFromPointer: Ee, destructorFunction(v) {
         Q(v);
       } });
@@ -8040,7 +8070,7 @@ var ri = (() => {
       }, toWireType: (f, y) => {
       } });
     }, Qn = () => {
-      It = !1, Nt = 0;
+      jt = !1, Nt = 0;
     }, eo = (c, l, f) => {
       var y = [], b = c.toWireType(y, f);
       return y.length && (W[l >> 2] = Y.toHandle(y)), b;
@@ -8089,12 +8119,12 @@ var ri = (() => {
       constructor(l) {
         super(l), this.name = "InternalError";
       }
-    }, on(), mn(), Rt = t.UnboundTypeError = bn(Error, "UnboundTypeError"), kn();
-    var yo = { i: Hr, s: Yr, n: Kr, w: qr, f: vn, d: In, a: Sn, u: Dn, l: En, g: Mn, m: Rn, b: Fn, e: xn, c: Nn, v: $n, h: qn, x: Xn, q: Qn, j: to, y: Ye, k: ro, o: io, A: ao, z: so, r: co, t: mo, p: Vt }, F = await Ur();
-    F.C;
-    var go = F.D, Ze = t._malloc = F.E, Q = t._free = F.F, ho = F.G;
-    t.dynCall_v = F.I, t.dynCall_ii = F.J, t.dynCall_vi = F.K, t.dynCall_i = F.L, t.dynCall_iii = F.M, t.dynCall_viii = F.N, t.dynCall_fii = F.O, t.dynCall_viif = F.P, t.dynCall_viiii = F.Q, t.dynCall_viiiiii = F.R, t.dynCall_iiiiii = F.S, t.dynCall_viiiii = F.T, t.dynCall_iiiiiii = F.U, t.dynCall_iiiiiiii = F.V, t.dynCall_viiiiiii = F.W, t.dynCall_viiiiiiiiidi = F.X, t.dynCall_viiiiiiiidi = F.Y, t.dynCall_viiiiiiiiii = F.Z, t.dynCall_viiiiiiiii = F._, t.dynCall_viiiiiiii = F.$, t.dynCall_iiiii = F.aa, t.dynCall_iiii = F.ba;
-    var bo = F.ca, vo = F.da, Oo = F.ea, wo = F.fa;
+    }, on(), mn(), Ft = t.UnboundTypeError = bn(Error, "UnboundTypeError"), kn();
+    var yo = { i: Hr, s: Yr, n: Kr, w: qr, f: vn, d: jn, a: Sn, u: Dn, l: En, g: Mn, m: Fn, b: _n, e: xn, c: Nn, v: $n, h: qn, x: Xn, q: Qn, j: to, y: Ye, k: ro, o: io, A: ao, z: so, r: co, t: mo, p: Vt }, _ = await Ur();
+    _.C;
+    var go = _.D, Ze = t._malloc = _.E, Q = t._free = _.F, ho = _.G;
+    t.dynCall_v = _.I, t.dynCall_ii = _.J, t.dynCall_vi = _.K, t.dynCall_i = _.L, t.dynCall_iii = _.M, t.dynCall_viii = _.N, t.dynCall_fii = _.O, t.dynCall_viif = _.P, t.dynCall_viiii = _.Q, t.dynCall_viiiiii = _.R, t.dynCall_iiiiii = _.S, t.dynCall_viiiii = _.T, t.dynCall_iiiiiii = _.U, t.dynCall_iiiiiiii = _.V, t.dynCall_viiiiiii = _.W, t.dynCall_viiiiiiiiidi = _.X, t.dynCall_viiiiiiiidi = _.Y, t.dynCall_viiiiiiiiii = _.Z, t.dynCall_viiiiiiiii = _._, t.dynCall_viiiiiiii = _.$, t.dynCall_iiiii = _.aa, t.dynCall_iiii = _.ba;
+    var bo = _.ca, vo = _.da, Oo = _.ea, wo = _.fa;
     function Ke() {
       if (se > 0) {
         be = Ke;
@@ -8105,7 +8135,7 @@ var ri = (() => {
         return;
       }
       function c() {
-        t.calledRun = !0, !_ && (Mr(), e(t), t.onRuntimeInitialized?.(), Lr());
+        t.calledRun = !0, !R && (Mr(), e(t), t.onRuntimeInitialized?.(), Lr());
       }
       t.setStatus ? (t.setStatus("Running..."), setTimeout(() => {
         setTimeout(() => t.setStatus(""), 1), c();
@@ -8183,7 +8213,7 @@ let si = class extends No {
     return ri(a);
   }
   parseRawData(a, r) {
-    const { brightness: t, sharpness: e } = a.params, { bottomRightX: n, bottomRightY: o, leftEye: u, mouth: s, rightEye: h, topLeftX: S, topLeftY: g } = a, O = ut(u), j = ut(h), I = ut(s);
+    const { brightness: t, sharpness: e } = a.params, { bottomRightX: n, bottomRightY: o, leftEye: u, mouth: s, rightEye: h, topLeftX: S, topLeftY: g } = a, O = ut(u), I = ut(h), j = ut(s);
     return {
       confidence: a.confidence / Pe,
       topLeft: {
@@ -8194,11 +8224,11 @@ let si = class extends No {
         x: n,
         y: o
       },
-      faceCenter: oi(O, j),
-      faceSize: ii(O, j, r),
+      faceCenter: oi(O, I),
+      faceSize: ii(O, I, r),
       leftEye: O,
-      rightEye: j,
-      mouth: I,
+      rightEye: I,
+      mouth: j,
       brightness: t / Pe,
       sharpness: e / Pe
     };

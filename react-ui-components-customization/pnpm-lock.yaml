@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@innovatrics/dot-face-auto-capture':
-        specifier: 8.0.2
-        version: 8.0.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: 8.0.3
+        version: 8.0.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -362,8 +362,8 @@ packages:
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
 
-  '@innovatrics/dot-face-auto-capture@8.0.2':
-    resolution: {integrity: sha512-MykXxvtkbUnWPSN9xM/7+bh0PlKYF2yalrLHTL2dxs/HvfCN69IDn10AzlMWaW1rpIIHr/8fxnCDWvjJDAOpDg==}
+  '@innovatrics/dot-face-auto-capture@8.0.3':
+    resolution: {integrity: sha512-RhY62gWKSVu3qyRvrF7QiEDYe1rg1H7T48mkGUPF/jeEUegN/CvF5oUfAzj+jE7D2pd3b3JD+ovbEikDtlp/zA==}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -1486,7 +1486,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@innovatrics/dot-face-auto-capture@8.0.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@innovatrics/dot-face-auto-capture@8.0.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@preact/signals': 2.5.1(preact@10.28.2)
       comlink: 4.4.2
