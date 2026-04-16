@@ -343,30 +343,19 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-2.0.3.tgz#4a2868d75d6d6963e423bcf90b7fd1be343409d3"
   integrity sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==
 
-"@innovatrics/dot-auto-capture-ui@8.0.4":
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-auto-capture-ui/-/dot-auto-capture-ui-8.0.4.tgz#6a3c74af5ba74f9444d845ba34a4501ec95b1265"
-  integrity sha512-ZeUpDaJSB3DPLUTRkcombf0aT3MqXmdSIYl5RMK0DbsD6CeeOYMIHmM65pCIOTSFVuRDtSv9X9YUBZPKb8+7YA==
+"@innovatrics/dot-auto-capture-ui@8.0.5":
+  version "8.0.5"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-auto-capture-ui/-/dot-auto-capture-ui-8.0.5.tgz#c73c0255475c60afcb286fc39d85d5c52c1f8ed3"
+  integrity sha512-iMqlvzf7YpasfDJZ2yMrZwZX0OfwMJui32UJfb9VyAMYj+d8lLcvkGHcHHq4qSMDR7CpjSoNjjaTF8q71Wo1Gg==
   dependencies:
     preact "^10.28.1"
     preact-custom-element "^4.6.0"
     styled-components "^6.1.19"
 
-"@innovatrics/dot-document-auto-capture@8.0.4":
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-8.0.4.tgz#8be1eccd0517bef1e0851bb1d60a6f3c6826228a"
-  integrity sha512-sVsE+CY8ODpQJC5q9oHRL2//GbXj5lmCRTNPbAOS61Q4IwLw5ipzz1nLOBQ6eEaREXP5TJMF3li+uJFa0tVDGw==
-  dependencies:
-    "@preact/signals" "^2.5.1"
-    comlink "^4.4.2"
-    preact "^10.28.1"
-    preact-custom-element "^4.6.0"
-    styled-components "^6.1.19"
-
-"@innovatrics/dot-face-auto-capture@8.0.4":
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-8.0.4.tgz#56e875ac2b9918c8a488efc5b9eaee5836fc838b"
-  integrity sha512-W69Lza96IME15GVImdDttS8fHcKvVw6pbvV3HfgLg5Kd6tLB4t3Rp8B3Y2uqSVpsKY2sql1UMIW/ECo99Xs/Hw==
+"@innovatrics/dot-document-auto-capture@8.0.5":
+  version "8.0.5"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-document-auto-capture/-/dot-document-auto-capture-8.0.5.tgz#967ada25f33878528c13c6adcc90397e452b902e"
+  integrity sha512-jjcpJBz8phsS+ByzGU9Mmfwy3p3zlOxfpuS2JCZc4XT3XaLyAYMlGJQcTZLqAmfCEQEHWT/BVwf/XJwplUmM8A==
   dependencies:
     "@preact/signals" "^2.5.1"
     comlink "^4.4.2"
@@ -374,10 +363,10 @@
     preact-custom-element "^4.6.0"
     styled-components "^6.1.19"
 
-"@innovatrics/dot-magnifeye-liveness@8.0.4":
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-magnifeye-liveness/-/dot-magnifeye-liveness-8.0.4.tgz#e86bb6d6571e0e205b3b06519e5775d555997e8e"
-  integrity sha512-CSbmQi13s9Xg8xbKUnmZ1DoScIE77Y8mv1tta8PHGE7/j2pEnkYX3s11M1djx+K0Md4/LUYybtwFPQlAlY8IwQ==
+"@innovatrics/dot-face-auto-capture@8.0.5":
+  version "8.0.5"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-face-auto-capture/-/dot-face-auto-capture-8.0.5.tgz#fab42c65671475bd80c5ee1945a10c0eedb90811"
+  integrity sha512-l9OJagR9VwKbGvuME2TXJ+dczzyVQskeKNPjMw6oJ1qF1rrUcPMjO47nGK11on0+LaXTCSjKPWU3GRuApwSNVA==
   dependencies:
     "@preact/signals" "^2.5.1"
     comlink "^4.4.2"
@@ -385,10 +374,21 @@
     preact-custom-element "^4.6.0"
     styled-components "^6.1.19"
 
-"@innovatrics/dot-multi-range-liveness@8.0.4":
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-multi-range-liveness/-/dot-multi-range-liveness-8.0.4.tgz#184da739c28471c600f2f7020506cc8a906d7643"
-  integrity sha512-RpnoYKqdoCt3U/zQAySgHFHmDXes3Zg4QrdtpNZzTEHyS0nRnhVHx0zBzT667psJElSBIte42cx4Hh7vCOy6eA==
+"@innovatrics/dot-magnifeye-liveness@8.0.5":
+  version "8.0.5"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-magnifeye-liveness/-/dot-magnifeye-liveness-8.0.5.tgz#be74fe360294095953a342159f09dd7514da8030"
+  integrity sha512-np4DcikTPTrdq+uhsJcx8A77xzo6NsWlpLbmhAcXn6kpCVBWshkcHprYOvBr0gkGEsZxcIyr7kZoRO1APxm/nA==
+  dependencies:
+    "@preact/signals" "^2.5.1"
+    comlink "^4.4.2"
+    preact "^10.28.1"
+    preact-custom-element "^4.6.0"
+    styled-components "^6.1.19"
+
+"@innovatrics/dot-multi-range-liveness@8.0.5":
+  version "8.0.5"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-multi-range-liveness/-/dot-multi-range-liveness-8.0.5.tgz#bc6f45f4a3d6a2bfa8fb4a43041eac6b2cfb9230"
+  integrity sha512-EJCj2GmCkngLq9xt43FXbHureSO95+LQYuUyAthiWTmFWsHz7Ni0vEkHyN1EKNpWKR9rAQOK+4WTICkX4ZpYuQ==
   dependencies:
     "@preact/signals" "^2.5.1"
     comlink "^4.4.2"
@@ -397,10 +397,10 @@
     styled-components "^6.1.19"
     valibot "^1.2.0"
 
-"@innovatrics/dot-palm-capture@8.0.4":
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-palm-capture/-/dot-palm-capture-8.0.4.tgz#0b6b724c4ee6d865b4ba57084f070a6998141728"
-  integrity sha512-xHwLRIvEFlYRYsWXpPUbh8P3AHLZzQHA4La04mleC1TFfp13BI/CcIuIWU2HaPFBNjX04/heWGNfwB+r0UtkaA==
+"@innovatrics/dot-palm-capture@8.0.5":
+  version "8.0.5"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-palm-capture/-/dot-palm-capture-8.0.5.tgz#73acbfcd1c4ae5a97ff408fff67859f1ea393846"
+  integrity sha512-4kNzi8XJvTGkuhI1ly1dMopRvQb5dThoBza0FE2EetrCXgwm8zoo13rRYGhwDrhid8Tq9RzRachrMCV2dbNE6g==
   dependencies:
     "@preact/signals" "^2.5.1"
     comlink "^4.4.2"
@@ -408,10 +408,10 @@
     preact-custom-element "^4.6.0"
     styled-components "^6.1.19"
 
-"@innovatrics/dot-smile-liveness@8.0.4":
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/@innovatrics/dot-smile-liveness/-/dot-smile-liveness-8.0.4.tgz#b6be57ffdfadae3baf948ec6b74acb6c638dc968"
-  integrity sha512-pL9WDcb0TiLGvS3VdO6HXSQROZaYdjxwkfwk/SeT18tktkSpPdW6xrIr3uEpwpdWOyhCrf0V49enBuYX8AWxgA==
+"@innovatrics/dot-smile-liveness@8.0.5":
+  version "8.0.5"
+  resolved "https://registry.yarnpkg.com/@innovatrics/dot-smile-liveness/-/dot-smile-liveness-8.0.5.tgz#0d14519d5c9ae9ae2e4c45946a47f8b670fb4648"
+  integrity sha512-mPMHtTwGOPSYVcFZXrTcXzwERmqwwX837eQRPhbofGz2zMmiNaxyVjp4SmacIa2jbZ5ornuynDqQk7M917dZxg==
   dependencies:
     "@preact/signals" "^2.5.1"
     comlink "^4.4.2"
