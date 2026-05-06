@@ -8,7 +8,7 @@ BY PROCEEDING TO DOWNLOAD, INSTALL OR USE THE SOFTWARE IN WHICH THIS AGREEMENT I
 BY INSTALLING OR USING THE SOFTWARE YOU ACKNOWLEDGE AND AGREE THAT ON BEHALF OF YOURSELF AND YOUR EMPLOYER YOU HAVE READ THIS SOFTWARE LICENSE AGREEMENT CAREFULLY, THAT YOU AND YOUR EMPLOYER AGREE TO BE BOUND BY THIS AGREEMENT AND THAT IF APPLICABLE YOUR EMPLOYER HAS INFORMED YOU OF THE RELEVANT PROVISIONS OF THIS AGREEMENT WHICH MAY BE APPLICABLE TO YOU. THIS AGREEMENT SHALL GOVERN YOUR INSTALLATION AND USE OF THE SOFTWARE IN WHICH THIS AGREEMENT IS ELECTRONICALLY EMBEDDED.
 
 1. DEFINITIONS
-(a) “Product” means DOT (Digital Onboarding Toolkit).
+(a) “Product” means IDV (Identity Verification Toolkit).
 (b) "Software" means the source code, libraries and documentation included in the Product and provided to assist the Company in building the Application(s).
 (c) "Application" means software or hardware product(s) built by the Company through the use or integration of the Software/Product, which bundles the elements of the Software/Product and connects to a database for biometric storage ("Biometric Database"), or which otherwise utilizes any of the functionality of the Software/Product. 
 (d) “Deployment of Application” means any and all copies of the Application installed, used, distributed, leased or sold directly or indirectly by the Company and any of its customers, employees, distributors, resellers, affiliates or other partners. 

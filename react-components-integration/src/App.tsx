@@ -103,7 +103,7 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <h1>DOT Web Components Integration</h1>
+      <h1>IDV Web Components Integration</h1>
       {renderStep(step)}
       {photoUrl && <PhotoResult photoUrl={photoUrl} />}
     </div>

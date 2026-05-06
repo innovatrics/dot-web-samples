@@ -41,7 +41,7 @@ function handleStepChange(step: Step) {
 
 <template>
   <div>
-    <h1>DOT Web Components Integration</h1>
+    <h1>IDV Web Components Integration</h1>
     <div v-if="currentStep === Step.DOCUMENT_CAPTURE">
       <DocumentAutoCapture @on-complete="handlePhotoTaken" @on-error="handleError" @on-back="handleStepChange" />
       <ResultStep v-if="imageUrl" :imageSrc="imageUrl" />
