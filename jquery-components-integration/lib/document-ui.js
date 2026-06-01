@@ -2477,7 +2477,8 @@ kt`
 `;
 const ws = B.div`
   position: absolute;
-  left: 50%;
+  left: 0;
+  right: 0;
 
   ${(e) => e.$cssTop ? `top: ${e.$cssTop}%;` : ""}
   ${(e) => e.$cssBottom ? `bottom: ${e.$cssBottom}%;` : ""}
@@ -2503,10 +2504,9 @@ const ws = B.div`
       }
     `};
 
-  transform: translateX(-50%)
-    translateY(
-      ${(e) => e.$cssTop || e.$isPortrait ? "-50%" : e.$isPortrait ? "" : "50%"}
-    );
+  transform: translateY(
+    ${(e) => e.$cssTop || e.$isPortrait ? "-50%" : e.$isPortrait ? "" : "50%"}
+  );
   z-index: 2;
 `, Ss = B.div`
   display: flex;
@@ -2516,6 +2516,8 @@ const ws = B.div`
   border-radius: 0.25em;
   margin: 0 auto;
   padding: 0.583em 0.666em;
+  width: max-content;
+  max-width: 90%;
   background: ${(e) => e.$isInCandidateSelection ? `${e.theme.colors.instructionColorSuccess}` : `${e.theme.colors.instructionColor}`};
   color: ${(e) => e.theme.colors.instructionTextColor};
   border: 0;

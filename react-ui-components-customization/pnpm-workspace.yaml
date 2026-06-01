@@ -1,0 +1,5 @@
+minimumReleaseAgeExclude:
+  - '@innovatrics/*'
+
+allowBuilds:
+  esbuild: true
