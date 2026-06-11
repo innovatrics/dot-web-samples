@@ -2,7 +2,7 @@
 
 This repository contains integration samples of Innovatrics IDV Web Auto Capture Components in various technologies.
 
-Version of components in samples: 8.1.0
+Version of components in samples: 8.1.1
 
 ## License
 
