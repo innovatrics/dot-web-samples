@@ -2332,8 +2332,11 @@ function ss(e, t) {
   const n = kn(t.width, t.height);
   return os(e * n);
 }
-function cs(e) {
-  return as(e, qa);
+function cs(e, t = 1) {
+  return as(
+    e,
+    qa * t
+  );
 }
 function ls(e, t) {
   return ss(e, t) * Xa;

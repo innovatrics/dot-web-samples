@@ -2314,8 +2314,11 @@ function Ja(e, t) {
   const n = Cn(t.width, t.height);
   return Xa(e * n);
 }
-function es(e) {
-  return Ka(e, za);
+function es(e, t = 1) {
+  return Ka(
+    e,
+    za * t
+  );
 }
 function ts(e, t) {
   return Ja(e, t) * Wa;

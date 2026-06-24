@@ -2335,8 +2335,11 @@ const ea = {
     height: n / e.height
   };
 };
-function ia(e) {
-  return oa(e, Xs);
+function ia(e, t = 1) {
+  return oa(
+    e,
+    Xs * t
+  );
 }
 const sa = (e, t) => {
   document.dispatchEvent(
