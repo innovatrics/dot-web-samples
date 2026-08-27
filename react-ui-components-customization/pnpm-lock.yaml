@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@innovatrics/dot-face-auto-capture':
-        specifier: 8.1.4
-        version: 8.1.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: 8.1.5
+        version: 8.1.5(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -362,8 +362,8 @@ packages:
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
 
-  '@innovatrics/dot-face-auto-capture@8.1.4':
-    resolution: {integrity: sha512-KtNxbxz9YmbO0ouddGAyg9ZC7wz8PsbngF/8Diryh0EMI+S1opijRe1af1z1njAZVQH0toKW1RSvT6+KU28XOA==}
+  '@innovatrics/dot-face-auto-capture@8.1.5':
+    resolution: {integrity: sha512-chmXrbqvIeaIOwHWKgldmNlNBYBuUpGwRPjRRcifkcsDO65Wjzy8UTeSucJaKYl2a+QWK9Re8ulTH4mC09cXaQ==}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -753,6 +753,7 @@ packages:
   eslint@9.39.1:
     resolution: {integrity: sha512-BhHmn2yNOFA9H9JmmIVKJmd288g9hrVRDkdoIgRCRuSySRUHH7r/DI6aAXW9T1WwUuY3DFgrcaqB+deURBLR5g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -1423,7 +1424,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@innovatrics/dot-face-auto-capture@8.1.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+  '@innovatrics/dot-face-auto-capture@8.1.5(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@preact/signals': 2.5.1(preact@10.28.2)
       comlink: 4.4.2

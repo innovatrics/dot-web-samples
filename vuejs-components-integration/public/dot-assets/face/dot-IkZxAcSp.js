@@ -2,7 +2,7 @@ const wr = /* @__PURE__ */ Symbol("Comlink.proxy"), Po = /* @__PURE__ */ Symbol(
   canHandle: (m) => Pr(m) && m[wr],
   serialize(m) {
     const { port1: s, port2: r } = new MessageChannel();
-    return ft(m, s), [r, [r]];
+    return pt(m, s), [r, [r]];
   },
   deserialize(m) {
     return m.start(), To(m);
@@ -33,7 +33,7 @@ function Co(m, s) {
       return !0;
   return !1;
 }
-function ft(m, s = globalThis, r = ["*"]) {
+function pt(m, s = globalThis, r = ["*"]) {
   s.addEventListener("message", function t(e) {
     if (!e || !e.data)
       return;
@@ -64,7 +64,7 @@ function ft(m, s = globalThis, r = ["*"]) {
         case "ENDPOINT":
           {
             const { port1: O, port2: I } = new MessageChannel();
-            ft(m, I), h = Mo(O, [O]);
+            pt(m, I), h = Mo(O, [O]);
           }
           break;
         case "RELEASE":
@@ -124,11 +124,11 @@ const Ne = /* @__PURE__ */ new WeakMap(), We = "FinalizationRegistry" in globalT
   const s = (Ne.get(m) || 0) - 1;
   Ne.set(m, s), s === 0 && Sr(m);
 });
-function Ao(m, s) {
+function Do(m, s) {
   const r = (Ne.get(s) || 0) + 1;
   Ne.set(s, r), We && We.register(m, s, m);
 }
-function Do(m) {
+function Ao(m) {
   We && We.unregister(m);
 }
 function dt(m, s, r = [], t = function() {
@@ -138,7 +138,7 @@ function dt(m, s, r = [], t = function() {
     get(o, u) {
       if (_e(e), u === Io)
         return () => {
-          Do(n), Sr(m), s.clear(), e = !0;
+          Ao(n), Sr(m), s.clear(), e = !0;
         };
       if (u === "then") {
         if (r.length === 0)
@@ -186,7 +186,7 @@ function dt(m, s, r = [], t = function() {
       }, h).then(ce);
     }
   });
-  return Ao(n, m), n;
+  return Do(n, m), n;
 }
 function Eo(m) {
   return Array.prototype.concat.apply([], m);
@@ -406,13 +406,13 @@ class No {
     this.terminateSamModule();
   }
 }
-const pt = (m) => Number.parseFloat(m.toFixed(3)), kr = (m, s) => Math.min(m, s);
+const ft = (m) => Number.parseFloat(m.toFixed(3)), kr = (m, s) => Math.min(m, s);
 function Wo(m, s) {
   const r = kr(s.width, s.height);
-  return pt(m * r);
+  return ft(m * r);
 }
 const Vo = (m) => JSON.parse(
-  JSON.stringify(m, (s, r) => typeof r == "number" ? pt(r) : r)
+  JSON.stringify(m, (s, r) => typeof r == "number" ? ft(r) : r)
 );
 var ye = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {}, Kt = {}, Xe = {}, Qe, qt;
 function zo() {
@@ -628,8 +628,8 @@ function $o() {
       }
       n.writeDoubleLE = o.bind(null, s, 0, 4), n.writeDoubleBE = o.bind(null, r, 4, 0);
       function u(a, h, S, g, O) {
-        var I = a(g, O + h), j = a(g, O + S), R = (j >> 31) * 2 + 1, w = j >>> 20 & 2047, A = 4294967296 * (j & 1048575) + I;
-        return w === 2047 ? A ? NaN : R * (1 / 0) : w === 0 ? R * 5e-324 * A : R * Math.pow(2, w - 1075) * (A + 4503599627370496);
+        var I = a(g, O + h), j = a(g, O + S), R = (j >> 31) * 2 + 1, w = j >>> 20 & 2047, D = 4294967296 * (j & 1048575) + I;
+        return w === 2047 ? D ? NaN : R * (1 / 0) : w === 0 ? R * 5e-324 * D : R * Math.pow(2, w - 1075) * (D + 4503599627370496);
       }
       n.readDoubleLE = u.bind(null, t, 0, 4), n.readDoubleBE = u.bind(null, e, 4, 0);
     })(), n;
@@ -906,8 +906,8 @@ function Tr() {
   if (cr) return it;
   cr = 1, it = a;
   var m = ue(), s, r = m.LongBits, t = m.base64, e = m.utf8;
-  function n(w, A, _) {
-    this.fn = w, this.len = A, this.next = void 0, this.val = _;
+  function n(w, D, _) {
+    this.fn = w, this.len = D, this.next = void 0, this.val = _;
   }
   function o() {
   }
@@ -928,19 +928,19 @@ function Tr() {
   };
   a.create = h(), a.alloc = function(w) {
     return new m.Array(w);
-  }, m.Array !== Array && (a.alloc = m.pool(a.alloc, m.Array.prototype.subarray)), a.prototype._push = function(w, A, _) {
-    return this.tail = this.tail.next = new n(w, A, _), this.len += A, this;
+  }, m.Array !== Array && (a.alloc = m.pool(a.alloc, m.Array.prototype.subarray)), a.prototype._push = function(w, D, _) {
+    return this.tail = this.tail.next = new n(w, D, _), this.len += D, this;
   };
-  function S(w, A, _) {
-    A[_] = w & 255;
+  function S(w, D, _) {
+    D[_] = w & 255;
   }
-  function g(w, A, _) {
+  function g(w, D, _) {
     for (; w > 127; )
-      A[_++] = w & 127 | 128, w >>>= 7;
-    A[_] = w;
+      D[_++] = w & 127 | 128, w >>>= 7;
+    D[_] = w;
   }
-  function O(w, A) {
-    this.len = w, this.next = void 0, this.val = A;
+  function O(w, D) {
+    this.len = w, this.next = void 0, this.val = D;
   }
   O.prototype = Object.create(n.prototype), O.prototype.fn = g, a.prototype.uint32 = function(w) {
     return this.len += (this.tail = this.tail.next = new O(
@@ -952,64 +952,64 @@ function Tr() {
   }, a.prototype.sint32 = function(w) {
     return this.uint32((w << 1 ^ w >> 31) >>> 0);
   };
-  function I(w, A, _) {
+  function I(w, D, _) {
     for (; w.hi; )
-      A[_++] = w.lo & 127 | 128, w.lo = (w.lo >>> 7 | w.hi << 25) >>> 0, w.hi >>>= 7;
+      D[_++] = w.lo & 127 | 128, w.lo = (w.lo >>> 7 | w.hi << 25) >>> 0, w.hi >>>= 7;
     for (; w.lo > 127; )
-      A[_++] = w.lo & 127 | 128, w.lo = w.lo >>> 7;
-    A[_++] = w.lo;
+      D[_++] = w.lo & 127 | 128, w.lo = w.lo >>> 7;
+    D[_++] = w.lo;
   }
   a.prototype.uint64 = function(w) {
-    var A = r.from(w);
-    return this._push(I, A.length(), A);
+    var D = r.from(w);
+    return this._push(I, D.length(), D);
   }, a.prototype.int64 = a.prototype.uint64, a.prototype.sint64 = function(w) {
-    var A = r.from(w).zzEncode();
-    return this._push(I, A.length(), A);
+    var D = r.from(w).zzEncode();
+    return this._push(I, D.length(), D);
   }, a.prototype.bool = function(w) {
     return this._push(S, 1, w ? 1 : 0);
   };
-  function j(w, A, _) {
-    A[_] = w & 255, A[_ + 1] = w >>> 8 & 255, A[_ + 2] = w >>> 16 & 255, A[_ + 3] = w >>> 24;
+  function j(w, D, _) {
+    D[_] = w & 255, D[_ + 1] = w >>> 8 & 255, D[_ + 2] = w >>> 16 & 255, D[_ + 3] = w >>> 24;
   }
   a.prototype.fixed32 = function(w) {
     return this._push(j, 4, w >>> 0);
   }, a.prototype.sfixed32 = a.prototype.fixed32, a.prototype.fixed64 = function(w) {
-    var A = r.from(w);
-    return this._push(j, 4, A.lo)._push(j, 4, A.hi);
+    var D = r.from(w);
+    return this._push(j, 4, D.lo)._push(j, 4, D.hi);
   }, a.prototype.sfixed64 = a.prototype.fixed64, a.prototype.float = function(w) {
     return this._push(m.float.writeFloatLE, 4, w);
   }, a.prototype.double = function(w) {
     return this._push(m.float.writeDoubleLE, 8, w);
   };
-  var R = m.Array.prototype.set ? function(w, A, _) {
-    A.set(w, _);
-  } : function(w, A, _) {
+  var R = m.Array.prototype.set ? function(w, D, _) {
+    D.set(w, _);
+  } : function(w, D, _) {
     for (var X = 0; X < w.length; ++X)
-      A[_ + X] = w[X];
+      D[_ + X] = w[X];
   };
   return a.prototype.bytes = function(w) {
-    var A = w.length >>> 0;
-    if (!A)
+    var D = w.length >>> 0;
+    if (!D)
       return this._push(S, 1, 0);
     if (m.isString(w)) {
-      var _ = a.alloc(A = t.length(w));
+      var _ = a.alloc(D = t.length(w));
       t.decode(w, _, 0), w = _;
     }
-    return this.uint32(A)._push(R, A, w);
+    return this.uint32(D)._push(R, D, w);
   }, a.prototype.string = function(w) {
-    var A = e.length(w);
-    return A ? this.uint32(A)._push(e.write, A, w) : this._push(S, 1, 0);
+    var D = e.length(w);
+    return D ? this.uint32(D)._push(e.write, D, w) : this._push(S, 1, 0);
   }, a.prototype.fork = function() {
     return this.states = new u(this), this.head = this.tail = new n(o, 0, 0), this.len = 0, this;
   }, a.prototype.reset = function() {
     return this.states ? (this.head = this.states.head, this.tail = this.states.tail, this.len = this.states.len, this.states = this.states.next) : (this.head = this.tail = new n(o, 0, 0), this.len = 0), this;
   }, a.prototype.ldelim = function() {
-    var w = this.head, A = this.tail, _ = this.len;
-    return this.reset().uint32(_), _ && (this.tail.next = w.next, this.tail = A, this.len += _), this;
+    var w = this.head, D = this.tail, _ = this.len;
+    return this.reset().uint32(_), _ && (this.tail.next = w.next, this.tail = D, this.len += _), this;
   }, a.prototype.finish = function() {
-    for (var w = this.head.next, A = this.constructor.alloc(this.len), _ = 0; w; )
-      w.fn(w.val, A, _), _ += w.len, w = w.next;
-    return A;
+    for (var w = this.head.next, D = this.constructor.alloc(this.len), _ = 0; w; )
+      w.fn(w.val, D, _), _ += w.len, w = w.next;
+    return D;
   }, a._configure = function(w) {
     s = w, a.create = h(), s._configure();
   }, it;
@@ -1047,7 +1047,7 @@ function Zo() {
   }, r._configure(), at;
 }
 var st, dr;
-function Ar() {
+function Dr() {
   if (dr) return st;
   dr = 1, st = n;
   var m = ue(), s, r = m.LongBits, t = m.utf8;
@@ -1221,11 +1221,11 @@ function Ar() {
     });
   }, st;
 }
-var lt, fr;
+var lt, pr;
 function Ko() {
-  if (fr) return lt;
-  fr = 1, lt = r;
-  var m = Ar();
+  if (pr) return lt;
+  pr = 1, lt = r;
+  var m = Dr();
   (r.prototype = Object.create(m.prototype)).constructor = r;
   var s = ue();
   function r(t) {
@@ -1238,7 +1238,7 @@ function Ko() {
     return this.buf.utf8Slice ? this.buf.utf8Slice(this.pos, this.pos = Math.min(this.pos + t, this.len)) : this.buf.toString("utf-8", this.pos, this.pos = Math.min(this.pos + t, this.len));
   }, r._configure(), lt;
 }
-var pr = {}, ct, mr;
+var fr = {}, ct, mr;
 function qo() {
   if (mr) return ct;
   mr = 1, ct = s;
@@ -1299,7 +1299,7 @@ function Xo() {
   return yr || (yr = 1, (function(m) {
     var s = m;
     s.Service = qo();
-  })(pr)), pr;
+  })(fr)), fr;
 }
 var gr, hr;
 function Qo() {
@@ -1309,7 +1309,7 @@ var br;
 function ei() {
   return br || (br = 1, (function(m) {
     var s = m;
-    s.build = "minimal", s.Writer = Tr(), s.BufferWriter = Zo(), s.Reader = Ar(), s.BufferReader = Ko(), s.util = ue(), s.rpc = Xo(), s.roots = Qo(), s.configure = r;
+    s.build = "minimal", s.Writer = Tr(), s.BufferWriter = Zo(), s.Reader = Dr(), s.BufferReader = Ko(), s.util = ue(), s.rpc = Xo(), s.roots = Qo(), s.configure = r;
     function r() {
       s.util._configure(), s.Writer._configure(s.BufferWriter), s.Reader._configure(s.BufferReader);
     }
@@ -1321,7 +1321,7 @@ function ti() {
   return Or || (Or = 1, vr = ei()), vr;
 }
 var T = ti();
-const p = T.Reader, E = T.Writer, d = T.util, i = T.roots.default || (T.roots.default = {});
+const f = T.Reader, E = T.Writer, d = T.util, i = T.roots.default || (T.roots.default = {});
 i.dot = (() => {
   const m = {};
   return m.Content = (function() {
@@ -1349,7 +1349,7 @@ i.dot = (() => {
     }, s.encodeDelimited = function(r, t) {
       return this.encode(r, t).ldelim();
     }, s.decode = function(r, t, e) {
-      r instanceof p || (r = p.create(r));
+      r instanceof f || (r = f.create(r));
       let n = t === void 0 ? r.len : r.pos + t, o = new i.dot.Content();
       for (; r.pos < n; ) {
         let u = r.uint32();
@@ -1379,7 +1379,7 @@ i.dot = (() => {
       }
       return o;
     }, s.decodeDelimited = function(r) {
-      return r instanceof p || (r = new p(r)), this.decode(r, r.uint32());
+      return r instanceof f || (r = new f(r)), this.decode(r, r.uint32());
     }, s.verify = function(r) {
       return typeof r != "object" || r === null ? "object expected" : r.token != null && r.hasOwnProperty("token") && !(r.token && typeof r.token.length == "number" || d.isString(r.token)) ? "token: buffer expected" : r.iv != null && r.hasOwnProperty("iv") && !(r.iv && typeof r.iv.length == "number" || d.isString(r.iv)) ? "iv: buffer expected" : r.schemaVersion != null && r.hasOwnProperty("schemaVersion") && !d.isInteger(r.schemaVersion) ? "schemaVersion: integer expected" : r.bytes != null && r.hasOwnProperty("bytes") && !(r.bytes && typeof r.bytes.length == "number" || d.isString(r.bytes)) ? "bytes: buffer expected" : null;
     }, s.fromObject = function(r) {
@@ -1428,7 +1428,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.MagnifEyeLivenessContent();
         for (; e.pos < u; ) {
           let h = e.uint32();
@@ -1454,7 +1454,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         if (typeof e != "object" || e === null)
           return "object expected";
@@ -1556,7 +1556,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.Metadata();
         for (; e.pos < u; ) {
           let h = e.uint32();
@@ -1594,7 +1594,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         if (typeof e != "object" || e === null)
           return "object expected";
@@ -1777,7 +1777,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.AndroidMetadata(), h, S;
         for (; e.pos < u; ) {
           let g = e.uint32();
@@ -1851,7 +1851,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         if (typeof e != "object" || e === null)
           return "object expected";
@@ -2021,7 +2021,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.AndroidCamera();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -2043,7 +2043,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         if (typeof t != "object" || t === null)
           return "object expected";
@@ -2097,7 +2097,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.Yuv420Image();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -2127,7 +2127,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         if (typeof t != "object" || t === null)
           return "object expected";
@@ -2175,7 +2175,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.Yuv420ImageCrop();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -2197,7 +2197,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         if (typeof t != "object" || t === null)
           return "object expected";
@@ -2323,7 +2323,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.IosMetadata(), h, S;
         for (; e.pos < u; ) {
           let g = e.uint32();
@@ -2402,7 +2402,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         if (typeof e != "object" || e === null)
           return "object expected";
@@ -2566,7 +2566,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.IosCamera();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -2588,7 +2588,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         if (typeof t != "object" || t === null)
           return "object expected";
@@ -2639,7 +2639,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.IosYuv420Image();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -2665,7 +2665,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         if (typeof t != "object" || t === null)
           return "object expected";
@@ -2713,7 +2713,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.IosYuv420ImageCrop();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -2735,7 +2735,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         if (typeof t != "object" || t === null)
           return "object expected";
@@ -2776,11 +2776,11 @@ i.dot = (() => {
       }, r;
     })(), s.WebMetadata = (function() {
       function r(e) {
-        if (this.availableCameraProperties = [], this.hashedDetectedImages = [], this.hashedDetectedImagesWithTimestamp = [], this.detectionRecord = [], this.cameraEvaluationResults = [], e)
+        if (this.availableCameraProperties = [], this.hashedDetectedImages = [], this.hashedDetectedImagesWithTimestamp = [], this.detectionRecord = [], this.optCheckResults = [], e)
           for (let n = Object.keys(e), o = 0; o < n.length; ++o)
             e[n[o]] != null && (this[n[o]] = e[n[o]]);
       }
-      r.prototype.currentCameraProperties = null, r.prototype.availableCameraProperties = d.emptyArray, r.prototype.hashedDetectedImages = d.emptyArray, r.prototype.hashedDetectedImagesWithTimestamp = d.emptyArray, r.prototype.detectionRecord = d.emptyArray, r.prototype.croppedImage = null, r.prototype.croppedImageWithPosition = null, r.prototype.platformDetails = null, r.prototype.cameraEvaluationResults = d.emptyArray;
+      r.prototype.currentCameraProperties = null, r.prototype.availableCameraProperties = d.emptyArray, r.prototype.hashedDetectedImages = d.emptyArray, r.prototype.hashedDetectedImagesWithTimestamp = d.emptyArray, r.prototype.detectionRecord = d.emptyArray, r.prototype.croppedImage = null, r.prototype.croppedImageWithPosition = null, r.prototype.platformDetails = null, r.prototype.optCheckResults = d.emptyArray;
       let t;
       return Object.defineProperty(r.prototype, "_croppedImage", {
         get: d.oneOfGetter(t = ["croppedImage"]),
@@ -2830,9 +2830,9 @@ i.dot = (() => {
         ).fork()).ldelim(), e.platformDetails != null && Object.hasOwnProperty.call(e, "platformDetails") && i.dot.v4.PlatformDetails.encode(e.platformDetails, n.uint32(
           /* id 8, wireType 2 =*/
           66
-        ).fork()).ldelim(), e.cameraEvaluationResults != null && e.cameraEvaluationResults.length)
-          for (let o = 0; o < e.cameraEvaluationResults.length; ++o)
-            i.dot.v4.CameraEvaluationResult.encode(e.cameraEvaluationResults[o], n.uint32(
+        ).fork()).ldelim(), e.optCheckResults != null && e.optCheckResults.length)
+          for (let o = 0; o < e.optCheckResults.length; ++o)
+            i.dot.v4.CameraEvaluationResult.encode(e.optCheckResults[o], n.uint32(
               /* id 9, wireType 2 =*/
               74
             ).fork()).ldelim();
@@ -2840,7 +2840,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.WebMetadata();
         for (; e.pos < u; ) {
           let h = e.uint32();
@@ -2880,7 +2880,7 @@ i.dot = (() => {
               break;
             }
             case 9: {
-              a.cameraEvaluationResults && a.cameraEvaluationResults.length || (a.cameraEvaluationResults = []), a.cameraEvaluationResults.push(i.dot.v4.CameraEvaluationResult.decode(e, e.uint32()));
+              a.optCheckResults && a.optCheckResults.length || (a.optCheckResults = []), a.optCheckResults.push(i.dot.v4.CameraEvaluationResult.decode(e, e.uint32()));
               break;
             }
             default:
@@ -2890,7 +2890,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         if (typeof e != "object" || e === null)
           return "object expected";
@@ -2948,13 +2948,13 @@ i.dot = (() => {
           if (n)
             return "platformDetails." + n;
         }
-        if (e.cameraEvaluationResults != null && e.hasOwnProperty("cameraEvaluationResults")) {
-          if (!Array.isArray(e.cameraEvaluationResults))
-            return "cameraEvaluationResults: array expected";
-          for (let n = 0; n < e.cameraEvaluationResults.length; ++n) {
-            let o = i.dot.v4.CameraEvaluationResult.verify(e.cameraEvaluationResults[n]);
+        if (e.optCheckResults != null && e.hasOwnProperty("optCheckResults")) {
+          if (!Array.isArray(e.optCheckResults))
+            return "optCheckResults: array expected";
+          for (let n = 0; n < e.optCheckResults.length; ++n) {
+            let o = i.dot.v4.CameraEvaluationResult.verify(e.optCheckResults[n]);
             if (o)
-              return "cameraEvaluationResults." + o;
+              return "optCheckResults." + o;
           }
         }
         return null;
@@ -3019,21 +3019,21 @@ i.dot = (() => {
             throw TypeError(".dot.v4.WebMetadata.platformDetails: object expected");
           n.platformDetails = i.dot.v4.PlatformDetails.fromObject(e.platformDetails);
         }
-        if (e.cameraEvaluationResults) {
-          if (!Array.isArray(e.cameraEvaluationResults))
-            throw TypeError(".dot.v4.WebMetadata.cameraEvaluationResults: array expected");
-          n.cameraEvaluationResults = [];
-          for (let o = 0; o < e.cameraEvaluationResults.length; ++o) {
-            if (typeof e.cameraEvaluationResults[o] != "object")
-              throw TypeError(".dot.v4.WebMetadata.cameraEvaluationResults: object expected");
-            n.cameraEvaluationResults[o] = i.dot.v4.CameraEvaluationResult.fromObject(e.cameraEvaluationResults[o]);
+        if (e.optCheckResults) {
+          if (!Array.isArray(e.optCheckResults))
+            throw TypeError(".dot.v4.WebMetadata.optCheckResults: array expected");
+          n.optCheckResults = [];
+          for (let o = 0; o < e.optCheckResults.length; ++o) {
+            if (typeof e.optCheckResults[o] != "object")
+              throw TypeError(".dot.v4.WebMetadata.optCheckResults: object expected");
+            n.optCheckResults[o] = i.dot.v4.CameraEvaluationResult.fromObject(e.optCheckResults[o]);
           }
         }
         return n;
       }, r.toObject = function(e, n) {
         n || (n = {});
         let o = {};
-        if ((n.arrays || n.defaults) && (o.availableCameraProperties = [], o.hashedDetectedImages = [], o.detectionRecord = [], o.hashedDetectedImagesWithTimestamp = [], o.cameraEvaluationResults = []), n.defaults && (o.currentCameraProperties = null), e.currentCameraProperties != null && e.hasOwnProperty("currentCameraProperties") && (o.currentCameraProperties = i.dot.v4.MediaTrackSettings.toObject(e.currentCameraProperties, n)), e.availableCameraProperties && e.availableCameraProperties.length) {
+        if ((n.arrays || n.defaults) && (o.availableCameraProperties = [], o.hashedDetectedImages = [], o.detectionRecord = [], o.hashedDetectedImagesWithTimestamp = [], o.optCheckResults = []), n.defaults && (o.currentCameraProperties = null), e.currentCameraProperties != null && e.hasOwnProperty("currentCameraProperties") && (o.currentCameraProperties = i.dot.v4.MediaTrackSettings.toObject(e.currentCameraProperties, n)), e.availableCameraProperties && e.availableCameraProperties.length) {
           o.availableCameraProperties = [];
           for (let u = 0; u < e.availableCameraProperties.length; ++u)
             o.availableCameraProperties[u] = i.dot.v4.CameraProperties.toObject(e.availableCameraProperties[u], n);
@@ -3053,10 +3053,10 @@ i.dot = (() => {
           for (let u = 0; u < e.hashedDetectedImagesWithTimestamp.length; ++u)
             o.hashedDetectedImagesWithTimestamp[u] = i.dot.v4.HashedDetectedImageWithTimestamp.toObject(e.hashedDetectedImagesWithTimestamp[u], n);
         }
-        if (e.croppedImage != null && e.hasOwnProperty("croppedImage") && (o.croppedImage = i.dot.Image.toObject(e.croppedImage, n), n.oneofs && (o._croppedImage = "croppedImage")), e.croppedImageWithPosition != null && e.hasOwnProperty("croppedImageWithPosition") && (o.croppedImageWithPosition = i.dot.v4.ImageCrop.toObject(e.croppedImageWithPosition, n), n.oneofs && (o._croppedImageWithPosition = "croppedImageWithPosition")), e.platformDetails != null && e.hasOwnProperty("platformDetails") && (o.platformDetails = i.dot.v4.PlatformDetails.toObject(e.platformDetails, n), n.oneofs && (o._platformDetails = "platformDetails")), e.cameraEvaluationResults && e.cameraEvaluationResults.length) {
-          o.cameraEvaluationResults = [];
-          for (let u = 0; u < e.cameraEvaluationResults.length; ++u)
-            o.cameraEvaluationResults[u] = i.dot.v4.CameraEvaluationResult.toObject(e.cameraEvaluationResults[u], n);
+        if (e.croppedImage != null && e.hasOwnProperty("croppedImage") && (o.croppedImage = i.dot.Image.toObject(e.croppedImage, n), n.oneofs && (o._croppedImage = "croppedImage")), e.croppedImageWithPosition != null && e.hasOwnProperty("croppedImageWithPosition") && (o.croppedImageWithPosition = i.dot.v4.ImageCrop.toObject(e.croppedImageWithPosition, n), n.oneofs && (o._croppedImageWithPosition = "croppedImageWithPosition")), e.platformDetails != null && e.hasOwnProperty("platformDetails") && (o.platformDetails = i.dot.v4.PlatformDetails.toObject(e.platformDetails, n), n.oneofs && (o._platformDetails = "platformDetails")), e.optCheckResults && e.optCheckResults.length) {
+          o.optCheckResults = [];
+          for (let u = 0; u < e.optCheckResults.length; ++u)
+            o.optCheckResults[u] = i.dot.v4.CameraEvaluationResult.toObject(e.optCheckResults[u], n);
         }
         return o;
       }, r.prototype.toJSON = function() {
@@ -3083,7 +3083,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.HashedDetectedImageWithTimestamp();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -3105,7 +3105,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         return typeof t != "object" || t === null ? "object expected" : t.imageHash != null && t.hasOwnProperty("imageHash") && !d.isString(t.imageHash) ? "imageHash: string expected" : t.timestampMillis != null && t.hasOwnProperty("timestampMillis") && !d.isInteger(t.timestampMillis) && !(t.timestampMillis && d.isInteger(t.timestampMillis.low) && d.isInteger(t.timestampMillis.high)) ? "timestampMillis: integer|Long expected" : null;
       }, r.fromObject = function(t) {
@@ -3233,7 +3233,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.MediaTrackSettings();
         for (; e.pos < u; ) {
           let h = e.uint32();
@@ -3307,7 +3307,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         return typeof e != "object" || e === null ? "object expected" : e.aspectRatio != null && e.hasOwnProperty("aspectRatio") && typeof e.aspectRatio != "number" ? "aspectRatio: number expected" : e.autoGainControl != null && e.hasOwnProperty("autoGainControl") && typeof e.autoGainControl != "boolean" ? "autoGainControl: boolean expected" : e.channelCount != null && e.hasOwnProperty("channelCount") && !d.isInteger(e.channelCount) ? "channelCount: integer expected" : e.deviceId != null && e.hasOwnProperty("deviceId") && !d.isString(e.deviceId) ? "deviceId: string expected" : e.displaySurface != null && e.hasOwnProperty("displaySurface") && !d.isString(e.displaySurface) ? "displaySurface: string expected" : e.echoCancellation != null && e.hasOwnProperty("echoCancellation") && typeof e.echoCancellation != "boolean" ? "echoCancellation: boolean expected" : e.facingMode != null && e.hasOwnProperty("facingMode") && !d.isString(e.facingMode) ? "facingMode: string expected" : e.frameRate != null && e.hasOwnProperty("frameRate") && typeof e.frameRate != "number" ? "frameRate: number expected" : e.groupId != null && e.hasOwnProperty("groupId") && !d.isString(e.groupId) ? "groupId: string expected" : e.height != null && e.hasOwnProperty("height") && !d.isInteger(e.height) ? "height: integer expected" : e.noiseSuppression != null && e.hasOwnProperty("noiseSuppression") && typeof e.noiseSuppression != "boolean" ? "noiseSuppression: boolean expected" : e.sampleRate != null && e.hasOwnProperty("sampleRate") && !d.isInteger(e.sampleRate) ? "sampleRate: integer expected" : e.sampleSize != null && e.hasOwnProperty("sampleSize") && !d.isInteger(e.sampleSize) ? "sampleSize: integer expected" : e.width != null && e.hasOwnProperty("width") && !d.isInteger(e.width) ? "width: integer expected" : e.deviceName != null && e.hasOwnProperty("deviceName") && !d.isString(e.deviceName) ? "deviceName: string expected" : null;
       }, r.fromObject = function(e) {
@@ -3343,7 +3343,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.ImageBitmap();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -3365,7 +3365,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         return typeof t != "object" || t === null ? "object expected" : t.width != null && t.hasOwnProperty("width") && !d.isInteger(t.width) ? "width: integer expected" : t.height != null && t.hasOwnProperty("height") && !d.isInteger(t.height) ? "height: integer expected" : null;
       }, r.fromObject = function(t) {
@@ -3406,7 +3406,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.CameraProperties();
         for (; e.pos < u; ) {
           let h = e.uint32();
@@ -3428,7 +3428,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         if (typeof e != "object" || e === null)
           return "object expected";
@@ -3513,7 +3513,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.DetectedObject();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -3571,7 +3571,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         if (typeof t != "object" || t === null)
           return "object expected";
@@ -3671,7 +3671,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.Point();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -3693,7 +3693,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         return typeof t != "object" || t === null ? "object expected" : t.x != null && t.hasOwnProperty("x") && typeof t.x != "number" ? "x: number expected" : t.y != null && t.hasOwnProperty("y") && typeof t.y != "number" ? "y: number expected" : null;
       }, r.fromObject = function(t) {
@@ -3729,7 +3729,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.ImageCrop();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -3751,7 +3751,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         if (typeof t != "object" || t === null)
           return "object expected";
@@ -3844,7 +3844,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.PlatformDetails();
         for (; e.pos < u; ) {
           let h = e.uint32();
@@ -3886,7 +3886,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         if (typeof e != "object" || e === null)
           return "object expected";
@@ -3958,7 +3958,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.BrowserVersion();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -3980,7 +3980,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         return typeof t != "object" || t === null ? "object expected" : t.name != null && t.hasOwnProperty("name") && !d.isString(t.name) ? "name: string expected" : t.version != null && t.hasOwnProperty("version") && !d.isString(t.version) ? "version: string expected" : null;
       }, r.fromObject = function(t) {
@@ -4003,34 +4003,34 @@ i.dot = (() => {
           for (let n = Object.keys(e), o = 0; o < n.length; ++o)
             e[n[o]] != null && (this[n[o]] = e[n[o]]);
       }
-      r.prototype.cameraName = null, r.prototype.fastAvg = null, r.prototype.slowAvg = null;
+      r.prototype.optSetting = null, r.prototype.afterOpt = null, r.prototype.beforeOpt = null;
       let t;
-      return Object.defineProperty(r.prototype, "_cameraName", {
-        get: d.oneOfGetter(t = ["cameraName"]),
+      return Object.defineProperty(r.prototype, "_optSetting", {
+        get: d.oneOfGetter(t = ["optSetting"]),
         set: d.oneOfSetter(t)
-      }), Object.defineProperty(r.prototype, "_fastAvg", {
-        get: d.oneOfGetter(t = ["fastAvg"]),
+      }), Object.defineProperty(r.prototype, "_afterOpt", {
+        get: d.oneOfGetter(t = ["afterOpt"]),
         set: d.oneOfSetter(t)
-      }), Object.defineProperty(r.prototype, "_slowAvg", {
-        get: d.oneOfGetter(t = ["slowAvg"]),
+      }), Object.defineProperty(r.prototype, "_beforeOpt", {
+        get: d.oneOfGetter(t = ["beforeOpt"]),
         set: d.oneOfSetter(t)
       }), r.create = function(e) {
         return new r(e);
       }, r.encode = function(e, n) {
-        return n || (n = E.create()), e.cameraName != null && Object.hasOwnProperty.call(e, "cameraName") && n.uint32(
+        return n || (n = E.create()), e.optSetting != null && Object.hasOwnProperty.call(e, "optSetting") && n.uint32(
           /* id 1, wireType 2 =*/
           10
-        ).string(e.cameraName), e.fastAvg != null && Object.hasOwnProperty.call(e, "fastAvg") && n.uint32(
+        ).string(e.optSetting), e.afterOpt != null && Object.hasOwnProperty.call(e, "afterOpt") && n.uint32(
           /* id 2, wireType 0 =*/
           16
-        ).int32(e.fastAvg), e.slowAvg != null && Object.hasOwnProperty.call(e, "slowAvg") && n.uint32(
+        ).int32(e.afterOpt), e.beforeOpt != null && Object.hasOwnProperty.call(e, "beforeOpt") && n.uint32(
           /* id 3, wireType 0 =*/
           24
-        ).int32(e.slowAvg), n;
+        ).int32(e.beforeOpt), n;
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.CameraEvaluationResult();
         for (; e.pos < u; ) {
           let h = e.uint32();
@@ -4038,15 +4038,15 @@ i.dot = (() => {
             break;
           switch (h >>> 3) {
             case 1: {
-              a.cameraName = e.string();
+              a.optSetting = e.string();
               break;
             }
             case 2: {
-              a.fastAvg = e.int32();
+              a.afterOpt = e.int32();
               break;
             }
             case 3: {
-              a.slowAvg = e.int32();
+              a.beforeOpt = e.int32();
               break;
             }
             default:
@@ -4056,18 +4056,18 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
-        return typeof e != "object" || e === null ? "object expected" : e.cameraName != null && e.hasOwnProperty("cameraName") && !d.isString(e.cameraName) ? "cameraName: string expected" : e.fastAvg != null && e.hasOwnProperty("fastAvg") && !d.isInteger(e.fastAvg) ? "fastAvg: integer expected" : e.slowAvg != null && e.hasOwnProperty("slowAvg") && !d.isInteger(e.slowAvg) ? "slowAvg: integer expected" : null;
+        return typeof e != "object" || e === null ? "object expected" : e.optSetting != null && e.hasOwnProperty("optSetting") && !d.isString(e.optSetting) ? "optSetting: string expected" : e.afterOpt != null && e.hasOwnProperty("afterOpt") && !d.isInteger(e.afterOpt) ? "afterOpt: integer expected" : e.beforeOpt != null && e.hasOwnProperty("beforeOpt") && !d.isInteger(e.beforeOpt) ? "beforeOpt: integer expected" : null;
       }, r.fromObject = function(e) {
         if (e instanceof i.dot.v4.CameraEvaluationResult)
           return e;
         let n = new i.dot.v4.CameraEvaluationResult();
-        return e.cameraName != null && (n.cameraName = String(e.cameraName)), e.fastAvg != null && (n.fastAvg = e.fastAvg | 0), e.slowAvg != null && (n.slowAvg = e.slowAvg | 0), n;
+        return e.optSetting != null && (n.optSetting = String(e.optSetting)), e.afterOpt != null && (n.afterOpt = e.afterOpt | 0), e.beforeOpt != null && (n.beforeOpt = e.beforeOpt | 0), n;
       }, r.toObject = function(e, n) {
         n || (n = {});
         let o = {};
-        return e.cameraName != null && e.hasOwnProperty("cameraName") && (o.cameraName = e.cameraName, n.oneofs && (o._cameraName = "cameraName")), e.fastAvg != null && e.hasOwnProperty("fastAvg") && (o.fastAvg = e.fastAvg, n.oneofs && (o._fastAvg = "fastAvg")), e.slowAvg != null && e.hasOwnProperty("slowAvg") && (o.slowAvg = e.slowAvg, n.oneofs && (o._slowAvg = "slowAvg")), o;
+        return e.optSetting != null && e.hasOwnProperty("optSetting") && (o.optSetting = e.optSetting, n.oneofs && (o._optSetting = "optSetting")), e.afterOpt != null && e.hasOwnProperty("afterOpt") && (o.afterOpt = e.afterOpt, n.oneofs && (o._afterOpt = "afterOpt")), e.beforeOpt != null && e.hasOwnProperty("beforeOpt") && (o.beforeOpt = e.beforeOpt, n.oneofs && (o._beforeOpt = "beforeOpt")), o;
       }, r.prototype.toJSON = function() {
         return this.constructor.toObject(this, T.util.toJSONOptions);
       }, r.getTypeUrl = function(e) {
@@ -4100,7 +4100,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.FaceContent();
         for (; e.pos < u; ) {
           let h = e.uint32();
@@ -4126,7 +4126,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         if (typeof e != "object" || e === null)
           return "object expected";
@@ -4202,7 +4202,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.DocumentContent();
         for (; e.pos < u; ) {
           let h = e.uint32();
@@ -4228,7 +4228,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         if (typeof e != "object" || e === null)
           return "object expected";
@@ -4319,7 +4319,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.Blob();
         for (; e.pos < u; ) {
           let h = e.uint32();
@@ -4365,7 +4365,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         if (typeof e != "object" || e === null)
           return "object expected";
@@ -4528,7 +4528,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.TravelDocumentContent();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -4558,7 +4558,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         if (typeof t != "object" || t === null)
           return "object expected";
@@ -4652,7 +4652,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.LdsMasterFile();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -4662,7 +4662,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         if (typeof t != "object" || t === null)
           return "object expected";
@@ -4796,7 +4796,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.Lds1eMrtdApplication();
         for (; e.pos < u; ) {
           let h = e.uint32();
@@ -4878,7 +4878,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         if (typeof e != "object" || e === null)
           return "object expected";
@@ -5091,7 +5091,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.Lds1ElementaryFile();
         for (; e.pos < u; ) {
           let h = e.uint32();
@@ -5113,7 +5113,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         if (typeof e != "object" || e === null)
           return "object expected";
@@ -5261,7 +5261,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.AuthenticationStatus();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -5283,7 +5283,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         if (typeof t != "object" || t === null)
           return "object expected";
@@ -5341,7 +5341,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.DataAuthenticationStatus();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -5363,7 +5363,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         if (typeof t != "object" || t === null)
           return "object expected";
@@ -5476,7 +5476,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.ChipAuthenticationStatus();
         for (; e.pos < u; ) {
           let h = e.uint32();
@@ -5502,7 +5502,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         if (typeof e != "object" || e === null)
           return "object expected";
@@ -5631,7 +5631,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.EyeGazeLivenessContent();
         for (; e.pos < u; ) {
           let h = e.uint32();
@@ -5661,7 +5661,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         if (typeof e != "object" || e === null)
           return "object expected";
@@ -5753,7 +5753,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.EyeGazeLivenessSegment();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -5775,7 +5775,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         if (typeof t != "object" || t === null)
           return "object expected";
@@ -5874,7 +5874,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.MultiRangeLivenessContent();
         for (; e.pos < u; ) {
           let h = e.uint32();
@@ -5904,7 +5904,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         if (typeof e != "object" || e === null)
           return "object expected";
@@ -5996,7 +5996,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.MultiRangeLivenessStepResult();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -6018,7 +6018,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         if (typeof t != "object" || t === null)
           return "object expected";
@@ -6118,7 +6118,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.MultiRangeLivenessMetadata();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -6128,7 +6128,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         if (typeof t != "object" || t === null)
           return "object expected";
@@ -6190,7 +6190,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.FaceDetection();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -6212,7 +6212,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         if (typeof t != "object" || t === null)
           return "object expected";
@@ -6270,7 +6270,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(t, e) {
         return this.encode(t, e).ldelim();
       }, r.decode = function(t, e, n) {
-        t instanceof p || (t = p.create(t));
+        t instanceof f || (t = f.create(t));
         let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.v4.FaceDetectionPosition();
         for (; t.pos < o; ) {
           let a = t.uint32();
@@ -6292,7 +6292,7 @@ i.dot = (() => {
         }
         return u;
       }, r.decodeDelimited = function(t) {
-        return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+        return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
       }, r.verify = function(t) {
         if (typeof t != "object" || t === null)
           return "object expected";
@@ -6351,7 +6351,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.SmileLivenessContent();
         for (; e.pos < u; ) {
           let h = e.uint32();
@@ -6381,7 +6381,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         if (typeof e != "object" || e === null)
           return "object expected";
@@ -6467,7 +6467,7 @@ i.dot = (() => {
       }, r.encodeDelimited = function(e, n) {
         return this.encode(e, n).ldelim();
       }, r.decode = function(e, n, o) {
-        e instanceof p || (e = p.create(e));
+        e instanceof f || (e = f.create(e));
         let u = n === void 0 ? e.len : e.pos + n, a = new i.dot.v4.PalmContent();
         for (; e.pos < u; ) {
           let h = e.uint32();
@@ -6493,7 +6493,7 @@ i.dot = (() => {
         }
         return a;
       }, r.decodeDelimited = function(e) {
-        return e instanceof p || (e = new p(e)), this.decode(e, e.uint32());
+        return e instanceof f || (e = new f(e)), this.decode(e, e.uint32());
       }, r.verify = function(e) {
         if (typeof e != "object" || e === null)
           return "object expected";
@@ -6559,7 +6559,7 @@ i.dot = (() => {
     }, s.encodeDelimited = function(r, t) {
       return this.encode(r, t).ldelim();
     }, s.decode = function(r, t, e) {
-      r instanceof p || (r = p.create(r));
+      r instanceof f || (r = f.create(r));
       let n = t === void 0 ? r.len : r.pos + t, o = new i.dot.Image();
       for (; r.pos < n; ) {
         let u = r.uint32();
@@ -6569,7 +6569,7 @@ i.dot = (() => {
       }
       return o;
     }, s.decodeDelimited = function(r) {
-      return r instanceof p || (r = new p(r)), this.decode(r, r.uint32());
+      return r instanceof f || (r = new f(r)), this.decode(r, r.uint32());
     }, s.verify = function(r) {
       return typeof r != "object" || r === null ? "object expected" : r.bytes != null && r.hasOwnProperty("bytes") && !(r.bytes && typeof r.bytes.length == "number" || d.isString(r.bytes)) ? "bytes: buffer expected" : null;
     }, s.fromObject = function(r) {
@@ -6605,7 +6605,7 @@ i.dot = (() => {
     }, s.encodeDelimited = function(r, t) {
       return this.encode(r, t).ldelim();
     }, s.decode = function(r, t, e) {
-      r instanceof p || (r = p.create(r));
+      r instanceof f || (r = f.create(r));
       let n = t === void 0 ? r.len : r.pos + t, o = new i.dot.ImageWithTimestamp();
       for (; r.pos < n; ) {
         let u = r.uint32();
@@ -6627,7 +6627,7 @@ i.dot = (() => {
       }
       return o;
     }, s.decodeDelimited = function(r) {
-      return r instanceof p || (r = new p(r)), this.decode(r, r.uint32());
+      return r instanceof f || (r = new f(r)), this.decode(r, r.uint32());
     }, s.verify = function(r) {
       if (typeof r != "object" || r === null)
         return "object expected";
@@ -6681,7 +6681,7 @@ i.dot = (() => {
     }, s.encodeDelimited = function(r, t) {
       return this.encode(r, t).ldelim();
     }, s.decode = function(r, t, e) {
-      r instanceof p || (r = p.create(r));
+      r instanceof f || (r = f.create(r));
       let n = t === void 0 ? r.len : r.pos + t, o = new i.dot.ImageSize();
       for (; r.pos < n; ) {
         let u = r.uint32();
@@ -6703,7 +6703,7 @@ i.dot = (() => {
       }
       return o;
     }, s.decodeDelimited = function(r) {
-      return r instanceof p || (r = new p(r)), this.decode(r, r.uint32());
+      return r instanceof f || (r = new f(r)), this.decode(r, r.uint32());
     }, s.verify = function(r) {
       return typeof r != "object" || r === null ? "object expected" : r.width != null && r.hasOwnProperty("width") && !d.isInteger(r.width) ? "width: integer expected" : r.height != null && r.hasOwnProperty("height") && !d.isInteger(r.height) ? "height: integer expected" : null;
     }, s.fromObject = function(r) {
@@ -6742,7 +6742,7 @@ i.dot = (() => {
     }, s.encodeDelimited = function(r, t) {
       return this.encode(r, t).ldelim();
     }, s.decode = function(r, t, e) {
-      r instanceof p || (r = p.create(r));
+      r instanceof f || (r = f.create(r));
       let n = t === void 0 ? r.len : r.pos + t, o = new i.dot.Int32List();
       for (; r.pos < n; ) {
         let u = r.uint32();
@@ -6765,7 +6765,7 @@ i.dot = (() => {
       }
       return o;
     }, s.decodeDelimited = function(r) {
-      return r instanceof p || (r = new p(r)), this.decode(r, r.uint32());
+      return r instanceof f || (r = new f(r)), this.decode(r, r.uint32());
     }, s.verify = function(r) {
       if (typeof r != "object" || r === null)
         return "object expected";
@@ -6831,7 +6831,7 @@ i.dot = (() => {
     }, s.encodeDelimited = function(r, t) {
       return this.encode(r, t).ldelim();
     }, s.decode = function(r, t, e) {
-      r instanceof p || (r = p.create(r));
+      r instanceof f || (r = f.create(r));
       let n = t === void 0 ? r.len : r.pos + t, o = new i.dot.RectangleDouble();
       for (; r.pos < n; ) {
         let u = r.uint32();
@@ -6861,7 +6861,7 @@ i.dot = (() => {
       }
       return o;
     }, s.decodeDelimited = function(r) {
-      return r instanceof p || (r = new p(r)), this.decode(r, r.uint32());
+      return r instanceof f || (r = new f(r)), this.decode(r, r.uint32());
     }, s.verify = function(r) {
       return typeof r != "object" || r === null ? "object expected" : r.left != null && r.hasOwnProperty("left") && typeof r.left != "number" ? "left: number expected" : r.top != null && r.hasOwnProperty("top") && typeof r.top != "number" ? "top: number expected" : r.right != null && r.hasOwnProperty("right") && typeof r.right != "number" ? "right: number expected" : r.bottom != null && r.hasOwnProperty("bottom") && typeof r.bottom != "number" ? "bottom: number expected" : null;
     }, s.fromObject = function(r) {
@@ -6897,7 +6897,7 @@ i.dot = (() => {
     }, s.encodeDelimited = function(r, t) {
       return this.encode(r, t).ldelim();
     }, s.decode = function(r, t, e) {
-      r instanceof p || (r = p.create(r));
+      r instanceof f || (r = f.create(r));
       let n = t === void 0 ? r.len : r.pos + t, o = new i.dot.DigestWithTimestamp();
       for (; r.pos < n; ) {
         let u = r.uint32();
@@ -6919,7 +6919,7 @@ i.dot = (() => {
       }
       return o;
     }, s.decodeDelimited = function(r) {
-      return r instanceof p || (r = new p(r)), this.decode(r, r.uint32());
+      return r instanceof f || (r = new f(r)), this.decode(r, r.uint32());
     }, s.verify = function(r) {
       return typeof r != "object" || r === null ? "object expected" : r.digest != null && r.hasOwnProperty("digest") && !(r.digest && typeof r.digest.length == "number" || d.isString(r.digest)) ? "digest: buffer expected" : r.timestampMillis != null && r.hasOwnProperty("timestampMillis") && !d.isInteger(r.timestampMillis) && !(r.timestampMillis && d.isInteger(r.timestampMillis.low) && d.isInteger(r.timestampMillis.high)) ? "timestampMillis: integer|Long expected" : null;
     }, s.fromObject = function(r) {
@@ -6972,7 +6972,7 @@ i.dot = (() => {
     }, s.encodeDelimited = function(t, e) {
       return this.encode(t, e).ldelim();
     }, s.decode = function(t, e, n) {
-      t instanceof p || (t = p.create(t));
+      t instanceof f || (t = f.create(t));
       let o = e === void 0 ? t.len : t.pos + e, u = new i.dot.Video();
       for (; t.pos < o; ) {
         let a = t.uint32();
@@ -6998,7 +6998,7 @@ i.dot = (() => {
       }
       return u;
     }, s.decodeDelimited = function(t) {
-      return t instanceof p || (t = new p(t)), this.decode(t, t.uint32());
+      return t instanceof f || (t = new f(t)), this.decode(t, t.uint32());
     }, s.verify = function(t) {
       if (typeof t != "object" || t === null)
         return "object expected";
@@ -7064,7 +7064,7 @@ i.dot = (() => {
     }, s.encodeDelimited = function(r, t) {
       return this.encode(r, t).ldelim();
     }, s.decode = function(r, t, e) {
-      r instanceof p || (r = p.create(r));
+      r instanceof f || (r = f.create(r));
       let n = t === void 0 ? r.len : r.pos + t, o = new i.dot.VideoContainer();
       for (; r.pos < n; ) {
         let u = r.uint32();
@@ -7074,7 +7074,7 @@ i.dot = (() => {
       }
       return o;
     }, s.decodeDelimited = function(r) {
-      return r instanceof p || (r = new p(r)), this.decode(r, r.uint32());
+      return r instanceof f || (r = new f(r)), this.decode(r, r.uint32());
     }, s.verify = function(r) {
       return typeof r != "object" || r === null ? "object expected" : r.bytes != null && r.hasOwnProperty("bytes") && !(r.bytes && typeof r.bytes.length == "number" || d.isString(r.bytes)) ? "bytes: buffer expected" : null;
     }, s.fromObject = function(r) {
@@ -7110,7 +7110,7 @@ i.dot = (() => {
     }, s.encodeDelimited = function(r, t) {
       return this.encode(r, t).ldelim();
     }, s.decode = function(r, t, e) {
-      r instanceof p || (r = p.create(r));
+      r instanceof f || (r = f.create(r));
       let n = t === void 0 ? r.len : r.pos + t, o = new i.dot.VideoStream();
       for (; r.pos < n; ) {
         let u = r.uint32();
@@ -7132,7 +7132,7 @@ i.dot = (() => {
       }
       return o;
     }, s.decodeDelimited = function(r) {
-      return r instanceof p || (r = new p(r)), this.decode(r, r.uint32());
+      return r instanceof f || (r = new f(r)), this.decode(r, r.uint32());
     }, s.verify = function(r) {
       return typeof r != "object" || r === null ? "object expected" : r.bytes != null && r.hasOwnProperty("bytes") && !(r.bytes && typeof r.bytes.length == "number" || d.isString(r.bytes)) ? "bytes: buffer expected" : r.frameRate != null && r.hasOwnProperty("frameRate") && typeof r.frameRate != "number" ? "frameRate: number expected" : null;
     }, s.fromObject = function(r) {
@@ -7168,7 +7168,7 @@ i.dot = (() => {
     }, s.encodeDelimited = function(r, t) {
       return this.encode(r, t).ldelim();
     }, s.decode = function(r, t, e) {
-      r instanceof p || (r = p.create(r));
+      r instanceof f || (r = f.create(r));
       let n = t === void 0 ? r.len : r.pos + t, o = new i.dot.PointInt();
       for (; r.pos < n; ) {
         let u = r.uint32();
@@ -7190,7 +7190,7 @@ i.dot = (() => {
       }
       return o;
     }, s.decodeDelimited = function(r) {
-      return r instanceof p || (r = new p(r)), this.decode(r, r.uint32());
+      return r instanceof f || (r = new f(r)), this.decode(r, r.uint32());
     }, s.verify = function(r) {
       return typeof r != "object" || r === null ? "object expected" : r.x != null && r.hasOwnProperty("x") && !d.isInteger(r.x) ? "x: integer expected" : r.y != null && r.hasOwnProperty("y") && !d.isInteger(r.y) ? "y: integer expected" : null;
     }, s.fromObject = function(r) {
@@ -7226,7 +7226,7 @@ i.dot = (() => {
     }, s.encodeDelimited = function(r, t) {
       return this.encode(r, t).ldelim();
     }, s.decode = function(r, t, e) {
-      r instanceof p || (r = p.create(r));
+      r instanceof f || (r = f.create(r));
       let n = t === void 0 ? r.len : r.pos + t, o = new i.dot.PointDouble();
       for (; r.pos < n; ) {
         let u = r.uint32();
@@ -7248,7 +7248,7 @@ i.dot = (() => {
       }
       return o;
     }, s.decodeDelimited = function(r) {
-      return r instanceof p || (r = new p(r)), this.decode(r, r.uint32());
+      return r instanceof f || (r = new f(r)), this.decode(r, r.uint32());
     }, s.verify = function(r) {
       return typeof r != "object" || r === null ? "object expected" : r.x != null && r.hasOwnProperty("x") && typeof r.x != "number" ? "x: number expected" : r.y != null && r.hasOwnProperty("y") && typeof r.y != "number" ? "y: number expected" : null;
     }, s.fromObject = function(r) {
@@ -7286,11 +7286,11 @@ var ri = (() => {
       return l.open("GET", c, !1), l.responseType = "arraybuffer", l.send(null), new Uint8Array(l.response);
     }), I = async (c) => {
       if (bt(c))
-        return new Promise((f, y) => {
+        return new Promise((p, y) => {
           var b = new XMLHttpRequest();
           b.open("GET", c, !0), b.responseType = "arraybuffer", b.onload = () => {
             if (b.status == 200 || b.status == 0 && b.response) {
-              f(b.response);
+              p(b.response);
               return;
             }
             y(b.status);
@@ -7303,9 +7303,9 @@ var ri = (() => {
     }), t.print || console.log.bind(console);
     var R = t.printErr || console.error.bind(console);
     Object.assign(t, h), h = null, t.arguments && t.arguments, t.thisProgram && t.thisProgram;
-    var w = t.wasmBinary, A, _ = !1, X, ee, G, de, he, te, W, mt, yt, gt, ht, bt = (c) => c.startsWith("file://");
+    var w = t.wasmBinary, D, _ = !1, X, ee, G, de, he, te, W, mt, yt, gt, ht, bt = (c) => c.startsWith("file://");
     function vt() {
-      var c = A.buffer;
+      var c = D.buffer;
       t.HEAP8 = ee = new Int8Array(c), t.HEAP16 = de = new Int16Array(c), t.HEAPU8 = G = new Uint8Array(c), t.HEAPU16 = he = new Uint16Array(c), t.HEAP32 = te = new Int32Array(c), t.HEAPU32 = W = new Uint32Array(c), t.HEAPF32 = mt = new Float32Array(c), t.HEAPF64 = ht = new Float64Array(c), t.HEAP64 = yt = new BigInt64Array(c), t.HEAPU64 = gt = new BigUint64Array(c);
     }
     function Er() {
@@ -7360,43 +7360,43 @@ var ri = (() => {
     }
     async function Wr(c, l) {
       try {
-        var f = await Nr(c), y = await WebAssembly.instantiate(f, l);
+        var p = await Nr(c), y = await WebAssembly.instantiate(p, l);
         return y;
       } catch (b) {
         R(`failed to asynchronously prepare wasm: ${b}`), Ie(b);
       }
     }
-    async function Vr(c, l, f) {
+    async function Vr(c, l, p) {
       if (!c && typeof WebAssembly.instantiateStreaming == "function" && !bt(l))
         try {
-          var y = fetch(l, { credentials: "same-origin" }), b = await WebAssembly.instantiateStreaming(y, f);
+          var y = fetch(l, { credentials: "same-origin" }), b = await WebAssembly.instantiateStreaming(y, p);
           return b;
         } catch (P) {
           R(`wasm streaming compile failed: ${P}`), R("falling back to ArrayBuffer instantiation");
         }
-      return Wr(l, f);
+      return Wr(l, p);
     }
     function zr() {
       return { a: yo };
     }
     async function Ur() {
       function c(P, C) {
-        return F = P.exports, F = D.instrumentWasmExports(F), A = F.B, vt(), F.H, _r(), F;
+        return F = P.exports, F = A.instrumentWasmExports(F), D = F.B, vt(), F.H, _r(), F;
       }
       Lr();
       function l(P) {
         return c(P.instance);
       }
-      var f = zr();
+      var p = zr();
       if (t.instantiateWasm)
         return new Promise((P, C) => {
-          t.instantiateWasm(f, (v, k) => {
+          t.instantiateWasm(p, (v, k) => {
             c(v), P(v.exports);
           });
         });
       ze ??= Fr();
       try {
-        var y = await Vr(w, ze, f), b = l(y);
+        var y = await Vr(w, ze, p), b = l(y);
         return b;
       } catch (P) {
         return n(P), Promise.reject(P);
@@ -7440,8 +7440,8 @@ var ri = (() => {
       get_rethrown() {
         return ee[this.ptr + 13] != 0;
       }
-      init(l, f) {
-        this.set_adjusted_ptr(0), this.set_type(l), this.set_destructor(f);
+      init(l, p) {
+        this.set_adjusted_ptr(0), this.set_type(l), this.set_destructor(p);
       }
       set_adjusted_ptr(l) {
         W[this.ptr + 16 >> 2] = l;
@@ -7450,9 +7450,9 @@ var ri = (() => {
         return W[this.ptr + 16 >> 2];
       }
     }
-    var St = 0, Hr = (c, l, f) => {
+    var St = 0, Hr = (c, l, p) => {
       var y = new Br(c);
-      throw y.init(l, f), St = c, St;
+      throw y.init(l, p), St = c, St;
     }, Yr = () => Ie(""), je = (c) => {
       if (c === null)
         return "null";
@@ -7463,109 +7463,109 @@ var ri = (() => {
         c[l] = String.fromCharCode(l);
       Ct = c;
     }, Ct, V = (c) => {
-      for (var l = "", f = c; G[f]; )
-        l += Ct[G[f++]];
+      for (var l = "", p = c; G[p]; )
+        l += Ct[G[p++]];
       return l;
-    }, fe = {}, le = {}, Se = {}, pe, x = (c) => {
-      throw new pe(c);
+    }, pe = {}, le = {}, Se = {}, fe, x = (c) => {
+      throw new fe(c);
     }, kt, Ce = (c) => {
       throw new kt(c);
-    }, me = (c, l, f) => {
+    }, me = (c, l, p) => {
       c.forEach((v) => Se[v] = l);
       function y(v) {
-        var k = f(v);
+        var k = p(v);
         k.length !== c.length && Ce("Mismatched type converter count");
         for (var L = 0; L < c.length; ++L)
           H(c[L], k[L]);
       }
       var b = new Array(l.length), P = [], C = 0;
       l.forEach((v, k) => {
-        le.hasOwnProperty(v) ? b[k] = le[v] : (P.push(v), fe.hasOwnProperty(v) || (fe[v] = []), fe[v].push(() => {
+        le.hasOwnProperty(v) ? b[k] = le[v] : (P.push(v), pe.hasOwnProperty(v) || (pe[v] = []), pe[v].push(() => {
           b[k] = le[v], ++C, C === P.length && y(b);
         }));
       }), P.length === 0 && y(b);
     };
-    function Zr(c, l, f = {}) {
+    function Zr(c, l, p = {}) {
       var y = l.name;
       if (c || x(`type "${y}" must have a positive integer typeid pointer`), le.hasOwnProperty(c)) {
-        if (f.ignoreDuplicateRegistrations)
+        if (p.ignoreDuplicateRegistrations)
           return;
         x(`Cannot register type '${y}' twice`);
       }
-      if (le[c] = l, delete Se[c], fe.hasOwnProperty(c)) {
-        var b = fe[c];
-        delete fe[c], b.forEach((P) => P());
+      if (le[c] = l, delete Se[c], pe.hasOwnProperty(c)) {
+        var b = pe[c];
+        delete pe[c], b.forEach((P) => P());
       }
     }
-    function H(c, l, f = {}) {
-      return Zr(c, l, f);
+    function H(c, l, p = {}) {
+      return Zr(c, l, p);
     }
-    var Tt = (c, l, f) => {
+    var Tt = (c, l, p) => {
       switch (l) {
         case 1:
-          return f ? (y) => ee[y] : (y) => G[y];
+          return p ? (y) => ee[y] : (y) => G[y];
         case 2:
-          return f ? (y) => de[y >> 1] : (y) => he[y >> 1];
+          return p ? (y) => de[y >> 1] : (y) => he[y >> 1];
         case 4:
-          return f ? (y) => te[y >> 2] : (y) => W[y >> 2];
+          return p ? (y) => te[y >> 2] : (y) => W[y >> 2];
         case 8:
-          return f ? (y) => yt[y >> 3] : (y) => gt[y >> 3];
+          return p ? (y) => yt[y >> 3] : (y) => gt[y >> 3];
         default:
           throw new TypeError(`invalid integer width (${l}): ${c}`);
       }
-    }, Kr = (c, l, f, y, b) => {
+    }, Kr = (c, l, p, y, b) => {
       l = V(l);
       var P = l.indexOf("u") != -1;
       H(c, { name: l, fromWireType: (C) => C, toWireType: function(C, v) {
         if (typeof v != "bigint" && typeof v != "number")
           throw new TypeError(`Cannot convert "${je(v)}" to ${this.name}`);
         return typeof v == "number" && (v = BigInt(v)), v;
-      }, argPackAdvance: J, readValueFromPointer: Tt(l, f, !P), destructorFunction: null });
-    }, J = 8, qr = (c, l, f, y) => {
+      }, argPackAdvance: J, readValueFromPointer: Tt(l, p, !P), destructorFunction: null });
+    }, J = 8, qr = (c, l, p, y) => {
       l = V(l), H(c, { name: l, fromWireType: function(b) {
         return !!b;
       }, toWireType: function(b, P) {
-        return P ? f : y;
+        return P ? p : y;
       }, argPackAdvance: J, readValueFromPointer: function(b) {
         return this.fromWireType(G[b]);
       }, destructorFunction: null });
     }, Xr = (c) => ({ count: c.count, deleteScheduled: c.deleteScheduled, preservePointerOnDelete: c.preservePointerOnDelete, ptr: c.ptr, ptrType: c.ptrType, smartPtr: c.smartPtr, smartPtrType: c.smartPtrType }), Ue = (c) => {
-      function l(f) {
-        return f.$$.ptrType.registeredClass.name;
+      function l(p) {
+        return p.$$.ptrType.registeredClass.name;
       }
       x(l(c) + " instance already deleted");
-    }, Ge = !1, At = (c) => {
+    }, Ge = !1, Dt = (c) => {
     }, Qr = (c) => {
       c.smartPtr ? c.smartPtrType.rawDestructor(c.smartPtr) : c.ptrType.registeredClass.rawDestructor(c.ptr);
-    }, Dt = (c) => {
+    }, At = (c) => {
       c.count.value -= 1;
       var l = c.count.value === 0;
       l && Qr(c);
-    }, Et = (c, l, f) => {
-      if (l === f)
+    }, Et = (c, l, p) => {
+      if (l === p)
         return c;
-      if (f.baseClass === void 0)
+      if (p.baseClass === void 0)
         return null;
-      var y = Et(c, l, f.baseClass);
-      return y === null ? null : f.downcast(y);
+      var y = Et(c, l, p.baseClass);
+      return y === null ? null : p.downcast(y);
     }, Mt = {}, en = {}, tn = (c, l) => {
       for (l === void 0 && x("ptr should not be undefined"); c.baseClass; )
         l = c.upcast(l), c = c.baseClass;
       return l;
     }, rn = (c, l) => (l = tn(c, l), en[l]), ke = (c, l) => {
       (!l.ptrType || !l.ptr) && Ce("makeClassHandle requires ptr and ptrType");
-      var f = !!l.smartPtrType, y = !!l.smartPtr;
-      return f !== y && Ce("Both smartPtrType and smartPtr must be specified"), l.count = { value: 1 }, ve(Object.create(c, { $$: { value: l, writable: !0 } }));
+      var p = !!l.smartPtrType, y = !!l.smartPtr;
+      return p !== y && Ce("Both smartPtrType and smartPtr must be specified"), l.count = { value: 1 }, ve(Object.create(c, { $$: { value: l, writable: !0 } }));
     };
     function nn(c) {
       var l = this.getPointee(c);
       if (!l)
         return this.destructor(c), null;
-      var f = rn(this.registeredClass, l);
-      if (f !== void 0) {
-        if (f.$$.count.value === 0)
-          return f.$$.ptr = l, f.$$.smartPtr = c, f.clone();
-        var y = f.clone();
+      var p = rn(this.registeredClass, l);
+      if (p !== void 0) {
+        if (p.$$.count.value === 0)
+          return p.$$.ptr = l, p.$$.smartPtr = c, p.clone();
+        var y = p.clone();
         return this.destructor(c), y;
       }
       function b() {
@@ -7580,32 +7580,32 @@ var ri = (() => {
       return k === null ? b.call(this) : this.isSmartPointer ? ke(v.registeredClass.instancePrototype, { ptrType: v, ptr: k, smartPtrType: this, smartPtr: c }) : ke(v.registeredClass.instancePrototype, { ptrType: v, ptr: k });
     }
     var ve = (c) => typeof FinalizationRegistry > "u" ? (ve = (l) => l, c) : (Ge = new FinalizationRegistry((l) => {
-      Dt(l.$$);
+      At(l.$$);
     }), ve = (l) => {
-      var f = l.$$, y = !!f.smartPtr;
+      var p = l.$$, y = !!p.smartPtr;
       if (y) {
-        var b = { $$: f };
+        var b = { $$: p };
         Ge.register(l, b, l);
       }
       return l;
-    }, At = (l) => Ge.unregister(l), ve(c)), on = () => {
+    }, Dt = (l) => Ge.unregister(l), ve(c)), on = () => {
       Object.assign(Te.prototype, { isAliasOf(c) {
         if (!(this instanceof Te) || !(c instanceof Te))
           return !1;
-        var l = this.$$.ptrType.registeredClass, f = this.$$.ptr;
+        var l = this.$$.ptrType.registeredClass, p = this.$$.ptr;
         c.$$ = c.$$;
         for (var y = c.$$.ptrType.registeredClass, b = c.$$.ptr; l.baseClass; )
-          f = l.upcast(f), l = l.baseClass;
+          p = l.upcast(p), l = l.baseClass;
         for (; y.baseClass; )
           b = y.upcast(b), y = y.baseClass;
-        return l === y && f === b;
+        return l === y && p === b;
       }, clone() {
         if (this.$$.ptr || Ue(this), this.$$.preservePointerOnDelete)
           return this.$$.count.value += 1, this;
         var c = ve(Object.create(Object.getPrototypeOf(this), { $$: { value: Xr(this.$$) } }));
         return c.$$.count.value += 1, c.$$.deleteScheduled = !1, c;
       }, delete() {
-        this.$$.ptr || Ue(this), this.$$.deleteScheduled && !this.$$.preservePointerOnDelete && x("Object already scheduled for deletion"), At(this), Dt(this.$$), this.$$.preservePointerOnDelete || (this.$$.smartPtr = void 0, this.$$.ptr = void 0);
+        this.$$.ptr || Ue(this), this.$$.deleteScheduled && !this.$$.preservePointerOnDelete && x("Object already scheduled for deletion"), Dt(this), At(this.$$), this.$$.preservePointerOnDelete || (this.$$.smartPtr = void 0, this.$$.ptr = void 0);
       }, isDeleted() {
         return !this.$$.ptr;
       }, deleteLater() {
@@ -7614,67 +7614,67 @@ var ri = (() => {
     };
     function Te() {
     }
-    var Ae = (c, l) => Object.defineProperty(l, "name", { value: c }), an = (c, l, f) => {
+    var De = (c, l) => Object.defineProperty(l, "name", { value: c }), an = (c, l, p) => {
       if (c[l].overloadTable === void 0) {
         var y = c[l];
         c[l] = function(...b) {
-          return c[l].overloadTable.hasOwnProperty(b.length) || x(`Function '${f}' called with an invalid number of arguments (${b.length}) - expects one of (${c[l].overloadTable})!`), c[l].overloadTable[b.length].apply(this, b);
+          return c[l].overloadTable.hasOwnProperty(b.length) || x(`Function '${p}' called with an invalid number of arguments (${b.length}) - expects one of (${c[l].overloadTable})!`), c[l].overloadTable[b.length].apply(this, b);
         }, c[l].overloadTable = [], c[l].overloadTable[y.argCount] = y;
       }
-    }, $e = (c, l, f) => {
-      t.hasOwnProperty(c) ? ((f === void 0 || t[c].overloadTable !== void 0 && t[c].overloadTable[f] !== void 0) && x(`Cannot register public name '${c}' twice`), an(t, c, c), t[c].overloadTable.hasOwnProperty(f) && x(`Cannot register multiple overloads of a function with the same number of arguments (${f})!`), t[c].overloadTable[f] = l) : (t[c] = l, t[c].argCount = f);
+    }, $e = (c, l, p) => {
+      t.hasOwnProperty(c) ? ((p === void 0 || t[c].overloadTable !== void 0 && t[c].overloadTable[p] !== void 0) && x(`Cannot register public name '${c}' twice`), an(t, c, c), t[c].overloadTable.hasOwnProperty(p) && x(`Cannot register multiple overloads of a function with the same number of arguments (${p})!`), t[c].overloadTable[p] = l) : (t[c] = l, t[c].argCount = p);
     }, sn = 48, ln = 57, cn = (c) => {
       c = c.replace(/[^a-zA-Z0-9_]/g, "$");
       var l = c.charCodeAt(0);
       return l >= sn && l <= ln ? `_${c}` : c;
     };
-    function un(c, l, f, y, b, P, C, v) {
-      this.name = c, this.constructor = l, this.instancePrototype = f, this.rawDestructor = y, this.baseClass = b, this.getActualType = P, this.upcast = C, this.downcast = v, this.pureVirtualFunctions = [];
+    function un(c, l, p, y, b, P, C, v) {
+      this.name = c, this.constructor = l, this.instancePrototype = p, this.rawDestructor = y, this.baseClass = b, this.getActualType = P, this.upcast = C, this.downcast = v, this.pureVirtualFunctions = [];
     }
-    var De = (c, l, f) => {
-      for (; l !== f; )
-        l.upcast || x(`Expected null or instance of ${f.name}, got an instance of ${l.name}`), c = l.upcast(c), l = l.baseClass;
+    var Ae = (c, l, p) => {
+      for (; l !== p; )
+        l.upcast || x(`Expected null or instance of ${p.name}, got an instance of ${l.name}`), c = l.upcast(c), l = l.baseClass;
       return c;
     };
     function dn(c, l) {
       if (l === null)
         return this.isReference && x(`null is not a valid ${this.name}`), 0;
       l.$$ || x(`Cannot pass "${je(l)}" as a ${this.name}`), l.$$.ptr || x(`Cannot pass deleted object as a pointer of type ${this.name}`);
-      var f = l.$$.ptrType.registeredClass, y = De(l.$$.ptr, f, this.registeredClass);
+      var p = l.$$.ptrType.registeredClass, y = Ae(l.$$.ptr, p, this.registeredClass);
       return y;
     }
-    function fn(c, l) {
-      var f;
+    function pn(c, l) {
+      var p;
       if (l === null)
-        return this.isReference && x(`null is not a valid ${this.name}`), this.isSmartPointer ? (f = this.rawConstructor(), c !== null && c.push(this.rawDestructor, f), f) : 0;
+        return this.isReference && x(`null is not a valid ${this.name}`), this.isSmartPointer ? (p = this.rawConstructor(), c !== null && c.push(this.rawDestructor, p), p) : 0;
       (!l || !l.$$) && x(`Cannot pass "${je(l)}" as a ${this.name}`), l.$$.ptr || x(`Cannot pass deleted object as a pointer of type ${this.name}`), !this.isConst && l.$$.ptrType.isConst && x(`Cannot convert argument of type ${l.$$.smartPtrType ? l.$$.smartPtrType.name : l.$$.ptrType.name} to parameter type ${this.name}`);
       var y = l.$$.ptrType.registeredClass;
-      if (f = De(l.$$.ptr, y, this.registeredClass), this.isSmartPointer)
+      if (p = Ae(l.$$.ptr, y, this.registeredClass), this.isSmartPointer)
         switch (l.$$.smartPtr === void 0 && x("Passing raw pointer to smart pointer is illegal"), this.sharingPolicy) {
           case 0:
-            l.$$.smartPtrType === this ? f = l.$$.smartPtr : x(`Cannot convert argument of type ${l.$$.smartPtrType ? l.$$.smartPtrType.name : l.$$.ptrType.name} to parameter type ${this.name}`);
+            l.$$.smartPtrType === this ? p = l.$$.smartPtr : x(`Cannot convert argument of type ${l.$$.smartPtrType ? l.$$.smartPtrType.name : l.$$.ptrType.name} to parameter type ${this.name}`);
             break;
           case 1:
-            f = l.$$.smartPtr;
+            p = l.$$.smartPtr;
             break;
           case 2:
             if (l.$$.smartPtrType === this)
-              f = l.$$.smartPtr;
+              p = l.$$.smartPtr;
             else {
               var b = l.clone();
-              f = this.rawShare(f, Y.toHandle(() => b.delete())), c !== null && c.push(this.rawDestructor, f);
+              p = this.rawShare(p, Y.toHandle(() => b.delete())), c !== null && c.push(this.rawDestructor, p);
             }
             break;
           default:
             x("Unsupporting sharing policy");
         }
-      return f;
+      return p;
     }
-    function pn(c, l) {
+    function fn(c, l) {
       if (l === null)
         return this.isReference && x(`null is not a valid ${this.name}`), 0;
       l.$$ || x(`Cannot pass "${je(l)}" as a ${this.name}`), l.$$.ptr || x(`Cannot pass deleted object as a pointer of type ${this.name}`), l.$$.ptrType.isConst && x(`Cannot convert argument of type ${l.$$.ptrType.name} to parameter type ${this.name}`);
-      var f = l.$$.ptrType.registeredClass, y = De(l.$$.ptr, f, this.registeredClass);
+      var p = l.$$.ptrType.registeredClass, y = Ae(l.$$.ptr, p, this.registeredClass);
       return y;
     }
     function Ee(c) {
@@ -7687,67 +7687,67 @@ var ri = (() => {
         this.rawDestructor?.(c);
       }, argPackAdvance: J, readValueFromPointer: Ee, fromWireType: nn });
     };
-    function Me(c, l, f, y, b, P, C, v, k, L, M) {
-      this.name = c, this.registeredClass = l, this.isReference = f, this.isConst = y, this.isSmartPointer = b, this.pointeeType = P, this.sharingPolicy = C, this.rawGetPointee = v, this.rawConstructor = k, this.rawShare = L, this.rawDestructor = M, !b && l.baseClass === void 0 ? y ? (this.toWireType = dn, this.destructorFunction = null) : (this.toWireType = pn, this.destructorFunction = null) : this.toWireType = fn;
+    function Me(c, l, p, y, b, P, C, v, k, L, M) {
+      this.name = c, this.registeredClass = l, this.isReference = p, this.isConst = y, this.isSmartPointer = b, this.pointeeType = P, this.sharingPolicy = C, this.rawGetPointee = v, this.rawConstructor = k, this.rawShare = L, this.rawDestructor = M, !b && l.baseClass === void 0 ? y ? (this.toWireType = dn, this.destructorFunction = null) : (this.toWireType = fn, this.destructorFunction = null) : this.toWireType = pn;
     }
-    var Rt = (c, l, f) => {
-      t.hasOwnProperty(c) || Ce("Replacing nonexistent public symbol"), t[c].overloadTable !== void 0 && f !== void 0 ? t[c].overloadTable[f] = l : (t[c] = l, t[c].argCount = f);
-    }, yn = (c, l, f) => {
+    var Rt = (c, l, p) => {
+      t.hasOwnProperty(c) || Ce("Replacing nonexistent public symbol"), t[c].overloadTable !== void 0 && p !== void 0 ? t[c].overloadTable[p] = l : (t[c] = l, t[c].argCount = p);
+    }, yn = (c, l, p) => {
       c = c.replace(/p/g, "i");
       var y = t["dynCall_" + c];
-      return y(l, ...f);
-    }, gn = (c, l, f = []) => {
-      var y = yn(c, l, f);
+      return y(l, ...p);
+    }, gn = (c, l, p = []) => {
+      var y = yn(c, l, p);
       return y;
-    }, hn = (c, l) => (...f) => gn(c, l, f), re = (c, l) => {
+    }, hn = (c, l) => (...p) => gn(c, l, p), re = (c, l) => {
       c = V(c);
-      function f() {
+      function p() {
         return hn(c, l);
       }
-      var y = f();
+      var y = p();
       return typeof y != "function" && x(`unknown function pointer with signature ${c}: ${l}`), y;
     }, bn = (c, l) => {
-      var f = Ae(l, function(y) {
+      var p = De(l, function(y) {
         this.name = l, this.message = y;
         var b = new Error(y).stack;
         b !== void 0 && (this.stack = this.toString() + `
 ` + b.replace(/^Error(:[^\n]*)?\n/, ""));
       });
-      return f.prototype = Object.create(c.prototype), f.prototype.constructor = f, f.prototype.toString = function() {
+      return p.prototype = Object.create(c.prototype), p.prototype.constructor = p, p.prototype.toString = function() {
         return this.message === void 0 ? this.name : `${this.name}: ${this.message}`;
-      }, f;
+      }, p;
     }, Lt, _t = (c) => {
-      var l = go(c), f = V(l);
-      return Q(l), f;
+      var l = go(c), p = V(l);
+      return Q(l), p;
     }, Oe = (c, l) => {
-      var f = [], y = {};
+      var p = [], y = {};
       function b(P) {
         if (!y[P] && !le[P]) {
           if (Se[P]) {
             Se[P].forEach(b);
             return;
           }
-          f.push(P), y[P] = !0;
+          p.push(P), y[P] = !0;
         }
       }
-      throw l.forEach(b), new Lt(`${c}: ` + f.map(_t).join([", "]));
-    }, vn = (c, l, f, y, b, P, C, v, k, L, M, N, z) => {
+      throw l.forEach(b), new Lt(`${c}: ` + p.map(_t).join([", "]));
+    }, vn = (c, l, p, y, b, P, C, v, k, L, M, N, z) => {
       M = V(M), P = re(b, P), v &&= re(C, v), L &&= re(k, L), z = re(N, z);
       var Z = cn(M);
       $e(Z, function() {
         Oe(`Cannot construct ${M} due to unbound types`, [y]);
-      }), me([c, l, f], y ? [y] : [], (K) => {
+      }), me([c, l, p], y ? [y] : [], (K) => {
         K = K[0];
         var oe, B;
         y ? (oe = K.registeredClass, B = oe.instancePrototype) : B = Te.prototype;
-        var q = Ae(M, function(...qe) {
+        var q = De(M, function(...qe) {
           if (Object.getPrototypeOf(this) !== ie)
-            throw new pe("Use 'new' to construct " + M);
+            throw new fe("Use 'new' to construct " + M);
           if (U.constructor_body === void 0)
-            throw new pe(M + " has no accessible constructor");
+            throw new fe(M + " has no accessible constructor");
           var Yt = U.constructor_body[qe.length];
           if (Yt === void 0)
-            throw new pe(`Tried to invoke ctor of ${M} with invalid number of parameters (${qe.length}) - expected (${Object.keys(U.constructor_body).toString()}) parameters instead!`);
+            throw new fe(`Tried to invoke ctor of ${M} with invalid number of parameters (${qe.length}) - expected (${Object.keys(U.constructor_body).toString()}) parameters instead!`);
           return Yt.apply(this, qe);
         }), ie = Object.create(B, { constructor: { value: q } });
         q.prototype = ie;
@@ -7757,13 +7757,13 @@ var ri = (() => {
         return Mt[c] = { pointerType: Le, constPointerType: Ht }, Rt(Z, q), [ae, Le, Ht];
       });
     }, Ft = (c, l) => {
-      for (var f = [], y = 0; y < c; y++)
-        f.push(W[l + y * 4 >> 2]);
-      return f;
+      for (var p = [], y = 0; y < c; y++)
+        p.push(W[l + y * 4 >> 2]);
+      return p;
     }, Be = (c) => {
       for (; c.length; ) {
-        var l = c.pop(), f = c.pop();
-        f(l);
+        var l = c.pop(), p = c.pop();
+        p(l);
       }
     };
     function On(c) {
@@ -7800,79 +7800,79 @@ var ri = (() => {
         } catch (l) {
           xt(l);
         }
-    }, D = { instrumentWasmImports(c) {
+    }, A = { instrumentWasmImports(c) {
       var l = /^(__asyncjs__.*)$/;
-      for (let [f, y] of Object.entries(c))
-        typeof y == "function" && (y.isAsync || l.test(f));
+      for (let [p, y] of Object.entries(c))
+        typeof y == "function" && (y.isAsync || l.test(p));
     }, instrumentWasmExports(c) {
       var l = {};
-      for (let [f, y] of Object.entries(c))
-        typeof y == "function" ? l[f] = (...b) => {
-          D.exportCallStack.push(f);
+      for (let [p, y] of Object.entries(c))
+        typeof y == "function" ? l[p] = (...b) => {
+          A.exportCallStack.push(p);
           try {
             return y(...b);
           } finally {
-            _ || (D.exportCallStack.pop(), D.maybeStopUnwind());
+            _ || (A.exportCallStack.pop(), A.maybeStopUnwind());
           }
-        } : l[f] = y;
+        } : l[p] = y;
       return l;
     }, State: { Normal: 0, Unwinding: 1, Rewinding: 2, Disabled: 3 }, state: 0, StackSize: 4096, currData: null, handleSleepReturnValue: 0, exportCallStack: [], callStackNameToId: {}, callStackIdToName: {}, callStackId: 0, asyncPromiseHandlers: null, sleepCallbacks: [], getCallStackId(c) {
-      var l = D.callStackNameToId[c];
-      return l === void 0 && (l = D.callStackId++, D.callStackNameToId[c] = l, D.callStackIdToName[l] = c), l;
+      var l = A.callStackNameToId[c];
+      return l === void 0 && (l = A.callStackId++, A.callStackNameToId[c] = l, A.callStackIdToName[l] = c), l;
     }, maybeStopUnwind() {
-      D.currData && D.state === D.State.Unwinding && D.exportCallStack.length === 0 && (D.state = D.State.Normal, Re(vo), typeof Fibers < "u" && Fibers.trampoline());
+      A.currData && A.state === A.State.Unwinding && A.exportCallStack.length === 0 && (A.state = A.State.Normal, Re(vo), typeof Fibers < "u" && Fibers.trampoline());
     }, whenDone() {
       return new Promise((c, l) => {
-        D.asyncPromiseHandlers = { resolve: c, reject: l };
+        A.asyncPromiseHandlers = { resolve: c, reject: l };
       });
     }, allocateData() {
-      var c = Ze(12 + D.StackSize);
-      return D.setDataHeader(c, c + 12, D.StackSize), D.setDataRewindFunc(c), c;
-    }, setDataHeader(c, l, f) {
-      W[c >> 2] = l, W[c + 4 >> 2] = l + f;
+      var c = Ze(12 + A.StackSize);
+      return A.setDataHeader(c, c + 12, A.StackSize), A.setDataRewindFunc(c), c;
+    }, setDataHeader(c, l, p) {
+      W[c >> 2] = l, W[c + 4 >> 2] = l + p;
     }, setDataRewindFunc(c) {
-      var l = D.exportCallStack[0], f = D.getCallStackId(l);
-      te[c + 8 >> 2] = f;
+      var l = A.exportCallStack[0], p = A.getCallStackId(l);
+      te[c + 8 >> 2] = p;
     }, getDataRewindFuncName(c) {
-      var l = te[c + 8 >> 2], f = D.callStackIdToName[l];
-      return f;
+      var l = te[c + 8 >> 2], p = A.callStackIdToName[l];
+      return p;
     }, getDataRewindFunc(c) {
       var l = F[c];
       return l;
     }, doRewind(c) {
-      var l = D.getDataRewindFuncName(c), f = D.getDataRewindFunc(l);
-      return f();
+      var l = A.getDataRewindFuncName(c), p = A.getDataRewindFunc(l);
+      return p();
     }, handleSleep(c) {
       if (!_) {
-        if (D.state === D.State.Normal) {
-          var l = !1, f = !1;
+        if (A.state === A.State.Normal) {
+          var l = !1, p = !1;
           c((y = 0) => {
-            if (!_ && (D.handleSleepReturnValue = y, l = !0, !!f)) {
-              D.state = D.State.Rewinding, Re(() => Oo(D.currData)), typeof MainLoop < "u" && MainLoop.func && MainLoop.resume();
+            if (!_ && (A.handleSleepReturnValue = y, l = !0, !!p)) {
+              A.state = A.State.Rewinding, Re(() => Oo(A.currData)), typeof MainLoop < "u" && MainLoop.func && MainLoop.resume();
               var b, P = !1;
               try {
-                b = D.doRewind(D.currData);
+                b = A.doRewind(A.currData);
               } catch (k) {
                 b = k, P = !0;
               }
               var C = !1;
-              if (!D.currData) {
-                var v = D.asyncPromiseHandlers;
-                v && (D.asyncPromiseHandlers = null, (P ? v.reject : v.resolve)(b), C = !0);
+              if (!A.currData) {
+                var v = A.asyncPromiseHandlers;
+                v && (A.asyncPromiseHandlers = null, (P ? v.reject : v.resolve)(b), C = !0);
               }
               if (P && !C)
                 throw b;
             }
-          }), f = !0, l || (D.state = D.State.Unwinding, D.currData = D.allocateData(), typeof MainLoop < "u" && MainLoop.func && MainLoop.pause(), Re(() => bo(D.currData)));
-        } else D.state === D.State.Rewinding ? (D.state = D.State.Normal, Re(wo), Q(D.currData), D.currData = null, D.sleepCallbacks.forEach(zt)) : Ie(`invalid state: ${D.state}`);
-        return D.handleSleepReturnValue;
+          }), p = !0, l || (A.state = A.State.Unwinding, A.currData = A.allocateData(), typeof MainLoop < "u" && MainLoop.func && MainLoop.pause(), Re(() => bo(A.currData)));
+        } else A.state === A.State.Rewinding ? (A.state = A.State.Normal, Re(wo), Q(A.currData), A.currData = null, A.sleepCallbacks.forEach(zt)) : Ie(`invalid state: ${A.state}`);
+        return A.handleSleepReturnValue;
       }
     }, handleAsync(c) {
-      return D.handleSleep((l) => {
+      return A.handleSleep((l) => {
         c().then(l);
       });
     } };
-    function Ut(c, l, f, y, b, P) {
+    function Ut(c, l, p, y, b, P) {
       var C = l.length;
       C < 2 && x("argTypes array size mismatch! Must at least get return value and 'this' types!"), l[1];
       var v = On(l), k = l[0].name !== "void", L = C - 2, M = new Array(L), N = [], z = [], Z = function(...K) {
@@ -7893,28 +7893,28 @@ var ri = (() => {
           if (k)
             return l[0].fromWireType(U);
         }
-        return D.currData ? D.whenDone().then(ie) : ie(q);
+        return A.currData ? A.whenDone().then(ie) : ie(q);
       };
-      return Ae(c, Z);
+      return De(c, Z);
     }
-    var jn = (c, l, f, y, b, P) => {
-      var C = Ft(l, f);
+    var jn = (c, l, p, y, b, P) => {
+      var C = Ft(l, p);
       b = re(y, b), me([], [c], (v) => {
         v = v[0];
         var k = `constructor ${v.name}`;
         if (v.registeredClass.constructor_body === void 0 && (v.registeredClass.constructor_body = []), v.registeredClass.constructor_body[l - 1] !== void 0)
-          throw new pe(`Cannot register multiple constructors with identical number of parameters (${l - 1}) for class '${v.name}'! Overload resolution is currently only performed using the parameter count, not actual type info!`);
+          throw new fe(`Cannot register multiple constructors with identical number of parameters (${l - 1}) for class '${v.name}'! Overload resolution is currently only performed using the parameter count, not actual type info!`);
         return v.registeredClass.constructor_body[l - 1] = () => {
           Oe(`Cannot construct ${v.name} due to unbound types`, C);
         }, me([], C, (L) => (L.splice(1, 0, null), v.registeredClass.constructor_body[l - 1] = Ut(k, L, null, b, P), [])), [];
       });
-    }, Gt = (c, l, f) => (c instanceof Object || x(`${f} with invalid "this": ${c}`), c instanceof l.registeredClass.constructor || x(`${f} incompatible with "this" of type ${c.constructor.name}`), c.$$.ptr || x(`cannot call emscripten binding method ${f} on deleted object`), De(c.$$.ptr, c.$$.ptrType.registeredClass, l.registeredClass)), Sn = (c, l, f, y, b, P, C, v, k, L) => {
+    }, Gt = (c, l, p) => (c instanceof Object || x(`${p} with invalid "this": ${c}`), c instanceof l.registeredClass.constructor || x(`${p} incompatible with "this" of type ${c.constructor.name}`), c.$$.ptr || x(`cannot call emscripten binding method ${p} on deleted object`), Ae(c.$$.ptr, c.$$.ptrType.registeredClass, l.registeredClass)), Sn = (c, l, p, y, b, P, C, v, k, L) => {
       l = V(l), b = re(y, b), me([], [c], (M) => {
         M = M[0];
         var N = `${M.name}.${l}`, z = { get() {
-          Oe(`Cannot access ${N} due to unbound types`, [f, C]);
+          Oe(`Cannot access ${N} due to unbound types`, [p, C]);
         }, enumerable: !0, configurable: !0 };
-        return k ? z.set = () => Oe(`Cannot access ${N} due to unbound types`, [f, C]) : z.set = (Z) => x(N + " is a read-only property"), Object.defineProperty(M.registeredClass.instancePrototype, l, z), me([], k ? [f, C] : [f], (Z) => {
+        return k ? z.set = () => Oe(`Cannot access ${N} due to unbound types`, [p, C]) : z.set = (Z) => x(N + " is a read-only property"), Object.defineProperty(M.registeredClass.instancePrototype, l, z), me([], k ? [p, C] : [p], (Z) => {
           var K = Z[0], oe = { get() {
             var q = Gt(this, M, N + " getter");
             return K.fromWireType(b(P, q));
@@ -7952,22 +7952,22 @@ var ri = (() => {
     } }, Tn = { name: "emscripten::val", fromWireType: (c) => {
       var l = Y.toValue(c);
       return Ye(c), l;
-    }, toWireType: (c, l) => Y.toHandle(l), argPackAdvance: J, readValueFromPointer: Ee, destructorFunction: null }, An = (c) => H(c, Tn), Dn = (c, l, f) => {
+    }, toWireType: (c, l) => Y.toHandle(l), argPackAdvance: J, readValueFromPointer: Ee, destructorFunction: null }, Dn = (c) => H(c, Tn), An = (c, l, p) => {
       switch (l) {
         case 1:
-          return f ? function(y) {
+          return p ? function(y) {
             return this.fromWireType(ee[y]);
           } : function(y) {
             return this.fromWireType(G[y]);
           };
         case 2:
-          return f ? function(y) {
+          return p ? function(y) {
             return this.fromWireType(de[y >> 1]);
           } : function(y) {
             return this.fromWireType(he[y >> 1]);
           };
         case 4:
-          return f ? function(y) {
+          return p ? function(y) {
             return this.fromWireType(te[y >> 2]);
           } : function(y) {
             return this.fromWireType(W[y >> 2]);
@@ -7975,54 +7975,54 @@ var ri = (() => {
         default:
           throw new TypeError(`invalid integer width (${l}): ${c}`);
       }
-    }, En = (c, l, f, y) => {
+    }, En = (c, l, p, y) => {
       l = V(l);
       function b() {
       }
       b.values = {}, H(c, { name: l, constructor: b, fromWireType: function(P) {
         return this.constructor.values[P];
-      }, toWireType: (P, C) => C.value, argPackAdvance: J, readValueFromPointer: Dn(l, f, y), destructorFunction: null }), $e(l, b);
+      }, toWireType: (P, C) => C.value, argPackAdvance: J, readValueFromPointer: An(l, p, y), destructorFunction: null }), $e(l, b);
     }, Je = (c, l) => {
-      var f = le[c];
-      return f === void 0 && x(`${l} has unknown type ${_t(c)}`), f;
-    }, Mn = (c, l, f) => {
+      var p = le[c];
+      return p === void 0 && x(`${l} has unknown type ${_t(c)}`), p;
+    }, Mn = (c, l, p) => {
       var y = Je(c, "enum");
       l = V(l);
-      var b = y.constructor, P = Object.create(y.constructor.prototype, { value: { value: f }, constructor: { value: Ae(`${y.name}_${l}`, function() {
+      var b = y.constructor, P = Object.create(y.constructor.prototype, { value: { value: p }, constructor: { value: De(`${y.name}_${l}`, function() {
       }) } });
-      b.values[f] = P, b[l] = P;
+      b.values[p] = P, b[l] = P;
     }, Rn = (c, l) => {
       switch (l) {
         case 4:
-          return function(f) {
-            return this.fromWireType(mt[f >> 2]);
+          return function(p) {
+            return this.fromWireType(mt[p >> 2]);
           };
         case 8:
-          return function(f) {
-            return this.fromWireType(ht[f >> 3]);
+          return function(p) {
+            return this.fromWireType(ht[p >> 3]);
           };
         default:
           throw new TypeError(`invalid float width (${l}): ${c}`);
       }
-    }, Ln = (c, l, f) => {
-      l = V(l), H(c, { name: l, fromWireType: (y) => y, toWireType: (y, b) => b, argPackAdvance: J, readValueFromPointer: Rn(l, f), destructorFunction: null });
+    }, Ln = (c, l, p) => {
+      l = V(l), H(c, { name: l, fromWireType: (y) => y, toWireType: (y, b) => b, argPackAdvance: J, readValueFromPointer: Rn(l, p), destructorFunction: null });
     }, _n = (c) => {
       c = c.trim();
       const l = c.indexOf("(");
       return l === -1 ? c : c.slice(0, l);
-    }, Fn = (c, l, f, y, b, P, C, v) => {
-      var k = Ft(l, f);
+    }, Fn = (c, l, p, y, b, P, C, v) => {
+      var k = Ft(l, p);
       c = V(c), c = _n(c), b = re(y, b), $e(c, function() {
         Oe(`Cannot call ${c} due to unbound types`, k);
       }, l - 1), me([], k, (L) => {
         var M = [L[0], null].concat(L.slice(1));
         return Rt(c, Ut(c, M, null, b, P), l - 1), [];
       });
-    }, xn = (c, l, f, y, b) => {
+    }, xn = (c, l, p, y, b) => {
       l = V(l);
       var P = (M) => M;
       if (y === 0) {
-        var C = 32 - 8 * f;
+        var C = 32 - 8 * p;
         P = (M) => M << C >>> C;
       }
       var v = l.includes("unsigned"), k = (M, N) => {
@@ -8031,45 +8031,45 @@ var ri = (() => {
         return k(N, this.name), N >>> 0;
       } : L = function(M, N) {
         return k(N, this.name), N;
-      }, H(c, { name: l, fromWireType: P, toWireType: L, argPackAdvance: J, readValueFromPointer: Tt(l, f, y !== 0), destructorFunction: null });
-    }, Nn = (c, l, f) => {
+      }, H(c, { name: l, fromWireType: P, toWireType: L, argPackAdvance: J, readValueFromPointer: Tt(l, p, y !== 0), destructorFunction: null });
+    }, Nn = (c, l, p) => {
       var y = [Int8Array, Uint8Array, Int16Array, Uint16Array, Int32Array, Uint32Array, Float32Array, Float64Array, BigInt64Array, BigUint64Array], b = y[l];
       function P(C) {
         var v = W[C >> 2], k = W[C + 4 >> 2];
         return new b(ee.buffer, k, v);
       }
-      f = V(f), H(c, { name: f, fromWireType: P, argPackAdvance: J, readValueFromPointer: P }, { ignoreDuplicateRegistrations: !0 });
-    }, Wn = (c, l, f, y) => {
+      p = V(p), H(c, { name: p, fromWireType: P, argPackAdvance: J, readValueFromPointer: P }, { ignoreDuplicateRegistrations: !0 });
+    }, Wn = (c, l, p, y) => {
       if (!(y > 0)) return 0;
-      for (var b = f, P = f + y - 1, C = 0; C < c.length; ++C) {
+      for (var b = p, P = p + y - 1, C = 0; C < c.length; ++C) {
         var v = c.charCodeAt(C);
         if (v >= 55296 && v <= 57343) {
           var k = c.charCodeAt(++C);
           v = 65536 + ((v & 1023) << 10) | k & 1023;
         }
         if (v <= 127) {
-          if (f >= P) break;
-          l[f++] = v;
+          if (p >= P) break;
+          l[p++] = v;
         } else if (v <= 2047) {
-          if (f + 1 >= P) break;
-          l[f++] = 192 | v >> 6, l[f++] = 128 | v & 63;
+          if (p + 1 >= P) break;
+          l[p++] = 192 | v >> 6, l[p++] = 128 | v & 63;
         } else if (v <= 65535) {
-          if (f + 2 >= P) break;
-          l[f++] = 224 | v >> 12, l[f++] = 128 | v >> 6 & 63, l[f++] = 128 | v & 63;
+          if (p + 2 >= P) break;
+          l[p++] = 224 | v >> 12, l[p++] = 128 | v >> 6 & 63, l[p++] = 128 | v & 63;
         } else {
-          if (f + 3 >= P) break;
-          l[f++] = 240 | v >> 18, l[f++] = 128 | v >> 12 & 63, l[f++] = 128 | v >> 6 & 63, l[f++] = 128 | v & 63;
+          if (p + 3 >= P) break;
+          l[p++] = 240 | v >> 18, l[p++] = 128 | v >> 12 & 63, l[p++] = 128 | v >> 6 & 63, l[p++] = 128 | v & 63;
         }
       }
-      return l[f] = 0, f - b;
-    }, Vn = (c, l, f) => Wn(c, G, l, f), zn = (c) => {
-      for (var l = 0, f = 0; f < c.length; ++f) {
-        var y = c.charCodeAt(f);
-        y <= 127 ? l++ : y <= 2047 ? l += 2 : y >= 55296 && y <= 57343 ? (l += 4, ++f) : l += 3;
+      return l[p] = 0, p - b;
+    }, Vn = (c, l, p) => Wn(c, G, l, p), zn = (c) => {
+      for (var l = 0, p = 0; p < c.length; ++p) {
+        var y = c.charCodeAt(p);
+        y <= 127 ? l++ : y <= 2047 ? l += 2 : y >= 55296 && y <= 57343 ? (l += 4, ++p) : l += 3;
       }
       return l;
-    }, $t = typeof TextDecoder < "u" ? new TextDecoder() : void 0, Un = (c, l = 0, f = NaN) => {
-      for (var y = l + f, b = l; c[b] && !(b >= y); ) ++b;
+    }, $t = typeof TextDecoder < "u" ? new TextDecoder() : void 0, Un = (c, l = 0, p = NaN) => {
+      for (var y = l + p, b = l; c[b] && !(b >= y); ) ++b;
       if (b - l > 16 && c.buffer && $t)
         return $t.decode(c.subarray(l, b));
       for (var P = ""; l < b; ) {
@@ -8093,16 +8093,16 @@ var ri = (() => {
       }
       return P;
     }, Gn = (c, l) => c ? Un(G, c, l) : "", $n = (c, l) => {
-      l = V(l), H(c, { name: l, fromWireType(f) {
-        for (var y = W[f >> 2], b = f + 4, P, C, v = b, C = 0; C <= y; ++C) {
+      l = V(l), H(c, { name: l, fromWireType(p) {
+        for (var y = W[p >> 2], b = p + 4, P, C, v = b, C = 0; C <= y; ++C) {
           var k = b + C;
           if (C == y || G[k] == 0) {
             var L = k - v, M = Gn(v, L);
             P === void 0 ? P = M : (P += "\0", P += M), v = k + 1;
           }
         }
-        return Q(f), P;
-      }, toWireType(f, y) {
+        return Q(p), P;
+      }, toWireType(p, y) {
         y instanceof ArrayBuffer && (y = new Uint8Array(y));
         var b, P = typeof y == "string";
         P || y instanceof Uint8Array || y instanceof Uint8ClampedArray || y instanceof Int8Array || x("Cannot pass non-string to std::string"), P ? b = zn(y) : b = y.length;
@@ -8117,41 +8117,41 @@ var ri = (() => {
         else
           for (var k = 0; k < b; ++k)
             G[v + k] = y[k];
-        return f !== null && f.push(Q, C), C;
-      }, argPackAdvance: J, readValueFromPointer: Ee, destructorFunction(f) {
-        Q(f);
+        return p !== null && p.push(Q, C), C;
+      }, argPackAdvance: J, readValueFromPointer: Ee, destructorFunction(p) {
+        Q(p);
       } });
     }, Bt = typeof TextDecoder < "u" ? new TextDecoder("utf-16le") : void 0, Bn = (c, l) => {
-      for (var f = c, y = f >> 1, b = y + l / 2; !(y >= b) && he[y]; ) ++y;
-      if (f = y << 1, f - c > 32 && Bt) return Bt.decode(G.subarray(c, f));
+      for (var p = c, y = p >> 1, b = y + l / 2; !(y >= b) && he[y]; ) ++y;
+      if (p = y << 1, p - c > 32 && Bt) return Bt.decode(G.subarray(c, p));
       for (var P = "", C = 0; !(C >= l / 2); ++C) {
         var v = de[c + C * 2 >> 1];
         if (v == 0) break;
         P += String.fromCharCode(v);
       }
       return P;
-    }, Hn = (c, l, f) => {
-      if (f ??= 2147483647, f < 2) return 0;
-      f -= 2;
-      for (var y = l, b = f < c.length * 2 ? f / 2 : c.length, P = 0; P < b; ++P) {
+    }, Hn = (c, l, p) => {
+      if (p ??= 2147483647, p < 2) return 0;
+      p -= 2;
+      for (var y = l, b = p < c.length * 2 ? p / 2 : c.length, P = 0; P < b; ++P) {
         var C = c.charCodeAt(P);
         de[l >> 1] = C, l += 2;
       }
       return de[l >> 1] = 0, l - y;
     }, Yn = (c) => c.length * 2, Jn = (c, l) => {
-      for (var f = 0, y = ""; !(f >= l / 4); ) {
-        var b = te[c + f * 4 >> 2];
+      for (var p = 0, y = ""; !(p >= l / 4); ) {
+        var b = te[c + p * 4 >> 2];
         if (b == 0) break;
-        if (++f, b >= 65536) {
+        if (++p, b >= 65536) {
           var P = b - 65536;
           y += String.fromCharCode(55296 | P >> 10, 56320 | P & 1023);
         } else
           y += String.fromCharCode(b);
       }
       return y;
-    }, Zn = (c, l, f) => {
-      if (f ??= 2147483647, f < 4) return 0;
-      for (var y = l, b = y + f - 4, P = 0; P < c.length; ++P) {
+    }, Zn = (c, l, p) => {
+      if (p ??= 2147483647, p < 4) return 0;
+      for (var y = l, b = y + p - 4, P = 0; P < c.length; ++P) {
         var C = c.charCodeAt(P);
         if (C >= 55296 && C <= 57343) {
           var v = c.charCodeAt(++P);
@@ -8161,15 +8161,15 @@ var ri = (() => {
       }
       return te[l >> 2] = 0, l - y;
     }, Kn = (c) => {
-      for (var l = 0, f = 0; f < c.length; ++f) {
-        var y = c.charCodeAt(f);
-        y >= 55296 && y <= 57343 && ++f, l += 4;
+      for (var l = 0, p = 0; p < c.length; ++p) {
+        var y = c.charCodeAt(p);
+        y >= 55296 && y <= 57343 && ++p, l += 4;
       }
       return l;
-    }, qn = (c, l, f) => {
-      f = V(f);
+    }, qn = (c, l, p) => {
+      p = V(p);
       var y, b, P, C;
-      l === 2 ? (y = Bn, b = Hn, C = Yn, P = (v) => he[v >> 1]) : l === 4 && (y = Jn, b = Zn, C = Kn, P = (v) => W[v >> 2]), H(c, { name: f, fromWireType: (v) => {
+      l === 2 ? (y = Bn, b = Hn, C = Yn, P = (v) => he[v >> 1]) : l === 4 && (y = Jn, b = Zn, C = Kn, P = (v) => W[v >> 2]), H(c, { name: p, fromWireType: (v) => {
         for (var k = W[v >> 2], L, M = v + 4, N = 0; N <= k; ++N) {
           var z = v + 4 + N * l;
           if (N == k || P(z) == 0) {
@@ -8179,7 +8179,7 @@ var ri = (() => {
         }
         return Q(v), L;
       }, toWireType: (v, k) => {
-        typeof k != "string" && x(`Cannot pass non-string to C++ string type ${f}`);
+        typeof k != "string" && x(`Cannot pass non-string to C++ string type ${p}`);
         var L = C(k), M = Ze(4 + L + l);
         return W[M >> 2] = L / l, b(k, M + 4, L + l), v !== null && v.push(Q, M), M;
       }, argPackAdvance: J, readValueFromPointer: Ee, destructorFunction(v) {
@@ -8187,14 +8187,14 @@ var ri = (() => {
       } });
     }, Xn = (c, l) => {
       l = V(l), H(c, { isVoid: !0, name: l, argPackAdvance: 0, fromWireType: () => {
-      }, toWireType: (f, y) => {
+      }, toWireType: (p, y) => {
       } });
     }, Qn = () => {
       jt = !1, Nt = 0;
-    }, eo = (c, l, f) => {
-      var y = [], b = c.toWireType(y, f);
+    }, eo = (c, l, p) => {
+      var y = [], b = c.toWireType(y, p);
       return y.length && (W[l >> 2] = Y.toHandle(y)), b;
-    }, to = (c, l, f) => (c = Y.toValue(c), l = Je(l, "emval::as"), eo(l, f, c)), ro = (c, l) => (c = Y.toValue(c), l = Y.toValue(l), Y.toHandle(c[l])), no = {}, oo = (c) => {
+    }, to = (c, l, p) => (c = Y.toValue(c), l = Je(l, "emval::as"), eo(l, p, c)), ro = (c, l) => (c = Y.toValue(c), l = Y.toValue(l), Y.toHandle(c[l])), no = {}, oo = (c) => {
       var l = no[c];
       return l === void 0 ? V(c) : l;
     }, io = (c) => Y.toHandle(oo(c)), ao = (c) => {
@@ -8202,36 +8202,36 @@ var ri = (() => {
       Be(l), Ye(c);
     }, so = (c, l) => {
       c = Je(c, "_emval_take_value");
-      var f = c.readValueFromPointer(l);
-      return Y.toHandle(f);
+      var p = c.readValueFromPointer(l);
+      return Y.toHandle(p);
     }, we = {}, lo = () => performance.now(), co = (c, l) => {
       if (we[c] && (clearTimeout(we[c].id), delete we[c]), !l) return 0;
-      var f = setTimeout(() => {
+      var p = setTimeout(() => {
         delete we[c], zt(() => ho(c, lo()));
       }, l);
-      return we[c] = { id: f, timeout_ms: l }, 0;
-    }, uo = () => 2147483648, fo = (c, l) => Math.ceil(c / l) * l, po = (c) => {
-      var l = A.buffer, f = (c - l.byteLength + 65535) / 65536 | 0;
+      return we[c] = { id: p, timeout_ms: l }, 0;
+    }, uo = () => 2147483648, po = (c, l) => Math.ceil(c / l) * l, fo = (c) => {
+      var l = D.buffer, p = (c - l.byteLength + 65535) / 65536 | 0;
       try {
-        return A.grow(f), vt(), 1;
+        return D.grow(p), vt(), 1;
       } catch {
       }
     }, mo = (c) => {
       var l = G.length;
       c >>>= 0;
-      var f = uo();
-      if (c > f)
+      var p = uo();
+      if (c > p)
         return !1;
       for (var y = 1; y <= 4; y *= 2) {
         var b = l * (1 + 0.2 / y);
         b = Math.min(b, c + 100663296);
-        var P = Math.min(f, fo(Math.max(c, b), 65536)), C = po(P);
+        var P = Math.min(p, po(Math.max(c, b), 65536)), C = fo(P);
         if (C)
           return !0;
       }
       return !1;
     };
-    Jr(), pe = t.BindingError = class extends Error {
+    Jr(), fe = t.BindingError = class extends Error {
       constructor(l) {
         super(l), this.name = "BindingError";
       }
@@ -8240,7 +8240,7 @@ var ri = (() => {
         super(l), this.name = "InternalError";
       }
     }, on(), mn(), Lt = t.UnboundTypeError = bn(Error, "UnboundTypeError"), kn();
-    var yo = { i: Hr, s: Yr, n: Kr, w: qr, f: vn, d: jn, a: Sn, u: An, l: En, g: Mn, m: Ln, b: Fn, e: xn, c: Nn, v: $n, h: qn, x: Xn, q: Qn, j: to, y: Ye, k: ro, o: io, A: ao, z: so, r: co, t: mo, p: Vt }, F = await Ur();
+    var yo = { i: Hr, s: Yr, n: Kr, w: qr, f: vn, d: jn, a: Sn, u: Dn, l: En, g: Mn, m: Ln, b: Fn, e: xn, c: Nn, v: $n, h: qn, x: Xn, q: Qn, j: to, y: Ye, k: ro, o: io, A: ao, z: so, r: co, t: mo, p: Vt }, F = await Ur();
     F.C;
     var go = F.D, Ze = t._malloc = F.E, Q = t._free = F.F, ho = F.G;
     t.dynCall_v = F.I, t.dynCall_ii = F.J, t.dynCall_vi = F.K, t.dynCall_i = F.L, t.dynCall_iii = F.M, t.dynCall_viii = F.N, t.dynCall_fii = F.O, t.dynCall_viif = F.P, t.dynCall_viiii = F.Q, t.dynCall_viiiiii = F.R, t.dynCall_iiiiii = F.S, t.dynCall_viiiii = F.T, t.dynCall_iiiiiii = F.U, t.dynCall_iiiiiiii = F.V, t.dynCall_viiiiiii = F.W, t.dynCall_viiiiiiiiidi = F.X, t.dynCall_viiiiiiiidi = F.Y, t.dynCall_viiiiiiiiii = F.Z, t.dynCall_viiiiiiiii = F._, t.dynCall_viiiiiiii = F.$, t.dynCall_iiiii = F.aa, t.dynCall_iiii = F.ba;
@@ -8267,7 +8267,7 @@ var ri = (() => {
     return Ke(), r = o, r;
   });
 })();
-function Dr(m, s) {
+function Ar(m, s) {
   return Math.sqrt((m.x - s.x) ** 2 + (m.y - s.y) ** 2);
 }
 function ni(m, s) {
@@ -8279,7 +8279,7 @@ function ni(m, s) {
 function oi(m, s) {
   if (m.confidence <= 0 || s.confidence <= 0)
     return { x: 0, y: 0 };
-  const r = Dr(m.center, s.center), t = ni(m.center, s.center);
+  const r = Ar(m.center, s.center), t = ni(m.center, s.center);
   return {
     x: t.x,
     y: t.y + r / 4
@@ -8289,8 +8289,8 @@ function oi(m, s) {
 function ii(m, s, r) {
   if (m.confidence <= 0 || s.confidence <= 0)
     return 0;
-  const t = Dr(m.center, s.center), e = kr(r.width, r.height);
-  return pt(t / e);
+  const t = Ar(m.center, s.center), e = kr(r.width, r.height);
+  return ft(t / e);
 }
 function ut(m) {
   const { centerX: s, centerY: r, confidence: t, size: e, status: n } = m;
@@ -8375,4 +8375,4 @@ let si = class extends No {
 };
 class li extends si {
 }
-ft(li);
+pt(li);
